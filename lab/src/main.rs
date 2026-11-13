@@ -1,6 +1,7 @@
 mod api;
 mod branch;
 mod grow;
+mod latest;
 mod lock;
 mod matrix;
 mod scenario;

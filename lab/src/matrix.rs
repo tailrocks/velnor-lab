@@ -28,8 +28,10 @@ pub fn cold(api: &Api) -> Result<String> {
     delete_caches(api)?;
     let opened = scenario::open(api, Scenario::Warm)?;
     let merged = wait::merge(api, opened.number);
-    retire(api, &opened)?;
-    merged
+    let retired = retire(api, &opened);
+    let sha = merged?;
+    retired?;
+    Ok(sha)
 }
 
 fn collect(api: &Api, workflow: &str, run_id: u64, file: &str) -> Result<()> {
@@ -63,8 +65,12 @@ fn step(api: &Api, workflow: &str, name: &str, file: &str, opened: &mut Vec<Open
         opened.push(pull);
         run_id?
     };
-    wait::finished(api, run_id)?;
-    collect(api, workflow, run_id, file)
+    let conclusion = wait::finished(api, run_id)?;
+    collect(api, workflow, run_id, file)?;
+    if conclusion == "success" {
+        return Ok(());
+    }
+    Err(format!("{workflow} run {run_id} concluded {conclusion}").into())
 }
 
 pub fn run(api: &Api, workflow: &str) -> Result<()> {
@@ -79,8 +85,13 @@ pub fn run(api: &Api, workflow: &str) -> Result<()> {
             break;
         }
     }
-    for pull in &opened {
-        retire(api, pull)?;
+    let failures: Vec<String> = opened
+        .iter()
+        .filter_map(|pull| retire(api, pull).err().map(|error| error.to_string()))
+        .collect();
+    match (outcome, failures.is_empty()) {
+        (outcome, true) => outcome,
+        (Ok(()), false) => Err(failures.join("; ").into()),
+        (Err(error), false) => Err(format!("{error}; {}", failures.join("; ")).into()),
     }
-    outcome
 }

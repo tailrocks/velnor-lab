@@ -76,10 +76,17 @@ pub fn run(count: usize) -> Result<()> {
         "Cargo.toml",
         add_member(&root).ok_or("Cargo.toml has no members list")?,
     )?;
-    Command::new("cargo")
+    let metadata = Command::new("cargo")
         .args(["metadata", "--format-version", "1"])
         .output()?;
-    git(&["add", "-A"])?;
+    if !metadata.status.success() {
+        return Err(format!(
+            "cargo metadata failed: {}",
+            String::from_utf8_lossy(&metadata.stderr)
+        )
+        .into());
+    }
+    git(&["add", "grow", "Cargo.toml", "Cargo.lock"])?;
     git(&[
         "commit",
         "-s",

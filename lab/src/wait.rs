@@ -1,5 +1,6 @@
 use crate::Result;
 use crate::api::Api;
+use crate::latest::latest;
 use serde_json::{Value, json};
 use std::time::{Duration, Instant};
 
@@ -27,7 +28,7 @@ fn list(api: &Api, path: &str, key: &str) -> Result<Vec<Value>> {
 fn check_state(api: &Api, sha: &str) -> Result<Option<()>> {
     let checks = list(
         api,
-        &format!("commits/{sha}/check-runs?per_page=100"),
+        &format!("commits/{sha}/check-runs?filter=latest&per_page=100"),
         "check_runs",
     )?;
     let runs = list(
@@ -40,7 +41,12 @@ fn check_state(api: &Api, sha: &str) -> Result<Option<()>> {
         .unwrap_or(Value::Null);
     let state = status["state"].as_str().unwrap_or("");
     let statuses = status["total_count"].as_u64().unwrap_or(0);
-    let all: Vec<&Value> = checks.iter().chain(runs.iter()).collect();
+    let all: Vec<&Value> = latest(&checks, |item| item["name"].to_string())
+        .into_iter()
+        .chain(latest(&runs, |item| {
+            format!("{}{}", item["workflow_id"], item["event"])
+        }))
+        .collect();
     let bad = |item: &&Value| {
         item["status"] == "completed" && !GOOD.contains(&item["conclusion"].as_str().unwrap_or(""))
     };
@@ -79,11 +85,12 @@ pub fn run_for(api: &Api, workflow: &str, event: &str, sha: &str) -> Result<u64>
     })
 }
 
-pub fn finished(api: &Api, run_id: u64) -> Result<()> {
+pub fn finished(api: &Api, run_id: u64) -> Result<String> {
     poll(&format!("run {run_id}"), || {
         let run = api
             .get(&format!("actions/runs/{run_id}"))?
             .unwrap_or(Value::Null);
-        Ok((run["status"] == "completed").then_some(()))
+        Ok((run["status"] == "completed")
+            .then(|| run["conclusion"].as_str().unwrap_or("unknown").to_owned()))
     })
 }
