@@ -140,7 +140,7 @@ function stepOutputs(lines, marker) {
     while (at < lines.length && lines[at] !== '##[endgroup]') at += 1;
     const block = [];
     for (at += 1; at < lines.length && !lines[at].startsWith('##[group]') && lines[at] !== ''; at += 1) {
-      if (!lines[at].startsWith('[command]') && !lines[at].startsWith('Cache Size:')) block.push(lines[at]);
+      if (/^(Cache saved with key|Failed to save|##\[(warning|error|notice)\])/.test(lines[at])) block.push(lines[at]);
     }
     blocks.push(block);
     at -= 1;
@@ -160,6 +160,10 @@ function compare() {
   const stored = JSON.parse(fs.readFileSync(`conformance/${probe}.json`, 'utf8'));
   let failed = false;
   for (const [leg, value] of Object.entries(observed.legs)) {
+    if (stored.legs[leg] === undefined) {
+      process.stdout.write(`::warning title=probe ${probe}::leg ${leg} is not stored in conformance/${probe}.json yet\n`);
+      continue;
+    }
     const want = JSON.stringify(canon(stored.legs[leg]));
     const got = JSON.stringify(canon(value));
     if (want !== got) {

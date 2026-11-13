@@ -42,14 +42,21 @@ impl Api {
     }
 
     pub fn get(&self, path: &str) -> Result<Option<Value>> {
-        let request = self.agent.get(self.url(path));
-        finish(
-            request
+        let mut attempt = 0;
+        loop {
+            attempt += 1;
+            let sent = self
+                .agent
+                .get(self.url(path))
                 .header("Authorization", self.auth())
                 .header("User-Agent", "velnor-lab")
-                .call()?,
-            path,
-        )
+                .call();
+            match sent {
+                Ok(response) => return finish(response, path),
+                Err(_) if attempt < 3 => std::thread::sleep(std::time::Duration::from_secs(2)),
+                Err(error) => return Err(error.into()),
+            }
+        }
     }
 
     pub fn download(&self, path: &str) -> Result<Vec<u8>> {

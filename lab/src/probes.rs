@@ -169,12 +169,8 @@ impl Session<'_> {
                 let run = wait::run_for(api, &file, "pull_request", &first.sha)?;
                 self.finished(run, "success")?;
                 let second = self.open_pull(probe, "b", &base, &tip)?;
-                Ok(vec![wait::run_for(
-                    api,
-                    &file,
-                    "pull_request",
-                    &second.sha,
-                )?])
+                let other = wait::run_for(api, &file, "pull_request", &second.sha)?;
+                Ok(vec![run, other])
             }
             "cache-own-pr" => {
                 let pull = self.open_pull(probe, "own", &base, &tip)?;
@@ -270,6 +266,7 @@ fn stored(probe: &str) -> Value {
 fn observe(session: &mut Session<'_>, probe: &str, index: usize) -> Result<Map<String, Value>> {
     let mut legs = Map::new();
     for run in session.runs(probe, index)? {
+        wait::finished(session.api, run)?;
         for document in documents(session.api, run)? {
             merge_legs(&mut legs, &document);
         }
