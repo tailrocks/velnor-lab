@@ -18,8 +18,7 @@ pub fn series(count: u64) -> Vec<u64> {
 }
 
 pub fn total(value: u64) -> u64 {
-    mix(value)
-        .wrapping_add(grow_000::total(value))
+    mix(value).wrapping_add(grow_000::total(value))
 }
 
 #[cfg(test)]
