@@ -1,0 +1,90 @@
+name: probe cache restore keys
+on:
+  push:
+    branches: ['probe-*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: unique tag of this probe run
+        required: false
+      role:
+        description: role of the run in the probe
+        required: false
+permissions:
+  contents: read
+env:
+  PREFIX: lab-probe-keys
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - run: mkdir probe-data && echo "$PROBE_TAG" > probe-data/file
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-b
+      - run: sleep 3
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - id: exact
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-b
+      - id: restore_key_prefix
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-none
+          restore-keys: |
+            ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-
+      - id: key_prefix
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-
+      - id: restore_key_order
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-none
+          restore-keys: |
+            ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-b
+            ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - id: no_match
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-none
+          restore-keys: |
+            ${{ env.PREFIX }}-${{ env.PROBE_TAG }}x
+      - uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: cache-restore-keys
+          leg: default-branch
+          data: >-
+            {"saved_in_order": ["b", "a"],
+            "exact": {"hit": "${{ steps.exact.outputs.cache-hit }}", "matched": "${{ steps.exact.outputs.cache-matched-key }}"},
+            "restore_key_prefix": {"hit": "${{ steps.restore_key_prefix.outputs.cache-hit }}", "matched": "${{ steps.restore_key_prefix.outputs.cache-matched-key }}"},
+            "key_prefix": {"hit": "${{ steps.key_prefix.outputs.cache-hit }}", "matched": "${{ steps.key_prefix.outputs.cache-matched-key }}"},
+            "restore_key_order": {"hit": "${{ steps.restore_key_order.outputs.cache-hit }}", "matched": "${{ steps.restore_key_order.outputs.cache-matched-key }}"},
+            "no_match": {"hit": "${{ steps.no_match.outputs.cache-hit }}", "matched": "${{ steps.no_match.outputs.cache-matched-key }}"}}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/
+      - if: github.event_name == 'schedule'
+        uses: ./.github/actions/probe
+        with:
+          mode: compare
+          probe: cache-restore-keys

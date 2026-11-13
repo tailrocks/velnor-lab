@@ -1,0 +1,76 @@
+name: probe cache save existing
+on:
+  push:
+    branches: ['probe-*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: unique tag of this probe run
+        required: false
+      role:
+        description: role of the run in the probe
+        required: false
+permissions:
+  contents: read
+jobs:
+  save:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      first: ${{ steps.first.outcome }}
+      second_outcome: ${{ steps.second.outcome }}
+      second_conclusion: ${{ steps.second.conclusion }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - run: mkdir probe-data && echo "$PROBE_TAG" > probe-data/file
+      - id: first
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: lab-probe-existing-${{ env.PROBE_TAG }}
+      - id: second
+        continue-on-error: true
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: lab-probe-existing-${{ env.PROBE_TAG }}
+  observe:
+    needs: save
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: cache-save-existing
+          leg: default-branch
+          log-job: save
+          log-steps: actions/cache/save@
+          data: >-
+            {"first_save": "${{ needs.save.outputs.first }}",
+            "second_save_outcome": "${{ needs.save.outputs.second_outcome }}",
+            "second_save_conclusion": "${{ needs.save.outputs.second_conclusion }}"}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/
+      - if: github.event_name == 'schedule'
+        uses: ./.github/actions/probe
+        with:
+          mode: compare
+          probe: cache-save-existing
