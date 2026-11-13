@@ -194,7 +194,7 @@ fn run_ids(api: &Api, path: &str) -> Result<Vec<u64>> {
 }
 
 fn latest_schedule(api: &Api, file: &str) -> Result<Option<u64>> {
-    let path = format!("actions/workflows/{file}/runs?event=schedule&status=completed&per_page=20");
+    let path = format!("actions/workflows/{file}/runs?event=schedule&per_page=20");
     for run in run_ids(api, &path)? {
         if artifact_url(api, run)?.is_some() {
             return Ok(Some(run));
@@ -241,6 +241,10 @@ pub fn merge_legs(into: &mut Map<String, Value>, document: &Value) {
             into.insert(leg.clone(), value.clone());
         }
     }
+}
+
+pub fn lost_schedule(stored: &Value, fresh: &Map<String, Value>) -> bool {
+    stored["legs"].get("schedule").is_some() && !fresh.contains_key("schedule")
 }
 
 pub fn differing_legs(stored: &Value, fresh: &Map<String, Value>) -> Vec<String> {
@@ -307,6 +311,13 @@ fn probe(api: &Api, name: &str, index: usize, check: bool) -> Result<()> {
     }
     let legs = observed?;
     let current = stored(name);
+    if lost_schedule(&current, &legs) {
+        return Err(format!(
+            "probe {name}: {} has a schedule leg but no scheduled run has an observation artifact",
+            conformance_file(name)
+        )
+        .into());
+    }
     if check {
         let differing = differing_legs(&current, &legs);
         if !differing.is_empty() {
@@ -366,7 +377,7 @@ pub fn run(api: &Api, args: &[&str]) -> Result<()> {
 
 #[cfg(test)]
 mod tests {
-    use super::{differing_legs, merge_legs};
+    use super::{differing_legs, lost_schedule, merge_legs};
     use serde_json::{Map, json};
 
     #[test]
@@ -381,6 +392,18 @@ mod tests {
             &json!({"probe": "token", "legs": {"pull_request": {"a": 2}}}),
         );
         assert_eq!(legs.len(), 2);
+    }
+
+    #[test]
+    fn a_stored_schedule_leg_that_was_not_observed_is_lost() {
+        let stored = json!({"probe": "token", "legs": {"push": {}, "schedule": {}}});
+        let mut fresh = Map::new();
+        fresh.insert("push".into(), json!({}));
+        assert!(lost_schedule(&stored, &fresh));
+        fresh.insert("schedule".into(), json!({}));
+        assert!(!lost_schedule(&stored, &fresh));
+        let without = json!({"probe": "cache-own-pr", "legs": {"run-1": {}}});
+        assert!(!lost_schedule(&without, &Map::new()));
     }
 
     #[test]
