@@ -28,11 +28,13 @@ pub fn manifest(index: usize) -> String {
 }
 
 pub fn source(index: usize) -> String {
-    let calls: String = dependencies(index)
+    let deps = dependencies(index);
+    let separator = if deps.len() > 1 { "\n        " } else { "" };
+    let calls: String = deps
         .iter()
         .map(|dep| {
             format!(
-                "\n        .wrapping_add({}::total(value))",
+                "{separator}.wrapping_add({}::total(value))",
                 name(*dep).replace('-', "_")
             )
         })

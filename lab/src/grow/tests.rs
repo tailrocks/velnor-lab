@@ -16,6 +16,17 @@ fn source_calls_its_dependencies_and_fits_the_size() {
 }
 
 #[test]
+fn total_is_written_the_way_rustfmt_writes_it() {
+    assert!(source(0).contains("pub fn total(value: u64) -> u64 {\n    mix(value)\n}\n"));
+    assert!(source(1).contains(
+        "pub fn total(value: u64) -> u64 {\n    mix(value).wrapping_add(grow_000::total(value))\n}\n"
+    ));
+    assert!(source(7).contains(
+        "pub fn total(value: u64) -> u64 {\n    mix(value)\n        .wrapping_add(grow_006::total(value))\n        .wrapping_add(grow_000::total(value))\n}\n"
+    ));
+}
+
+#[test]
 fn member_glob_lands_inside_the_list() {
     let out = add_member("[workspace]\nmembers = [\n  \"a\",\n]\nx = 1\n").expect("list");
     assert_eq!(
