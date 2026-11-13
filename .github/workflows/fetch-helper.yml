@@ -1,0 +1,26 @@
+name: Fetch helper
+on:
+  push:
+    branches:
+      - fast/617-fetch-helper
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch velnor-ci 0.1.79
+        env:
+          # jactionlint ignore=obfuscation
+          SHA: '${{ fromJSON(''{"Linux-X64":"a82f2edacbd781debf2da851d3b3380e81fce9fdec216c1101ca5ce91afe7386","Linux-ARM64":"05b16546fa0d95c67b61bd041e59dfbcda527ca89f9350ae75d5be3219eaf98b","macOS-ARM64":"91b0214fc2a5713bf7c962842636eecb899bbb052646a396818526e528a713f4"}'')[format(''{0}-{1}'', runner.os, runner.arch)] }}'
+          # jactionlint ignore=obfuscation
+          URL: '${{ fromJSON(''{"Linux-X64":"https://github.com/tailrocks/velnor-new/releases/download/rust-ci-v0.1.79/velnor-ci-linux-x64","Linux-ARM64":"https://github.com/tailrocks/velnor-new/releases/download/rust-ci-v0.1.79/velnor-ci-linux-arm64","macOS-ARM64":"https://github.com/tailrocks/velnor-new/releases/download/rust-ci-v0.1.79/velnor-ci-macos-arm64"}'')[format(''{0}-{1}'', runner.os, runner.arch)] }}'
+        run: |
+          curl -fsSL --create-dirs -o "$RUNNER_TEMP/vbin/velnor-ci" "$URL"
+          echo "$SHA  $RUNNER_TEMP/vbin/velnor-ci" > "$RUNNER_TEMP/velnor-ci.sha"
+          shasum -a 256 -c "$RUNNER_TEMP/velnor-ci.sha"
+          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
+          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
+      - name: Run velnor-ci
+        run: velnor-ci --version
