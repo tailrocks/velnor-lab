@@ -21,3 +21,19 @@ fn slow_two() {
 fn slow_three() {
     wait_twenty_seconds();
 }
+
+#[test]
+fn slow_four() {
+    wait_twenty_seconds();
+}
+
+#[test]
+fn slow_five() {
+    wait_twenty_seconds();
+}
+
+#[test]
+fn slow_six() {
+    wait_twenty_seconds();
+}
+// lab/slow6-1794570411
