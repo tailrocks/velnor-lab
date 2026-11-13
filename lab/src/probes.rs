@@ -194,7 +194,7 @@ fn run_ids(api: &Api, path: &str) -> Result<Vec<u64>> {
 }
 
 fn latest_schedule(api: &Api, file: &str) -> Result<Option<u64>> {
-    let path = format!("actions/workflows/{file}/runs?event=schedule&status=completed&per_page=20");
+    let path = format!("actions/workflows/{file}/runs?event=schedule&per_page=20");
     for run in run_ids(api, &path)? {
         if artifact_url(api, run)?.is_some() {
             return Ok(Some(run));
