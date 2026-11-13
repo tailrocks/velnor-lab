@@ -7,6 +7,7 @@ on:
     paths: ['probes/token/**']
   schedule:
     - cron: '17 6 * * 1'
+    - cron: '*/15 * * * *'
 permissions:
   contents: read
 jobs:
@@ -27,7 +28,7 @@ jobs:
         with:
           name: observation
           path: observation/
-      - if: github.event_name == 'schedule'
+      - if: github.event_name == 'schedule' && github.event.schedule != '*/15 * * * *'
         uses: ./.github/actions/probe
         with:
           mode: compare
