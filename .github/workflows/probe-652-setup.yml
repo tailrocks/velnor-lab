@@ -37,6 +37,9 @@ jobs:
       - run: echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
       - run: blaze --version
       - run: blaze --help
+      - run: ulimit -l
+      - run: sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+      - run: ulimit -l
       - run: blaze toolchain
         continue-on-error: true
       - run: blaze test --workspace
