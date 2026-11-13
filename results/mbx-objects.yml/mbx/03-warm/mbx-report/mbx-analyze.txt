@@ -1,0 +1,20 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 98.0ms in 1 uncached compilation; 12 hits avoided an estimated 1.35s
+
+uncached compiler time by cause
+
+ 98.0ms  not cacheable: unportable-native-link (1)
+         lab_macros 98.0ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+critical path: 101.3ms, 84% of the 120.5ms between the first unit starting and the last finishing
+101.3ms  lab_macros
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 58.8ms: lab_macros 57.1ms, lib build script (compile) 1.2ms and lab_core 548µs
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

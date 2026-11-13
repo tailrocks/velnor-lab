@@ -1,0 +1,31 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 1.49s in 12 uncached compilations
+
+uncached compiler time by cause
+
+  1.35s  not cacheable: unsupported-crate-type (10)
+         app 447.4ms, lab_macros 186.1ms, lab_core 173.6ms and 5 more
+         This linked artifact type is outside mbx's current cacheability tier.
+         Compilations that link nothing -- what `cargo check` and clippy run --
+         are cached whatever their crate type, and native test binaries and
+         executables are cached where the linker can be identified. Dynamic
+         libraries and proc macros still link normally.
+
+138.2ms  the Rust toolchain changed (2)
+         lab_core 102.2ms and lab_lib 36.0ms
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+critical path: 487.4ms, 99% of the 487.9ms between the first unit starting and the last finishing
+110.6ms  lab_core
+ 86.3ms  lab_lib
+290.5ms  app
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 33.9ms: app 33.4ms and lab_macros 499µs
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

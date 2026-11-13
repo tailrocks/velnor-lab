@@ -1,0 +1,39 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 2.92s in 16 uncached compilations
+
+uncached compiler time by cause
+
+  1.78s  misses with no earlier recording (6)
+         serde_core 851.2ms, serde_json 494.0ms, serde 228.4ms and 3 more
+         No earlier build recorded key details for these crates. The store may be
+         new, its history may have expired, or they were built by another
+         adapter.
+
+  1.14s  not cacheable: unsupported-crate-type (9)
+         app 306.6ms, lab_macros 303.7ms, lab_core 128.5ms and 4 more
+         This linked artifact type is outside mbx's current cacheability tier.
+         Compilations that link nothing -- what `cargo check` and clippy run --
+         are cached whatever their crate type, and native test binaries and
+         executables are cached where the linker can be identified. Dynamic
+         libraries and proc macros still link normally.
+
+  1.1ms  first build of these compilations (1)
+         lib build script 1.1ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 1.87s, 99% of the 1.87s between the first unit starting and the last finishing
+  1.08s  serde_core
+359.5ms  serde_json
+ 99.0ms  lab_core
+326.5ms  app, 160.3ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 622.1ms: serde_core 531.0ms, serde_json 53.0ms and app 37.3ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

@@ -1,0 +1,163 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43441154072,
+  "run_attempt": 1,
+  "workflow": "mbx probe",
+  "event": "pull_request",
+  "head_sha": "e056cfd4cc92a4634b0c039a0cc27a2884c3f7b5",
+  "wall_seconds": 189,
+  "runner_seconds": 90,
+  "jobs": [
+    {
+      "name": "ci",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 97,
+      "duration_seconds": 90,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 3
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 6
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 15
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 9
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 6
+        },
+        {
+          "name": "Run mbx nextest run --workspace --locked",
+          "seconds": 28
+        },
+        {
+          "name": "check alone core",
+          "seconds": 0
+        },
+        {
+          "name": "check alone lib",
+          "seconds": 0
+        },
+        {
+          "name": "check alone app",
+          "seconds": 0
+        },
+        {
+          "name": "check alone tool",
+          "seconds": 1
+        },
+        {
+          "name": "check alone macros",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx nextest archive --workspace --locked --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run ls -l \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 9
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx stats --json > \"$RUNNER_TEMP/mbx-stats.json\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx analyze > \"$RUNNER_TEMP/mbx-analyze.txt\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 2
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 6
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 157,
+        "checking": 165,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [
+          5.86,
+          7.14,
+          0.25,
+          0.04,
+          0.11,
+          0.04,
+          0.03,
+          0.04
+        ],
+        "nextest": [
+          {
+            "tests_run": 618,
+            "seconds": 20.007
+          }
+        ],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 76263434
+          },
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 371626993
+          }
+        ]
+      }
+    }
+  ]
+}

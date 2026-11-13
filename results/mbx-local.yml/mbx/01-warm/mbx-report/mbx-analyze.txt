@@ -1,0 +1,45 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 10.89s in 34 uncached compilations; 20 hits avoided an estimated 6.37s
+
+uncached compiler time by cause
+
+  9.18s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.47s, serde_core 1.90s, tokio 1.22s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.59s  the Rust toolchain changed (11)
+         app 419.4ms, lab_core 386.4ms, lab_macros 188.3ms and 5 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+105.4ms  not cacheable: unportable-native-link (1)
+         lab_macros 105.4ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+  1.8ms  first build of these compilations (1)
+         lib build script 1.8ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 3.62s, 99% of the 3.62s between the first unit starting and the last finishing
+ 20.1ms  2 shorter steps
+  1.93s  serde_core
+782.9ms  serde_json
+112.7ms  lab_core
+ 53.9ms  lab_lib
+725.9ms  app, 445.9ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 175.5ms: app 86.6ms, clap_builder 80.0ms and proc-macro2 build script 3.6ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

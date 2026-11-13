@@ -1,0 +1,36 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 1.54s in 5 uncached compilations; 13 hits avoided an estimated 2.73s
+
+uncached compiler time by cause
+
+  1.28s  compiler arguments changed (3)
+         changed: --emit (3)
+         serde_core 1.01s, serde 246.1ms and fnv 22.1ms
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+168.8ms  not cacheable: unportable-native-link (1)
+         lab_macros 168.8ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+ 85.9ms  the Rust toolchain changed (1)
+         tool 85.9ms
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+critical path: 1.33s, 100% of the 1.33s between the first unit starting and the last finishing
+969.0ms  serde_core
+230.3ms  serde
+  4.5ms  1 shorter step
+121.8ms  tool, 25.9ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 1.04s: serde_core 784.9ms, serde 192.5ms and tool 64.6ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

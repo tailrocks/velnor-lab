@@ -1,0 +1,371 @@
+Plan	Checkout	2026-11-13T13:50:47.3412331Z ##[group]Checking out the ref
+Plan	Restore Mise tools	2026-11-13T13:50:49.4787772Z Cache not found for input keys: mise-tools-v2-d374f4d0c9fda9913aa72c832cf8e51b80ed56db4c243702e22a792b6e6c1bbd
+Plan	Restore Cargo sources	2026-11-13T13:50:59.6073573Z Cache not found for input keys: velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-s256-4358ea645ed1cf2ad617b2d096d1ff78376725278fbea543e07e621a84e6c255, velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-
+Plan	Fetch Cargo sources	﻿2026-11-13T13:50:59.6192186Z ##[group]Run sh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'
+Plan	Fetch Cargo sources	2026-11-13T13:50:59.6199239Z ^[[36;1msh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'^[[0m
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1698047Z   Downloaded utf8parse v0.2.2
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1698787Z   Downloaded serde v1.0.229
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1699484Z   Downloaded hex v0.4.3
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1700134Z   Downloaded unicode-ident v1.0.27
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1700803Z   Downloaded proc-macro2 v1.0.107
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1701488Z   Downloaded serde_derive v1.0.229
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1702128Z   Downloaded syn v3.0.10
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1702724Z   Downloaded quote v1.0.47
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1703332Z   Downloaded colorchoice v1.0.5
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1703987Z   Downloaded serde_core v1.0.229
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1704888Z   Downloaded windows-link v0.2.1
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1706050Z   Downloaded once_cell_polyfill v1.70.2
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1706832Z   Downloaded strsim v0.11.1
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1707652Z   Downloaded anstyle-query v1.1.5
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1708520Z   Downloaded anstyle v1.0.14
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1709232Z   Downloaded pin-project-lite v0.2.17
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1709925Z   Downloaded anstyle-wincon v3.0.11
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1710581Z   Downloaded serde_json v1.0.154
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1711219Z   Downloaded clap_derive v4.6.7
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1711873Z   Downloaded is_terminal_polyfill v1.70.2
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1712638Z   Downloaded clap_lex v1.1.1
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1713262Z   Downloaded tokio-macros v2.7.2
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1713896Z   Downloaded fnv v1.0.5
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1714498Z   Downloaded zmij v1.0.23
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1715326Z   Downloaded anstream v1.0.0
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1715956Z   Downloaded heck v0.5.0
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1716578Z   Downloaded anstyle-parse v1.0.0
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1717200Z   Downloaded itoa v1.0.19
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1717833Z   Downloaded clap_builder v4.6.7
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1718502Z   Downloaded memchr v2.8.3
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1719154Z   Downloaded clap v4.6.7
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1719795Z   Downloaded windows-sys v0.61.2
+Plan	Fetch Cargo sources	2026-11-13T13:51:00.1720469Z   Downloaded tokio v1.54.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	﻿2026-11-13T13:51:00.1790360Z ##[group]Run sh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/lab/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/lab/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.1801938Z ^[[36;1msh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/lab/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/lab/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'^[[0m
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9816229Z   Downloaded ureq-proto v0.7.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9816817Z   Downloaded windows_x86_64_msvc v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9817372Z   Downloaded log v0.4.35
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9817796Z   Downloaded httparse v1.10.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9818130Z   Downloaded cookie v0.18.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9818443Z   Downloaded webpki-roots v1.0.12
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9818803Z   Downloaded rustls v0.23.46
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9819122Z   Downloaded rustls-pki-types v1.16.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9819456Z   Downloaded utf8-zero v0.8.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9819742Z   Downloaded ureq v3.5.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9820011Z   Downloaded base64 v0.23.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9820332Z   Downloaded wasi v0.11.1+wasi-snapshot-preview1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9820714Z   Downloaded icu_properties v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9821026Z   Downloaded icu_locale_core v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9821326Z   Downloaded time v0.3.55
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9821597Z   Downloaded zeroize v1.9.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9821880Z   Downloaded miniz_oxide v0.9.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9822172Z   Downloaded cfg-if v1.0.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9822454Z   Downloaded cc v1.11.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9822728Z   Downloaded form_urlencoded v1.2.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9823033Z   Downloaded bytes v1.12.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9823308Z   Downloaded zerovec v0.11.9
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9823594Z   Downloaded equivalent v1.0.3
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9823887Z   Downloaded http v1.5.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9824161Z   Downloaded time-core v0.1.9
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9824442Z   Downloaded yoke v0.8.4
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9825007Z   Downloaded icu_collections v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9825530Z   Downloaded percent-encoding v2.3.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9826010Z   Downloaded idna_adapter v1.2.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9826495Z   Downloaded utf8_iter v1.1.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9826807Z   Downloaded yoke-derive v0.8.4
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9827113Z   Downloaded stable_deref_trait v1.2.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9827440Z   Downloaded subtle v2.6.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9827713Z   Downloaded adler2 v2.0.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9827991Z   Downloaded synstructure v0.14.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9828311Z   Downloaded document-features v0.2.12
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9828724Z   Downloaded displaydoc v0.2.7
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9828990Z   Downloaded windows-targets v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9829262Z   Downloaded untrusted v0.9.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9829507Z   Downloaded version_check v0.9.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9830039Z   Downloaded powerfmt v0.2.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9830284Z   Downloaded zerofrom v0.1.8
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9830536Z   Downloaded potential_utf v0.1.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9830806Z   Downloaded zerofrom-derive v0.1.8
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9831068Z   Downloaded num-conv v0.2.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9831300Z   Downloaded shlex v2.0.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9831544Z   Downloaded find-msvc-tools v0.1.15
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9831806Z   Downloaded simd-adler32 v0.3.10
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9832057Z   Downloaded writeable v0.6.4
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9832301Z   Downloaded deranged v0.5.9
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9832544Z   Downloaded cookie_store v0.22.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9832799Z   Downloaded utf_types v1.0.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9833051Z   Downloaded zerovec-derive v0.11.7
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9833311Z   Downloaded tinystr v0.8.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9833548Z   Downloaded time-macros v0.2.32
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9833795Z   Downloaded litemap v0.8.3
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9834028Z   Downloaded litrs v1.0.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9834270Z   Downloaded once_cell v1.21.4
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9834523Z   Downloaded icu_normalizer v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9835001Z   Downloaded getrandom v0.2.17
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9835267Z   Downloaded icu_provider v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9835520Z   Downloaded crc32fast v1.5.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9835761Z   Downloaded smallvec v1.16.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9836192Z   Downloaded icu_normalizer_data v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9836468Z   Downloaded base64 v0.22.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9836703Z   Downloaded flate2 v1.1.11
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9836936Z   Downloaded zerotrie v0.2.5
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9837181Z   Downloaded rustls-webpki v0.103.17
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9837441Z   Downloaded url v2.5.8
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9837664Z   Downloaded indexmap v2.14.2
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9837901Z   Downloaded hashbrown v0.17.1
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9838144Z   Downloaded idna v1.1.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9838379Z   Downloaded icu_properties_data v2.4.0
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9838645Z   Downloaded zlib-rs v0.6.8
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9838897Z   Downloaded windows_aarch64_gnullvm v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9839189Z   Downloaded windows_x86_64_gnullvm v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9839475Z   Downloaded windows_i686_gnullvm v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9839740Z   Downloaded libc v0.2.191
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9839972Z   Downloaded windows_x86_64_gnu v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9840251Z   Downloaded windows_aarch64_msvc v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9840526Z   Downloaded windows_i686_gnu v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9840790Z   Downloaded windows_i686_msvc v0.52.6
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9841192Z   Downloaded ring v0.17.14
+Plan	Fetch Cargo sources (lab/Cargo.toml)	2026-11-13T13:51:00.9841612Z   Downloaded windows-sys v0.52.0
+Plan	Publish plan	Finished uploading artifact content to blob storage!
+Jactionlint	Checkout	2026-11-13T13:50:47.2353625Z ##[group]Checking out the ref
+Jactionlint	Restore Mise tools	2026-11-13T13:50:49.5891505Z Cache not found for input keys: mise-tools-v2-8a1c8bfa05fd51646445627d05c82fd375cf531f795b3cb4310f1b43f77d1e50
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:11.1796598Z ##[group]Checking out the ref
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:13.5345839Z Cache not found for input keys: mise-tools-v2-91a10141d53dab92bcf224903691ebd47d2303754a61041e26c89e80d5369b70
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.3352406Z Cache not found for input keys: velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-s256-4358ea645ed1cf2ad617b2d096d1ff78376725278fbea543e07e621a84e6c255, velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.3468663Z ##[group]Run sh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.3475490Z ^[[36;1msh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'^[[0m
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7894836Z   Downloaded proc-macro2 v1.0.107
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7895164Z   Downloaded hex v0.4.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7895425Z   Downloaded syn v3.0.10
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7895723Z   Downloaded quote v1.0.47
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7896018Z   Downloaded serde v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7896315Z   Downloaded unicode-ident v1.0.27
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7896630Z   Downloaded memchr v2.8.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7896877Z   Downloaded serde_derive v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7897104Z   Downloaded windows-link v0.2.1
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7897331Z   Downloaded tokio-macros v2.7.2
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7897534Z   Downloaded heck v0.5.0
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7897727Z   Downloaded utf8parse v0.2.2
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7897960Z   Downloaded pin-project-lite v0.2.17
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7898192Z   Downloaded clap_derive v4.6.7
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7898404Z   Downloaded itoa v1.0.19
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7898621Z   Downloaded is_terminal_polyfill v1.70.2
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7898871Z   Downloaded anstyle-wincon v3.0.11
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7899105Z   Downloaded anstyle-parse v1.0.0
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7899325Z   Downloaded fnv v1.0.5
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7899513Z   Downloaded zmij v1.0.23
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7899714Z   Downloaded anstyle v1.0.14
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7899921Z   Downloaded colorchoice v1.0.5
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7900129Z   Downloaded anstyle-query v1.1.5
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7900336Z   Downloaded clap_builder v4.6.7
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7900544Z   Downloaded clap_lex v1.1.1
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7900755Z   Downloaded serde_json v1.0.154
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7900961Z   Downloaded anstream v1.0.0
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7901167Z   Downloaded once_cell_polyfill v1.70.2
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7901395Z   Downloaded clap v4.6.7
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7901592Z   Downloaded strsim v0.11.1
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7901792Z   Downloaded serde_core v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7901991Z   Downloaded tokio v1.54.1
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.7902188Z   Downloaded windows-sys v0.61.2
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.9752604Z    Compiling proc-macro2 v1.0.107
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.9821218Z    Compiling quote v1.0.47
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.9873456Z    Compiling unicode-ident v1.0.27
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:24.9955810Z    Compiling serde_core v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.0288558Z    Compiling proc-macro2 v1.0.107
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.0328744Z    Compiling quote v1.0.47
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.0344966Z    Compiling unicode-ident v1.0.27
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.0364836Z    Compiling serde_core v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.0925227Z    Compiling zmij v1.0.23
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.1345382Z    Compiling proc-macro2 v1.0.107
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.1435220Z    Compiling zmij v1.0.23
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.1435757Z    Compiling quote v1.0.47
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.1575401Z    Compiling unicode-ident v1.0.27
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.1665243Z    Compiling serde_core v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.2115393Z    Compiling serde_json v1.0.154
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.3220472Z    Compiling zmij v1.0.23
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.3499536Z    Compiling proc-macro2 v1.0.107
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.3615564Z    Compiling unicode-ident v1.0.27
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.3743605Z    Compiling quote v1.0.47
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.3817852Z    Compiling serde_core v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.4260089Z    Compiling serde v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.5247685Z    Compiling serde v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.5495427Z    Compiling serde_json v1.0.154
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.6136450Z    Compiling serde_json v1.0.154
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.6165304Z    Compiling zmij v1.0.23
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.7709566Z    Compiling serde v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.9685610Z    Compiling serde_json v1.0.154
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:25.9874593Z     Checking memchr v2.8.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.0355692Z    Compiling serde v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.1195297Z    Compiling memchr v2.8.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.2865166Z    Compiling memchr v2.8.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.5005244Z     Checking itoa v1.0.19
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.7535287Z     Checking memchr v2.8.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.8325417Z    Compiling lib v0.0.0 (lib)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:26.8475275Z    Compiling itoa v1.0.19
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.1065259Z     Checking itoa v1.0.19
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.1245513Z    Compiling macros v0.0.0 (macros)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.3557173Z    Compiling lib v0.0.0 (lib)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.4645501Z    Compiling lib v0.0.0 (lib)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.6340636Z    Compiling macros v0.0.0 (macros)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.7748336Z    Compiling macros v0.0.0 (macros)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.8775278Z     Checking hex v0.4.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:27.8986251Z    Compiling itoa v1.0.19
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.1915393Z    Compiling syn v3.0.10
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.2085053Z     Checking hex v0.4.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.2126136Z    Compiling syn v3.0.10
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.3555448Z    Compiling lib v0.0.0 (lib)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.5775427Z    Compiling syn v3.0.10
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.5939847Z    Compiling hex v0.4.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.6715957Z    Compiling macros v0.0.0 (macros)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:28.8065323Z    Compiling syn v3.0.10
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:29.0805375Z    Compiling hex v0.4.3
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:31.6539727Z    Compiling serde_derive v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:32.5255622Z    Compiling serde_derive v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:32.5256245Z    Compiling serde_derive v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:33.6935312Z    Compiling serde_derive v1.0.229
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:35.8625340Z    Compiling core v0.0.0 (core)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:35.9439448Z     Checking core v0.0.0 (core)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.0585549Z    Compiling core v0.0.0 (core)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.0616056Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.13s
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.1587665Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 11.21s
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.1920115Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 11.17s
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.7287260Z     Checking core v0.0.0 (core)
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.8540500Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 11.72s
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:36.8654889Z Finished waiting for all background step(s).
+Rust / lib	UNKNOWN STEP	2026-11-13T13:51:37.4159670Z Finished uploading artifact content to blob storage!
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:12.6672057Z ##[group]Checking out the ref
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:15.0213490Z Cache not found for input keys: mise-tools-v2-91a10141d53dab92bcf224903691ebd47d2303754a61041e26c89e80d5369b70
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:28.6207514Z Cache not found for input keys: velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-s256-4358ea645ed1cf2ad617b2d096d1ff78376725278fbea543e07e621a84e6c255, velnor-v2-sources-trusted-s256-e32b46924cd679f385a2d1a7e3c22253aa3c0be67fb101bb0e636963ba16b528-
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:28.6325460Z ##[group]Run sh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:28.6331475Z ^[[36;1msh -c 'mkdir -p "$RUNNER_TEMP/velnor/cargo-clean" && cd "$RUNNER_TEMP/velnor/cargo-clean" && if mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo metadata --locked --offline --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" >/dev/null 2>&1; then echo "velnor: sources hit, skipping fetch"; echo "velnor: sources downloaded=0"; else echo "velnor: sources miss (source_missing), fetching"; status=0; mise --no-config --no-env --no-hooks exec rust@'"${VELNOR_TOOL_RUST}"' -- cargo fetch --locked --manifest-path "$GITHUB_WORKSPACE/Cargo.toml" 2> "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" || status=$?; cat "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" >&2; grep -Ec '\''^ *Downloaded [^ ]+ v[0-9]'\'' "$RUNNER_TEMP/velnor/cargo-clean/fetch-stderr.log" > "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; n=; read -r n < "$RUNNER_TEMP/velnor/cargo-clean/fetch-downloads" || true; echo "velnor: sources downloaded=${n:-0}"; exit $status; fi'^[[0m
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3651071Z   Downloaded hex v0.4.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3651385Z   Downloaded serde_derive v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3651702Z   Downloaded colorchoice v1.0.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3652001Z   Downloaded unicode-ident v1.0.27
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3652466Z   Downloaded serde v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3652750Z   Downloaded anstyle-query v1.1.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3653023Z   Downloaded strsim v0.11.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3653293Z   Downloaded utf8parse v0.2.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3653592Z   Downloaded anstream v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3653873Z   Downloaded tokio-macros v2.7.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3654172Z   Downloaded is_terminal_polyfill v1.70.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3654515Z   Downloaded once_cell_polyfill v1.70.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3654924Z   Downloaded heck v0.5.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3655297Z   Downloaded windows-link v0.2.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3655673Z   Downloaded fnv v1.0.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3656025Z   Downloaded itoa v1.0.19
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3656428Z   Downloaded pin-project-lite v0.2.17
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3656824Z   Downloaded clap_lex v1.1.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3657090Z   Downloaded anstyle v1.0.14
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3657352Z   Downloaded anstyle-wincon v3.0.11
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3657637Z   Downloaded quote v1.0.47
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3657909Z   Downloaded anstyle-parse v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3658185Z   Downloaded zmij v1.0.23
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3658436Z   Downloaded clap_derive v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3658710Z   Downloaded proc-macro2 v1.0.107
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3658985Z   Downloaded serde_core v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3659252Z   Downloaded clap v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3659494Z   Downloaded memchr v2.8.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3659759Z   Downloaded serde_json v1.0.154
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3660038Z   Downloaded clap_builder v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3660311Z   Downloaded syn v3.0.10
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3660572Z   Downloaded tokio v1.54.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.3660838Z   Downloaded windows-sys v0.61.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.6719835Z    Compiling proc-macro2 v1.0.107
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.6720464Z    Compiling proc-macro2 v1.0.107
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.6720918Z    Compiling unicode-ident v1.0.27
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.6721360Z    Compiling unicode-ident v1.0.27
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.8695452Z    Compiling quote v1.0.47
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.8696128Z    Compiling quote v1.0.47
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.8702193Z    Compiling proc-macro2 v1.0.107
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.8735471Z    Compiling unicode-ident v1.0.27
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9338348Z    Compiling serde_core v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9339067Z    Compiling serde_core v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9339625Z    Compiling quote v1.0.47
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9573584Z    Compiling zmij v1.0.23
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9605757Z    Compiling zmij v1.0.23
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9631463Z    Compiling serde_core v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:29.9822611Z    Compiling zmij v1.0.23
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.0123525Z    Compiling serde_json v1.0.154
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.0755910Z    Compiling serde v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.2173507Z    Compiling serde_json v1.0.154
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.2213889Z     Checking utf8parse v0.2.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.2263986Z    Compiling serde_json v1.0.154
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.2982837Z    Compiling serde v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.3643537Z     Checking anstyle-parse v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.4801898Z    Compiling serde v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.5293803Z    Compiling utf8parse v0.2.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.5704600Z     Checking utf8parse v0.2.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.6643188Z    Compiling anstyle-parse v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.7053487Z     Checking anstyle-parse v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.8803780Z     Checking is_terminal_polyfill v1.70.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:30.9663496Z     Checking colorchoice v1.0.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.0203524Z    Compiling anstyle v1.0.14
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.0523544Z     Checking anstyle-query v1.1.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.1615001Z     Checking itoa v1.0.19
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.1744007Z     Checking anstyle v1.0.14
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.3163494Z     Checking itoa v1.0.19
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.4060674Z     Checking is_terminal_polyfill v1.70.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.4613879Z     Checking memchr v2.8.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.5791412Z    Compiling memchr v2.8.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.6065046Z    Compiling is_terminal_polyfill v1.70.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.6065728Z     Checking memchr v2.8.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.6204122Z     Checking anstream v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.6403511Z     Checking colorchoice v1.0.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:31.6993178Z     Checking anstyle v1.0.14
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.1753614Z     Checking clap_lex v1.1.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.4043555Z    Compiling syn v3.0.10
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.4093702Z    Compiling colorchoice v1.0.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.4273388Z    Compiling syn v3.0.10
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.4537878Z    Compiling heck v0.5.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.5623992Z    Compiling syn v3.0.10
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.5633169Z    Compiling anstyle-query v1.1.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.6437416Z     Checking anstyle-query v1.1.5
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.6523512Z    Compiling itoa v1.0.19
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.6624009Z     Checking strsim v0.11.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.7503783Z     Checking anstream v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.8713827Z    Compiling lib v0.0.0 (lib)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:32.9360205Z     Checking clap_lex v1.1.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.0646365Z    Compiling anstream v1.0.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.0953592Z     Checking strsim v0.11.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.1413854Z    Compiling heck v0.5.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.1503491Z     Checking hex v0.4.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.2924044Z    Compiling lib v0.0.0 (lib)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.4093509Z     Checking clap_builder v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.5307604Z     Checking clap_builder v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.5383781Z    Compiling macros v0.0.0 (macros)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.9143798Z    Compiling macros v0.0.0 (macros)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:33.9671654Z     Checking pin-project-lite v0.2.17
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:34.0653429Z     Checking hex v0.4.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:34.2643604Z    Compiling strsim v0.11.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:34.2724689Z    Compiling lib v0.0.0 (lib)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:34.3623917Z     Checking pin-project-lite v0.2.17
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:34.5140442Z    Compiling clap_lex v1.1.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:35.0256465Z    Compiling heck v0.5.0
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:35.3673753Z    Compiling clap_builder v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:35.5733630Z    Compiling macros v0.0.0 (macros)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:35.9403547Z    Compiling pin-project-lite v0.2.17
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:36.0763461Z    Compiling hex v0.4.3
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:39.4555656Z    Compiling serde_derive v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:39.4606089Z    Compiling clap_derive v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:39.4634170Z    Compiling tokio-macros v2.7.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.6373765Z    Compiling tokio v1.54.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.6757941Z    Compiling serde_derive v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.6813689Z    Compiling clap_derive v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.6823696Z    Compiling tokio-macros v2.7.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.8752723Z    Compiling serde_derive v1.0.229
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.8754270Z    Compiling clap_derive v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:40.8833554Z    Compiling tokio-macros v2.7.2
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:41.6413757Z     Checking tokio v1.54.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:42.5737719Z     Checking tokio v1.54.1
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:43.6783891Z     Checking clap v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:43.8653665Z    Compiling clap v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:44.8335728Z     Checking clap v4.6.7
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.5534078Z     Checking core v0.0.0 (core)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.7575751Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.13s
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.7921913Z     Checking core v0.0.0 (core)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.8659696Z     Checking app v0.0.0 (app)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.9075475Z    Compiling core v0.0.0 (core)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:46.9616363Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.42s
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:47.0504683Z    Compiling app v0.0.0 (app)
+Rust / app	UNKNOWN STEP	2026-11-13T13:51:47.3729196Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 17.81s
+Rust / app	UNKNOWN STEP	2026-11-13T13:52:07.3949043Z Finished waiting for all background step(s).
+Rust / app	UNKNOWN STEP	2026-11-13T13:52:08.3237969Z Finished uploading artifact content to blob storage!
+Required verdict	Checkout	2026-11-13T13:52:16.2962185Z ##[group]Checking out the ref
+Required verdict	Publish final report	2026-11-13T13:52:24.4119590Z Finished uploading artifact content to blob storage!

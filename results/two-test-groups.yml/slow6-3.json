@@ -1,0 +1,226 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43420309758,
+  "run_attempt": 1,
+  "workflow": "two test groups",
+  "event": "pull_request",
+  "head_sha": "3a041aafdb2515f52a70d04b1ef05ba8e96d8fb9",
+  "wall_seconds": 93,
+  "runner_seconds": 85,
+  "jobs": [
+    {
+      "name": "build",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 11,
+      "duration_seconds": 25,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 13
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 1
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 2
+        },
+        {
+          "name": "Run mbx nextest archive --workspace --locked --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 1
+        },
+        {
+          "name": "Run mbx stats --json > \"$RUNNER_TEMP/mbx-stats.json\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx analyze > \"$RUNNER_TEMP/mbx-analyze.txt\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 1
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 7,
+        "checking": 7,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [
+          1.7,
+          1.3
+        ],
+        "nextest": [],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 76263385
+          },
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 75460907
+          }
+        ]
+      }
+    },
+    {
+      "name": "test (1)",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 2,
+      "duration_seconds": 53,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333",
+          "seconds": 3
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 3
+        },
+        {
+          "name": "Run cargo-nextest nextest run --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\" --workspace-remap . --extract-to . --partition hash:1/2",
+          "seconds": 40
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 1
+        }
+      ],
+      "log": {
+        "compiling": 0,
+        "checking": 0,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [],
+        "nextest": [
+          {
+            "tests_run": 13,
+            "seconds": 40.012
+          }
+        ],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 69313349
+          }
+        ]
+      }
+    },
+    {
+      "name": "test (2)",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 2,
+      "duration_seconds": 7,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333",
+          "seconds": 1
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 2
+        },
+        {
+          "name": "Run cargo-nextest nextest run --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\" --workspace-remap . --extract-to . --partition hash:2/2",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 0,
+        "checking": 0,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [],
+        "nextest": [
+          {
+            "tests_run": 8,
+            "seconds": 0.015
+          }
+        ],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 69313349
+          }
+        ]
+      }
+    }
+  ]
+}

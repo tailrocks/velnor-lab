@@ -1,0 +1,122 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43393480008,
+  "run_attempt": 1,
+  "workflow": "plain cargo",
+  "event": "pull_request",
+  "head_sha": "4a02ce8d335b9630b2ec2a6f66cf89911de5559c",
+  "wall_seconds": 45,
+  "runner_seconds": 41,
+  "jobs": [
+    {
+      "name": "ci",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 2,
+      "duration_seconds": 41,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 14
+        },
+        {
+          "name": "Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "seconds": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo install --locked --path .velnor-ci-src/ci-helper/crates/velnor-ci --root ~/.velnor-ci",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "seconds": 1
+        },
+        {
+          "name": "Run ~/.velnor-ci/bin/velnor-ci inputs restore",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo nextest run --workspace --locked",
+          "seconds": 20
+        },
+        {
+          "name": "Run ~/.velnor-ci/bin/velnor-ci inputs save",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 1
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 0,
+        "checking": 0,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [
+          0.17,
+          0.02
+        ],
+        "nextest": [
+          {
+            "tests_run": 18,
+            "seconds": 20.014
+          }
+        ],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 69323671
+          },
+          {
+            "kind": "restored",
+            "key": "velnor-ci-Linux-e46dd789c3d530d3cdac98f3f02c638933b81243",
+            "size_bytes": 1723898
+          },
+          {
+            "kind": "restored",
+            "key": "plain-cargo-Linux-dcd1beccb1cdbadb0f3cfc638689ad93f3653e9b",
+            "size_bytes": 65249758
+          }
+        ]
+      }
+    }
+  ]
+}

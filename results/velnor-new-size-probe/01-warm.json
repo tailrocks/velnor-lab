@@ -1,0 +1,124 @@
+{
+  "repo": "tailrocks/velnor-new",
+  "run_id": 43442888000,
+  "run_attempt": 1,
+  "workflow": "lab585 size probe",
+  "event": "pull_request",
+  "head_sha": "885714ae3736d221ae3e55a52850af4a75414ec6",
+  "wall_seconds": 345,
+  "runner_seconds": 313,
+  "jobs": [
+    {
+      "name": "probe",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 31,
+      "duration_seconds": 313,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 4
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 14
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 44
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx clippy --workspace --all-targets --locked",
+          "seconds": 51
+        },
+        {
+          "name": "Run mbx nextest archive --workspace --locked --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 120
+        },
+        {
+          "name": "Run ls -l \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 43
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx stats --json > \"$RUNNER_TEMP/mbx-stats.json\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx analyze > \"$RUNNER_TEMP/mbx-analyze.txt\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 2
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 28
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 17,
+        "checking": 29,
+        "documenting": 0,
+        "downloaded": 0,
+        "finished_seconds": [
+          49.46,
+          106.0
+        ],
+        "nextest": [],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 76269754
+          },
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 1922501761
+          }
+        ]
+      }
+    }
+  ]
+}

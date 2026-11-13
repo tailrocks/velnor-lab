@@ -1,0 +1,46 @@
+last recorded build: cargo nextest archive --workspace --locked --archive-file /home/runner/work/_temp/nextest-archive.tar.zst
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 10.71s in 33 uncached compilations
+
+uncached compiler time by cause
+
+  9.19s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.43s, serde_core 1.63s, tokio 1.59s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.35s  not cacheable: unsupported-crate-type (9)
+         app 404.6ms, lab_macros 210.5ms, lab_core 209.1ms and 4 more
+         This linked artifact type is outside mbx's current cacheability tier.
+         Compilations that link nothing -- what `cargo check` and clippy run --
+         are cached whatever their crate type, and native test binaries and
+         executables are cached where the linker can be identified. Dynamic
+         libraries and proc macros still link normally.
+
+170.5ms  the Rust toolchain changed (2)
+         lab_core 126.2ms and lab_lib 44.3ms
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+  1.5ms  first build of these compilations (1)
+         lib build script 1.5ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 2.99s, 86% of the 3.47s between the first unit starting and the last finishing
+266.3ms  strsim
+  1.75s  clap_builder
+ 37.3ms  clap
+934.0ms  app, 676.8ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 438.2ms: clap_builder 377.0ms, app 60.6ms and serde_core 580µs
+
+expected, nothing to cache: compiler-query (1), standard-input (2)
