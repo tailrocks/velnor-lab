@@ -195,22 +195,37 @@ fn run_ids(api: &Api, path: &str) -> Result<Vec<u64>> {
 }
 
 fn latest_schedule(api: &Api, file: &str) -> Result<Option<u64>> {
-    let path = format!("actions/workflows/{file}/runs?event=schedule&status=completed&per_page=1");
-    Ok(run_ids(api, &path)?.first().copied())
+    let path = format!("actions/workflows/{file}/runs?event=schedule&status=completed&per_page=20");
+    for run in run_ids(api, &path)? {
+        if artifact_url(api, run)?.is_some() {
+            return Ok(Some(run));
+        }
+    }
+    Ok(None)
 }
 
-fn documents(api: &Api, run: u64) -> Result<Vec<Value>> {
+fn artifact_url(api: &Api, run: u64) -> Result<Option<String>> {
     let list = api
         .get(&format!("actions/runs/{run}/artifacts"))?
         .unwrap_or(Value::Null);
-    let artifact = list["artifacts"]
+    Ok(list["artifacts"]
         .as_array()
         .and_then(|items| items.iter().find(|item| item["name"] == "observation"))
-        .ok_or_else(|| format!("run {run} has no observation artifact"))?;
-    let url = artifact["archive_download_url"]
-        .as_str()
-        .ok_or("artifact has no download url")?;
-    let mut archive = zip::ZipArchive::new(std::io::Cursor::new(api.download(url)?))?;
+        .and_then(|item| item["archive_download_url"].as_str())
+        .map(str::to_owned))
+}
+
+fn documents(api: &Api, run: u64) -> Result<Vec<Value>> {
+    let mut attempts = 0;
+    let url = wait::poll(&format!("the observation of run {run}"), || {
+        attempts += 1;
+        let url = artifact_url(api, run)?;
+        if url.is_none() && attempts > 6 {
+            return Err(format!("run {run} has no observation artifact").into());
+        }
+        Ok(url)
+    })?;
+    let mut archive = zip::ZipArchive::new(std::io::Cursor::new(api.download(&url)?))?;
     let mut found = Vec::new();
     for index in 0..archive.len() {
         let mut file = archive.by_index(index)?;

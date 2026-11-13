@@ -131,8 +131,11 @@ function stepOutputs(lines, marker) {
     if (!(lines[at].startsWith('##[group]Run ') && lines[at].includes(marker))) continue;
     while (at < lines.length && lines[at] !== '##[endgroup]') at += 1;
     const block = [];
-    for (at += 1; at < lines.length && !lines[at].startsWith('##[group]') && lines[at] !== ''; at += 1) block.push(lines[at]);
+    for (at += 1; at < lines.length && !lines[at].startsWith('##[group]') && lines[at] !== ''; at += 1) {
+      if (!lines[at].startsWith('[command]') && !lines[at].startsWith('Cache Size:')) block.push(lines[at]);
+    }
     blocks.push(block);
+    at -= 1;
   }
   return blocks;
 }
