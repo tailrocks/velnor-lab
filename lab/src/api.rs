@@ -28,6 +28,9 @@ impl Api {
     }
 
     fn url(&self, path: &str) -> String {
+        if path.starts_with("https://api.github.com/") {
+            return path.to_owned();
+        }
         match path.strip_prefix('/') {
             Some(rest) => format!("https://api.github.com/{rest}"),
             None => format!("https://api.github.com/repos/{}/{path}", self.repo),
@@ -47,6 +50,20 @@ impl Api {
                 .call()?,
             path,
         )
+    }
+
+    pub fn download(&self, path: &str) -> Result<Vec<u8>> {
+        let mut response = self
+            .agent
+            .get(self.url(path))
+            .header("Authorization", self.auth())
+            .header("User-Agent", "velnor-lab")
+            .call()?;
+        let status = response.status().as_u16();
+        if status != 200 {
+            return Err(format!("{path}: HTTP {status}").into());
+        }
+        Ok(response.body_mut().read_to_vec()?)
     }
 
     pub fn delete(&self, path: &str) -> Result<Option<Value>> {

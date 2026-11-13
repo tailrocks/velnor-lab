@@ -1,0 +1,33 @@
+name: probe
+description: Context, recording and comparison for the conformance probes.
+inputs:
+  mode:
+    description: context, token, event, record or compare
+    required: true
+  probe:
+    description: probe name
+    required: false
+    default: ''
+  leg:
+    description: leg of the observation
+    required: false
+    default: ''
+  data:
+    description: JSON object to record
+    required: false
+    default: '{}'
+  log-job:
+    description: job whose log is scanned for the output of the steps named in log-steps
+    required: false
+    default: ''
+  log-steps:
+    description: text found in the first line of a step, such as actions/cache/save@
+    required: false
+    default: ''
+  github-token:
+    description: token that reads the job log
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: node24
+  main: index.js

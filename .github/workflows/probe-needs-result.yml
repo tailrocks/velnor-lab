@@ -1,0 +1,66 @@
+name: probe needs result
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: unique tag of this probe run
+        required: false
+      role:
+        description: role of the run in the probe
+        required: false
+permissions:
+  contents: read
+jobs:
+  skipped:
+    if: github.event_name == 'never'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo not reached
+  after-skipped:
+    needs: skipped
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo not reached
+  sleeper:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      value: ${{ steps.out.outputs.value }}
+    steps:
+      - id: out
+        run: echo "value=set" >> "$GITHUB_OUTPUT"
+      - run: sleep 300
+  canceller:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - run: sleep 25 && gh run cancel "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}
+  observe:
+    needs: [skipped, after-skipped, sleeper, canceller]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: needs-result
+          leg: default-branch
+          data: >-
+            {"results": {"skipped": "${{ needs.skipped.result }}", "after-skipped": "${{ needs.after-skipped.result }}",
+            "sleeper": "${{ needs.sleeper.result }}", "canceller": "${{ needs.canceller.result }}"},
+            "needs": ${{ toJSON(needs) }}}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/

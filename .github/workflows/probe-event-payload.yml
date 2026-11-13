@@ -1,0 +1,43 @@
+name: probe event payload
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: unique tag of this probe run
+        required: false
+      role:
+        description: role of the run in the probe
+        required: false
+  push:
+    branches: ['probe-*']
+    paths: ['probes/event-payload/**']
+  pull_request:
+    paths: ['probes/event-payload/**']
+  schedule:
+    - cron: '25 6 * * 1'
+    - cron: '*/15 * * * *'
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - uses: ./.github/actions/probe
+        with:
+          mode: event
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/
+      - if: github.event_name == 'schedule' && github.event.schedule != '*/15 * * * *'
+        uses: ./.github/actions/probe
+        with:
+          mode: compare
+          probe: event-payload

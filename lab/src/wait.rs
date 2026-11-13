@@ -7,7 +7,7 @@ use std::time::{Duration, Instant};
 const LIMIT: Duration = Duration::from_secs(45 * 60);
 const GOOD: [&str; 3] = ["success", "skipped", "neutral"];
 
-fn poll<T>(what: &str, mut step: impl FnMut() -> Result<Option<T>>) -> Result<T> {
+pub fn poll<T>(what: &str, mut step: impl FnMut() -> Result<Option<T>>) -> Result<T> {
     let start = Instant::now();
     loop {
         if let Some(value) = step()? {

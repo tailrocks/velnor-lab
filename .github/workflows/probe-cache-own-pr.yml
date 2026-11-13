@@ -1,0 +1,43 @@
+name: probe cache own pr
+on:
+  pull_request:
+    paths: ['probes/cache-own-pr/**']
+permissions:
+  contents: read
+env:
+  PREFIX: lab-probe-own
+jobs:
+  own:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - id: restore
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}
+      - if: steps.restore.outputs.cache-hit != 'true'
+        run: mkdir -p probe-data && echo "$PROBE_TAG" > probe-data/file
+      - if: steps.restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}
+      - uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: cache-own-pr
+          leg: run-${{ env.PROBE_ORDINAL }}
+          data: >-
+            {"restore": {"hit": "${{ steps.restore.outputs.cache-hit }}", "matched": "${{ steps.restore.outputs.cache-matched-key }}"},
+            "saved": ${{ steps.restore.outputs.cache-hit != 'true' }}}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/
