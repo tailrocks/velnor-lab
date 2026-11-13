@@ -1,7 +1,7 @@
 'use strict';
 const fs = require('fs');
 
-const input = (name) => process.env[`INPUT_${name.toUpperCase().replace(/-/g, '_')}`] || '';
+const input = (name) => process.env[`INPUT_${name.toUpperCase()}`] || '';
 const env = (name) => process.env[name] || '';
 const event = () => JSON.parse(fs.readFileSync(env('GITHUB_EVENT_PATH'), 'utf8'));
 
