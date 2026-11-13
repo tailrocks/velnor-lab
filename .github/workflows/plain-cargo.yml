@@ -1,0 +1,65 @@
+name: plain cargo
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+env:
+  CARGO_LOG: cargo::core::compiler::fingerprint=info
+  CARGO_INCREMENTAL: "0"
+  VELNOR_CI_REV: 2cd7778d132ee6cc1a6b6eed737c82179864dbde
+jobs:
+  ci:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+        with:
+          install_args: rust aqua:nextest-rs/nextest/cargo-nextest
+      - id: helper
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.velnor-ci
+          key: velnor-ci-${{ runner.os }}-${{ env.VELNOR_CI_REV }}
+      - if: steps.helper.outputs.cache-hit != 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: tailrocks/velnor-new
+          ref: ${{ env.VELNOR_CI_REV }}
+          path: .velnor-ci-src
+          sparse-checkout: ci-helper
+          persist-credentials: false
+      - if: steps.helper.outputs.cache-hit != 'true'
+        run: cargo install --locked --path .velnor-ci-src/ci-helper/crates/velnor-ci --root ~/.velnor-ci
+      - if: steps.helper.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.velnor-ci
+          key: velnor-ci-${{ runner.os }}-${{ env.VELNOR_CI_REV }}
+      - uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            target
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+          key: plain-cargo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: plain-cargo-${{ runner.os }}-
+      - run: ~/.velnor-ci/bin/velnor-ci inputs restore
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo nextest run --workspace --locked
+      - run: ~/.velnor-ci/bin/velnor-ci inputs save
+      - if: github.event_name == 'push'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            target
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+          key: plain-cargo-${{ runner.os }}-${{ github.sha }}
