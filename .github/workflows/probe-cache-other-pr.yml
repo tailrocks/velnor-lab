@@ -1,0 +1,54 @@
+name: probe cache other pr
+on:
+  pull_request:
+    paths: ['probes/cache-other-pr/**']
+permissions:
+  contents: read
+env:
+  PREFIX: lab-probe-other
+jobs:
+  other:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/probe
+        with:
+          mode: context
+      - if: env.PROBE_ROLE == 'a'
+        run: mkdir probe-data && echo "$PROBE_TAG" > probe-data/file
+      - if: env.PROBE_ROLE == 'a'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - id: exact
+        if: env.PROBE_ROLE == 'b'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - id: prefix
+        if: env.PROBE_ROLE == 'b'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-none
+          restore-keys: |
+            ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-
+      - if: env.PROBE_ROLE == 'b'
+        uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: cache-other-pr
+          leg: second_pull_request
+          data: >-
+            {"exact_key_of_the_first": {"hit": "${{ steps.exact.outputs.cache-hit }}", "matched": "${{ steps.exact.outputs.cache-matched-key }}"},
+            "restore_key_prefix": {"hit": "${{ steps.prefix.outputs.cache-hit }}", "matched": "${{ steps.prefix.outputs.cache-matched-key }}"}}
+      - if: env.PROBE_ROLE == 'b'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/

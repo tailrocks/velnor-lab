@@ -22,6 +22,10 @@ pub fn tag() -> String {
 pub fn retire(api: &Api, opened: &Opened) -> Result<()> {
     let state = json!({"state": "closed"});
     let _ = api.send("PATCH", &format!("pulls/{}", opened.number), &state);
+    retire_branch(api, opened)
+}
+
+pub fn retire_branch(api: &Api, opened: &Opened) -> Result<()> {
     keep(api, opened)?;
     match api.delete(&format!("git/refs/heads/{}", opened.branch)) {
         Ok(_) => Ok(()),

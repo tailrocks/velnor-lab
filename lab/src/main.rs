@@ -4,6 +4,7 @@ mod grow;
 mod latest;
 mod lock;
 mod matrix;
+mod probes;
 mod scenario;
 mod signer;
 mod text;
@@ -24,7 +25,8 @@ fn run(args: &[String]) -> Result<()> {
             let api = Api::from_env()?;
             wait::merge(&api, number.parse()?).map(|sha| println!("merged {sha}"))
         }
-        ["cold"] => matrix::cold(&Api::from_env()?).map(|_| ()),
+        ["probes", rest @ ..] => probes::run(&Api::from_env()?, rest),
+        ["cold"] =>matrix::cold(&Api::from_env()?).map(|_| ()),
         [name] if Scenario::parse(name).is_some() => {
             let scenario = Scenario::parse(name).ok_or("unknown scenario")?;
             let opened = scenario::open(&Api::from_env()?, scenario)?;
@@ -32,7 +34,7 @@ fn run(args: &[String]) -> Result<()> {
             Ok(())
         }
         _ => Err(
-            "usage: lab <warm|cold|docs|leaf|hub|lock> | merge <pr> | matrix <workflow> | grow <n>"
+            "usage: lab <warm|cold|docs|leaf|hub|lock> | merge <pr> | matrix <workflow> | grow <n> | probes [--check] [probe...]"
                 .into(),
         ),
     }
