@@ -156,7 +156,7 @@ impl Session<'_> {
                 let base_branch = self.branch("base", &tip)?;
                 let head = self.branch("head", &tip)?;
                 self.commit(probe, &head, false)?;
-                for (git_ref, role) in [(&base, "default"), (&base_branch, "base"), (&head, "head")]
+                for (git_ref, role) in [(&base_branch, "base"), (&base, "default"), (&head, "head")]
                 {
                     let run = self.dispatch(probe, git_ref, role)?;
                     self.finished(run, "success")?;
