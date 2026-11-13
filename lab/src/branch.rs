@@ -24,6 +24,11 @@ pub fn retire(api: &Api, opened: &Opened) -> Result<()> {
     let _ = api.send("PATCH", &format!("pulls/{}", opened.number), &state);
     let keep = json!({"ref": format!("refs/keep/{}", opened.branch), "sha": opened.sha});
     let _ = api.send("POST", "git/refs", &keep);
-    let _: Option<Value> = api.delete(&format!("git/refs/heads/{}", opened.branch))?;
+    if api
+        .get(&format!("git/ref/heads/{}", opened.branch))?
+        .is_some()
+    {
+        let _: Option<Value> = api.delete(&format!("git/refs/heads/{}", opened.branch))?;
+    }
     Ok(())
 }
