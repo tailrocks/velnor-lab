@@ -24,6 +24,25 @@ jobs:
         with:
           path: probe-data
           key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - id: control
+        if: env.PROBE_ROLE == 'a'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: probe-data
+          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-a
+      - if: env.PROBE_ROLE == 'a'
+        uses: ./.github/actions/probe
+        with:
+          mode: record
+          probe: cache-other-pr
+          leg: first_pull_request
+          data: >-
+            {"restore_of_its_own_save": {"hit": "${{ steps.control.outputs.cache-hit }}", "matched": "${{ steps.control.outputs.cache-matched-key }}"}}
+      - if: env.PROBE_ROLE == 'a'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: observation
+          path: observation/
       - id: exact
         if: env.PROBE_ROLE == 'b'
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0

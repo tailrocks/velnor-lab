@@ -61,12 +61,12 @@ cargo run --manifest-path lab/Cargo.toml -- <scenario>
 | `cache-save-existing` | what the save step reports for a key that exists in the same scope | `default-branch` |
 | `cache-restore-keys` | which entry a key, a key prefix and restore keys restore when entries share a prefix | `default-branch` |
 | `cache-pr-reads` | whether a pull request restores entries saved on the default branch, its base branch and its own head branch | `pull_request` |
-| `cache-other-pr` | whether a pull request restores an entry saved by another pull request | `second_pull_request` |
+| `cache-other-pr` | whether a pull request restores an entry saved by another pull request, after a control in which the first pull request restores its own save | `first_pull_request`, `second_pull_request` |
 | `cache-own-pr` | whether a second run of a pull request restores what its first run saved | `run-1`, `run-2` |
 | `needs-result` | `needs.<job>.result` and `toJSON(needs)` after a skipped job and a cancelled job | `default-branch` |
 | `event-payload` | the payload fields and environment variables a helper may read, per event | one per event |
 
-The workflows with a `schedule` trigger (`token`, `event-payload`, `cache-save-existing`, `cache-restore-keys`) compare their observation with the stored file every week and fail naming the probe. `needs-result` has no schedule: it cancels its own run, so a failed comparison could not turn the run red; `lab probes --check needs-result` covers it. The probes that need a pull request (`cache-pr-reads`, `cache-other-pr`, `cache-own-pr`) and the `push` and `pull_request` legs of `token` and `event-payload` need runs that `GITHUB_TOKEN` cannot start, so only `lab probes --check` with a personal token checks them. `schedule` is the only event a person cannot start, so the `schedule` legs come from the latest scheduled run, which `lab probes` downloads.
+The workflows with a `schedule` trigger (`token`, `event-payload`, `cache-save-existing`, `cache-restore-keys`) compare their observation with the stored file every week and fail naming the probe. A leg that is not stored yet (the `schedule` legs of `token` and `event-payload` until a scheduled run has recorded them) gives a warning and does not fail. `needs-result` has no schedule: it cancels its own run, so a failed comparison could not turn the run red; `lab probes --check needs-result` covers it. The probes that need a pull request (`cache-pr-reads`, `cache-other-pr`, `cache-own-pr`) and the `push` and `pull_request` legs of `token` and `event-payload` need runs that `GITHUB_TOKEN` cannot start, so only `lab probes --check` with a personal token checks them. `schedule` is the only event a person cannot start, so the `schedule` legs come from the latest scheduled run, which `lab probes` downloads.
 
 Probe pull requests use branches `probe-<tag>-<role>`. `lab probes` closes them, saves each branch as `refs/keep/<branch>` and deletes it.
 

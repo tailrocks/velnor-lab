@@ -169,12 +169,8 @@ impl Session<'_> {
                 let run = wait::run_for(api, &file, "pull_request", &first.sha)?;
                 self.finished(run, "success")?;
                 let second = self.open_pull(probe, "b", &base, &tip)?;
-                Ok(vec![wait::run_for(
-                    api,
-                    &file,
-                    "pull_request",
-                    &second.sha,
-                )?])
+                let other = wait::run_for(api, &file, "pull_request", &second.sha)?;
+                Ok(vec![run, other])
             }
             "cache-own-pr" => {
                 let pull = self.open_pull(probe, "own", &base, &tip)?;

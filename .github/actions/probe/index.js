@@ -160,6 +160,10 @@ function compare() {
   const stored = JSON.parse(fs.readFileSync(`conformance/${probe}.json`, 'utf8'));
   let failed = false;
   for (const [leg, value] of Object.entries(observed.legs)) {
+    if (stored.legs[leg] === undefined) {
+      process.stdout.write(`::warning title=probe ${probe}::leg ${leg} is not stored in conformance/${probe}.json yet\n`);
+      continue;
+    }
     const want = JSON.stringify(canon(stored.legs[leg]));
     const got = JSON.stringify(canon(value));
     if (want !== got) {
