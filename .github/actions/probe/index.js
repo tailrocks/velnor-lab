@@ -18,7 +18,7 @@ function normalize(text) {
   for (const [from, to] of [[env('PROBE_TAG'), '<tag>'], [env('GITHUB_RUN_ID'), '<run_id>']]) {
     if (from) out = out.split(from).join(to);
   }
-  return out.replace(/refs\/pull\/\d+\/merge/g, 'refs/pull/<n>/merge');
+  return out.replace(/\b(refs\/pull\/)?\d+\/merge/g, (_, prefix) => `${prefix || ''}<n>/merge`);
 }
 
 function emit(probe, leg, data) {
@@ -79,7 +79,7 @@ const FIELDS = {
   push: ['ref', 'before', 'after', 'forced', 'created', 'deleted', 'base_ref', 'compare', 'commits', 'head_commit.id', 'pusher.name'],
   pull_request: [
     'number', 'pull_request.number', 'pull_request.title', 'pull_request.state', 'pull_request.draft', 'pull_request.merged',
-    'pull_request.merge_commit_sha', 'pull_request.mergeable', 'pull_request.changed_files', 'pull_request.labels',
+    'pull_request.changed_files', 'pull_request.labels',
     'pull_request.user.login', 'pull_request.base.ref', 'pull_request.base.sha', 'pull_request.base.repo.full_name',
     'pull_request.head.ref', 'pull_request.head.sha', 'pull_request.head.repo.full_name', 'pull_request.head.repo.fork',
     'before', 'after',
