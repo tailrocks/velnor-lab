@@ -1,0 +1,19 @@
+name: probe
+on:
+  push:
+    branches:
+      - probe/584-clean-build
+permissions:
+  contents: read
+jobs:
+  clean-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: rustup show active-toolchain || rustup toolchain install
+      - run: |
+          start=$(date +%s)
+          cargo build --workspace --locked
+          echo "clean build seconds: $(( $(date +%s) - start ))"
