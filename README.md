@@ -60,7 +60,7 @@ cargo run --manifest-path lab/Cargo.toml -- <scenario>
 | `token` | scope names and permissions (`ac` claim), `scp` names and the other claim names of the runtime token. Never the token or its signature | one per event |
 | `cache-save-existing` | what the save step reports for a key that exists in the same scope | `default-branch` |
 | `cache-restore-keys` | which entry a key, a key prefix and restore keys restore when entries share a prefix | `default-branch` |
-| `cache-pr-reads` | whether a pull request restores entries saved on the default branch, its base branch and its own head branch | `pull_request` |
+| `cache-pr-reads` | whether a pull request restores entries saved on the default branch, its base branch and its own head branch, and which of two entries with the same key (one on the default branch, one on the base branch, different content) it restores | `pull_request` |
 | `cache-other-pr` | whether a pull request restores an entry saved by another pull request, after a control in which the first pull request restores its own save | `first_pull_request`, `second_pull_request` |
 | `cache-own-pr` | whether a second run of a pull request restores what its first run saved | `run-1`, `run-2` |
 | `needs-result` | `needs.<job>.result` and `toJSON(needs)` after a skipped job and a cancelled job | `default-branch` |
