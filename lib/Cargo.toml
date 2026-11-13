@@ -1,0 +1,16 @@
+[package]
+name = "lib"
+edition.workspace = true
+rust-version.workspace = true
+version.workspace = true
+license.workspace = true
+publish.workspace = true
+build = "build.rs"
+
+[lib]
+name = "lab_lib"
+
+[dependencies]
+core = { path = "../core" }
+macros = { path = "../macros" }
+hex = { version = "0.4", default-features = false, features = ["alloc"] }
