@@ -1,0 +1,52 @@
+name: probe 652 setup
+on:
+  push:
+    branches: [probe/652-setup]
+permissions:
+  contents: read
+env:
+  BLAZE_VERSION: v0.20261105.4
+  BLAZE_TESTS: all
+jobs:
+  blaze:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            triple: x86_64-unknown-linux-gnu
+          - os: ubuntu-24.04-arm
+            triple: aarch64-unknown-linux-gnu
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      ARCHIVE: blaze-v0.20261105.4-${{ matrix.triple }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: uname -a
+      - run: cat /etc/os-release
+      - run: nproc
+      - run: free -b
+      - run: curl -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+      - run: sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+        working-directory: ${{ runner.temp }}
+      - run: tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+      - run: ls -la "$RUNNER_TEMP/$ARCHIVE"
+      - run: echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+      - run: blaze --version
+      - run: blaze --help
+      - run: blaze toolchain
+        continue-on-error: true
+      - run: blaze test --workspace
+        continue-on-error: true
+      - run: blaze test --workspace
+        continue-on-error: true
+      - run: blaze status --json
+        continue-on-error: true
+      - run: cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+      - if: always()
+        run: tail -n 200 "$HOME/.cache/blaze/v2/serve.log"
+      - if: always()
+        run: du -sb "$HOME/.cache/blaze" "$HOME/.blaze"
