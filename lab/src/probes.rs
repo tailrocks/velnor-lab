@@ -137,11 +137,14 @@ impl Session<'_> {
         let file = format!("probe-{probe}.yml");
         match probe {
             "token" | "event-payload" => {
-                let manual = self.dispatch(probe, &base, "manual")?;
+                let mut runs = Vec::new();
+                if probe == "event-payload" {
+                    runs.push(self.dispatch(probe, &base, "manual")?);
+                }
                 let pull = self.open_pull(probe, "events", &base, &tip)?;
                 let push = wait::run_for(api, &file, "push", &pull.sha)?;
                 let request = wait::run_for(api, &file, "pull_request", &pull.sha)?;
-                let mut runs = vec![manual, push, request];
+                runs.extend([push, request]);
                 runs.extend(latest_schedule(api, &file)?);
                 Ok(runs)
             }

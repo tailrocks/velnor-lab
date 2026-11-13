@@ -26,7 +26,7 @@ fn run(args: &[String]) -> Result<()> {
             wait::merge(&api, number.parse()?).map(|sha| println!("merged {sha}"))
         }
         ["probes", rest @ ..] => probes::run(&Api::from_env()?, rest),
-        ["cold"] =>matrix::cold(&Api::from_env()?).map(|_| ()),
+        ["cold"] => matrix::cold(&Api::from_env()?).map(|_| ()),
         [name] if Scenario::parse(name).is_some() => {
             let scenario = Scenario::parse(name).ok_or("unknown scenario")?;
             let opened = scenario::open(&Api::from_env()?, scenario)?;

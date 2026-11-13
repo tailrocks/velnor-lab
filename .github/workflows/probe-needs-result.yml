@@ -8,8 +8,6 @@ on:
       role:
         description: role of the run in the probe
         required: false
-  schedule:
-    - cron: '23 6 * * 1'
 permissions:
   contents: read
 jobs:
@@ -66,8 +64,3 @@ jobs:
         with:
           name: observation
           path: observation/
-      - if: github.event_name == 'schedule'
-        uses: ./.github/actions/probe
-        with:
-          mode: compare
-          probe: needs-result

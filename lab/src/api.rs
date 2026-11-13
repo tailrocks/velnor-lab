@@ -28,7 +28,7 @@ impl Api {
     }
 
     fn url(&self, path: &str) -> String {
-        if path.starts_with("https://") {
+        if path.starts_with("https://api.github.com/") {
             return path.to_owned();
         }
         match path.strip_prefix('/') {

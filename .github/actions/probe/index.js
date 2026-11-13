@@ -52,6 +52,9 @@ function context() {
     if (!found) throw new Error(`branch ${branch} does not look like probe-<tag>-<role>`);
     [, tag, role] = found;
   }
+  for (const value of [tag, role]) {
+    if (!/^[A-Za-z0-9._-]+$/.test(value)) throw new Error('tag or role has characters that are not allowed');
+  }
   let ordinal = 0;
   for (const dir of fs.existsSync('probes') ? fs.readdirSync('probes') : []) {
     const file = `probes/${dir}/runs/${branch}.txt`;
@@ -62,7 +65,12 @@ function context() {
 
 function token() {
   const raw = env('ACTIONS_RUNTIME_TOKEN');
-  const claims = JSON.parse(Buffer.from(raw.split('.')[1], 'base64url').toString('utf8'));
+  let claims;
+  try {
+    claims = JSON.parse(Buffer.from(raw.split('.')[1], 'base64url').toString('utf8'));
+  } catch (error) {
+    throw new Error('the runtime token payload could not be decoded');
+  }
   const names = Object.keys(claims).sort();
   let scopes = claims.ac;
   if (typeof scopes === 'string') scopes = JSON.parse(scopes);
