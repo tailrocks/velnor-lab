@@ -1,0 +1,45 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 9.36s in 34 uncached compilations; 20 hits avoided an estimated 5.43s
+
+uncached compiler time by cause
+
+  7.87s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.02s, serde_core 1.51s, tokio 1.35s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.40s  the Rust toolchain changed (11)
+         app 407.0ms, lab_core 303.1ms, cli 174.7ms and 5 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+ 89.1ms  not cacheable: unportable-native-link (1)
+         lab_macros 89.1ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+  1.5ms  first build of these compilations (1)
+         lib build script 1.5ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 3.02s, 99% of the 3.02s between the first unit starting and the last finishing
+ 22.0ms  2 shorter steps
+  1.53s  serde_core
+601.9ms  serde_json
+105.1ms  lab_core
+ 47.6ms  lab_lib
+714.1ms  app, 461.7ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 168.0ms: clap_builder 110.9ms, app 51.3ms and serde build script (compile) 1.4ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

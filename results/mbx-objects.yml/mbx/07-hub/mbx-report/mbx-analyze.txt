@@ -1,0 +1,28 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 1.29s in 9 uncached compilations; 4 hits avoided an estimated 287.1ms
+
+uncached compiler time by cause
+
+  1.19s  the Rust toolchain changed (8)
+         app 435.0ms, lab_core 304.0ms, cli 186.5ms and 2 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+ 92.1ms  not cacheable: unportable-native-link (1)
+         lab_macros 92.1ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+critical path: 575.3ms, 99% of the 578.1ms between the first unit starting and the last finishing
+ 61.1ms  lab_core
+212.6ms  lab_lib
+301.6ms  app
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 42.9ms: app 35.6ms, lab_lib 5.9ms and lab_macros 1.4ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

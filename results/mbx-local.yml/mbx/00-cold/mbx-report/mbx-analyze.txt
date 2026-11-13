@@ -1,0 +1,45 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 9.68s in 34 uncached compilations; 20 hits avoided an estimated 5.36s
+
+uncached compiler time by cause
+
+  8.20s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.15s, serde_core 1.45s, tokio 1.45s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.39s  the Rust toolchain changed (11)
+         app 411.2ms, lab_core 282.0ms, cli 153.6ms and 5 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+ 96.1ms  not cacheable: unportable-native-link (1)
+         lab_macros 96.1ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+  1.0ms  first build of these compilations (1)
+         lib build script 1.0ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 3.16s, 99% of the 3.16s between the first unit starting and the last finishing
+ 16.2ms  2 shorter steps
+  1.47s  serde_core
+627.0ms  serde_json
+127.7ms  lab_core
+ 46.5ms  lab_lib
+874.4ms  app, 596.8ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 442.0ms: clap_builder 344.6ms, app 97.3ms and unicode_ident 101µs
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

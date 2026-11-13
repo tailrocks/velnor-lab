@@ -1,0 +1,44 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 11.08s in 34 uncached compilations; 20 hits avoided an estimated 6.42s
+
+uncached compiler time by cause
+
+  9.21s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.42s, serde_core 1.88s, tokio 1.16s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.78s  the Rust toolchain changed (11)
+         tool 497.8ms, app 371.2ms, lab_core 330.6ms and 5 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+101.2ms  not cacheable: unportable-native-link (1)
+         lab_macros 101.2ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+  1.5ms  first build of these compilations (1)
+         lib build script 1.5ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 3.61s, 99% of the 3.61s between the first unit starting and the last finishing
+ 22.5ms  2 shorter steps
+  1.91s  serde_core
+610.5ms  serde_json
+127.1ms  lab_core
+945.0ms  app, 715.4ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 101.0ms: app 94.4ms, serde_core build script (compile) 2.8ms and proc-macro2 build script 1.9ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

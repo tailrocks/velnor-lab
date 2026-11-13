@@ -1,0 +1,40 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 8.99s in 33 uncached compilations
+
+uncached compiler time by cause
+
+  7.59s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.19s, serde_core 1.51s, tokio 998.2ms and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.24s  not cacheable: unsupported-crate-type (10)
+         app 364.9ms, lab_macros 204.8ms, lab_core 172.3ms and 5 more
+         This linked artifact type is outside mbx's current cacheability tier.
+         Compilations that link nothing -- what `cargo check` and clippy run --
+         are cached whatever their crate type, and native test binaries and
+         executables are cached where the linker can be identified. Dynamic
+         libraries and proc macros still link normally.
+
+148.7ms  the Rust toolchain changed (2)
+         lab_core 117.1ms and lab_lib 31.6ms
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+critical path: 3.04s, 100% of the 3.04s between the first unit starting and the last finishing
+  1.53s  serde_core
+508.2ms  serde_json, 55.7ms of it waiting to start
+122.8ms  lab_core
+ 41.3ms  lab_lib
+836.8ms  app, 620.8ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 320.5ms: clap_builder 255.4ms, app 64.2ms and serde_core 891µs
+
+expected, nothing to cache: compiler-query (1), standard-input (2)

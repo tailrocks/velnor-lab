@@ -1,0 +1,152 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43439622599,
+  "run_attempt": 1,
+  "workflow": "mbx probe",
+  "event": "pull_request",
+  "head_sha": "49ef114eda8b07fd4a7852cb7c5b25d786a54ca3",
+  "wall_seconds": 100,
+  "runner_seconds": 97,
+  "jobs": [
+    {
+      "name": "ci",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 2,
+      "duration_seconds": 97,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 2
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 2
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 18
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 10
+        },
+        {
+          "name": "Run mbx nextest run --workspace --locked",
+          "seconds": 35
+        },
+        {
+          "name": "check alone core",
+          "seconds": 3
+        },
+        {
+          "name": "check alone lib",
+          "seconds": 1
+        },
+        {
+          "name": "check alone app",
+          "seconds": 0
+        },
+        {
+          "name": "check alone tool",
+          "seconds": 1
+        },
+        {
+          "name": "check alone macros",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx nextest archive --workspace --locked --archive-file \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 4
+        },
+        {
+          "name": "Run ls -l \"$RUNNER_TEMP/nextest-archive.tar.zst\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 10
+        },
+        {
+          "name": "Run du -sb target",
+          "seconds": 0
+        },
+        {
+          "name": "Run df -B1 --output=used /",
+          "seconds": 0
+        },
+        {
+          "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx stats --json > \"$RUNNER_TEMP/mbx-stats.json\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx analyze > \"$RUNNER_TEMP/mbx-analyze.txt\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 2
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 6
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 196,
+        "checking": 180,
+        "documenting": 0,
+        "downloaded": 29,
+        "finished_seconds": [
+          9.58,
+          13.92,
+          3.57,
+          0.16,
+          0.16,
+          1.39,
+          0.05,
+          0.07
+        ],
+        "nextest": [
+          {
+            "tests_run": 618,
+            "seconds": 20.01
+          }
+        ],
+        "caches": []
+      }
+    }
+  ]
+}

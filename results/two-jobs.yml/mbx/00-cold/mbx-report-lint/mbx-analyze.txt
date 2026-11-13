@@ -1,0 +1,44 @@
+last recorded build: cargo clippy --workspace --all-targets --locked -- -D warnings
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 14.01s in 52 uncached compilations
+
+uncached compiler time by cause
+
+ 10.27s  first build of these compilations (45)
+         syn 2.39s, serde_core 1.84s, clap_builder 991.9ms and 37 more
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+  3.67s  not cacheable: unsupported-crate-type (4)
+         serde_derive 1.71s, clap_derive 1.19s, tokio_macros 393.5ms and 1 more
+         This linked artifact type is outside mbx's current cacheability tier.
+         Compilations that link nothing -- what `cargo check` and clippy run --
+         are cached whatever their crate type, and native test binaries and
+         executables are cached where the linker can be identified. Dynamic
+         libraries and proc macros still link normally.
+
+ 66.0ms  not cacheable: build-script-declarations-pending (3)
+         proc_macro2 66.0ms
+         This action cannot be represented safely by the current cache model. The
+         exact reason is shown below.
+
+critical path: 6.11s, 99% of the 6.11s between the first unit starting and the last finishing
+725.4ms  proc-macro2 build script (compile)
+114.0ms  proc-macro2 build script
+424.9ms  proc_macro2
+164.4ms  quote
+  2.42s  syn
+  1.71s  serde_derive
+273.5ms  serde
+137.8ms  hex
+ 52.1ms  1 shorter step
+ 83.1ms  app, 12.2ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 1.24s: syn 476.2ms, serde_derive 410.5ms and serde 268.7ms
+
+expected, nothing to cache: compiler-query (2), standard-input (1)

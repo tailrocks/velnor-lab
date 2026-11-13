@@ -1,0 +1,100 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43395045409,
+  "run_attempt": 1,
+  "workflow": "mbx local",
+  "event": "pull_request",
+  "head_sha": "66f0afba441fee5a50696d57ca1398070c71ab8c",
+  "wall_seconds": 51,
+  "runner_seconds": 49,
+  "jobs": [
+    {
+      "name": "ci",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 2,
+      "duration_seconds": 49,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 12
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 7
+        },
+        {
+          "name": "Run mbx nextest run --workspace --locked",
+          "seconds": 23
+        },
+        {
+          "name": "Run mbx stats --json > \"$RUNNER_TEMP/mbx-stats.json\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx analyze > \"$RUNNER_TEMP/mbx-analyze.txt\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "seconds": 1
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 48,
+        "checking": 20,
+        "documenting": 0,
+        "downloaded": 29,
+        "finished_seconds": [
+          6.17,
+          3.64
+        ],
+        "nextest": [
+          {
+            "tests_run": 18,
+            "seconds": 20.01
+          }
+        ],
+        "caches": [
+          {
+            "kind": "restored",
+            "key": null,
+            "size_bytes": 76263411
+          }
+        ]
+      }
+    }
+  ]
+}

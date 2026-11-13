@@ -1,0 +1,44 @@
+last recorded build: cargo nextest run --workspace --locked
+workspace: /home/runner/work/velnor-lab/velnor-lab
+compiler time: 10.64s in 34 uncached compilations; 20 hits avoided an estimated 6.09s
+
+uncached compiler time by cause
+
+  8.99s  compiler arguments changed (21)
+         changed: --emit (21)
+         clap_builder 2.36s, serde_core 1.62s, tokio 1.54s and 18 more
+         These crates were built with different arguments than their last
+         recording. Commands that differ in RUSTFLAGS, profile, or features keep
+         separate cache entries, so alternating between them rebuilds each time.
+
+  1.55s  the Rust toolchain changed (11)
+         app 425.8ms, lab_core 305.4ms, lab_lib 249.5ms and 5 more
+         Every key includes the compiler, so a toolchain change rebuilds each
+         crate once. A rust-toolchain.toml keeps every checkout and CI job on one
+         toolchain.
+
+101.0ms  not cacheable: unportable-native-link (1)
+         lab_macros 101.0ms
+         This link would embed a path, a timestamp, or a file mbx does not store,
+         so another checkout could not use its result.
+
+  1.4ms  first build of these compilations (1)
+         lib build script 1.4ms
+         Nothing recorded an earlier build of these crates to compare with, and
+         there was no key to look up. The next build with the same inputs
+         restores them, except for crates mbx is keeping private incremental
+         state for while you edit them.
+
+critical path: 2.96s, 86% of the 3.44s between the first unit starting and the last finishing
+120.4ms  anstyle
+168.9ms  anstream
+  1.71s  clap_builder
+119.5ms  clap
+843.4ms  app, 566.8ms of it waiting to start
+         The build could not finish sooner than this chain; other work overlapped
+         with it. Shortening a step, or removing a dependency between two steps,
+         shortens the build.
+
+only one recorded unit running for 407.0ms: clap_builder 319.0ms, app 82.4ms and proc-macro2 build script 3.3ms
+
+expected, nothing to cache: compiler-query (1), standard-input (2)
