@@ -3,11 +3,11 @@ import "package://github.com/jdx/hk/releases/download/v2.12.0/hk@2.12.0#/Builtin
 
 local checks = new Mapping<String, Step> {
   ["cargo_fmt"] = (Builtins.cargo_fmt) {
-    check = "cargo fmt --all --check"
-    fix = "cargo fmt --all"
+    check = "cargo fmt --all --check && cargo fmt --manifest-path lab/Cargo.toml --check"
+    fix = "cargo fmt --all && cargo fmt --manifest-path lab/Cargo.toml"
   }
   ["cargo_clippy"] = (Builtins.cargo_clippy) {
-    check = "cargo clippy --workspace --all-targets --locked -- -D warnings"
+    check = "cargo clippy --workspace --all-targets --locked -- -D warnings && cargo clippy --manifest-path lab/Cargo.toml --all-targets --locked -- -D warnings"
   }
 }
 
