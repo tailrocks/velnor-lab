@@ -12,6 +12,10 @@ pub fn digest(record: &Record) -> String {
     hex::encode(record.to_json())
 }
 
+pub fn failure() -> Box<dyn std::error::Error> {
+    Box::new(hex::FromHexError::OddLength)
+}
+
 pub fn within_limit(record: &Record) -> bool {
     record.id < LIMIT
 }
@@ -37,3 +41,4 @@ mod tests {
         assert!(within_limit(&record));
     }
 }
+// lab/specimen-fails-alone-1794576678
