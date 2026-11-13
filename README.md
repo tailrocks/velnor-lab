@@ -47,6 +47,8 @@ cargo run --manifest-path lab/Cargo.toml -- <scenario>
 
 `LAB_REPO` (default `tailrocks/velnor-lab`) and `LAB_BASE` (default `main`) select the repository and base branch. `VELNOR_CI` names the helper binary for `matrix`.
 
+`.github/workflows/` holds the hand-written workflows of the experiment [tailrocks/velnor-new#585](https://github.com/tailrocks/velnor-new/issues/585), one per question. Only the workflow under test is enabled while its `matrix` runs; the branch `control` holds the engine's generated workflow.
+
 ## Rules
 
 - Changes reach `main` through pull requests, squash-merged, with every review conversation resolved.
