@@ -57,3 +57,7 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+// lab fault-lint 1794633780-1
+pub fn lab_fault_lint(values: &Vec<u32>) -> usize {
+    values.len()
+}
