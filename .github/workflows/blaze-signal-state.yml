@@ -52,6 +52,9 @@ jobs:
       - if: always()
         run: blaze stop
       - if: always()
+        run: timeout 300 pidwait -f "blaze serve"
+        continue-on-error: true
+      - if: always()
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: /blaze/home
