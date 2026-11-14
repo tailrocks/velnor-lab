@@ -57,3 +57,10 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+// lab fault-borrow 1794631805-0
+pub fn lab_fault_borrow() -> usize {
+    let text = String::from("moved");
+    let moved = text;
+    drop(moved);
+    text.len()
+}
