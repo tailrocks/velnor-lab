@@ -31,12 +31,10 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Create probe-v0.0.2 with GITHUB_TOKEN
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          if gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" \
-            -f ref=refs/tags/probe-v0.0.2 -f sha="$GITHUB_SHA" 2>err.txt; then
+          if git push origin "$GITHUB_SHA:refs/tags/probe-v0.0.2" 2>err.txt; then
             echo "probe-v0.0.2 was created by GITHUB_TOKEN"
             exit 1
           fi
