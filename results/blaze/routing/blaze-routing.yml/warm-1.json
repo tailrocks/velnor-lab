@@ -1,0 +1,156 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43535845704,
+  "run_attempt": 1,
+  "workflow": "blaze routing",
+  "event": "pull_request",
+  "head_sha": "48e5d223ccc77eea1d540c9cdfe3e52709fde836",
+  "wall_seconds": 221,
+  "runner_seconds": 215,
+  "jobs": [
+    {
+      "name": "ci",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 5,
+      "duration_seconds": 215,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 3
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 3
+        },
+        {
+          "name": "Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 17
+        },
+        {
+          "name": "Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Run curl --proto =https --tlsv1.2 -fsSLo \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" \"https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run sha256sum -c --ignore-missing \"$GITHUB_WORKSPACE/.github/blaze.sha256\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run tar -xzf \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" -C \"$RUNNER_TEMP\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run echo \"$RUNNER_TEMP/$ARCHIVE\" >> \"$GITHUB_PATH\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo prlimit --pid \"$PPID\" --memlock=unlimited:unlimited",
+          "seconds": 0
+        },
+        {
+          "name": "Run truncate -s 12G \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkfs.xfs -q -m reflink=1 \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkdir -p /blaze",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mount -o loop \"$RUNNER_TEMP/blaze.img\" /blaze",
+          "seconds": 1
+        },
+        {
+          "name": "Run sudo install -d -m 700 -o runner -g runner /blaze/home",
+          "seconds": 0
+        },
+        {
+          "name": "Run blaze toolchain",
+          "seconds": 4
+        },
+        {
+          "name": "Run mbx setup --yes",
+          "seconds": 0
+        },
+        {
+          "name": "Run echo \"$HOME/.local/share/mbx/bin\" >> \"$GITHUB_PATH\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run command -v cargo blaze",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo fmt --all --check",
+          "seconds": 0
+        },
+        {
+          "name": "Run cargo clippy --workspace --all-targets --locked -- -D warnings",
+          "seconds": 6
+        },
+        {
+          "name": "Run cargo nextest run --workspace --locked",
+          "seconds": 22
+        },
+        {
+          "name": "Run cargo test --doc --workspace --locked",
+          "seconds": 149
+        },
+        {
+          "name": "Run cargo doc --workspace --no-deps --locked",
+          "seconds": 1
+        },
+        {
+          "name": "Run blaze status --json",
+          "seconds": 0
+        },
+        {
+          "name": "Run mbx stats --json",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 80,
+        "checking": 22,
+        "documenting": 5,
+        "downloaded": 62,
+        "finished_seconds": [
+          5.1,
+          2.82,
+          147.0,
+          0.35
+        ],
+        "nextest": [
+          {
+            "tests_run": 18,
+            "seconds": 20.007
+          }
+        ],
+        "caches": []
+      }
+    }
+  ]
+}

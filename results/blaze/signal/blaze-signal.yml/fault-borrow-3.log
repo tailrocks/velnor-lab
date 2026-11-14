@@ -1,0 +1,1130 @@
+===== job 132339493487 "blaze (ubuntu-latest, x86_64-unknown-linux-gnu)"
+﻿2026-11-14T05:00:42.8620515Z Current runner version: '2.338.2'
+2026-11-14T05:00:42.8656143Z ##[group]Runner Image Provisioner
+2026-11-14T05:00:42.8657556Z Hosted Compute Agent
+2026-11-14T05:00:42.8658559Z Version: 20261103.629
+2026-11-14T05:00:42.8659849Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T05:00:42.8661124Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T05:00:42.8662399Z Worker ID: {30523cba-e6df-470a-b3a2-5544b6ffecef}
+2026-11-14T05:00:42.8663900Z Region: eastus
+2026-11-14T05:00:42.8664821Z Cloud: Azure
+2026-11-14T05:00:42.8665862Z ##[endgroup]
+2026-11-14T05:00:42.8668247Z ##[group]Operating System
+2026-11-14T05:00:42.8669381Z Ubuntu
+2026-11-14T05:00:42.8670268Z 26.04.1
+2026-11-14T05:00:42.8671195Z LTS
+2026-11-14T05:00:42.8672155Z ##[endgroup]
+2026-11-14T05:00:42.8673278Z ##[group]Runner Image
+2026-11-14T05:00:42.8674481Z Image: ubuntu-26.04
+2026-11-14T05:00:42.8675484Z Version: 20261111.196.1
+2026-11-14T05:00:42.8677813Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-14T05:00:42.8680674Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-14T05:00:42.8682469Z ##[endgroup]
+2026-11-14T05:00:42.8684655Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T05:00:42.8687560Z Contents: read
+2026-11-14T05:00:42.8688656Z Metadata: read
+2026-11-14T05:00:42.8689628Z ##[endgroup]
+2026-11-14T05:00:42.8693322Z Secret source: Actions
+2026-11-14T05:00:42.8694894Z Cache mode: write
+2026-11-14T05:00:42.8696524Z Prepare workflow directory
+2026-11-14T05:00:42.9525364Z Prepare all required actions
+2026-11-14T05:00:42.9658050Z Getting action download info
+2026-11-14T05:00:43.1187607Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T05:00:43.3216631Z Complete job name: blaze (ubuntu-latest, x86_64-unknown-linux-gnu)
+2026-11-14T05:00:43.4131978Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T05:00:43.4133291Z with:
+2026-11-14T05:00:43.4133755Z   persist-credentials: false
+2026-11-14T05:00:43.4134292Z   repository: tailrocks/velnor-lab
+2026-11-14T05:00:43.4138250Z   token: ***
+2026-11-14T05:00:43.4138687Z   ssh-strict: true
+2026-11-14T05:00:43.4139118Z   ssh-user: git
+2026-11-14T05:00:43.4139531Z   clean: true
+2026-11-14T05:00:43.4139965Z   sparse-checkout-cone-mode: true
+2026-11-14T05:00:43.4140490Z   fetch-depth: 1
+2026-11-14T05:00:43.4140913Z   fetch-tags: false
+2026-11-14T05:00:43.4141349Z   show-progress: true
+2026-11-14T05:00:43.4141846Z   lfs: false
+2026-11-14T05:00:43.4142257Z   submodules: false
+2026-11-14T05:00:43.4142703Z   set-safe-directory: true
+2026-11-14T05:00:43.4143318Z   allow-unsafe-pr-checkout: false
+2026-11-14T05:00:43.4144109Z env:
+2026-11-14T05:00:43.4144575Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:43.4145085Z   BLAZE_TESTS: all
+2026-11-14T05:00:43.4145568Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:43.4146123Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:43.4146738Z ##[endgroup]
+2026-11-14T05:00:43.8210284Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T05:00:43.8213504Z ##[group]Getting Git version info
+2026-11-14T05:00:43.8214963Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T05:00:43.8217090Z [command]/usr/bin/git version
+2026-11-14T05:00:43.8241988Z git version 2.56.1
+2026-11-14T05:00:43.8279302Z ##[endgroup]
+2026-11-14T05:00:43.8301528Z Temporarily overriding HOME='/home/runner/work/_temp/9c4d626d-3f61-4164-9655-39fbadcf3bf0' before making global git config changes
+2026-11-14T05:00:43.8305090Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:00:43.8311537Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:00:43.8385499Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T05:00:43.8393977Z ##[group]Determining repository object format
+2026-11-14T05:00:43.8395651Z ##[endgroup]
+2026-11-14T05:00:43.8397303Z ##[group]Initializing the repository
+2026-11-14T05:00:43.8399525Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:00:43.8612080Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T05:00:43.8614272Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T05:00:43.8615674Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T05:00:43.8616780Z hint: call:
+2026-11-14T05:00:43.8617382Z hint:
+2026-11-14T05:00:43.8618137Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T05:00:43.8619075Z hint:
+2026-11-14T05:00:43.8619951Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T05:00:43.8621644Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T05:00:43.8622812Z hint:
+2026-11-14T05:00:43.8623895Z hint: 	git branch -m <name>
+2026-11-14T05:00:43.8624827Z hint:
+2026-11-14T05:00:43.8625648Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T05:00:43.8648130Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T05:00:43.8666658Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T05:00:43.8770242Z ##[endgroup]
+2026-11-14T05:00:43.8772826Z ##[group]Disabling automatic garbage collection
+2026-11-14T05:00:43.8775230Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T05:00:43.8832166Z ##[endgroup]
+2026-11-14T05:00:43.8836364Z ##[group]Setting up auth
+2026-11-14T05:00:43.8837960Z Removing SSH command configuration
+2026-11-14T05:00:43.8839696Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:00:43.8883388Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:00:43.9561897Z Removing HTTP extra header
+2026-11-14T05:00:43.9569949Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:00:43.9613871Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:00:43.9883961Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:00:43.9887213Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:00:43.9919794Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:00:44.0187950Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T05:00:44.0226323Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.0259119Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.0295671Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.0329839Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.0359765Z ##[endgroup]
+2026-11-14T05:00:44.0360700Z ##[group]Fetching the repository
+2026-11-14T05:00:44.0368369Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +033ec38d4f48cd7646fb44baeee725822c47e77d:refs/remotes/pull/259/merge
+2026-11-14T05:00:44.2945797Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T05:00:44.2948772Z  * [new ref]         033ec38d4f48cd7646fb44baeee725822c47e77d -> pull/259/merge
+2026-11-14T05:00:44.2955322Z ##[endgroup]
+2026-11-14T05:00:44.2957755Z ##[group]Determining the checkout info
+2026-11-14T05:00:44.2960622Z ##[endgroup]
+2026-11-14T05:00:44.2962379Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T05:00:44.3013784Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T05:00:44.3046378Z ##[group]Checking out the ref
+2026-11-14T05:00:44.3050070Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/259/merge
+2026-11-14T05:00:44.3700934Z Note: switching to 'refs/remotes/pull/259/merge'.
+2026-11-14T05:00:44.3702287Z 
+2026-11-14T05:00:44.3703689Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T05:00:44.3705787Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T05:00:44.3707724Z state without impacting any branches by switching back to a branch.
+2026-11-14T05:00:44.3708815Z 
+2026-11-14T05:00:44.3709624Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T05:00:44.3711412Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T05:00:44.3712373Z 
+2026-11-14T05:00:44.3712905Z   git switch -c <new-branch-name>
+2026-11-14T05:00:44.3714030Z 
+2026-11-14T05:00:44.3714960Z Or undo this operation with:
+2026-11-14T05:00:44.3715963Z 
+2026-11-14T05:00:44.3798351Z   git switch -
+2026-11-14T05:00:44.3799587Z 
+2026-11-14T05:00:44.3801501Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T05:00:44.3803751Z 
+2026-11-14T05:00:44.3806503Z HEAD is now at 033ec38 Merge b323380ad4cfcf31063caf4d9837c77e550304c0 into c2f88cecfc4b883de31fb38baf76147ece7f7195
+2026-11-14T05:00:44.3814491Z ##[endgroup]
+2026-11-14T05:00:44.3818883Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T05:00:44.3820890Z 033ec38d4f48cd7646fb44baeee725822c47e77d
+2026-11-14T05:00:44.3825110Z ##[group]Removing auth
+2026-11-14T05:00:44.3826668Z Removing SSH command configuration
+2026-11-14T05:00:44.3828903Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:00:44.3844591Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:00:44.4128277Z Removing HTTP extra header
+2026-11-14T05:00:44.4131520Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:00:44.4167143Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:00:44.4433534Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:00:44.4437565Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:00:44.4462225Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T05:00:44.4466162Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T05:00:44.4469115Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T05:00:44.4471504Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T05:00:44.4476601Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T05:00:44.4497009Z /home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.4511450Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-41628e8b\-3c31\-4bb1\-99da\-be47366d0b05\.config
+2026-11-14T05:00:44.4547496Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T05:00:44.4576188Z /home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.4586579Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-41628e8b\-3c31\-4bb1\-99da\-be47366d0b05\.config
+2026-11-14T05:00:44.4621060Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T05:00:44.4646420Z /github/runner_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.4657312Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-41628e8b\-3c31\-4bb1\-99da\-be47366d0b05\.config
+2026-11-14T05:00:44.4690576Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T05:00:44.4715326Z /github/runner_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config
+2026-11-14T05:00:44.4725328Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-41628e8b\-3c31\-4bb1\-99da\-be47366d0b05\.config
+2026-11-14T05:00:44.4758653Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:00:44.5028418Z Removing credentials config '/home/runner/work/_temp/git-credentials-41628e8b-3c31-4bb1-99da-be47366d0b05.config'
+2026-11-14T05:00:44.5035950Z ##[endgroup]
+2026-11-14T05:00:44.5296286Z ##[group]Run uname -r
+2026-11-14T05:00:44.5297382Z [36;1muname -r[0m
+2026-11-14T05:00:44.5351766Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:44.5352883Z env:
+2026-11-14T05:00:44.5353922Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:44.5355054Z   BLAZE_TESTS: all
+2026-11-14T05:00:44.5356007Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:44.5357250Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:44.5358675Z ##[endgroup]
+2026-11-14T05:00:44.5480178Z 7.0.0-1019-azure
+2026-11-14T05:00:44.5580982Z ##[group]Run curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+2026-11-14T05:00:44.5586305Z [36;1mcurl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"[0m
+2026-11-14T05:00:44.5634319Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:44.5635443Z env:
+2026-11-14T05:00:44.5636359Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:44.5637497Z   BLAZE_TESTS: all
+2026-11-14T05:00:44.5638487Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:44.5639756Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:44.5641180Z ##[endgroup]
+2026-11-14T05:00:45.6516795Z ##[group]Run sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+2026-11-14T05:00:45.6517517Z [36;1msha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"[0m
+2026-11-14T05:00:45.6569167Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:45.6569480Z env:
+2026-11-14T05:00:45.6569730Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:45.6570022Z   BLAZE_TESTS: all
+2026-11-14T05:00:45.6570280Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:45.6570620Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:45.6570996Z ##[endgroup]
+2026-11-14T05:00:45.8055456Z blaze-v0.20261105.4-x86_64-unknown-linux-gnu.tar.gz: OK
+2026-11-14T05:00:45.8107568Z ##[group]Run tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+2026-11-14T05:00:45.8108184Z [36;1mtar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"[0m
+2026-11-14T05:00:45.8160973Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:45.8161293Z env:
+2026-11-14T05:00:45.8161554Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:45.8162151Z   BLAZE_TESTS: all
+2026-11-14T05:00:45.8162436Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:45.8162839Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:45.8163426Z ##[endgroup]
+2026-11-14T05:00:45.8266316Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:45.8267690Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:45.8268801Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:46.9225119Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:46.9236065Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:46.9237489Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:47.9771145Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T05:00:47.9811489Z ##[group]Run echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+2026-11-14T05:00:47.9811938Z [36;1mecho "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"[0m
+2026-11-14T05:00:47.9860510Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:47.9860789Z env:
+2026-11-14T05:00:47.9861030Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:47.9861277Z   BLAZE_TESTS: all
+2026-11-14T05:00:47.9861486Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:47.9861769Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:47.9862082Z ##[endgroup]
+2026-11-14T05:00:47.9957608Z ##[group]Run sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+2026-11-14T05:00:47.9958135Z [36;1msudo prlimit --pid "$PPID" --memlock=unlimited:unlimited[0m
+2026-11-14T05:00:48.0003631Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.0003895Z env:
+2026-11-14T05:00:48.0004094Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.0004342Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.0004551Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.0004848Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.0005155Z ##[endgroup]
+2026-11-14T05:00:48.0185824Z ##[group]Run truncate -s 12G "$RUNNER_TEMP/blaze.img"
+2026-11-14T05:00:48.0186238Z [36;1mtruncate -s 12G "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T05:00:48.0232379Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.0232634Z env:
+2026-11-14T05:00:48.0232827Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.0233265Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.0233485Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.0233779Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.0234100Z ##[endgroup]
+2026-11-14T05:00:48.0380861Z ##[group]Run sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+2026-11-14T05:00:48.0381381Z [36;1msudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T05:00:48.0427729Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.0427991Z env:
+2026-11-14T05:00:48.0428185Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.0428434Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.0428644Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.0428936Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.0429249Z ##[endgroup]
+2026-11-14T05:00:48.3107930Z ##[group]Run sudo mkdir -p /blaze
+2026-11-14T05:00:48.3108278Z [36;1msudo mkdir -p /blaze[0m
+2026-11-14T05:00:48.3155855Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.3156106Z env:
+2026-11-14T05:00:48.3156299Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.3156543Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.3156750Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.3157029Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.3157341Z ##[endgroup]
+2026-11-14T05:00:48.3352196Z ##[group]Run sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+2026-11-14T05:00:48.3352670Z [36;1msudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze[0m
+2026-11-14T05:00:48.3400074Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.3400489Z env:
+2026-11-14T05:00:48.3400954Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.3401218Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.3401436Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.3401724Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.3402038Z ##[endgroup]
+2026-11-14T05:00:48.7576952Z ##[group]Run sudo install -d -m 700 -o runner -g runner /blaze/home
+2026-11-14T05:00:48.7577457Z [36;1msudo install -d -m 700 -o runner -g runner /blaze/home[0m
+2026-11-14T05:00:48.7625246Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.7625500Z env:
+2026-11-14T05:00:48.7625697Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.7625942Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.7626149Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.7626442Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.7626757Z ##[endgroup]
+2026-11-14T05:00:48.7824658Z ##[group]Run blaze --version
+2026-11-14T05:00:48.7824962Z [36;1mblaze --version[0m
+2026-11-14T05:00:48.7871217Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.7871474Z env:
+2026-11-14T05:00:48.7871665Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.7871905Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.7872108Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.7872383Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.7872699Z ##[endgroup]
+2026-11-14T05:00:48.8005975Z blaze 0.20261105.4 (e930296 2026-11-05)
+2026-11-14T05:00:48.8008122Z /home/runner/work/_temp/blaze-v0.20261105.4-x86_64-unknown-linux-gnu/blaze, as /home/runner/work/velnor-lab/velnor-lab/Cargo.toml pins none (`[workspace.metadata.blaze] version`, which `blaze pin` writes)
+2026-11-14T05:00:48.8067070Z ##[group]Run blaze toolchain
+2026-11-14T05:00:48.8067521Z [36;1mblaze toolchain[0m
+2026-11-14T05:00:48.8128595Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:48.8128972Z env:
+2026-11-14T05:00:48.8129272Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:48.8129652Z   BLAZE_TESTS: all
+2026-11-14T05:00:48.8129975Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:48.8130436Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:48.8130932Z ##[endgroup]
+2026-11-14T05:00:48.8293865Z Downloading Rust nightly-2026-10-27 for blaze (153 MB, once)...
+2026-11-14T05:00:54.6295115Z Downloaded Rust nightly-2026-10-27 for blaze in 5.8s.
+2026-11-14T05:00:54.6297316Z blaze-2026-10-27, blaze's toolchain (Rust nightly-2026-10-27), at /home/runner/.blaze/toolchains/nightly-2026-10-27-x86_64-unknown-linux-gnu
+2026-11-14T05:00:54.6383721Z ##[group]Run blaze test --workspace
+2026-11-14T05:00:54.6384082Z [36;1mblaze test --workspace[0m
+2026-11-14T05:00:54.6432117Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:54.6432368Z env:
+2026-11-14T05:00:54.6432565Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:54.6432808Z   BLAZE_TESTS: all
+2026-11-14T05:00:54.6433207Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:54.6433577Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:00:54.6433890Z ##[endgroup]
+2026-11-14T05:00:54.6602533Z blaze: starting the daemon (no socket activation is installed: `blaze daemon install` has the system start it on demand)
+2026-11-14T05:00:55.0324188Z blaze: the daemon it started (pid 2539) started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T05:00:56.3605315Z   Downloaded anstyle v1.0.14
+2026-11-14T05:00:56.3624122Z   Downloaded utf8parse v0.2.2
+2026-11-14T05:00:56.3644389Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T05:00:56.3664660Z   Downloaded windows-link v0.2.1
+2026-11-14T05:00:56.3688993Z   Downloaded windows-sys v0.61.2
+2026-11-14T05:00:56.3702251Z   Downloaded anstyle-query v1.1.5
+2026-11-14T05:00:56.3714414Z   Downloaded once_cell_polyfill v1.70.2
+2026-11-14T05:00:56.3736905Z   Downloaded anstyle-wincon v3.0.11
+2026-11-14T05:00:56.3790928Z   Downloaded colorchoice v1.0.5
+2026-11-14T05:00:56.3814328Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T05:00:56.3844171Z   Downloaded anstream v1.0.0
+2026-11-14T05:00:56.3874589Z   Downloaded clap_lex v1.1.1
+2026-11-14T05:00:56.3885346Z   Downloaded strsim v0.11.1
+2026-11-14T05:00:56.3903691Z   Downloaded clap_builder v4.6.7
+2026-11-14T05:00:56.3914767Z   Downloaded heck v0.5.0
+2026-11-14T05:00:56.3915512Z   Downloaded unicode-ident v1.0.27
+2026-11-14T05:00:56.3916138Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T05:00:56.3916692Z   Downloaded quote v1.0.47
+2026-11-14T05:00:56.3917191Z   Downloaded syn v3.0.10
+2026-11-14T05:00:56.3917677Z   Downloaded clap_derive v4.6.7
+2026-11-14T05:00:56.3918222Z   Downloaded clap v4.6.7
+2026-11-14T05:00:56.3918714Z   Downloaded serde_derive v1.0.229
+2026-11-14T05:00:56.3919256Z   Downloaded serde_core v1.0.229
+2026-11-14T05:00:56.3919772Z   Downloaded serde v1.0.229
+2026-11-14T05:00:56.3920306Z   Downloaded itoa v1.0.19
+2026-11-14T05:00:56.3920790Z   Downloaded memchr v2.8.3
+2026-11-14T05:00:56.3921275Z   Downloaded zmij v1.0.23
+2026-11-14T05:00:56.3921769Z   Downloaded serde_json v1.0.154
+2026-11-14T05:00:56.3922270Z   Downloaded hex v0.4.3
+2026-11-14T05:00:56.3923509Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T05:00:56.3933508Z   Downloaded tokio-macros v2.7.2
+2026-11-14T05:00:56.3934059Z   Downloaded tokio v1.54.1
+2026-11-14T05:00:56.3934555Z   Downloaded fnv v1.0.5
+2026-11-14T05:01:08.3545008Z    Compiling compiler_builtins v0.1.160 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/compiler-builtins/compiler-builtins)
+2026-11-14T05:01:08.3550716Z    Compiling core v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/core)
+2026-11-14T05:01:13.0518997Z    Compiling libc v0.2.191
+2026-11-14T05:01:13.6265533Z    Compiling alloc v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/alloc)
+2026-11-14T05:01:14.3595231Z    Compiling rustc-std-workspace-core v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-core)
+2026-11-14T05:01:15.8034626Z    Compiling rustc-std-workspace-alloc v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-alloc)
+2026-11-14T05:01:16.9871100Z    Compiling object v0.39.1
+2026-11-14T05:01:17.0784186Z    Compiling adler2 v2.0.1
+2026-11-14T05:01:17.0834165Z    Compiling gimli v0.34.0
+2026-11-14T05:01:17.3224312Z    Compiling memchr v2.8.3
+2026-11-14T05:01:17.4725246Z    Compiling unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/unwind)
+2026-11-14T05:01:18.8330983Z    Compiling std v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std)
+2026-11-14T05:01:18.8363495Z    Compiling cfg-if v1.0.4
+2026-11-14T05:01:18.8364424Z    Compiling addr2line v0.27.1
+2026-11-14T05:01:18.8388594Z    Compiling hashbrown v0.17.1
+2026-11-14T05:01:18.8698293Z    Compiling miniz_oxide v0.9.1
+2026-11-14T05:01:18.9794333Z    Compiling panic_abort v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_abort)
+2026-11-14T05:01:18.9933659Z    Compiling rustc-demangle v0.1.28
+2026-11-14T05:01:19.0568547Z    Compiling std_detect v0.1.5 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std_detect)
+2026-11-14T05:01:19.0914669Z    Compiling panic_unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_unwind)
+2026-11-14T05:01:22.1158267Z    Compiling rustc-std-workspace-std v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-std)
+2026-11-14T05:01:22.3753761Z    Compiling wasip1 v1.0.0
+2026-11-14T05:01:22.4205498Z    Compiling test v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/test)
+2026-11-14T05:01:22.4311573Z    Compiling rustc-literal-escaper v0.0.8
+2026-11-14T05:01:22.4476722Z    Compiling getopts v0.2.24
+2026-11-14T05:01:26.0646772Z    Compiling proc_macro v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/proc_macro)
+2026-11-14T05:01:26.2740152Z    Compiling proc-macro2 v1.0.107
+2026-11-14T05:01:26.3924067Z    Compiling unicode-ident v1.0.27
+2026-11-14T05:01:26.4135288Z    Compiling quote v1.0.47
+2026-11-14T05:02:33.9844681Z    Compiling serde_core v1.0.229
+2026-11-14T05:02:34.1242589Z    Compiling zmij v1.0.23
+2026-11-14T05:02:35.5932550Z    Compiling utf8parse v0.2.2
+2026-11-14T05:02:38.1344367Z    Compiling serde v1.0.229
+2026-11-14T05:02:38.8374238Z    Compiling serde_json v1.0.154
+2026-11-14T05:02:39.2374698Z    Compiling anstyle v1.0.14
+2026-11-14T05:02:39.2894193Z    Compiling anstyle-query v1.1.5
+2026-11-14T05:02:39.2913800Z    Compiling colorchoice v1.0.5
+2026-11-14T05:02:39.2934069Z    Compiling is_terminal_polyfill v1.70.2
+2026-11-14T05:02:39.2953958Z    Compiling itoa v1.0.19
+2026-11-14T05:02:41.5925830Z    Compiling anstyle-parse v1.0.0
+2026-11-14T05:02:46.7765480Z    Compiling clap_lex v1.1.1
+2026-11-14T05:02:46.7923941Z    Compiling strsim v0.11.1
+2026-11-14T05:02:46.8013824Z    Compiling anstream v1.0.0
+2026-11-14T05:02:46.8024478Z    Compiling syn v3.0.10
+2026-11-14T05:02:47.0584434Z    Compiling heck v0.5.0
+2026-11-14T05:02:47.0820021Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T05:02:47.0974545Z    Compiling pin-project-lite v0.2.17
+2026-11-14T05:02:47.0994019Z    Compiling clap_builder v4.6.7
+2026-11-14T05:02:47.3095395Z    Compiling serde_derive v1.0.229
+2026-11-14T05:02:47.4644582Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T05:02:47.4684141Z    Compiling clap_derive v4.6.7
+2026-11-14T05:02:47.6053698Z    Compiling tokio-macros v2.7.2
+2026-11-14T05:03:39.3324296Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T05:03:39.3325150Z    Compiling hex v0.4.3
+2026-11-14T05:03:58.8714153Z error[E0382]: borrow of moved value: `text`
+2026-11-14T05:03:58.8714763Z   --> core/src/lib.rs:65:5
+2026-11-14T05:03:58.8715160Z    |
+2026-11-14T05:03:58.8728003Z 62 |     let text = String::from("moved");
+2026-11-14T05:03:58.8728902Z    |         ---- move occurs because `text` has type `String`, which does not implement the `Copy` trait
+2026-11-14T05:03:58.8729726Z 63 |     let moved = text;
+2026-11-14T05:03:58.8730137Z    |                 ---- value moved here
+2026-11-14T05:03:58.8730604Z 64 |     drop(moved);
+2026-11-14T05:03:58.8730963Z 65 |     text.len()
+2026-11-14T05:03:58.8731372Z    |     ^^^^ value borrowed here after move
+2026-11-14T05:03:58.8731709Z 
+2026-11-14T05:03:58.8732037Z For more information about this error, try `rustc --explain E0382`.
+2026-11-14T05:03:58.8732817Z error: could not compile `core` (lib) due to 1 previous error
+2026-11-14T05:03:58.8734044Z    Compiling blaze_inproc_rt v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/blaze_inproc_rt)
+2026-11-14T05:04:00.0645343Z    Compiling clap v4.6.7
+2026-11-14T05:04:00.0646263Z    Compiling tokio v1.54.1
+2026-11-14T05:04:00.1456546Z    Compiling fnv v1.0.5
+2026-11-14T05:04:00.1526172Z    Compiling tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T05:05:39.0584081Z error: could not compile `core` (lib test) due to 1 previous error
+2026-11-14T05:05:40.3514280Z note: 8 units not checked, behind what failed:
+2026-11-14T05:05:40.3517524Z   behind core v0.0.0 (lib) (errors in its code): 8 units
+2026-11-14T05:05:40.3519076Z     app v0.0.0 (bin "app" test), app v0.0.0 (bin "app"), app v0.0.0 (test "cli"), app v0.0.0 (test "slow"), core v0.0.0 (lib doctest), lib v0.0.0 (lib test), and 2 more
+2026-11-14T05:05:43.6004911Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/quote/4e64a9512590a901/out/build_script_build (first link)
+2026-11-14T05:05:43.6006800Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/proc-macro2/3f89419e38ebe4ab/out/build_script_build (first link)
+2026-11-14T05:05:43.6034004Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_core/0b4b494de027718a/out/build_script_build (first link)
+2026-11-14T05:05:43.6044095Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/zmij/cd03ac39daec2073/out/build_script_build (first link)
+2026-11-14T05:05:43.6045860Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde/6ce11bb541fb9f66/out/build_script_build (first link)
+2026-11-14T05:05:43.6047582Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_json/8635ff57306b8b75/out/build_script_build (first link)
+2026-11-14T05:05:43.6049847Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/serde_derive/e888968247be8ff7/out/serde_derive-e888968247be8ff7.wasm (first link)
+2026-11-14T05:05:43.6052013Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/macros/973aa52815b6ef73/out/lab_macros-973aa52815b6ef73.wasm (first link)
+2026-11-14T05:05:43.6054207Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/clap_derive/17d2629b97c9b430/out/clap_derive-17d2629b97c9b430.wasm (first link)
+2026-11-14T05:05:43.6056286Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/tokio-macros/00952409729ef571/out/tokio_macros-00952409729ef571.wasm (first link)
+2026-11-14T05:05:43.6058197Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/1a9f977e943d1ed9/out/lab_macros-1a9f977e943d1ed9 (first link)
+2026-11-14T05:05:43.6059972Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/9d427dd7126e8bc3/out/lab_macros-9d427dd7126e8bc3 (first link)
+2026-11-14T05:05:43.6061624Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/tool/dbe6e21bbc2ed739/out/tool-dbe6e21bbc2ed739 (first link)
+2026-11-14T05:05:43.6708804Z note: this build took 4m 49s: `blaze slow` says what made it slow and what to fix
+2026-11-14T05:05:43.6710518Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_macros-1a9f977e943d1ed9)
+2026-11-14T05:05:43.7443743Z 
+2026-11-14T05:05:43.7444491Z running 2 tests
+2026-11-14T05:05:43.7474248Z test tests::doubles_a_literal ... ok
+2026-11-14T05:05:43.7475150Z test tests::rejects_text_and_overflow ... ok
+2026-11-14T05:05:43.7475712Z 
+2026-11-14T05:05:43.7476486Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+2026-11-14T05:05:43.7493364Z 
+2026-11-14T05:05:43.7524380Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/tool-dbe6e21bbc2ed739)
+2026-11-14T05:05:43.8175722Z 
+2026-11-14T05:05:43.8183780Z running 3 tests
+2026-11-14T05:05:43.8193790Z test hash::tests::fingerprint_differs_for_different_input ... ok
+2026-11-14T05:05:43.8203318Z test hash::tests::fingerprint_is_sixteen_hex_digits ... ok
+2026-11-14T05:05:43.8204293Z test hash::tests::parse_round_trips_and_rejects_odd_length ... ok
+2026-11-14T05:05:43.8204805Z 
+2026-11-14T05:05:43.8205301Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T05:05:43.8206089Z 
+2026-11-14T05:05:43.8206779Z    Doc-tests lab_macros
+2026-11-14T05:05:43.8417644Z 
+2026-11-14T05:05:43.8418092Z running 0 tests
+2026-11-14T05:05:43.8418355Z 
+2026-11-14T05:05:43.8418789Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T05:05:43.8419418Z 
+2026-11-14T05:05:43.8421519Z error: 7 test targets never built, so never ran:
+2026-11-14T05:05:43.8422492Z     app v0.0.0 (bin "app" test): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:43.8423438Z     app v0.0.0 (test "cli"): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:43.8424178Z     app v0.0.0 (test "slow"): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:43.8424680Z     core v0.0.0 (lib test): errors in its code
+2026-11-14T05:05:43.8425245Z     core v0.0.0 (lib doctest): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:43.8425813Z     lib v0.0.0 (lib test): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:43.8426279Z     lib v0.0.0 (lib doctest): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:05:44.3825201Z ##[error]Process completed with exit code 101.
+2026-11-14T05:05:44.3926977Z ##[group]Run grep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"
+2026-11-14T05:05:44.3928052Z [36;1mgrep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"[0m
+2026-11-14T05:05:44.4048294Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:05:44.4048689Z env:
+2026-11-14T05:05:44.4048997Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:05:44.4049395Z   BLAZE_TESTS: all
+2026-11-14T05:05:44.4049737Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:05:44.4050204Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:05:44.4050712Z ##[endgroup]
+2026-11-14T05:05:44.4337762Z VmHWM:	 9937944 kB
+2026-11-14T05:05:44.4338145Z VmRSS:	 9241456 kB
+2026-11-14T05:05:44.4377836Z ##[group]Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+2026-11-14T05:05:44.4378464Z [36;1mcat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak[0m
+2026-11-14T05:05:44.4422904Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:05:44.4423376Z env:
+2026-11-14T05:05:44.4423574Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:05:44.4423818Z   BLAZE_TESTS: all
+2026-11-14T05:05:44.4424039Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:05:44.4424320Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:05:44.4424628Z ##[endgroup]
+2026-11-14T05:05:44.4519303Z 15750643712
+2026-11-14T05:05:44.4553516Z ##[group]Run free -b
+2026-11-14T05:05:44.4553789Z [36;1mfree -b[0m
+2026-11-14T05:05:44.4597131Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:05:44.4597372Z env:
+2026-11-14T05:05:44.4597566Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:05:44.4597798Z   BLAZE_TESTS: all
+2026-11-14T05:05:44.4598001Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:05:44.4598276Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:05:44.4598583Z ##[endgroup]
+2026-11-14T05:05:44.4676625Z                total        used        free      shared  buff/cache   available
+2026-11-14T05:05:44.4677435Z Mem:     16759439360 11294707712  1043140608   403902464  5157732352  5464731648
+2026-11-14T05:05:44.4678123Z Swap:     3221221376       81920  3221139456
+2026-11-14T05:05:44.4708030Z ##[group]Run du -sb /blaze/home
+2026-11-14T05:05:44.4708323Z [36;1mdu -sb /blaze/home[0m
+2026-11-14T05:05:44.4750619Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:05:44.4750867Z env:
+2026-11-14T05:05:44.4751060Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:05:44.4751301Z   BLAZE_TESTS: all
+2026-11-14T05:05:44.4751505Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:05:44.4751781Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:05:44.4752092Z ##[endgroup]
+2026-11-14T05:05:44.5276534Z 4524542794	/blaze/home
+2026-11-14T05:05:44.5316147Z ##[group]Run tail -n 100 /blaze/home/v2/serve.log
+2026-11-14T05:05:44.5316512Z [36;1mtail -n 100 /blaze/home/v2/serve.log[0m
+2026-11-14T05:05:44.5359960Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:05:44.5360203Z env:
+2026-11-14T05:05:44.5360398Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:05:44.5360635Z   BLAZE_TESTS: all
+2026-11-14T05:05:44.5360839Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:05:44.5361116Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T05:05:44.5361433Z ##[endgroup]
+2026-11-14T05:05:44.5460088Z blaze serve: memory limit 12.91 GiB (MemTotal of /proc/meminfo, 15.61 GB, less 1.70 GB others use in cgroup /system.slice/hosted-compute-agent.service (memory.current 1.86 GB less blaze's own 0.17 GB) and a margin of 1.00 GB): a build lets go of its front end once blaze holds 11.30 GiB, or once one of these holds past its share (GiB): parse 0.34, nameres 0.68, expand 0.34, infer 1.36, mir 1.02
+2026-11-14T05:05:44.5463076Z blaze serve: started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T05:05:44.5463973Z blaze serve: listening on /blaze/home/v2.sock (pid 2539)
+2026-11-14T05:05:44.5464806Z Downloading blaze's standard library (digest 7583968753f8, once) from https://github.com/indexable-inc/blaze/releases/download/v0.20261105.4...
+2026-11-14T05:05:44.5466102Z Made blaze's standard library 7583968753f8 in 1.1s.
+2026-11-14T05:05:44.5468996Z blaze serve: front end release (memory: expand is past its share of 0.34 GiB): let go of 0 inference results of 0 bodies in 0 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches, and swept the front end's values to their fair shares; blaze held 3.46 GiB, now 3.16 GiB (0.30 freed), of a limit of 12.91 GiB; the query storage holds 0.80 GiB: MacroCallId::parse_macro_expansion 0.32 (104.4k rows made, 100.3k used), Body::of 0.09 (120.8k rows made, 80.8k used), dependency nodes 0.05 (1.34M rows), EditionedFileId::parse_ 0.04 (2.0k rows made, 1.7k used), HirFileId::ast_id_map 0.04 (106.5k rows made, 98.5k used), ImplSignature::kept 0.04 (46.1k rows made, 45.9k used), Body::relative 0.03 (44.0k rows made, 27.8k used), MacroCallId::macro_arg 0.02 (104.4k rows made, 91.4k used)
+2026-11-14T05:05:44.5472336Z blaze serve: front end release (crates finished): let go of 0 inference results of 32653 bodies in 3 crates and 0 trait solver caches; blaze held 3.30 GiB, now 3.29 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 0.86 GiB
+2026-11-14T05:05:44.5474160Z blaze serve: front end release (crates finished): let go of 0 inference results of 9 bodies in 2 crates and 0 trait solver caches; blaze held 3.31 GiB, now 3.30 GiB (0.01 freed), of a limit of 12.91 GiB; the query storage holds 0.87 GiB
+2026-11-14T05:05:44.5475644Z blaze serve: front end release (crates finished): let go of 0 inference results of 29414 bodies in 4 crates and 0 trait solver caches; blaze held 3.35 GiB, now 3.35 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 0.90 GiB
+2026-11-14T05:05:44.5477084Z blaze serve: front end release (crates finished): let go of 0 inference results of 7392 bodies in 6 crates and 0 trait solver caches; blaze held 3.39 GiB, now 3.38 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 0.92 GiB
+2026-11-14T05:05:44.5478579Z blaze serve: front end release (crates finished): let go of 0 inference results of 8308 bodies in 7 crates and 0 trait solver caches; blaze held 3.38 GiB, now 3.38 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 0.92 GiB
+2026-11-14T05:05:44.5480101Z blaze serve: front end release (crates finished): let go of 0 inference results of 674 bodies in 6 crates and 0 trait solver caches; blaze held 3.43 GiB, now 3.43 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 0.94 GiB
+2026-11-14T05:05:44.5481953Z blaze serve: front end release (crates finished): let go of 0 inference results of 9258 bodies in 13 crates and 0 trait solver caches; blaze held 3.55 GiB, now 3.47 GiB (0.08 freed), of a limit of 12.91 GiB; the query storage holds 0.95 GiB
+2026-11-14T05:05:44.5483872Z blaze serve: front end release (crates finished): let go of 0 inference results of 7883 bodies in 6 crates and 0 trait solver caches; blaze held 3.52 GiB, now 3.50 GiB (0.02 freed), of a limit of 12.91 GiB; the query storage holds 0.96 GiB
+2026-11-14T05:05:44.5488241Z blaze serve: memory: resident 3.54 GiB, 0.00 outside blaze-mem and the global heap; global heap 1.38 GiB live, 0.16 of it outside any task, in 3.25 its allocator committed (1.87 freed: kept, or purged and still counted), at most 0.68 of it freed and resident; committed 1.47 GiB (most 1.47), 0.00 of it purged (not resident), 1.48 GiB in tags, reserved 2715 GiB in 651 regions (most 2715), 1824 GiB of it off huge pages (most 1824), unadvised memory's THP advised only; query 0.57 (most 0.57, reserved 983 in 228) + heap 0.44 (most 0.44); nameres 0.25 (most 0.25, reserved 0 in 0) + heap 0.31 (most 0.32); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); intern 0.11 (most 0.11, reserved 129 in 127); chunks 0.10 (most 0.12, reserved 1558 in 199); frames 0.08 (most 0.08, reserved 1 in 10); query stack most reads one run 27640 (`crate_impl_traits` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.67 GiB, warm 0.01, cold 0.00 (0.00 given back in 0 trims), carved 0.68, committed 0.76; 1.25 KiB blocks live 0.15, warm 0.00, cold 0.00, carved 0.15
+2026-11-14T05:05:44.5528776Z blaze serve: memory: resident 5.00 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.18 GiB live, 0.17 of it outside any task, in 3.49 its allocator committed (1.31 freed: kept, or purged and still counted), at most 0.56 of it freed and resident; committed 2.26 GiB (most 2.26), 0.00 of it purged (not resident), 2.27 GiB in tags, reserved 2741 GiB in 991 regions (most 2741), 1851 GiB of it off huge pages (most 1851), unadvised memory's THP advised only; query 1.24 (most 1.24, reserved 985 in 423) + heap 0.46 (most 0.46); nameres 0.30 (most 0.30, reserved 0 in 0) + heap 0.34 (most 0.34); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.50 (most 0.50); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); intern 0.13 (most 0.13, reserved 129 in 235) + heap 0.08 (most 0.08); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.13 (most 0.13); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); chunks 0.11 (most 0.12, reserved 1558 in 199); frames 0.09 (most 0.10, reserved 1 in 10); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.74 GiB, warm 0.00, cold 0.00 (0.00 given back in 0 trims), carved 0.74, committed 0.82; 1.25 KiB blocks live 0.16, warm 0.00, cold 0.00, carved 0.16
+2026-11-14T05:05:44.5537341Z blaze serve: memory: resident 5.06 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.18 GiB live, 0.17 of it outside any task, in 3.49 its allocator committed (1.32 freed: kept, or purged and still counted), at most 0.61 of it freed and resident; committed 2.26 GiB (most 2.26), 0.00 of it purged (not resident), 2.27 GiB in tags, reserved 2741 GiB in 991 regions (most 2741), 1851 GiB of it off huge pages (most 1851), unadvised memory's THP advised only; query 1.24 (most 1.24, reserved 985 in 423) + heap 0.46 (most 0.46); nameres 0.30 (most 0.30, reserved 0 in 0) + heap 0.34 (most 0.34); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.50 (most 0.52); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); intern 0.13 (most 0.13, reserved 129 in 235) + heap 0.08 (most 0.08); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.13 (most 0.13); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); chunks 0.11 (most 0.12, reserved 1558 in 199); frames 0.09 (most 0.10, reserved 1 in 10); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.74 GiB, warm 0.00, cold 0.00 (0.00 given back in 0 trims), carved 0.74, committed 0.82; 1.25 KiB blocks live 0.16, warm 0.00, cold 0.00, carved 0.16
+2026-11-14T05:05:44.5544001Z blaze serve: front end release (memory: expand is past its share of 0.34 GiB): let go of 2 inference results of 5057 bodies in 8 crates, 29592 MIR bodies, 3742 constant values and 15 trait solver caches, and swept the front end's values to their fair shares; blaze held 5.08 GiB, now 4.91 GiB (0.17 freed), of a limit of 12.91 GiB; the query storage holds 1.65 GiB: MacroCallId::parse_macro_expansion 0.33 (113.7k rows made, 109.7k used), infer_body_query 0.11 (82.9k rows made, 9.7k used), dependency nodes 0.11 (2.67M rows), Body::of 0.09 (126.0k rows made, 112.7k used), dependency edges 0.08 (21.85M rows), Body::relative 0.08 (116.7k rows made, 105.4k used), Body::source_map 0.06 (97.3k rows made, 45.6k used), FunctionSignature::kept 0.05 (66.6k rows made, 45.3k used)
+2026-11-14T05:05:44.5547168Z blaze serve: front end release (no unit is open): let go of 6 inference results of 6 bodies in 1 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 4.92 GiB, now 4.90 GiB (0.02 freed), of a limit of 12.91 GiB; the query storage holds 1.65 GiB
+2026-11-14T05:05:44.5548693Z blaze serve: front end release (crates finished): let go of 6 inference results of 6 bodies in 2 crates and 2 trait solver caches; blaze held 5.58 GiB, now 4.89 GiB (0.69 freed), of a limit of 12.91 GiB; the query storage holds 1.65 GiB
+2026-11-14T05:05:44.5550256Z blaze serve: front end release (crates finished): let go of 0 inference results of 33 bodies in 1 crates and 0 trait solver caches; blaze held 4.82 GiB, now 4.82 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 1.64 GiB
+2026-11-14T05:05:44.5551685Z blaze serve: front end release (crates finished): let go of 4 inference results of 786 bodies in 8 crates and 2 trait solver caches; blaze held 5.67 GiB, now 5.00 GiB (0.67 freed), of a limit of 12.91 GiB; the query storage holds 1.65 GiB
+2026-11-14T05:05:44.5553345Z blaze serve: front end release (crates finished): let go of 0 inference results of 1860 bodies in 1 crates and 0 trait solver caches; blaze held 4.97 GiB, now 4.97 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 1.67 GiB
+2026-11-14T05:05:44.5558202Z blaze serve: memory: resident 5.40 GiB, 0.00 outside blaze-mem and the global heap; global heap 1.90 GiB live, 0.16 of it outside any task, in 4.50 its allocator committed (2.60 freed: kept, or purged and still counted), at most 0.53 of it freed and resident; committed 2.96 GiB (most 2.96), 0.00 of it purged (not resident), 2.97 GiB in tags, reserved 3546 GiB in 4121 regions (most 3546), 2637 GiB of it off huge pages (most 2637), unadvised memory's THP advised only; query 1.45 (most 1.45, reserved 985 in 467) + heap 0.48 (most 0.48); nameres 0.31 (most 0.31, reserved 0 in 0) + heap 0.36 (most 0.36); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); link 0.36 (most 0.36, reserved 780 in 2992) + heap 0.11 (most 0.37); intern 0.13 (most 0.13, reserved 129 in 249) + heap 0.09 (most 0.09); chunks 0.15 (most 0.17, reserved 1558 in 199); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); frames 0.11 (most 0.12, reserved 1 in 13); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.10 (most 0.52); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.08 (most 0.13); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.76 GiB, warm 0.00, cold 0.00 (0.01 given back in 1 trims), carved 0.77, committed 0.88; 1.25 KiB blocks live 0.17, warm 0.00, cold 0.00, carved 0.17
+2026-11-14T05:05:44.5566884Z blaze serve: memory: resident 6.45 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.69 GiB live, 0.16 of it outside any task, in 4.73 its allocator committed (2.05 freed: kept, or purged and still counted), at most 0.52 of it freed and resident; committed 3.25 GiB (most 3.25), 0.00 of it purged (not resident), 3.26 GiB in tags, reserved 3578 GiB in 4596 regions (most 3578), 2666 GiB of it off huge pages (most 2666), unadvised memory's THP advised only; query 1.65 (most 1.65, reserved 985 in 467) + heap 0.51 (most 0.51); link 0.41 (most 0.41, reserved 799 in 3444) + heap 0.41 (most 0.52); nameres 0.31 (most 0.31, reserved 0 in 0) + heap 0.36 (most 0.36); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.32 (most 0.64); intern 0.15 (most 0.15, reserved 129 in 249) + heap 0.14 (most 0.16); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.25 (most 0.25); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); chunks 0.13 (most 0.17, reserved 1558 in 199); frames 0.13 (most 0.13, reserved 1 in 14); vfs 0.11 (most 0.11, reserved 0 in 5); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.78 GiB, warm 0.00, cold 0.00 (0.01 given back in 1 trims), carved 0.78, committed 0.89; 1.25 KiB blocks live 0.17, warm 0.00, cold 0.00, carved 0.17
+2026-11-14T05:05:44.5573659Z blaze serve: front end release (memory: expand is past its share of 0.34 GiB): let go of 1952 inference results of 4235 bodies in 11 crates, 36452 MIR bodies, 3434 constant values and 24 trait solver caches, and swept the front end's values to their fair shares; blaze held 6.67 GiB, now 6.03 GiB (0.64 freed), of a limit of 12.91 GiB; the query storage holds 2.06 GiB: MacroCallId::parse_macro_expansion 0.33 (116.7k rows made, 112.9k used), dependency nodes 0.17 (3.81M rows), dependency edges 0.17 (41.67M rows), infer_body_query 0.14 (106.5k rows made, 20.8k used), Body::relative 0.10 (126.0k rows made, 115.0k used), Body::of 0.09 (127.0k rows made, 119.1k used), FunctionSignature::kept 0.07 (91.1k rows made, 84.0k used), Body::source_map 0.07 (106.5k rows made, 49.7k used)
+2026-11-14T05:05:44.5576837Z blaze serve: front end release (crates finished): let go of 317 inference results of 330 bodies in 1 crates and 0 trait solver caches; blaze held 6.08 GiB, now 6.02 GiB (0.06 freed), of a limit of 12.91 GiB; the query storage holds 2.06 GiB
+2026-11-14T05:05:44.5578281Z blaze serve: front end release (crates finished): let go of 0 inference results of 621 bodies in 1 crates and 0 trait solver caches; blaze held 6.67 GiB, now 6.18 GiB (0.49 freed), of a limit of 12.91 GiB; the query storage holds 2.07 GiB
+2026-11-14T05:05:44.5579726Z blaze serve: front end release (crates finished): let go of 14 inference results of 1434 bodies in 3 crates and 0 trait solver caches; blaze held 6.21 GiB, now 6.15 GiB (0.06 freed), of a limit of 12.91 GiB; the query storage holds 2.07 GiB
+2026-11-14T05:05:44.5581199Z blaze serve: front end release (crates finished): let go of 150 inference results of 167 bodies in 1 crates and 0 trait solver caches; blaze held 6.20 GiB, now 6.18 GiB (0.03 freed), of a limit of 12.91 GiB; the query storage holds 2.07 GiB
+2026-11-14T05:05:44.5586595Z blaze serve: memory: resident 6.17 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.06 GiB live, 0.17 of it outside any task, in 5.17 its allocator committed (3.11 freed: kept, or purged and still counted), at most 0.67 of it freed and resident; committed 3.46 GiB (most 3.46), 0.01 of it purged (not resident), 3.47 GiB in tags, reserved 3593 GiB in 5108 regions (most 3614), 2678 GiB of it off huge pages (most 2693), unadvised memory's THP advised only; query 1.64 (most 1.65, reserved 985 in 475) + heap 0.51 (most 0.51); nameres 0.32 (most 0.32, reserved 0 in 0) + heap 0.36 (most 0.38); link 0.47 (most 0.52, reserved 809 in 3892) + heap 0.17 (most 1.12); expand 0.20 (most 0.20, reserved 0 in 0) + heap 0.29 (most 0.29); intern 0.16 (most 0.16, reserved 129 in 249) + heap 0.14 (most 0.16); chunks 0.17 (most 0.17, reserved 1558 in 199); store 0.15 (most 0.15, reserved 30 in 106); frames 0.15 (most 0.15, reserved 1 in 20); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.15 (most 0.64); parse 0.05 (most 0.05, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.07 (most 0.56); free chunks warm 0.01 (resident), cold 0.01 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.77 GiB, warm 0.01, cold 0.01 (0.02 given back in 2 trims), carved 0.79, committed 0.90; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:05:44.5592114Z blaze serve: front end release (crates finished): let go of 63 inference results of 254 bodies in 3 crates and 2 trait solver caches; blaze held 6.22 GiB, now 6.20 GiB (0.02 freed), of a limit of 12.91 GiB; the query storage holds 2.07 GiB
+2026-11-14T05:05:44.5597782Z blaze serve: memory: resident 6.95 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.81 GiB live, 0.24 of it outside any task, in 5.17 its allocator committed (2.36 freed: kept, or purged and still counted), at most 0.58 of it freed and resident; committed 3.56 GiB (most 3.56), 0.00 of it purged (not resident), 3.57 GiB in tags, reserved 3605 GiB in 5145 regions (most 3614), 2690 GiB of it off huge pages (most 2693), unadvised memory's THP advised only; query 1.69 (most 1.69, reserved 985 in 483) + heap 0.51 (most 0.51); nameres 0.32 (most 0.33, reserved 0 in 0) + heap 0.37 (most 0.39); link 0.47 (most 0.52, reserved 809 in 3892) + heap 0.16 (most 1.12); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.62 (most 0.65); expand 0.21 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.29); intern 0.16 (most 0.16, reserved 129 in 249) + heap 0.18 (most 0.18); frames 0.17 (most 0.18, reserved 1 in 21); store 0.16 (most 0.16, reserved 30 in 113); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.15 (most 0.25); chunks 0.14 (most 0.17, reserved 1558 in 199); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.09 (most 0.56); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); other 0.02 (most 0.02, reserved 71 in 123); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.81 GiB, warm 0.01, cold 0.01 (0.02 given back in 2 trims), carved 0.82, committed 0.92; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:05:44.5607717Z blaze serve: memory: resident 6.94 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.70 GiB live, 0.25 of it outside any task, in 5.17 its allocator committed (2.47 freed: kept, or purged and still counted), at most 0.68 of it freed and resident; committed 3.56 GiB (most 3.56), 0.00 of it purged (not resident), 3.57 GiB in tags, reserved 3605 GiB in 5145 regions (most 3614), 2690 GiB of it off huge pages (most 2693), unadvised memory's THP advised only; query 1.69 (most 1.69, reserved 985 in 483) + heap 0.51 (most 0.51); nameres 0.32 (most 0.33, reserved 0 in 0) + heap 0.37 (most 0.39); link 0.47 (most 0.52, reserved 809 in 3892) + heap 0.16 (most 1.12); expand 0.21 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.29); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.50 (most 0.65); intern 0.16 (most 0.16, reserved 129 in 249) + heap 0.18 (most 0.18); frames 0.17 (most 0.18, reserved 1 in 21); store 0.16 (most 0.16, reserved 30 in 113); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.15 (most 0.25); chunks 0.14 (most 0.17, reserved 1558 in 199); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.09 (most 0.56); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); other 0.02 (most 0.02, reserved 71 in 123); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.81 GiB, warm 0.01, cold 0.01 (0.02 given back in 2 trims), carved 0.82, committed 0.92; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:05:44.5617314Z blaze serve: memory: resident 6.91 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.56 GiB live, 0.21 of it outside any task, in 5.17 its allocator committed (2.61 freed: kept, or purged and still counted), at most 0.79 of it freed and resident; committed 3.56 GiB (most 3.56), 0.00 of it purged (not resident), 3.57 GiB in tags, reserved 3607 GiB in 5149 regions (most 3614), 2692 GiB of it off huge pages (most 2693), unadvised memory's THP advised only; query 1.69 (most 1.69, reserved 985 in 484) + heap 0.52 (most 0.52); nameres 0.32 (most 0.33, reserved 0 in 0) + heap 0.37 (most 0.39); link 0.47 (most 0.52, reserved 809 in 3892) + heap 0.16 (most 1.12); expand 0.21 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.29); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.38 (most 0.65); intern 0.16 (most 0.16, reserved 129 in 249) + heap 0.17 (most 0.18); frames 0.17 (most 0.18, reserved 1 in 21); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.17 (most 0.25); store 0.16 (most 0.16, reserved 30 in 113); chunks 0.16 (most 0.17, reserved 1558 in 199); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.09 (most 0.56); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); other 0.02 (most 0.02, reserved 73 in 126); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 126157 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.79 GiB, warm 0.01, cold 0.03 (0.04 given back in 14 trims), carved 0.82, committed 0.92; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:05:44.5624718Z blaze serve: front end release (memory: nameres is past its share of 0.68 GiB): let go of 353 inference results of 1766 bodies in 5 crates, 31218 MIR bodies, 3775 constant values and 35 trait solver caches, and swept the front end's values to their fair shares; blaze held 7.83 GiB, now 7.43 GiB (0.40 freed), of a limit of 12.91 GiB; the query storage holds 2.17 GiB: MacroCallId::parse_macro_expansion 0.34 (117.8k rows made, 114.1k used), dependency edges 0.21 (49.68M rows), dependency nodes 0.17 (4.19M rows), infer_body_query 0.15 (108.5k rows made, 24.6k used), Body::relative 0.10 (128.0k rows made, 118.1k used), Body::of 0.09 (128.0k rows made, 121.5k used), FunctionSignature::kept 0.07 (91.1k rows made, 89.7k used), Body::source_map 0.07 (109.6k rows made, 51.1k used)
+2026-11-14T05:05:44.5627876Z blaze serve: front end release (no unit is open): let go of 274 inference results of 276 bodies in 3 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 7.65 GiB, now 7.57 GiB (0.07 freed), of a limit of 12.91 GiB; the query storage holds 2.17 GiB
+2026-11-14T05:05:44.5629507Z blaze serve: front end release (the build is over): let go of 0 inference results of 0 bodies in 0 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 7.57 GiB, now 7.57 GiB (0.00 freed), of a limit of 12.91 GiB; the query storage holds 2.17 GiB
+2026-11-14T05:05:44.5631634Z blaze serve: wrote the daemon image /blaze/home/v2/db/image 948e9f78acaf (182.6 MiB, 11 sections; the VFS tree 109.8 MiB in 3; the library syntax trees 52.6 MiB; the database's values 17.0 MiB; the symbol table 1.5 MiB; the database's edges 0.6 MiB; the database's memos 0.4 MiB; the database's inputs 0.1 MiB; the plane's history 0.0 MiB; the database's key table 0.0 MiB): made in 145.0 ms, written in 682.6 ms, mapped in 13.8 ms
+2026-11-14T05:05:44.5758515Z Post job cleanup.
+2026-11-14T05:05:44.6726848Z [command]/usr/bin/git version
+2026-11-14T05:05:44.6783661Z git version 2.56.1
+2026-11-14T05:05:44.6827670Z Temporarily overriding HOME='/home/runner/work/_temp/4b389dd0-b52d-482d-8e1e-1c323c1850d7' before making global git config changes
+2026-11-14T05:05:44.6842854Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:05:44.6844369Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:05:44.6893787Z Removing SSH command configuration
+2026-11-14T05:05:44.6894594Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:05:44.6928417Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:05:44.7294992Z Removing HTTP extra header
+2026-11-14T05:05:44.7301022Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:05:44.7346683Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:05:44.7763587Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:05:44.7769791Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:05:44.7809736Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:05:44.8297032Z Cleaning up orphan processes
+2026-11-14T05:05:44.8915828Z Terminate orphan process: pid (2539) (blaze)
+===== job 132339493606 "blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)"
+﻿2026-11-14T05:00:45.2203204Z Current runner version: '2.338.2'
+2026-11-14T05:00:45.2235077Z ##[group]Runner Image Provisioner
+2026-11-14T05:00:45.2236082Z Hosted Compute Agent
+2026-11-14T05:00:45.2236883Z Version: 20261103.629
+2026-11-14T05:00:45.2237610Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T05:00:45.2238354Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T05:00:45.2239216Z Worker ID: {3f977ead-fc48-4272-b86e-908b129f7332}
+2026-11-14T05:00:45.2239949Z Region: northcentralus
+2026-11-14T05:00:45.2240539Z Cloud: Azure
+2026-11-14T05:00:45.2241213Z ##[endgroup]
+2026-11-14T05:00:45.2243893Z ##[group]Operating System
+2026-11-14T05:00:45.2244879Z Ubuntu
+2026-11-14T05:00:45.2245428Z 24.04.5
+2026-11-14T05:00:45.2245956Z LTS
+2026-11-14T05:00:45.2246649Z ##[endgroup]
+2026-11-14T05:00:45.2247241Z ##[group]Runner Image
+2026-11-14T05:00:45.2247998Z Image: ubuntu-24.04-arm
+2026-11-14T05:00:45.2248655Z Version: 20261111.182.1
+2026-11-14T05:00:45.2250169Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24-arm64/20261111.182/images/ubuntu/Ubuntu2404-Arm64-Readme.md
+2026-11-14T05:00:45.2251817Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24-arm64%2F20261111.182
+2026-11-14T05:00:45.2253299Z ##[endgroup]
+2026-11-14T05:00:45.2254509Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T05:00:45.2257859Z Contents: read
+2026-11-14T05:00:45.2258547Z Metadata: read
+2026-11-14T05:00:45.2259139Z ##[endgroup]
+2026-11-14T05:00:45.2262638Z Secret source: Actions
+2026-11-14T05:00:45.2263674Z Cache mode: write
+2026-11-14T05:00:45.2264645Z Prepare workflow directory
+2026-11-14T05:00:45.2885542Z Prepare all required actions
+2026-11-14T05:00:45.2936860Z Getting action download info
+2026-11-14T05:00:45.4852447Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T05:00:45.7275322Z Complete job name: blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)
+2026-11-14T05:00:45.8234841Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T05:00:45.8236342Z with:
+2026-11-14T05:00:45.8237102Z   persist-credentials: false
+2026-11-14T05:00:45.8237760Z   repository: tailrocks/velnor-lab
+2026-11-14T05:00:45.8241864Z   token: ***
+2026-11-14T05:00:45.8242779Z   ssh-strict: true
+2026-11-14T05:00:45.8243397Z   ssh-user: git
+2026-11-14T05:00:45.8244085Z   clean: true
+2026-11-14T05:00:45.8244676Z   sparse-checkout-cone-mode: true
+2026-11-14T05:00:45.8245381Z   fetch-depth: 1
+2026-11-14T05:00:45.8245981Z   fetch-tags: false
+2026-11-14T05:00:45.8246642Z   show-progress: true
+2026-11-14T05:00:45.8247313Z   lfs: false
+2026-11-14T05:00:45.8247865Z   submodules: false
+2026-11-14T05:00:45.8248584Z   set-safe-directory: true
+2026-11-14T05:00:45.8249287Z   allow-unsafe-pr-checkout: false
+2026-11-14T05:00:45.8250472Z env:
+2026-11-14T05:00:45.8251185Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:45.8251811Z   BLAZE_TESTS: all
+2026-11-14T05:00:45.8252968Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:45.8253778Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:45.8254530Z ##[endgroup]
+2026-11-14T05:00:45.9170738Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T05:00:45.9173966Z ##[group]Getting Git version info
+2026-11-14T05:00:45.9174946Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T05:00:45.9176519Z [command]/usr/bin/git version
+2026-11-14T05:00:45.9208028Z git version 2.56.1
+2026-11-14T05:00:45.9226548Z ##[endgroup]
+2026-11-14T05:00:45.9237115Z Temporarily overriding HOME='/home/runner/work/_temp/e31d1dd0-21a8-40f0-92bd-304445725d8c' before making global git config changes
+2026-11-14T05:00:45.9240006Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:00:45.9241216Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:00:45.9276163Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T05:00:45.9279978Z ##[group]Determining repository object format
+2026-11-14T05:00:45.9281941Z ##[endgroup]
+2026-11-14T05:00:45.9283691Z ##[group]Initializing the repository
+2026-11-14T05:00:45.9286145Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:00:45.9372376Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T05:00:45.9377092Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T05:00:45.9381412Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T05:00:45.9382540Z hint: call:
+2026-11-14T05:00:45.9383114Z hint:
+2026-11-14T05:00:45.9383960Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T05:00:45.9384741Z hint:
+2026-11-14T05:00:45.9385476Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T05:00:45.9386702Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T05:00:45.9387593Z hint:
+2026-11-14T05:00:45.9388251Z hint: 	git branch -m <name>
+2026-11-14T05:00:45.9388993Z hint:
+2026-11-14T05:00:45.9389760Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T05:00:45.9391421Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T05:00:45.9403417Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T05:00:45.9424511Z ##[endgroup]
+2026-11-14T05:00:45.9426484Z ##[group]Disabling automatic garbage collection
+2026-11-14T05:00:45.9428065Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T05:00:45.9456933Z ##[endgroup]
+2026-11-14T05:00:45.9458832Z ##[group]Setting up auth
+2026-11-14T05:00:45.9459611Z Removing SSH command configuration
+2026-11-14T05:00:45.9462692Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:00:45.9493482Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:00:45.9776441Z Removing HTTP extra header
+2026-11-14T05:00:45.9781216Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:00:45.9812932Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:00:46.0016003Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:00:46.0020184Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:00:46.0054038Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:00:46.0263502Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T05:00:46.0304485Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.0336318Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.0369270Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.0401268Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.0432639Z ##[endgroup]
+2026-11-14T05:00:46.0433827Z ##[group]Fetching the repository
+2026-11-14T05:00:46.0438355Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +033ec38d4f48cd7646fb44baeee725822c47e77d:refs/remotes/pull/259/merge
+2026-11-14T05:00:46.4105654Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T05:00:46.4106851Z  * [new ref]         033ec38d4f48cd7646fb44baeee725822c47e77d -> pull/259/merge
+2026-11-14T05:00:46.4110609Z ##[endgroup]
+2026-11-14T05:00:46.4112080Z ##[group]Determining the checkout info
+2026-11-14T05:00:46.4113697Z ##[endgroup]
+2026-11-14T05:00:46.4115732Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T05:00:46.4158111Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T05:00:46.4193651Z ##[group]Checking out the ref
+2026-11-14T05:00:46.4194793Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/259/merge
+2026-11-14T05:00:46.4580261Z Note: switching to 'refs/remotes/pull/259/merge'.
+2026-11-14T05:00:46.4580936Z 
+2026-11-14T05:00:46.4581539Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T05:00:46.4583276Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T05:00:46.4584500Z state without impacting any branches by switching back to a branch.
+2026-11-14T05:00:46.4585248Z 
+2026-11-14T05:00:46.4585724Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T05:00:46.4587103Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T05:00:46.4587748Z 
+2026-11-14T05:00:46.4588084Z   git switch -c <new-branch-name>
+2026-11-14T05:00:46.4588585Z 
+2026-11-14T05:00:46.4589142Z Or undo this operation with:
+2026-11-14T05:00:46.4589702Z 
+2026-11-14T05:00:46.4590060Z   git switch -
+2026-11-14T05:00:46.4590496Z 
+2026-11-14T05:00:46.4590986Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T05:00:46.4591860Z 
+2026-11-14T05:00:46.4593262Z HEAD is now at 033ec38 Merge b323380ad4cfcf31063caf4d9837c77e550304c0 into c2f88cecfc4b883de31fb38baf76147ece7f7195
+2026-11-14T05:00:46.4596435Z ##[endgroup]
+2026-11-14T05:00:46.4631713Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T05:00:46.4659465Z 033ec38d4f48cd7646fb44baeee725822c47e77d
+2026-11-14T05:00:46.4667226Z ##[group]Removing auth
+2026-11-14T05:00:46.4668748Z Removing SSH command configuration
+2026-11-14T05:00:46.4671117Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:00:46.4702860Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:00:46.4906042Z Removing HTTP extra header
+2026-11-14T05:00:46.4908773Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:00:46.4940122Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:00:46.5137976Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:00:46.5139546Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:00:46.5164296Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T05:00:46.5165709Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T05:00:46.5167046Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T05:00:46.5168098Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T05:00:46.5171989Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T05:00:46.5194862Z /home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.5203712Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-a465de94\-fde3\-425f\-897c\-cf0ec12731d8\.config
+2026-11-14T05:00:46.5238587Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T05:00:46.5261736Z /home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.5270419Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-a465de94\-fde3\-425f\-897c\-cf0ec12731d8\.config
+2026-11-14T05:00:46.5309644Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T05:00:46.5332495Z /github/runner_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.5340146Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-a465de94\-fde3\-425f\-897c\-cf0ec12731d8\.config
+2026-11-14T05:00:46.5375297Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T05:00:46.5398950Z /github/runner_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config
+2026-11-14T05:00:46.5407135Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-a465de94\-fde3\-425f\-897c\-cf0ec12731d8\.config
+2026-11-14T05:00:46.5439654Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:00:46.5644037Z Removing credentials config '/home/runner/work/_temp/git-credentials-a465de94-fde3-425f-897c-cf0ec12731d8.config'
+2026-11-14T05:00:46.5652032Z ##[endgroup]
+2026-11-14T05:00:46.5874607Z ##[group]Run uname -r
+2026-11-14T05:00:46.5875903Z [36;1muname -r[0m
+2026-11-14T05:00:46.5911011Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:46.5911840Z env:
+2026-11-14T05:00:46.5912862Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:46.5913811Z   BLAZE_TESTS: all
+2026-11-14T05:00:46.5914497Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:46.5915418Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:46.5916376Z ##[endgroup]
+2026-11-14T05:00:46.6004962Z 7.0.0-1017-azure
+2026-11-14T05:00:46.6083786Z ##[group]Run curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+2026-11-14T05:00:46.6086212Z [36;1mcurl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"[0m
+2026-11-14T05:00:46.6116188Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:46.6117411Z env:
+2026-11-14T05:00:46.6118185Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:46.6118967Z   BLAZE_TESTS: all
+2026-11-14T05:00:46.6119744Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:46.6120661Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:46.6121521Z ##[endgroup]
+2026-11-14T05:00:47.3689520Z ##[group]Run sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+2026-11-14T05:00:47.3691762Z [36;1msha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"[0m
+2026-11-14T05:00:47.3726391Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:47.3727654Z env:
+2026-11-14T05:00:47.3728528Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:47.3729554Z   BLAZE_TESTS: all
+2026-11-14T05:00:47.3730606Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:47.3731785Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:47.3733401Z ##[endgroup]
+2026-11-14T05:00:47.5094654Z blaze-v0.20261105.4-aarch64-unknown-linux-gnu.tar.gz: OK
+2026-11-14T05:00:47.5188672Z ##[group]Run tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+2026-11-14T05:00:47.5190459Z [36;1mtar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"[0m
+2026-11-14T05:00:47.5222684Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:47.5223852Z env:
+2026-11-14T05:00:47.5225055Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:47.5226062Z   BLAZE_TESTS: all
+2026-11-14T05:00:47.5226910Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:47.5227877Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:47.5229067Z ##[endgroup]
+2026-11-14T05:00:50.2636307Z ##[group]Run echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+2026-11-14T05:00:50.2636876Z [36;1mecho "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"[0m
+2026-11-14T05:00:50.2657346Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.2657650Z env:
+2026-11-14T05:00:50.2658042Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.2658313Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.2658692Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.2659005Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.2659330Z ##[endgroup]
+2026-11-14T05:00:50.2740694Z ##[group]Run sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+2026-11-14T05:00:50.2741558Z [36;1msudo prlimit --pid "$PPID" --memlock=unlimited:unlimited[0m
+2026-11-14T05:00:50.2763076Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.2763436Z env:
+2026-11-14T05:00:50.2763678Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.2764072Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.2764331Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.2764702Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.2765066Z ##[endgroup]
+2026-11-14T05:00:50.2908101Z ##[group]Run truncate -s 12G "$RUNNER_TEMP/blaze.img"
+2026-11-14T05:00:50.2908584Z [36;1mtruncate -s 12G "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T05:00:50.2926082Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.2926400Z env:
+2026-11-14T05:00:50.2926776Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.2927047Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.2927278Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.2927728Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.2928061Z ##[endgroup]
+2026-11-14T05:00:50.3016714Z ##[group]Run sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+2026-11-14T05:00:50.3017306Z [36;1msudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T05:00:50.3034664Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.3035131Z env:
+2026-11-14T05:00:50.3035408Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.3035700Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.3036079Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.3036390Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.3036771Z ##[endgroup]
+2026-11-14T05:00:50.4973861Z ##[group]Run sudo mkdir -p /blaze
+2026-11-14T05:00:50.4974481Z [36;1msudo mkdir -p /blaze[0m
+2026-11-14T05:00:50.4995087Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.4995449Z env:
+2026-11-14T05:00:50.4995678Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.4996021Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.4996303Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.4996653Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.4996995Z ##[endgroup]
+2026-11-14T05:00:50.5136378Z ##[group]Run sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+2026-11-14T05:00:50.5136980Z [36;1msudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze[0m
+2026-11-14T05:00:50.5154087Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.5154534Z env:
+2026-11-14T05:00:50.5154753Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.5155091Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.5155418Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.5155725Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.5156111Z ##[endgroup]
+2026-11-14T05:00:50.6824786Z ##[group]Run sudo install -d -m 700 -o runner -g runner /blaze/home
+2026-11-14T05:00:50.6825536Z [36;1msudo install -d -m 700 -o runner -g runner /blaze/home[0m
+2026-11-14T05:00:50.6846074Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.6846377Z env:
+2026-11-14T05:00:50.6846589Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.6846984Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.6847212Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.6847834Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.6848182Z ##[endgroup]
+2026-11-14T05:00:50.6997770Z ##[group]Run blaze --version
+2026-11-14T05:00:50.6998185Z [36;1mblaze --version[0m
+2026-11-14T05:00:50.7016067Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.7016346Z env:
+2026-11-14T05:00:50.7016709Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.7016974Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.7017632Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.7018035Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.7018370Z ##[endgroup]
+2026-11-14T05:00:50.7106383Z blaze 0.20261105.4 (e930296 2026-11-05)
+2026-11-14T05:00:50.7108039Z /home/runner/work/_temp/blaze-v0.20261105.4-aarch64-unknown-linux-gnu/blaze, as /home/runner/work/velnor-lab/velnor-lab/Cargo.toml pins none (`[workspace.metadata.blaze] version`, which `blaze pin` writes)
+2026-11-14T05:00:50.7161718Z ##[group]Run blaze toolchain
+2026-11-14T05:00:50.7162756Z [36;1mblaze toolchain[0m
+2026-11-14T05:00:50.7180677Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:50.7180980Z env:
+2026-11-14T05:00:50.7181389Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:50.7181659Z   BLAZE_TESTS: all
+2026-11-14T05:00:50.7182041Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:50.7182597Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:50.7182933Z ##[endgroup]
+2026-11-14T05:00:50.7272488Z Downloading Rust nightly-2026-10-27 for blaze (138 MB, once)...
+2026-11-14T05:00:53.9227920Z Downloaded Rust nightly-2026-10-27 for blaze in 3.2s.
+2026-11-14T05:00:53.9228763Z blaze-2026-10-27, blaze's toolchain (Rust nightly-2026-10-27), at /home/runner/.blaze/toolchains/nightly-2026-10-27-aarch64-unknown-linux-gnu
+2026-11-14T05:00:53.9318203Z ##[group]Run blaze test --workspace
+2026-11-14T05:00:53.9318622Z [36;1mblaze test --workspace[0m
+2026-11-14T05:00:53.9338615Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:00:53.9339072Z env:
+2026-11-14T05:00:53.9339296Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:00:53.9339579Z   BLAZE_TESTS: all
+2026-11-14T05:00:53.9339928Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:00:53.9340241Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:00:53.9340692Z ##[endgroup]
+2026-11-14T05:00:53.9437548Z blaze: starting the daemon (no socket activation is installed: `blaze daemon install` has the system start it on demand)
+2026-11-14T05:00:54.5130970Z blaze: the daemon it started (pid 2357) started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T05:00:55.6231166Z   Downloaded anstyle v1.0.14
+2026-11-14T05:00:55.6233153Z   Downloaded utf8parse v0.2.2
+2026-11-14T05:00:55.6235438Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T05:00:55.6243090Z   Downloaded windows-link v0.2.1
+2026-11-14T05:00:55.6244209Z   Downloaded windows-sys v0.61.2
+2026-11-14T05:00:55.6247970Z   Downloaded anstyle-query v1.1.5
+2026-11-14T05:00:55.6253486Z   Downloaded once_cell_polyfill v1.70.2
+2026-11-14T05:00:55.6307470Z   Downloaded anstyle-wincon v3.0.11
+2026-11-14T05:00:55.6332703Z   Downloaded colorchoice v1.0.5
+2026-11-14T05:00:55.6342606Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T05:00:55.6343597Z   Downloaded anstream v1.0.0
+2026-11-14T05:00:55.6345596Z   Downloaded clap_lex v1.1.1
+2026-11-14T05:00:55.6373235Z   Downloaded strsim v0.11.1
+2026-11-14T05:00:55.6381754Z   Downloaded clap_builder v4.6.7
+2026-11-14T05:00:55.6382903Z   Downloaded heck v0.5.0
+2026-11-14T05:00:55.6391182Z   Downloaded unicode-ident v1.0.27
+2026-11-14T05:00:55.6392620Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T05:00:55.6393989Z   Downloaded quote v1.0.47
+2026-11-14T05:00:55.6394628Z   Downloaded syn v3.0.10
+2026-11-14T05:00:55.6395452Z   Downloaded clap_derive v4.6.7
+2026-11-14T05:00:55.6396073Z   Downloaded clap v4.6.7
+2026-11-14T05:00:55.6400177Z   Downloaded serde_derive v1.0.229
+2026-11-14T05:00:55.6400914Z   Downloaded serde_core v1.0.229
+2026-11-14T05:00:55.6401407Z   Downloaded serde v1.0.229
+2026-11-14T05:00:55.6401963Z   Downloaded itoa v1.0.19
+2026-11-14T05:00:55.6407337Z   Downloaded memchr v2.8.3
+2026-11-14T05:00:55.6407609Z   Downloaded zmij v1.0.23
+2026-11-14T05:00:55.6408029Z   Downloaded serde_json v1.0.154
+2026-11-14T05:00:55.6408322Z   Downloaded hex v0.4.3
+2026-11-14T05:00:55.6409096Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T05:00:55.6409519Z   Downloaded tokio-macros v2.7.2
+2026-11-14T05:00:55.6409811Z   Downloaded tokio v1.54.1
+2026-11-14T05:00:55.6410160Z   Downloaded fnv v1.0.5
+2026-11-14T05:01:04.0823462Z    Compiling compiler_builtins v0.1.160 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/compiler-builtins/compiler-builtins)
+2026-11-14T05:01:04.0824404Z    Compiling core v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/core)
+2026-11-14T05:01:07.0611521Z    Compiling libc v0.2.191
+2026-11-14T05:01:07.4349507Z    Compiling alloc v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/alloc)
+2026-11-14T05:01:07.8551647Z    Compiling rustc-std-workspace-core v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-core)
+2026-11-14T05:01:08.8413605Z    Compiling rustc-std-workspace-alloc v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-alloc)
+2026-11-14T05:01:09.6704521Z    Compiling object v0.39.1
+2026-11-14T05:01:09.7265666Z    Compiling adler2 v2.0.1
+2026-11-14T05:01:09.7304280Z    Compiling gimli v0.34.0
+2026-11-14T05:01:09.8664398Z    Compiling memchr v2.8.3
+2026-11-14T05:01:09.9514617Z    Compiling unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/unwind)
+2026-11-14T05:01:10.9024087Z    Compiling std v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std)
+2026-11-14T05:01:10.9047444Z    Compiling cfg-if v1.0.4
+2026-11-14T05:01:10.9048378Z    Compiling addr2line v0.27.1
+2026-11-14T05:01:10.9070712Z    Compiling hashbrown v0.17.1
+2026-11-14T05:01:10.9274319Z    Compiling miniz_oxide v0.9.1
+2026-11-14T05:01:10.9994513Z    Compiling panic_abort v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_abort)
+2026-11-14T05:01:11.0363833Z    Compiling rustc-demangle v0.1.28
+2026-11-14T05:01:11.0726622Z    Compiling std_detect v0.1.5 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std_detect)
+2026-11-14T05:01:11.0885026Z    Compiling panic_unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_unwind)
+2026-11-14T05:01:13.1743877Z    Compiling rustc-std-workspace-std v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-std)
+2026-11-14T05:01:13.3413861Z    Compiling wasip1 v1.0.0
+2026-11-14T05:01:13.3741395Z    Compiling test v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/test)
+2026-11-14T05:01:13.3837213Z    Compiling rustc-literal-escaper v0.0.8
+2026-11-14T05:01:13.3915165Z    Compiling getopts v0.2.24
+2026-11-14T05:01:15.7573301Z    Compiling proc_macro v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/proc_macro)
+2026-11-14T05:01:15.8854408Z    Compiling proc-macro2 v1.0.107
+2026-11-14T05:01:15.9534826Z    Compiling unicode-ident v1.0.27
+2026-11-14T05:01:15.9673697Z    Compiling quote v1.0.47
+2026-11-14T05:02:08.9509303Z    Compiling serde_core v1.0.229
+2026-11-14T05:02:09.0574211Z    Compiling zmij v1.0.23
+2026-11-14T05:02:10.0331529Z    Compiling utf8parse v0.2.2
+2026-11-14T05:02:12.9423294Z    Compiling serde v1.0.229
+2026-11-14T05:02:13.4684507Z    Compiling serde_json v1.0.154
+2026-11-14T05:02:13.9087121Z    Compiling anstyle v1.0.14
+2026-11-14T05:02:13.9273775Z    Compiling anstyle-query v1.1.5
+2026-11-14T05:02:13.9303255Z    Compiling colorchoice v1.0.5
+2026-11-14T05:02:13.9312784Z    Compiling is_terminal_polyfill v1.70.2
+2026-11-14T05:02:13.9328321Z    Compiling itoa v1.0.19
+2026-11-14T05:02:16.5824855Z    Compiling anstyle-parse v1.0.0
+2026-11-14T05:02:16.6573950Z    Compiling syn v3.0.10
+2026-11-14T05:02:16.9495318Z    Compiling serde_derive v1.0.229
+2026-11-14T05:02:51.3214066Z    Compiling clap_lex v1.1.1
+2026-11-14T05:02:53.2100223Z    Compiling strsim v0.11.1
+2026-11-14T05:02:53.2101449Z    Compiling anstream v1.0.0
+2026-11-14T05:02:53.2305804Z    Compiling heck v0.5.0
+2026-11-14T05:02:53.3245333Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T05:02:53.3365044Z    Compiling pin-project-lite v0.2.17
+2026-11-14T05:02:53.3383472Z    Compiling clap_builder v4.6.7
+2026-11-14T05:02:53.3663866Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T05:02:53.3686886Z    Compiling clap_derive v4.6.7
+2026-11-14T05:02:53.5085655Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T05:02:53.5094229Z    Compiling hex v0.4.3
+2026-11-14T05:02:53.5186857Z    Compiling tokio-macros v2.7.2
+2026-11-14T05:03:16.8160625Z error[E0382]: borrow of moved value: `text`
+2026-11-14T05:03:16.8165334Z   --> core/src/lib.rs:65:5
+2026-11-14T05:03:16.8168458Z    |
+2026-11-14T05:03:16.8173943Z 62 |     let text = String::from("moved");
+2026-11-14T05:03:16.8202661Z    |         ---- move occurs because `text` has type `String`, which does not implement the `Copy` trait
+2026-11-14T05:03:16.8203265Z 63 |     let moved = text;
+2026-11-14T05:03:16.8203636Z    |                 ---- value moved here
+2026-11-14T05:03:16.8203986Z 64 |     drop(moved);
+2026-11-14T05:03:16.8204280Z 65 |     text.len()
+2026-11-14T05:03:16.8204589Z    |     ^^^^ value borrowed here after move
+2026-11-14T05:03:16.8204895Z 
+2026-11-14T05:03:16.8205178Z For more information about this error, try `rustc --explain E0382`.
+2026-11-14T05:03:16.8205689Z error: could not compile `core` (lib) due to 1 previous error
+2026-11-14T05:03:16.8206332Z    Compiling blaze_inproc_rt v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/blaze_inproc_rt)
+2026-11-14T05:03:16.8207433Z    Compiling clap v4.6.7
+2026-11-14T05:03:16.8207838Z    Compiling tokio v1.54.1
+2026-11-14T05:03:16.8734705Z    Compiling fnv v1.0.5
+2026-11-14T05:03:16.8806924Z    Compiling tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T05:04:31.3180302Z error: could not compile `core` (lib test) due to 1 previous error
+2026-11-14T05:04:33.3325469Z note: 8 units not checked, behind what failed:
+2026-11-14T05:04:33.3331755Z   behind core v0.0.0 (lib) (errors in its code): 8 units
+2026-11-14T05:04:33.3353310Z     app v0.0.0 (bin "app" test), app v0.0.0 (bin "app"), app v0.0.0 (test "cli"), app v0.0.0 (test "slow"), core v0.0.0 (lib doctest), lib v0.0.0 (lib test), and 2 more
+2026-11-14T05:04:36.7873526Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/quote/a538a6846c6d3ea1/out/build_script_build (first link)
+2026-11-14T05:04:36.7874964Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/proc-macro2/8b539ca5e06f8f10/out/build_script_build (first link)
+2026-11-14T05:04:36.7885306Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_core/d1b8482918e65031/out/build_script_build (first link)
+2026-11-14T05:04:36.7886487Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/zmij/b7607f2a7fe81b1c/out/build_script_build (first link)
+2026-11-14T05:04:36.7887455Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde/b149911507abf07c/out/build_script_build (first link)
+2026-11-14T05:04:36.7888379Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_json/34d46c9f7d8fd381/out/build_script_build (first link)
+2026-11-14T05:04:36.7889466Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/serde_derive/49b9fe39e206d7ed/out/serde_derive-49b9fe39e206d7ed.wasm (first link)
+2026-11-14T05:04:36.7890662Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/macros/973aa52815b6ef73/out/lab_macros-973aa52815b6ef73.wasm (first link)
+2026-11-14T05:04:36.7891842Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/clap_derive/25ad183d98f9fa60/out/clap_derive-25ad183d98f9fa60.wasm (first link)
+2026-11-14T05:04:36.7893617Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/tokio-macros/f746c503964f451c/out/tokio_macros-f746c503964f451c.wasm (first link)
+2026-11-14T05:04:36.7894703Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/59265c3c706cd25d/out/lab_macros-59265c3c706cd25d (first link)
+2026-11-14T05:04:36.7895671Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/3c9f670e84df174b/out/lab_macros-3c9f670e84df174b (first link)
+2026-11-14T05:04:36.7896613Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/tool/c8571fbfd99ff868/out/tool-c8571fbfd99ff868 (first link)
+2026-11-14T05:04:36.8943877Z note: this build took 3m 42s: `blaze slow` says what made it slow and what to fix
+2026-11-14T05:04:36.8945034Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_macros-59265c3c706cd25d)
+2026-11-14T05:04:36.9924683Z 
+2026-11-14T05:04:36.9925183Z running 2 tests
+2026-11-14T05:04:36.9925657Z test tests::rejects_text_and_overflow ... ok
+2026-11-14T05:04:36.9952781Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/tool-c8571fbfd99ff868)
+2026-11-14T05:04:36.9953358Z test tests::doubles_a_literal ... ok
+2026-11-14T05:04:36.9953856Z 
+2026-11-14T05:04:36.9954374Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T05:04:36.9954888Z 
+2026-11-14T05:04:37.0718136Z 
+2026-11-14T05:04:37.0718835Z running 3 tests
+2026-11-14T05:04:37.0729353Z test hash::tests::fingerprint_differs_for_different_input ... ok
+2026-11-14T05:04:37.0734656Z test hash::tests::parse_round_trips_and_rejects_odd_length ... ok
+2026-11-14T05:04:37.0735271Z test hash::tests::fingerprint_is_sixteen_hex_digits ... ok
+2026-11-14T05:04:37.0742611Z 
+2026-11-14T05:04:37.0742898Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T05:04:37.0743252Z 
+2026-11-14T05:04:37.0748489Z    Doc-tests lab_macros
+2026-11-14T05:04:37.0794388Z 
+2026-11-14T05:04:37.0794607Z running 0 tests
+2026-11-14T05:04:37.0794842Z 
+2026-11-14T05:04:37.0795201Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T05:04:37.0795524Z 
+2026-11-14T05:04:37.0798880Z error: 7 test targets never built, so never ran:
+2026-11-14T05:04:37.0799243Z     app v0.0.0 (bin "app" test): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:37.0799672Z     app v0.0.0 (test "cli"): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:37.0800091Z     app v0.0.0 (test "slow"): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:37.0800429Z     core v0.0.0 (lib test): errors in its code
+2026-11-14T05:04:37.0800761Z     core v0.0.0 (lib doctest): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:37.0801154Z     lib v0.0.0 (lib test): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:37.0801556Z     lib v0.0.0 (lib doctest): behind core v0.0.0 (lib) (errors in its code)
+2026-11-14T05:04:38.2744941Z ##[error]Process completed with exit code 101.
+2026-11-14T05:04:38.2798540Z ##[group]Run grep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"
+2026-11-14T05:04:38.2799059Z [36;1mgrep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"[0m
+2026-11-14T05:04:38.2827828Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:04:38.2828045Z env:
+2026-11-14T05:04:38.2828211Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:04:38.2828418Z   BLAZE_TESTS: all
+2026-11-14T05:04:38.2828594Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:04:38.2828847Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:04:38.2829126Z ##[endgroup]
+2026-11-14T05:04:38.2971546Z VmHWM:	10065060 kB
+2026-11-14T05:04:38.2971769Z VmRSS:	 8904984 kB
+2026-11-14T05:04:38.3001865Z ##[group]Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+2026-11-14T05:04:38.3002907Z [36;1mcat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak[0m
+2026-11-14T05:04:38.3019807Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:04:38.3020023Z env:
+2026-11-14T05:04:38.3020188Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:04:38.3020397Z   BLAZE_TESTS: all
+2026-11-14T05:04:38.3020573Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:04:38.3020825Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:04:38.3021104Z ##[endgroup]
+2026-11-14T05:04:38.3061843Z 15785025536
+2026-11-14T05:04:38.3091554Z ##[group]Run free -b
+2026-11-14T05:04:38.3091784Z [36;1mfree -b[0m
+2026-11-14T05:04:38.3107770Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:04:38.3107990Z env:
+2026-11-14T05:04:38.3108157Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:04:38.3108364Z   BLAZE_TESTS: all
+2026-11-14T05:04:38.3108543Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:04:38.3108800Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:04:38.3109079Z ##[endgroup]
+2026-11-14T05:04:38.3156532Z                total        used        free      shared  buff/cache   available
+2026-11-14T05:04:38.3157117Z Mem:     16715927552 11220615168  1302376448   423718912  4885381120  5495312384
+2026-11-14T05:04:38.3157591Z Swap:     3221221376       45056  3221176320
+2026-11-14T05:04:38.3187766Z ##[group]Run du -sb /blaze/home
+2026-11-14T05:04:38.3188054Z [36;1mdu -sb /blaze/home[0m
+2026-11-14T05:04:38.3204227Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:04:38.3204445Z env:
+2026-11-14T05:04:38.3204606Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:04:38.3204808Z   BLAZE_TESTS: all
+2026-11-14T05:04:38.3204984Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:04:38.3205237Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:04:38.3205512Z ##[endgroup]
+2026-11-14T05:04:38.3415200Z 4594909846	/blaze/home
+2026-11-14T05:04:38.3450839Z ##[group]Run tail -n 100 /blaze/home/v2/serve.log
+2026-11-14T05:04:38.3451189Z [36;1mtail -n 100 /blaze/home/v2/serve.log[0m
+2026-11-14T05:04:38.3468260Z shell: /usr/bin/bash -e {0}
+2026-11-14T05:04:38.3468497Z env:
+2026-11-14T05:04:38.3468662Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T05:04:38.3468867Z   BLAZE_TESTS: all
+2026-11-14T05:04:38.3469043Z   BLAZE_HOME: /blaze/home
+2026-11-14T05:04:38.3469297Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T05:04:38.3469575Z ##[endgroup]
+2026-11-14T05:04:38.3521040Z blaze serve: memory limit 12.12 GiB (MemTotal of /proc/meminfo, 15.57 GB, less 2.44 GB others use in cgroup /system.slice/hosted-compute-agent.service (memory.current 2.61 GB less blaze's own 0.17 GB) and a margin of 1.00 GB): a build lets go of its front end once blaze holds 10.61 GiB, or once one of these holds past its share (GiB): parse 0.32, nameres 0.64, expand 0.32, infer 1.28, mir 0.96
+2026-11-14T05:04:38.3523003Z blaze serve: started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T05:04:38.3523528Z blaze serve: listening on /blaze/home/v2.sock (pid 2357)
+2026-11-14T05:04:38.3524160Z Downloading blaze's standard library (digest 7583968753f8, once) from https://github.com/indexable-inc/blaze/releases/download/v0.20261105.4...
+2026-11-14T05:04:38.3524787Z Made blaze's standard library 7583968753f8 in 942.3ms.
+2026-11-14T05:04:38.3527222Z blaze serve: front end release (memory: expand is past its share of 0.32 GiB): let go of 0 inference results of 0 bodies in 0 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches, and swept the front end's values to their fair shares; blaze held 3.50 GiB, now 3.18 GiB (0.32 freed), of a limit of 12.12 GiB; the query storage holds 0.84 GiB: MacroCallId::parse_macro_expansion 0.33 (109.6k rows made, 105.5k used), Body::of 0.09 (127.0k rows made, 87.5k used), dependency nodes 0.05 (1.39M rows), EditionedFileId::parse_ 0.05 (2.0k rows made, 1.6k used), HirFileId::ast_id_map 0.04 (111.6k rows made, 100.5k used), ImplSignature::kept 0.04 (47.1k rows made, 46.6k used), Body::relative 0.03 (64.5k rows made, 31.7k used), Body::source_map 0.02 (50.2k rows made, 15.1k used)
+2026-11-14T05:04:38.3530500Z blaze serve: front end release (crates finished): let go of 0 inference results of 36772 bodies in 3 crates and 0 trait solver caches; blaze held 3.32 GiB, now 3.32 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 0.90 GiB
+2026-11-14T05:04:38.3531864Z blaze serve: front end release (crates finished): let go of 0 inference results of 9 bodies in 2 crates and 0 trait solver caches; blaze held 3.34 GiB, now 3.33 GiB (0.01 freed), of a limit of 12.12 GiB; the query storage holds 0.90 GiB
+2026-11-14T05:04:38.3533378Z blaze serve: front end release (crates finished): let go of 0 inference results of 29329 bodies in 4 crates and 0 trait solver caches; blaze held 3.43 GiB, now 3.40 GiB (0.03 freed), of a limit of 12.12 GiB; the query storage holds 0.94 GiB
+2026-11-14T05:04:38.3534757Z blaze serve: front end release (crates finished): let go of 0 inference results of 7318 bodies in 6 crates and 0 trait solver caches; blaze held 3.53 GiB, now 3.44 GiB (0.10 freed), of a limit of 12.12 GiB; the query storage holds 0.95 GiB
+2026-11-14T05:04:38.3536127Z blaze serve: front end release (crates finished): let go of 0 inference results of 8371 bodies in 8 crates and 0 trait solver caches; blaze held 3.43 GiB, now 3.43 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 0.95 GiB
+2026-11-14T05:04:38.3537488Z blaze serve: front end release (crates finished): let go of 0 inference results of 622 bodies in 5 crates and 0 trait solver caches; blaze held 3.48 GiB, now 3.48 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 0.97 GiB
+2026-11-14T05:04:38.3539075Z blaze serve: front end release (crates finished): let go of 0 inference results of 9259 bodies in 13 crates and 0 trait solver caches; blaze held 3.54 GiB, now 3.53 GiB (0.01 freed), of a limit of 12.12 GiB; the query storage holds 0.98 GiB
+2026-11-14T05:04:38.3540457Z blaze serve: front end release (crates finished): let go of 0 inference results of 7883 bodies in 6 crates and 0 trait solver caches; blaze held 3.57 GiB, now 3.56 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 0.99 GiB
+2026-11-14T05:04:38.3543623Z blaze serve: front end release (memory: nameres is past its share of 0.64 GiB): let go of 0 inference results of 5055 bodies in 7 crates, 8262 MIR bodies, 180 constant values and 6 trait solver caches, and swept the front end's values to their fair shares; blaze held 3.97 GiB, now 3.94 GiB (0.03 freed), of a limit of 12.12 GiB; the query storage holds 1.28 GiB: MacroCallId::parse_macro_expansion 0.30 (118.8k rows made, 114.9k used), Body::of 0.09 (131.1k rows made, 117.9k used), Body::relative 0.09 (122.9k rows made, 109.3k used), dependency nodes 0.09 (2.00M rows), infer_body_query 0.08 (58.4k rows made, 1.7k used), Body::source_map 0.07 (104.4k rows made, 46.5k used), FunctionSignature::kept 0.06 (70.7k rows made, 38.6k used), EditionedFileId::parse_ 0.05 (2.0k rows made, 1.6k used)
+2026-11-14T05:04:38.3549396Z blaze serve: memory: resident 4.30 GiB, 0.00 outside blaze-mem and the global heap; global heap 1.59 GiB live, 0.17 of it outside any task, in 3.30 its allocator committed (1.71 freed: kept, or purged and still counted), at most 0.37 of it freed and resident; committed 2.34 GiB (most 2.34), 0.00 of it purged (not resident), 2.35 GiB in tags, reserved 2752 GiB in 983 regions (most 2752), 1861 GiB of it off huge pages (most 1861), unadvised memory's THP advised only; query 1.24 (most 1.24, reserved 985 in 421) + heap 0.46 (most 0.46); nameres 0.32 (most 0.32, reserved 0 in 0) + heap 0.34 (most 0.34); expand 0.19 (most 0.21, reserved 0 in 0) + heap 0.27 (most 0.30); intern 0.13 (most 0.13, reserved 129 in 233); chunks 0.15 (most 0.16, reserved 1574 in 202); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.07 (most 0.08); frames 0.12 (most 0.13, reserved 1 in 13); vfs 0.11 (most 0.11, reserved 0 in 5); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.08 (most 0.08); free chunks warm 0.02 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.75 GiB, warm 0.01, cold 0.00 (0.00 given back in 0 trims), carved 0.77, committed 0.86; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:04:38.3557028Z blaze serve: memory: resident 5.10 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.16 GiB live, 0.17 of it outside any task, in 3.53 its allocator committed (1.37 freed: kept, or purged and still counted), at most 0.50 of it freed and resident; committed 2.44 GiB (most 2.44), 0.00 of it purged (not resident), 2.45 GiB in tags, reserved 2759 GiB in 999 regions (most 2759), 1868 GiB of it off huge pages (most 1868), unadvised memory's THP advised only; query 1.33 (most 1.33, reserved 985 in 423) + heap 0.47 (most 0.47); nameres 0.32 (most 0.32, reserved 0 in 0) + heap 0.34 (most 0.34); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.51 (most 0.52); expand 0.19 (most 0.21, reserved 0 in 0) + heap 0.27 (most 0.30); intern 0.13 (most 0.13, reserved 129 in 235) + heap 0.08 (most 0.08); chunks 0.15 (most 0.16, reserved 1574 in 202); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.07 (most 0.08); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.12 (most 0.12); frames 0.12 (most 0.13, reserved 1 in 13); vfs 0.11 (most 0.11, reserved 0 in 5); free chunks warm 0.02 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.76 GiB, warm 0.01, cold 0.00 (0.00 given back in 0 trims), carved 0.77, committed 0.87; 1.25 KiB blocks live 0.18, warm 0.00, cold 0.00, carved 0.18
+2026-11-14T05:04:38.3563319Z blaze serve: front end release (memory: nameres is past its share of 0.64 GiB): let go of 2 inference results of 2 bodies in 1 crates, 25564 MIR bodies, 3639 constant values and 16 trait solver caches, and swept the front end's values to their fair shares; blaze held 5.17 GiB, now 5.03 GiB (0.14 freed), of a limit of 12.12 GiB; the query storage holds 1.72 GiB: MacroCallId::parse_macro_expansion 0.30 (119.8k rows made, 115.5k used), infer_body_query 0.12 (91.1k rows made, 9.9k used), dependency nodes 0.11 (2.80M rows), dependency edges 0.11 (22.43M rows), Body::of 0.09 (131.1k rows made, 118.2k used), Body::relative 0.09 (122.9k rows made, 109.3k used), FunctionSignature::kept 0.07 (87.0k rows made, 51.2k used), Body::source_map 0.07 (104.4k rows made, 46.5k used)
+2026-11-14T05:04:38.3566293Z blaze serve: front end release (no unit is open): let go of 6 inference results of 6 bodies in 1 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 5.03 GiB, now 5.02 GiB (0.01 freed), of a limit of 12.12 GiB; the query storage holds 1.72 GiB
+2026-11-14T05:04:38.3567726Z blaze serve: front end release (crates finished): let go of 6 inference results of 6 bodies in 2 crates and 2 trait solver caches; blaze held 5.11 GiB, now 5.11 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 1.72 GiB
+2026-11-14T05:04:38.3569069Z blaze serve: front end release (crates finished): let go of 0 inference results of 33 bodies in 1 crates and 0 trait solver caches; blaze held 5.05 GiB, now 4.92 GiB (0.13 freed), of a limit of 12.12 GiB; the query storage holds 1.72 GiB
+2026-11-14T05:04:38.3573900Z blaze serve: memory: resident 5.77 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.12 GiB live, 0.17 of it outside any task, in 4.62 its allocator committed (2.50 freed: kept, or purged and still counted), at most 0.60 of it freed and resident; committed 3.05 GiB (most 3.05), 0.00 of it purged (not resident), 3.06 GiB in tags, reserved 3566 GiB in 4079 regions (most 3566), 2653 GiB of it off huge pages (most 2653), unadvised memory's THP advised only; query 1.51 (most 1.51, reserved 985 in 429) + heap 0.49 (most 0.49); nameres 0.33 (most 0.33, reserved 0 in 0) + heap 0.36 (most 0.36); expand 0.20 (most 0.21, reserved 0 in 0) + heap 0.28 (most 0.30); link 0.36 (most 0.36, reserved 780 in 2992) + heap 0.10 (most 0.37); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.31 (most 0.57); intern 0.13 (most 0.13, reserved 129 in 237) + heap 0.09 (most 0.09); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); frames 0.14 (most 0.16, reserved 1 in 14); chunks 0.13 (most 0.16, reserved 1574 in 202); vfs 0.11 (most 0.11, reserved 0 in 5); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.08 (most 0.12); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.07 (most 0.52); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.79 GiB, warm 0.00, cold 0.00 (0.01 given back in 1 trims), carved 0.79, committed 0.89; 1.25 KiB blocks live 0.19, warm 0.00, cold 0.00, carved 0.19
+2026-11-14T05:04:38.3580488Z blaze serve: front end release (memory: nameres is past its share of 0.64 GiB): let go of 1918 inference results of 2878 bodies in 6 crates, 33528 MIR bodies, 3066 constant values and 19 trait solver caches, and swept the front end's values to their fair shares; blaze held 6.35 GiB, now 6.05 GiB (0.30 freed), of a limit of 12.12 GiB; the query storage holds 2.05 GiB: MacroCallId::parse_macro_expansion 0.32 (121.9k rows made, 117.5k used), dependency edges 0.17 (39.96M rows), dependency nodes 0.16 (3.68M rows), infer_body_query 0.15 (110.6k rows made, 20.7k used), Body::of 0.10 (132.1k rows made, 121.8k used), Body::relative 0.09 (129.0k rows made, 115.8k used), FunctionSignature::kept 0.08 (95.2k rows made, 89.7k used), Body::source_map 0.07 (110.6k rows made, 49.7k used)
+2026-11-14T05:04:38.3583519Z blaze serve: front end release (crates finished): let go of 0 inference results of 525 bodies in 5 crates and 0 trait solver caches; blaze held 6.26 GiB, now 5.79 GiB (0.47 freed), of a limit of 12.12 GiB; the query storage holds 2.07 GiB
+2026-11-14T05:04:38.3585137Z blaze serve: front end release (no unit is open): let go of 317 inference results of 2396 bodies in 4 crates, 0 MIR bodies, 0 constant values and 3 trait solver caches; blaze held 5.84 GiB, now 5.80 GiB (0.05 freed), of a limit of 12.12 GiB; the query storage holds 2.05 GiB
+2026-11-14T05:04:38.3589956Z blaze serve: memory: resident 6.00 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.03 GiB live, 0.18 of it outside any task, in 4.67 its allocator committed (2.64 freed: kept, or purged and still counted), at most 0.63 of it freed and resident; committed 3.35 GiB (most 3.35), 0.01 of it purged (not resident), 3.35 GiB in tags, reserved 3592 GiB in 4629 regions (most 3592), 2680 GiB of it off huge pages (most 2680), unadvised memory's THP advised only; query 1.64 (most 1.65, reserved 985 in 469) + heap 0.52 (most 0.52); nameres 0.34 (most 0.34, reserved 0 in 0) + heap 0.37 (most 0.37); link 0.40 (most 0.40, reserved 799 in 3444) + heap 0.13 (most 0.69); expand 0.20 (most 0.21, reserved 0 in 0) + heap 0.28 (most 0.30); intern 0.15 (most 0.15, reserved 129 in 249) + heap 0.13 (most 0.15); frames 0.17 (most 0.17, reserved 1 in 20); chunks 0.14 (most 0.16, reserved 1574 in 202); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.14 (most 0.52); vfs 0.11 (most 0.11, reserved 0 in 5); store 0.10 (most 0.10, reserved 30 in 89); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.07 (most 0.57); free chunks warm 0.01 (resident), cold 0.01 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.80 GiB, warm 0.01, cold 0.01 (0.02 given back in 1 trims), carved 0.82, committed 0.90; 1.25 KiB blocks live 0.19, warm 0.00, cold 0.00, carved 0.19
+2026-11-14T05:04:38.3594877Z blaze serve: front end release (crates finished): let go of 15 inference results of 1950 bodies in 7 crates and 3 trait solver caches; blaze held 7.08 GiB, now 6.47 GiB (0.62 freed), of a limit of 12.12 GiB; the query storage holds 2.16 GiB
+2026-11-14T05:04:38.3596246Z blaze serve: front end release (crates finished): let go of 14 inference results of 1434 bodies in 3 crates and 2 trait solver caches; blaze held 6.43 GiB, now 6.39 GiB (0.05 freed), of a limit of 12.12 GiB; the query storage holds 2.16 GiB
+2026-11-14T05:04:38.3597803Z blaze serve: front end release (crates finished): let go of 150 inference results of 167 bodies in 1 crates and 1 trait solver caches; blaze held 6.42 GiB, now 6.40 GiB (0.02 freed), of a limit of 12.12 GiB; the query storage holds 2.16 GiB
+2026-11-14T05:04:38.3599166Z blaze serve: front end release (crates finished): let go of 63 inference results of 254 bodies in 3 crates and 3 trait solver caches; blaze held 6.44 GiB, now 6.42 GiB (0.02 freed), of a limit of 12.12 GiB; the query storage holds 2.16 GiB
+2026-11-14T05:04:38.3604559Z blaze serve: memory: resident 6.79 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.50 GiB live, 0.20 of it outside any task, in 5.04 its allocator committed (2.54 freed: kept, or purged and still counted), at most 0.64 of it freed and resident; committed 3.65 GiB (most 3.65), 0.00 of it purged (not resident), 3.66 GiB in tags, reserved 3611 GiB in 4703 regions (most 3620), 2699 GiB of it off huge pages (most 2702), unadvised memory's THP advised only; query 1.75 (most 1.75, reserved 985 in 484) + heap 0.53 (most 0.53); nameres 0.35 (most 0.35, reserved 0 in 0) + heap 0.38 (most 0.38); link 0.42 (most 0.48, reserved 799 in 3444) + heap 0.14 (most 0.95); expand 0.20 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.30); intern 0.15 (most 0.15, reserved 129 in 249) + heap 0.18 (most 0.18); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.27 (most 0.52); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.25 (most 0.25); frames 0.20 (most 0.21, reserved 1 in 23); chunks 0.16 (most 0.17, reserved 1574 in 202); store 0.16 (most 0.16, reserved 30 in 112); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.08 (most 0.57); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); other 0.02 (most 0.02, reserved 72 in 124); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.83 GiB, warm 0.01, cold 0.05 (0.05 given back in 30 trims), carved 0.89, committed 0.96; 1.25 KiB blocks live 0.19, warm 0.00, cold 0.01, carved 0.20
+2026-11-14T05:04:38.3613816Z blaze serve: memory: resident 7.16 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.83 GiB live, 0.26 of it outside any task, in 5.06 its allocator committed (2.24 freed: kept, or purged and still counted), at most 0.68 of it freed and resident; committed 3.65 GiB (most 3.65), 0.00 of it purged (not resident), 3.66 GiB in tags, reserved 3611 GiB in 4703 regions (most 3620), 2699 GiB of it off huge pages (most 2702), unadvised memory's THP advised only; query 1.76 (most 1.76, reserved 985 in 484) + heap 0.53 (most 0.53); nameres 0.35 (most 0.35, reserved 0 in 0) + heap 0.38 (most 0.38); link 0.42 (most 0.48, reserved 799 in 3444) + heap 0.14 (most 0.95); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.49 (most 0.62); expand 0.20 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.30); intern 0.15 (most 0.15, reserved 129 in 249) + heap 0.18 (most 0.18); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.29 (most 0.29); frames 0.20 (most 0.21, reserved 1 in 23); store 0.16 (most 0.16, reserved 30 in 112); chunks 0.15 (most 0.17, reserved 1574 in 202); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); solver 0.07 (most 0.10, reserved 13 in 10); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.08 (most 0.57); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); other 0.02 (most 0.02, reserved 72 in 124); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.84 GiB, warm 0.01, cold 0.04 (0.05 given back in 30 trims), carved 0.89, committed 0.96; 1.25 KiB blocks live 0.20, warm 0.00, cold 0.00, carved 0.20
+2026-11-14T05:04:38.3623114Z blaze serve: memory: resident 7.24 GiB, 0.00 outside blaze-mem and the global heap; global heap 2.81 GiB live, 0.24 of it outside any task, in 5.09 its allocator committed (2.28 freed: kept, or purged and still counted), at most 0.79 of it freed and resident; committed 3.65 GiB (most 3.65), 0.00 of it purged (not resident), 3.66 GiB in tags, reserved 3613 GiB in 4707 regions (most 3620), 2701 GiB of it off huge pages (most 2702), unadvised memory's THP advised only; query 1.76 (most 1.76, reserved 985 in 485) + heap 0.54 (most 0.54); nameres 0.35 (most 0.35, reserved 0 in 0) + heap 0.38 (most 0.38); link 0.42 (most 0.48, reserved 799 in 3444) + heap 0.14 (most 0.95); expand 0.20 (most 0.21, reserved 0 in 0) + heap 0.29 (most 0.30); codegen 0.00 (most 0.00, reserved 0 in 0) + heap 0.47 (most 0.62); intern 0.15 (most 0.15, reserved 129 in 249) + heap 0.17 (most 0.18); mir 0.00 (most 0.00, reserved 0 in 0) + heap 0.30 (most 0.30); frames 0.20 (most 0.21, reserved 1 in 23); store 0.16 (most 0.16, reserved 30 in 112); chunks 0.15 (most 0.17, reserved 1574 in 202); parse 0.06 (most 0.06, reserved 0 in 0) + heap 0.08 (most 0.08); vfs 0.11 (most 0.11, reserved 0 in 5); infer 0.01 (most 0.01, reserved 0 in 0) + heap 0.07 (most 0.07); plane 0.00 (most 0.00, reserved 5 in 22) + heap 0.08 (most 0.57); solver 0.07 (most 0.10, reserved 13 in 10); other 0.02 (most 0.02, reserved 73 in 127); free chunks warm 0.01 (resident), cold 0.00 (purged); query stack most reads one run 145468 (`kept` of Crate(Id(23552))), most pending rows one task 0; blocks live 0.84 GiB, warm 0.01, cold 0.04 (0.07 given back in 42 trims), carved 0.89, committed 0.96; 1.25 KiB blocks live 0.20, warm 0.00, cold 0.01, carved 0.20
+2026-11-14T05:04:38.3630335Z blaze serve: front end release (memory: nameres is past its share of 0.64 GiB): let go of 353 inference results of 1768 bodies in 5 crates, 53556 MIR bodies, 5363 constant values and 44 trait solver caches, and swept the front end's values to their fair shares; blaze held 8.11 GiB, now 7.59 GiB (0.52 freed), of a limit of 12.12 GiB; the query storage holds 2.22 GiB: MacroCallId::parse_macro_expansion 0.33 (123.9k rows made, 120.0k used), dependency edges 0.21 (50.00M rows), dependency nodes 0.17 (4.31M rows), infer_body_query 0.16 (114.7k rows made, 24.8k used), Body::relative 0.10 (133.1k rows made, 122.0k used), Body::of 0.10 (133.1k rows made, 126.9k used), FunctionSignature::kept 0.08 (97.3k rows made, 95.5k used), Body::source_map 0.07 (115.7k rows made, 51.9k used)
+2026-11-14T05:04:38.3635002Z blaze serve: front end release (memory: nameres is past its share of 0.64 GiB): let go of 141 inference results of 141 bodies in 1 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches, and swept the front end's values to their fair shares; blaze held 8.43 GiB, now 7.99 GiB (0.44 freed), of a limit of 12.12 GiB; the query storage holds 2.22 GiB: MacroCallId::parse_macro_expansion 0.33 (123.9k rows made, 120.0k used), dependency edges 0.21 (50.01M rows), dependency nodes 0.17 (4.31M rows), infer_body_query 0.16 (114.7k rows made, 24.8k used), Body::relative 0.10 (133.1k rows made, 122.0k used), Body::of 0.10 (133.1k rows made, 126.9k used), FunctionSignature::kept 0.08 (97.3k rows made, 95.5k used), Body::source_map 0.07 (115.7k rows made, 51.9k used)
+2026-11-14T05:04:38.3638048Z blaze serve: front end release (no unit is open): let go of 133 inference results of 135 bodies in 2 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 8.09 GiB, now 7.82 GiB (0.27 freed), of a limit of 12.12 GiB; the query storage holds 2.22 GiB
+2026-11-14T05:04:38.3639673Z blaze serve: front end release (the build is over): let go of 0 inference results of 0 bodies in 0 crates, 0 MIR bodies, 0 constant values and 0 trait solver caches; blaze held 7.82 GiB, now 7.82 GiB (0.00 freed), of a limit of 12.12 GiB; the query storage holds 2.22 GiB
+2026-11-14T05:04:38.3641696Z blaze serve: wrote the daemon image /blaze/home/v2/db/image ac709d55ae7f (188.1 MiB, 11 sections; the VFS tree 109.8 MiB in 3; the library syntax trees 58.1 MiB; the database's values 17.0 MiB; the symbol table 1.5 MiB; the database's edges 0.6 MiB; the database's memos 0.4 MiB; the database's inputs 0.1 MiB; the plane's history 0.0 MiB; the database's key table 0.0 MiB): made in 94.9 ms, written in 1147.5 ms, mapped in 0.1 ms
+2026-11-14T05:04:38.3756197Z Post job cleanup.
+2026-11-14T05:04:39.6946636Z [command]/usr/bin/git version
+2026-11-14T05:04:39.6980123Z git version 2.56.1
+2026-11-14T05:04:39.7010382Z Temporarily overriding HOME='/home/runner/work/_temp/77992187-8755-4c8f-8680-e8afe0c25b91' before making global git config changes
+2026-11-14T05:04:39.7011086Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T05:04:39.7015387Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T05:04:39.7046741Z Removing SSH command configuration
+2026-11-14T05:04:39.7051978Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T05:04:39.7086633Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T05:04:39.7297754Z Removing HTTP extra header
+2026-11-14T05:04:39.7302079Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T05:04:39.7354130Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T05:04:39.7561088Z Removing includeIf entries pointing to credentials config files
+2026-11-14T05:04:39.7561733Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T05:04:39.7586507Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T05:04:39.7919385Z Cleaning up orphan processes
+2026-11-14T05:04:39.8508070Z Terminate orphan process: pid (2357) (blaze)

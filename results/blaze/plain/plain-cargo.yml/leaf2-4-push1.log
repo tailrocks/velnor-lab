@@ -1,0 +1,459 @@
+===== job 132354226486 "ci"
+﻿2026-11-14T06:00:05.1883550Z Current runner version: '2.338.2'
+2026-11-14T06:00:05.1907456Z ##[group]Runner Image Provisioner
+2026-11-14T06:00:05.1908276Z Hosted Compute Agent
+2026-11-14T06:00:05.1908796Z Version: 20261103.629
+2026-11-14T06:00:05.1909456Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T06:00:05.1910113Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T06:00:05.1910787Z Worker ID: {a8513ef4-f1ce-44dd-9a3b-1d1d82a9dfe5}
+2026-11-14T06:00:05.1911450Z Region: westus3
+2026-11-14T06:00:05.1911940Z Cloud: Azure
+2026-11-14T06:00:05.1912474Z ##[endgroup]
+2026-11-14T06:00:05.1913867Z ##[group]Operating System
+2026-11-14T06:00:05.1914406Z Ubuntu
+2026-11-14T06:00:05.1914928Z 26.04.1
+2026-11-14T06:00:05.1915382Z LTS
+2026-11-14T06:00:05.1915860Z ##[endgroup]
+2026-11-14T06:00:05.1916379Z ##[group]Runner Image
+2026-11-14T06:00:05.1917254Z Image: ubuntu-26.04
+2026-11-14T06:00:05.1917836Z Version: 20261111.196.1
+2026-11-14T06:00:05.1918942Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.196/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-14T06:00:05.1920324Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.196
+2026-11-14T06:00:05.1921180Z ##[endgroup]
+2026-11-14T06:00:05.1922184Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T06:00:05.1924016Z Contents: read
+2026-11-14T06:00:05.1924646Z Metadata: read
+2026-11-14T06:00:05.1925140Z ##[endgroup]
+2026-11-14T06:00:05.1927300Z Secret source: Actions
+2026-11-14T06:00:05.1928163Z Cache mode: write
+2026-11-14T06:00:05.1928809Z Prepare workflow directory
+2026-11-14T06:00:05.2295716Z Prepare all required actions
+2026-11-14T06:00:05.2343295Z Getting action download info
+2026-11-14T06:00:05.5382717Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T06:00:05.6364992Z Download action repository 'jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785' (SHA:d5574b52816a478f9d4e6529a3f6ff17a8a36785)
+2026-11-14T06:00:06.2965496Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-11-14T06:00:06.5034200Z Complete job name: ci
+2026-11-14T06:00:06.5909216Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T06:00:06.5910367Z with:
+2026-11-14T06:00:06.5910884Z   persist-credentials: false
+2026-11-14T06:00:06.5911482Z   repository: tailrocks/velnor-lab
+2026-11-14T06:00:06.5915861Z   token: ***
+2026-11-14T06:00:06.5916546Z   ssh-strict: true
+2026-11-14T06:00:06.5917432Z   ssh-user: git
+2026-11-14T06:00:06.5918303Z   clean: true
+2026-11-14T06:00:06.5918845Z   sparse-checkout-cone-mode: true
+2026-11-14T06:00:06.5919430Z   fetch-depth: 1
+2026-11-14T06:00:06.5919923Z   fetch-tags: false
+2026-11-14T06:00:06.5920422Z   show-progress: true
+2026-11-14T06:00:06.5920941Z   lfs: false
+2026-11-14T06:00:06.5921423Z   submodules: false
+2026-11-14T06:00:06.5921930Z   set-safe-directory: true
+2026-11-14T06:00:06.5922493Z   allow-unsafe-pr-checkout: false
+2026-11-14T06:00:06.5923509Z env:
+2026-11-14T06:00:06.5924061Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:06.5924723Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:06.5925436Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:06.5926188Z ##[endgroup]
+2026-11-14T06:00:06.8486794Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T06:00:06.8490982Z ##[group]Getting Git version info
+2026-11-14T06:00:06.8492536Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T06:00:06.8494808Z [command]/usr/bin/git version
+2026-11-14T06:00:06.8496023Z git version 2.56.1
+2026-11-14T06:00:06.8514147Z ##[endgroup]
+2026-11-14T06:00:06.8527455Z Temporarily overriding HOME='/home/runner/work/_temp/b3adf0ca-7886-48c2-96e4-4872dede5337' before making global git config changes
+2026-11-14T06:00:06.8530341Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T06:00:06.8535328Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:06.8598728Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T06:00:06.8602603Z ##[group]Determining repository object format
+2026-11-14T06:00:06.8604726Z ##[endgroup]
+2026-11-14T06:00:06.8606384Z ##[group]Initializing the repository
+2026-11-14T06:00:06.8611193Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:06.8729810Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T06:00:06.8733157Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T06:00:06.8735598Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T06:00:06.8737671Z hint: call:
+2026-11-14T06:00:06.8738968Z hint:
+2026-11-14T06:00:06.8740322Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T06:00:06.8741909Z hint:
+2026-11-14T06:00:06.8743357Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T06:00:06.8745713Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T06:00:06.8747852Z hint:
+2026-11-14T06:00:06.8749025Z hint: 	git branch -m <name>
+2026-11-14T06:00:06.8750307Z hint:
+2026-11-14T06:00:06.8751854Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T06:00:06.8754536Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T06:00:06.8759235Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T06:00:06.8807778Z ##[endgroup]
+2026-11-14T06:00:06.8809401Z ##[group]Disabling automatic garbage collection
+2026-11-14T06:00:06.8811261Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T06:00:06.8845452Z ##[endgroup]
+2026-11-14T06:00:06.8847661Z ##[group]Setting up auth
+2026-11-14T06:00:06.8848899Z Removing SSH command configuration
+2026-11-14T06:00:06.8853379Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T06:00:06.8889173Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T06:00:06.9286702Z Removing HTTP extra header
+2026-11-14T06:00:06.9294875Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T06:00:06.9333013Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T06:00:06.9577904Z Removing includeIf entries pointing to credentials config files
+2026-11-14T06:00:06.9583616Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T06:00:06.9613584Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T06:00:06.9842431Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T06:00:06.9876364Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:06.9902554Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:06.9930777Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:06.9956069Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:06.9979669Z ##[endgroup]
+2026-11-14T06:00:06.9980560Z ##[group]Fetching the repository
+2026-11-14T06:00:06.9986048Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ec1ffb4b339f04f54394c3b42b92c1ec6f87ee4e:refs/remotes/pull/271/merge
+2026-11-14T06:00:07.6863779Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T06:00:07.6866141Z  * [new ref]         ec1ffb4b339f04f54394c3b42b92c1ec6f87ee4e -> pull/271/merge
+2026-11-14T06:00:07.6871127Z ##[endgroup]
+2026-11-14T06:00:07.6873152Z ##[group]Determining the checkout info
+2026-11-14T06:00:07.6875406Z ##[endgroup]
+2026-11-14T06:00:07.6876781Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T06:00:07.6923122Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T06:00:07.6950656Z ##[group]Checking out the ref
+2026-11-14T06:00:07.6954621Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/271/merge
+2026-11-14T06:00:07.7389483Z Note: switching to 'refs/remotes/pull/271/merge'.
+2026-11-14T06:00:07.7391026Z 
+2026-11-14T06:00:07.7392266Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T06:00:07.7395227Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T06:00:07.7397921Z state without impacting any branches by switching back to a branch.
+2026-11-14T06:00:07.7399676Z 
+2026-11-14T06:00:07.7400568Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T06:00:07.7402594Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T06:00:07.7404015Z 
+2026-11-14T06:00:07.7404553Z   git switch -c <new-branch-name>
+2026-11-14T06:00:07.7405448Z 
+2026-11-14T06:00:07.7405973Z Or undo this operation with:
+2026-11-14T06:00:07.7406744Z 
+2026-11-14T06:00:07.7407375Z   git switch -
+2026-11-14T06:00:07.7407935Z 
+2026-11-14T06:00:07.7408866Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T06:00:07.7410273Z 
+2026-11-14T06:00:07.7412358Z HEAD is now at ec1ffb4 Merge 3f0b9cf89cd0fd8da4cb47dd8e0afb77f3294b56 into 6cf71028948fb0606cab0ad0f648edd47398c3c6
+2026-11-14T06:00:07.7417081Z ##[endgroup]
+2026-11-14T06:00:07.7448706Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T06:00:07.7471210Z ec1ffb4b339f04f54394c3b42b92c1ec6f87ee4e
+2026-11-14T06:00:07.7483145Z ##[group]Removing auth
+2026-11-14T06:00:07.7484912Z Removing SSH command configuration
+2026-11-14T06:00:07.7487716Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T06:00:07.7514822Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T06:00:07.7737865Z Removing HTTP extra header
+2026-11-14T06:00:07.7741219Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T06:00:07.7769491Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T06:00:07.7984762Z Removing includeIf entries pointing to credentials config files
+2026-11-14T06:00:07.7987491Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T06:00:07.8008671Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T06:00:07.8012007Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T06:00:07.8014375Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T06:00:07.8015847Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T06:00:07.8020008Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T06:00:07.8035035Z /home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:07.8047987Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-6060076c\-43c3\-48c1\-8777\-149031cc1288\.config
+2026-11-14T06:00:07.8076151Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T06:00:07.8094949Z /home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:07.8111315Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-6060076c\-43c3\-48c1\-8777\-149031cc1288\.config
+2026-11-14T06:00:07.8138963Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T06:00:07.8158628Z /github/runner_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:07.8168250Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-6060076c\-43c3\-48c1\-8777\-149031cc1288\.config
+2026-11-14T06:00:07.8197895Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T06:00:07.8215577Z /github/runner_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config
+2026-11-14T06:00:07.8224733Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-6060076c\-43c3\-48c1\-8777\-149031cc1288\.config
+2026-11-14T06:00:07.8253115Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T06:00:07.8462093Z Removing credentials config '/home/runner/work/_temp/git-credentials-6060076c-43c3-48c1-8777-149031cc1288.config'
+2026-11-14T06:00:07.8470192Z ##[endgroup]
+2026-11-14T06:00:07.8878860Z ##[group]Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785
+2026-11-14T06:00:07.8880241Z with:
+2026-11-14T06:00:07.8881178Z   install_args: rust aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T06:00:07.8882396Z   auto_update: false
+2026-11-14T06:00:07.8883220Z   minimum_release_age: 24h
+2026-11-14T06:00:07.8884081Z   install: true
+2026-11-14T06:00:07.8884885Z   monorepo: true
+2026-11-14T06:00:07.8885717Z   bootstrap: false
+2026-11-14T06:00:07.8886541Z   cache: true
+2026-11-14T06:00:07.8887390Z   cache_save: true
+2026-11-14T06:00:07.8888182Z   cache_save_post: false
+2026-11-14T06:00:07.8889062Z   cache_restore_retry_budget: 0s
+2026-11-14T06:00:07.8890015Z   cache_save_retry_budget: 0s
+2026-11-14T06:00:07.8890925Z   cache_key_prefix: mise-v1
+2026-11-14T06:00:07.8891810Z   cache_max_age_days: 30
+2026-11-14T06:00:07.8892670Z   experimental: false
+2026-11-14T06:00:07.8893461Z   log_level: info
+2026-11-14T06:00:07.8894220Z   reshim: false
+2026-11-14T06:00:07.8895041Z   add_shims_to_path: true
+2026-11-14T06:00:07.8904278Z   github_token: ***
+2026-11-14T06:00:07.8905224Z   persist_github_token: false
+2026-11-14T06:00:07.8906136Z   fetch_from_github: true
+2026-11-14T06:00:07.8907052Z   env: true
+2026-11-14T06:00:07.8907774Z   export_path: true
+2026-11-14T06:00:07.8908557Z   wings_enabled: false
+2026-11-14T06:00:07.8909340Z env:
+2026-11-14T06:00:07.8910134Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:07.8911208Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:07.8912218Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:07.8913357Z ##[endgroup]
+2026-11-14T06:00:08.0666375Z ##[group]Restoring mise cache
+2026-11-14T06:00:08.0718515Z [command]/usr/bin/ldd --version
+2026-11-14T06:00:08.0778018Z ldd (Ubuntu GLIBC 2.43-2ubuntu2.4) 2.43
+2026-11-14T06:00:08.0780383Z Copyright (C) 2024 Free Software Foundation, Inc.
+2026-11-14T06:00:08.0783377Z This is free software; see the source for copying conditions.  There is NO
+2026-11-14T06:00:08.0786768Z warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+2026-11-14T06:00:08.0790177Z Written by Roland McGrath and Ulrich Drepper.
+2026-11-14T06:00:08.1517855Z Hashed mise config files in 0.1s
+2026-11-14T06:00:08.3861476Z Cache hit for: mise-v1-linux-x64-ubuntu26-f13005353243b66cfb51f64cd20c5a2c66ddf276ae26ab1ed43ce013e92e89e2-p692-eb0d687da5702c936004e5957d350957410b699adb3c43af95d0ae6de56367d6
+2026-11-14T06:00:09.6166235Z Received 37748736 of 69323678 (54.5%), 36.0 MBs/sec
+2026-11-14T06:00:09.7643768Z Received 69323678 of 69323678 (100.0%), 57.5 MBs/sec
+2026-11-14T06:00:09.7644716Z Cache Size: ~66 MB (69323678 B)
+2026-11-14T06:00:09.7679693Z [command]/usr/bin/tar -xf /home/runner/work/_temp/bf60909e-91f9-4bed-be2e-f05ce012d9a3/cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --use-compress-program unzstd
+2026-11-14T06:00:10.0708792Z Cache restored successfully
+2026-11-14T06:00:10.0741480Z mise cache restored from key: mise-v1-linux-x64-ubuntu26-f13005353243b66cfb51f64cd20c5a2c66ddf276ae26ab1ed43ce013e92e89e2-p692-eb0d687da5702c936004e5957d350957410b699adb3c43af95d0ae6de56367d6
+2026-11-14T06:00:10.0762442Z [command]/usr/bin/ldd --version
+2026-11-14T06:00:10.0817350Z ldd (Ubuntu GLIBC 2.43-2ubuntu2.4) 2.43
+2026-11-14T06:00:10.0818516Z Copyright (C) 2024 Free Software Foundation, Inc.
+2026-11-14T06:00:10.0819239Z This is free software; see the source for copying conditions.  There is NO
+2026-11-14T06:00:10.0819770Z warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+2026-11-14T06:00:10.0820190Z Written by Roland McGrath and Ulrich Drepper.
+2026-11-14T06:00:10.3231582Z Verified existing mise-v2026.11.7-linux-x64 against signed checksums
+2026-11-14T06:00:10.3232355Z Verified existing mise@2026.11.7
+2026-11-14T06:00:10.3234724Z ##[group]Setting env vars
+2026-11-14T06:00:10.3235291Z Setting MISE_LOG_LEVEL=info
+2026-11-14T06:00:10.3238747Z Setting MISE_TRUSTED_CONFIG_PATHS=/home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:10.3239429Z Setting MISE_YES=1
+2026-11-14T06:00:10.3240371Z Adding /home/runner/.local/share/mise/shims to PATH
+2026-11-14T06:00:10.3241930Z ##[group]Running mise --version
+2026-11-14T06:00:10.3259168Z [command]/home/runner/.local/share/mise/bin/mise --version
+2026-11-14T06:00:10.3360455Z 2026.11.7 linux-x64 (2026-11-12)
+2026-11-14T06:00:10.3378780Z ##[endgroup]
+2026-11-14T06:00:10.3613316Z Detected a mise lock file, running `mise install --locked`
+2026-11-14T06:00:10.3614815Z ##[group]Running mise install --locked rust aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T06:00:10.3628020Z [command]/home/runner/.local/share/mise/bin/mise install --locked rust aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T06:00:10.3761592Z [2mmise[0m [2mby @jdx[0m – installing 2 tools
+2026-11-14T06:00:10.5524244Z [2mmise[0m [38;5;11m⇢[0m [34maqua:nextest-rs/nextest/cargo-nextest[0m@0.9.151  174ms · already installed
+2026-11-14T06:00:13.3766401Z [2mmise[0m [36m████████[0m[31m[0m[2m░░░░░░░░[0m 1/2 · 3.0s
+2026-11-14T06:00:13.3767451Z   [34mrust[0m@1.99.1                                    resolving  3.0s
+2026-11-14T06:00:16.3766958Z [2mmise[0m [36m████████[0m[31m[0m[2m░░░░░░░░[0m 1/2 · 6.0s
+2026-11-14T06:00:16.3768135Z   [34mrust[0m@1.99.1                                    resolving  6.0s
+2026-11-14T06:00:19.3730798Z [2mmise[0m [34mrust[0m@1.99.1 info: syncing channel updates for 1.99.1-x86_64-unknown-linux-gnu
+2026-11-14T06:00:19.3767395Z [2mmise[0m [36m████████[0m[31m[0m[2m░░░░░░░░[0m 1/2 · 9.0s
+2026-11-14T06:00:19.3768051Z   [34mrust[0m@1.99.1                                    installing  9.0s
+2026-11-14T06:00:19.5185066Z [2mmise[0m [34mrust[0m@1.99.1 info: latest update on 2026-10-15 for version 1.99.1 (58cf8f9c3 2026-10-13)
+2026-11-14T06:00:19.5320434Z [2mmise[0m [34mrust[0m@1.99.1 info: component cargo is up to date
+2026-11-14T06:00:19.5321730Z [2mmise[0m [34mrust[0m@1.99.1 info: component rust-std is up to date
+2026-11-14T06:00:19.5322923Z [2mmise[0m [34mrust[0m@1.99.1 info: component rustc is up to date
+2026-11-14T06:00:19.5324490Z [2mmise[0m [34mrust[0m@1.99.1 info: downloading 3 components
+2026-11-14T06:00:22.3772154Z [2mmise[0m [36m████████[0m[31m[0m[2m░░░░░░░░[0m 1/2 · 12.0s
+2026-11-14T06:00:22.3772910Z   [34mrust[0m@1.99.1                                    installing  12.0s
+2026-11-14T06:00:22.4956781Z [2mmise[0m [34mrust[0m@1.99.1   1.99.1-x86_64-unknown-linux-gnu updated - rustc 1.99.1 (58cf8f9c3 2026-10-13) (from rustc 1.99.1 (58cf8f9c3 2026-10-13))
+2026-11-14T06:00:22.5121307Z [2mmise[0m [34mrust[0m@1.99.1 rustc 1.99.1 (58cf8f9c3 2026-10-13)
+2026-11-14T06:00:22.5145121Z [2mmise[0m [38;5;10m✓[0m [34mrust[0m@1.99.1                                    12.1s
+2026-11-14T06:00:22.5146484Z [2mmise[0m [36m████████████████[0m[31m[0m[2m[0m 2/2 · installed 1 tool · 1 already installed in 12.1s
+2026-11-14T06:00:22.5281388Z ##[endgroup]
+2026-11-14T06:00:22.5288285Z ##[group]Running mise ls
+2026-11-14T06:00:22.5299290Z [command]/home/runner/.local/share/mise/bin/mise ls
+2026-11-14T06:00:22.5450289Z aqua:nextest-rs/nextest/cargo-nextest  0.9.151           ~/work/velnor-lab/velnor-lab/mise.toml  0.9.151
+2026-11-14T06:00:22.5451369Z hk                                     2.12.0 (missing)  ~/work/velnor-lab/velnor-lab/mise.toml  2.12.0
+2026-11-14T06:00:22.5452125Z mr-boxington                           1.30.0 (missing)  ~/work/velnor-lab/velnor-lab/mise.toml  1.30.0
+2026-11-14T06:00:22.5452628Z rust                                   1.99.1 (symlink)  ~/work/velnor-lab/velnor-lab/mise.toml  1.99.1
+2026-11-14T06:00:22.5465129Z ##[endgroup]
+2026-11-14T06:00:22.5645623Z ##[group]Exporting mise environment variables
+2026-11-14T06:00:22.5845574Z [command]/home/runner/.local/share/mise/bin/mise env --json
+2026-11-14T06:00:22.6000576Z {
+2026-11-14T06:00:22.6001121Z   "CARGO_HOME": "/home/runner/.cargo",
+2026-11-14T06:00:22.6011772Z   "PATH": "/home/runner/.cargo/bin:/home/runner/.local/share/mise/installs/aqua-nextest-rs-nextest-cargo-nextest/0.9.151/.mise-bins:/home/runner/.local/share/mise/shims:/home/runner/.local/share/mise/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+2026-11-14T06:00:22.6013324Z   "RUSTUP_HOME": "/home/runner/.rustup",
+2026-11-14T06:00:22.6013613Z   "RUSTUP_TOOLCHAIN": "1.99.1"
+2026-11-14T06:00:22.6013853Z }
+2026-11-14T06:00:22.6199382Z Adding /home/runner/.local/share/mise/installs/aqua-nextest-rs-nextest-cargo-nextest/0.9.151/.mise-bins to PATH
+2026-11-14T06:00:22.6200185Z Adding /home/runner/.cargo/bin to PATH
+2026-11-14T06:00:22.6200990Z ##[endgroup]
+2026-11-14T06:00:22.6527222Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T06:00:22.6527632Z with:
+2026-11-14T06:00:22.6527834Z   path: ~/.velnor-ci
+2026-11-14T06:00:22.6528138Z   key: velnor-ci-Linux-e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:22.6528503Z   enableCrossOsArchive: false
+2026-11-14T06:00:22.6528762Z   fail-on-cache-miss: false
+2026-11-14T06:00:22.6529045Z   lookup-only: false
+2026-11-14T06:00:22.6529247Z env:
+2026-11-14T06:00:22.6529465Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:22.6529749Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:22.6530036Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:22.6530351Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:22.6530662Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:22.6531009Z   MISE_YES: 1
+2026-11-14T06:00:22.6531226Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:22.6531485Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:22.6531797Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:22.6532021Z ##[endgroup]
+2026-11-14T06:00:22.9686762Z Cache hit for: velnor-ci-Linux-e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:23.8416064Z Received 1723933 of 1723933 (100.0%), 2.5 MBs/sec
+2026-11-14T06:00:23.8416719Z Cache Size: ~2 MB (1723933 B)
+2026-11-14T06:00:23.8447898Z [command]/usr/bin/tar -xf /home/runner/work/_temp/26ebb78c-df2b-445e-bf74-2a5cdca877b8/cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --use-compress-program unzstd
+2026-11-14T06:00:23.8576106Z Cache restored successfully
+2026-11-14T06:00:23.8751527Z Cache restored from key: velnor-ci-Linux-e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:23.8899715Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T06:00:23.8900110Z with:
+2026-11-14T06:00:23.8900441Z   path: target
+~/.cargo/registry/index
+~/.cargo/registry/cache
+~/.cargo/git/db
+
+2026-11-14T06:00:23.8900926Z   key: plain-cargo-Linux-ec1ffb4b339f04f54394c3b42b92c1ec6f87ee4e
+2026-11-14T06:00:23.8901314Z   restore-keys: plain-cargo-Linux-
+2026-11-14T06:00:23.8901585Z   enableCrossOsArchive: false
+2026-11-14T06:00:23.8901854Z   fail-on-cache-miss: false
+2026-11-14T06:00:23.8902099Z   lookup-only: false
+2026-11-14T06:00:23.8902301Z env:
+2026-11-14T06:00:23.8902528Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:23.8902829Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:23.8903111Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:23.8903428Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:23.8903734Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:23.8904091Z   MISE_YES: 1
+2026-11-14T06:00:23.8904341Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:23.8904606Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:23.8904874Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:23.8905104Z ##[endgroup]
+2026-11-14T06:00:24.2131036Z Cache hit for restore-key: plain-cargo-Linux-6cf71028948fb0606cab0ad0f648edd47398c3c6
+2026-11-14T06:00:25.4375317Z Received 41943040 of 65262541 (64.3%), 40.0 MBs/sec
+2026-11-14T06:00:25.5586302Z Received 65262541 of 65262541 (100.0%), 55.5 MBs/sec
+2026-11-14T06:00:25.5589171Z Cache Size: ~62 MB (65262541 B)
+2026-11-14T06:00:25.5705610Z [command]/usr/bin/tar -xf /home/runner/work/_temp/00679a97-3a7f-4091-990f-aca5ed11e2f5/cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --use-compress-program unzstd
+2026-11-14T06:00:25.8937746Z Cache restored successfully
+2026-11-14T06:00:25.9034717Z Cache restored from key: plain-cargo-Linux-6cf71028948fb0606cab0ad0f648edd47398c3c6
+2026-11-14T06:00:25.9139935Z ##[group]Run ~/.velnor-ci/bin/velnor-ci inputs restore
+2026-11-14T06:00:25.9140459Z [36;1m~/.velnor-ci/bin/velnor-ci inputs restore[0m
+2026-11-14T06:00:25.9177476Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:00:25.9177770Z env:
+2026-11-14T06:00:25.9178029Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:25.9178363Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:25.9178662Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:25.9178999Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:25.9179326Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:25.9179689Z   MISE_YES: 1
+2026-11-14T06:00:25.9179907Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:25.9180194Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:25.9180485Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:25.9180731Z ##[endgroup]
+2026-11-14T06:00:25.9736394Z restored the modification time of 821 unchanged files; 1 changed, 0 new, 0 deleted, 0 not in the worktree, 0 with a path the file cannot hold, 0 submodules not checked out
+2026-11-14T06:00:25.9772608Z ##[group]Run cargo fmt --all --check
+2026-11-14T06:00:25.9772938Z [36;1mcargo fmt --all --check[0m
+2026-11-14T06:00:25.9805770Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:00:25.9806045Z env:
+2026-11-14T06:00:25.9806286Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:25.9806630Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:25.9807076Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:25.9807418Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:25.9807747Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:25.9808116Z   MISE_YES: 1
+2026-11-14T06:00:25.9808339Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:25.9808627Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:25.9809070Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:25.9809315Z ##[endgroup]
+2026-11-14T06:00:26.0243419Z ##[group]Run cargo clippy --workspace --all-targets --locked -- -D warnings
+2026-11-14T06:00:26.0244060Z [36;1mcargo clippy --workspace --all-targets --locked -- -D warnings[0m
+2026-11-14T06:00:26.0278897Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:00:26.0279178Z env:
+2026-11-14T06:00:26.0279423Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:26.0279738Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:26.0280028Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:26.0280357Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:26.0280683Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:26.0281030Z   MISE_YES: 1
+2026-11-14T06:00:26.0281255Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:26.0281527Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:26.0281807Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:26.0282068Z ##[endgroup]
+2026-11-14T06:00:26.1676140Z    0.111022180s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: stale: changed "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs"
+2026-11-14T06:00:26.1679512Z    0.111037927s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:           (vs) "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-eeb0c7dbb5f85395/dep-bin-app"
+2026-11-14T06:00:26.1682664Z    0.111041151s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:                FileTime { seconds: 1794635496, nanos: 348423306 } < FileTime { seconds: 1794636007, nanos: 701065107 }
+2026-11-14T06:00:26.1686351Z    0.111085201s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint dirty for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: false }/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T06:00:26.1691800Z    0.111098500s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-eeb0c7dbb5f85395/dep-bin-app", reference_mtime: FileTime { seconds: 1794635496, nanos: 348423306 }, stale: "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", stale_mtime: FileTime { seconds: 1794636007, nanos: 701065107 } }))
+2026-11-14T06:00:26.1696084Z    0.112680893s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: stale: changed "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs"
+2026-11-14T06:00:26.1699477Z    0.112688068s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:           (vs) "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-21a8b4578b1bb623/dep-test-bin-app"
+2026-11-14T06:00:26.1702244Z    0.112692473s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:                FileTime { seconds: 1794635496, nanos: 355029150 } < FileTime { seconds: 1794636007, nanos: 701065107 }
+2026-11-14T06:00:26.1704676Z    0.112718482s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint dirty for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: true }/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T06:00:26.1728761Z    0.112727588s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-21a8b4578b1bb623/dep-test-bin-app", reference_mtime: FileTime { seconds: 1794635496, nanos: 355029150 }, stale: "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", stale_mtime: FileTime { seconds: 1794636007, nanos: 701065107 } }))
+2026-11-14T06:00:26.1732508Z     Checking app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T06:00:26.2215139Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s
+2026-11-14T06:00:26.2290209Z ##[group]Run cargo nextest run --workspace --locked
+2026-11-14T06:00:26.2290634Z [36;1mcargo nextest run --workspace --locked[0m
+2026-11-14T06:00:26.2321748Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:00:26.2322032Z env:
+2026-11-14T06:00:26.2322272Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:26.2322591Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:26.2322876Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:26.2323199Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:26.2323515Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:26.2323869Z   MISE_YES: 1
+2026-11-14T06:00:26.2324081Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:26.2324352Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:26.2324626Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:26.2324857Z ##[endgroup]
+2026-11-14T06:00:26.3429148Z    0.021173692s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: stale: changed "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs"
+2026-11-14T06:00:26.3432110Z    0.021192385s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:           (vs) "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-03ca1085f0a16b39/dep-test-bin-app"
+2026-11-14T06:00:26.3435150Z    0.021195669s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:                FileTime { seconds: 1794635500, nanos: 169024088 } < FileTime { seconds: 1794636007, nanos: 701065107 }
+2026-11-14T06:00:26.3438874Z    0.021238277s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint dirty for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Test/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T06:00:26.3443872Z    0.021248145s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-03ca1085f0a16b39/dep-test-bin-app", reference_mtime: FileTime { seconds: 1794635500, nanos: 169024088 }, stale: "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", stale_mtime: FileTime { seconds: 1794636007, nanos: 701065107 } }))
+2026-11-14T06:00:26.3448382Z    0.022890962s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: stale: changed "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs"
+2026-11-14T06:00:26.3451014Z    0.022905036s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:           (vs) "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-f1fd6b87dff46118/dep-bin-app"
+2026-11-14T06:00:26.3454361Z    0.022909633s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:                FileTime { seconds: 1794635500, nanos: 168024089 } < FileTime { seconds: 1794636007, nanos: 701065107 }
+2026-11-14T06:00:26.3458070Z    0.022936250s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint dirty for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Build/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T06:00:26.3463051Z    0.022948477s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-f1fd6b87dff46118/dep-bin-app", reference_mtime: FileTime { seconds: 1794635500, nanos: 168024089 }, stale: "/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", stale_mtime: FileTime { seconds: 1794636007, nanos: 701065107 } }))
+2026-11-14T06:00:26.3465622Z    Compiling app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T06:00:26.5882670Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.26s
+2026-11-14T06:00:26.6133244Z ────────────
+2026-11-14T06:00:26.6134338Z  Nextest run ID d2e5dc91-eba3-4340-abbb-64249ff5abf0 with nextest profile: default
+2026-11-14T06:00:26.6135263Z     Starting 18 tests across 7 binaries
+2026-11-14T06:00:26.6213310Z         PASS [   0.006s] ( 1/18) app::cli prints_the_greeting_for_a_name
+2026-11-14T06:00:26.6231329Z         PASS [   0.008s] ( 2/18) app::cli defaults_to_world
+2026-11-14T06:00:26.6277811Z         PASS [   0.004s] ( 3/18) app::bin/app greet::tests::line_names_the_record
+2026-11-14T06:00:26.6308538Z         PASS [   0.003s] ( 4/18) app::bin/app greet::tests::line_starts_with_the_shared_greeting
+2026-11-14T06:00:26.6336802Z         PASS [   0.003s] ( 5/18) core tests::checksum_depends_on_order
+2026-11-14T06:00:26.6369239Z         PASS [   0.003s] ( 6/18) core tests::invalid_json_gives_none
+2026-11-14T06:00:26.6402882Z         PASS [   0.003s] ( 7/18) core tests::json_round_trip_keeps_every_field
+2026-11-14T06:00:26.6439149Z         PASS [   0.003s] ( 8/18) lib tests::describe_names_the_build_script_value
+2026-11-14T06:00:26.6471252Z         PASS [   0.003s] ( 9/18) lib tests::digest_is_hex_of_the_json
+2026-11-14T06:00:26.6506176Z         PASS [   0.003s] (10/18) lib tests::macro_doubles_at_compile_time
+2026-11-14T06:00:26.6543154Z         PASS [   0.004s] (11/18) macros tests::doubles_a_literal
+2026-11-14T06:00:26.6579256Z         PASS [   0.004s] (12/18) macros tests::rejects_text_and_overflow
+2026-11-14T06:00:26.6619362Z         PASS [   0.004s] (13/18) tool::bin/tool hash::tests::fingerprint_differs_for_different_input
+2026-11-14T06:00:26.6655651Z         PASS [   0.004s] (14/18) tool::bin/tool hash::tests::fingerprint_is_sixteen_hex_digits
+2026-11-14T06:00:26.6689498Z         PASS [   0.003s] (15/18) tool::bin/tool hash::tests::parse_round_trips_and_rejects_odd_length
+2026-11-14T06:00:46.6182843Z         PASS [  20.005s] (16/18) app::slow slow_three
+2026-11-14T06:00:46.6212445Z         PASS [  20.004s] (17/18) app::slow slow_one
+2026-11-14T06:00:46.6267228Z         PASS [  20.005s] (18/18) app::slow slow_two
+2026-11-14T06:00:46.6268107Z ────────────
+2026-11-14T06:00:46.6268705Z      Summary [  20.014s] 18 tests run: 18 passed, 0 skipped
+2026-11-14T06:00:46.6315654Z ##[group]Run ~/.velnor-ci/bin/velnor-ci inputs save
+2026-11-14T06:00:46.6316123Z [36;1m~/.velnor-ci/bin/velnor-ci inputs save[0m
+2026-11-14T06:00:46.6348499Z shell: /usr/bin/bash -e {0}
+2026-11-14T06:00:46.6348772Z env:
+2026-11-14T06:00:46.6349019Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T06:00:46.6349471Z   CARGO_INCREMENTAL: 0
+2026-11-14T06:00:46.6349761Z   VELNOR_CI_REV: e46dd789c3d530d3cdac98f3f02c638933b81243
+2026-11-14T06:00:46.6350098Z   MISE_LOG_LEVEL: info
+2026-11-14T06:00:46.6350420Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:46.6350789Z   MISE_YES: 1
+2026-11-14T06:00:46.6351019Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T06:00:46.6351288Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T06:00:46.6351568Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T06:00:46.6351803Z ##[endgroup]
+2026-11-14T06:00:46.6863332Z saved 822 tracked files and 0 symlinks to target/.velnor/inputs.tsv; left out: 0 not in the worktree, 0 with a path the file cannot hold, 0 submodules not checked out
+2026-11-14T06:00:46.7008048Z Post job cleanup.
+2026-11-14T06:00:46.8825361Z Post job cleanup.
+2026-11-14T06:00:46.9637654Z [command]/usr/bin/git version
+2026-11-14T06:00:46.9676677Z git version 2.56.1
+2026-11-14T06:00:46.9710490Z Temporarily overriding HOME='/home/runner/work/_temp/1c524218-021c-4fff-974f-b74cc9bfe9f6' before making global git config changes
+2026-11-14T06:00:46.9711970Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T06:00:46.9715230Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T06:00:46.9744598Z Removing SSH command configuration
+2026-11-14T06:00:46.9751748Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T06:00:46.9783316Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T06:00:47.0038687Z Removing HTTP extra header
+2026-11-14T06:00:47.0039494Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T06:00:47.0101170Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T06:00:47.0440427Z Removing includeIf entries pointing to credentials config files
+2026-11-14T06:00:47.0457450Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T06:00:47.0517936Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T06:00:47.0933624Z Cleaning up orphan processes
