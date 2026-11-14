@@ -1,0 +1,1191 @@
+===== job 132376307454 "blaze (ubuntu-latest, x86_64-unknown-linux-gnu)"
+﻿2026-11-14T07:30:06.9144086Z Current runner version: '2.338.2'
+2026-11-14T07:30:06.9161594Z ##[group]Runner Image Provisioner
+2026-11-14T07:30:06.9162201Z Hosted Compute Agent
+2026-11-14T07:30:06.9162692Z Version: 20261103.629
+2026-11-14T07:30:06.9163175Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T07:30:06.9163705Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T07:30:06.9164210Z Worker ID: {b59719d8-bacc-49a8-a6c8-84f516702d8c}
+2026-11-14T07:30:06.9164725Z Region: us-west-2
+2026-11-14T07:30:06.9165163Z Cloud: AWS
+2026-11-14T07:30:06.9165818Z ##[endgroup]
+2026-11-14T07:30:06.9166761Z ##[group]Operating System
+2026-11-14T07:30:06.9167216Z Ubuntu
+2026-11-14T07:30:06.9167593Z 26.04.1
+2026-11-14T07:30:06.9167979Z LTS
+2026-11-14T07:30:06.9168416Z ##[endgroup]
+2026-11-14T07:30:06.9168796Z ##[group]Runner Image
+2026-11-14T07:30:06.9169239Z Image: ubuntu-26.04
+2026-11-14T07:30:06.9169649Z Version: 20261111.82.6
+2026-11-14T07:30:06.9170561Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.82/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-14T07:30:06.9171656Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.82
+2026-11-14T07:30:06.9172372Z ##[endgroup]
+2026-11-14T07:30:06.9173162Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T07:30:06.9174688Z Contents: read
+2026-11-14T07:30:06.9175099Z Metadata: read
+2026-11-14T07:30:06.9175745Z ##[endgroup]
+2026-11-14T07:30:06.9177505Z Secret source: Actions
+2026-11-14T07:30:06.9178159Z Cache mode: write
+2026-11-14T07:30:06.9178753Z Prepare workflow directory
+2026-11-14T07:30:06.9529759Z Prepare all required actions
+2026-11-14T07:30:06.9566948Z Getting action download info
+2026-11-14T07:30:07.3375523Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T07:30:09.4293538Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-11-14T07:30:09.8113574Z Complete job name: blaze (ubuntu-latest, x86_64-unknown-linux-gnu)
+2026-11-14T07:30:09.8739380Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T07:30:09.8739902Z with:
+2026-11-14T07:30:09.8740235Z   persist-credentials: false
+2026-11-14T07:30:09.8740545Z   repository: tailrocks/velnor-lab
+2026-11-14T07:30:09.8742655Z   token: ***
+2026-11-14T07:30:09.8743083Z   ssh-strict: true
+2026-11-14T07:30:09.8743340Z   ssh-user: git
+2026-11-14T07:30:09.8743621Z   clean: true
+2026-11-14T07:30:09.8743889Z   sparse-checkout-cone-mode: true
+2026-11-14T07:30:09.8744186Z   fetch-depth: 1
+2026-11-14T07:30:09.8744469Z   fetch-tags: false
+2026-11-14T07:30:09.8744736Z   show-progress: true
+2026-11-14T07:30:09.8745013Z   lfs: false
+2026-11-14T07:30:09.8745473Z   submodules: false
+2026-11-14T07:30:09.8745778Z   set-safe-directory: true
+2026-11-14T07:30:09.8746096Z   allow-unsafe-pr-checkout: false
+2026-11-14T07:30:09.8746546Z env:
+2026-11-14T07:30:09.8746807Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:09.8747112Z   BLAZE_TESTS: all
+2026-11-14T07:30:09.8747460Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:09.8747791Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:09.8748106Z ##[endgroup]
+2026-11-14T07:30:12.8376503Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T07:30:12.8377737Z ##[group]Getting Git version info
+2026-11-14T07:30:12.8378106Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T07:30:12.8378631Z [command]/usr/bin/git version
+2026-11-14T07:30:12.8400565Z git version 2.56.1
+2026-11-14T07:30:12.8415582Z ##[endgroup]
+2026-11-14T07:30:12.8421268Z Temporarily overriding HOME='/home/runner/work/_temp/e3c5d825-55db-42d8-86a3-57f449a97334' before making global git config changes
+2026-11-14T07:30:12.8422304Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:30:12.8426338Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:30:12.8808404Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T07:30:12.8814883Z ##[group]Determining repository object format
+2026-11-14T07:30:12.8816328Z ##[endgroup]
+2026-11-14T07:30:12.8817060Z ##[group]Initializing the repository
+2026-11-14T07:30:12.8817819Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:30:12.9512733Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T07:30:12.9513365Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T07:30:12.9513816Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T07:30:12.9514173Z hint: call:
+2026-11-14T07:30:12.9514404Z hint:
+2026-11-14T07:30:12.9514699Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T07:30:12.9515036Z hint:
+2026-11-14T07:30:12.9515507Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T07:30:12.9516077Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T07:30:12.9516499Z hint:
+2026-11-14T07:30:12.9516715Z hint: 	git branch -m <name>
+2026-11-14T07:30:12.9516994Z hint:
+2026-11-14T07:30:12.9517355Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T07:30:12.9547648Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T07:30:12.9554831Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T07:30:12.9612648Z ##[endgroup]
+2026-11-14T07:30:12.9613186Z ##[group]Disabling automatic garbage collection
+2026-11-14T07:30:12.9614534Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T07:30:12.9636575Z ##[endgroup]
+2026-11-14T07:30:12.9637085Z ##[group]Setting up auth
+2026-11-14T07:30:12.9637417Z Removing SSH command configuration
+2026-11-14T07:30:12.9641532Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:30:12.9663382Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:30:13.3454122Z Removing HTTP extra header
+2026-11-14T07:30:13.3458917Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:30:13.3490081Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:30:13.3660506Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:30:13.3665055Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:30:13.3691928Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:30:13.3866602Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T07:30:13.3893761Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:13.3914763Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:13.3938758Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:13.3959325Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:13.3978372Z ##[endgroup]
+2026-11-14T07:30:13.3979209Z ##[group]Fetching the repository
+2026-11-14T07:30:13.3983788Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +356030f5ef53e61b12077c2ce043c83367399a88:refs/remotes/origin/main
+2026-11-14T07:30:13.9023780Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T07:30:13.9024440Z  * [new ref]         356030f5ef53e61b12077c2ce043c83367399a88 -> origin/main
+2026-11-14T07:30:13.9032605Z [command]/usr/bin/git branch --list --remote origin/main
+2026-11-14T07:30:13.9052783Z   origin/main
+2026-11-14T07:30:13.9059428Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-11-14T07:30:13.9076195Z 356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:13.9078232Z ##[endgroup]
+2026-11-14T07:30:13.9078813Z ##[group]Determining the checkout info
+2026-11-14T07:30:13.9079394Z ##[endgroup]
+2026-11-14T07:30:13.9082415Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T07:30:13.9138873Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T07:30:13.9158110Z ##[group]Checking out the ref
+2026-11-14T07:30:13.9160864Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-14T07:30:13.9522243Z Switched to a new branch 'main'
+2026-11-14T07:30:13.9529885Z branch 'main' set up to track 'origin/main'.
+2026-11-14T07:30:13.9534210Z ##[endgroup]
+2026-11-14T07:30:13.9573983Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T07:30:13.9590825Z 356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:13.9596893Z ##[group]Removing auth
+2026-11-14T07:30:13.9597406Z Removing SSH command configuration
+2026-11-14T07:30:13.9599991Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:30:13.9618863Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:30:13.9799211Z Removing HTTP extra header
+2026-11-14T07:30:13.9801966Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:30:13.9820847Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:30:13.9990406Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:30:13.9993007Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:30:14.0008892Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T07:30:14.0009467Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T07:30:14.0009887Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T07:30:14.0010298Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T07:30:14.0014953Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T07:30:14.0029583Z /home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:14.0036525Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-202a19b1\-389a\-46b1\-b33e\-00a1f8b07952\.config
+2026-11-14T07:30:14.0060884Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T07:30:14.0075128Z /home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:14.0083784Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-202a19b1\-389a\-46b1\-b33e\-00a1f8b07952\.config
+2026-11-14T07:30:14.0103506Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T07:30:14.0118931Z /github/runner_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:14.0124232Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-202a19b1\-389a\-46b1\-b33e\-00a1f8b07952\.config
+2026-11-14T07:30:14.0145080Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T07:30:14.0159941Z /github/runner_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config
+2026-11-14T07:30:14.0165510Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-202a19b1\-389a\-46b1\-b33e\-00a1f8b07952\.config
+2026-11-14T07:30:14.0186854Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:30:14.0354438Z Removing credentials config '/home/runner/work/_temp/git-credentials-202a19b1-389a-46b1-b33e-00a1f8b07952.config'
+2026-11-14T07:30:14.0358248Z ##[endgroup]
+2026-11-14T07:30:14.0500748Z ##[group]Run uname -r
+2026-11-14T07:30:14.0501176Z [36;1muname -r[0m
+2026-11-14T07:30:14.0522688Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:14.0522964Z env:
+2026-11-14T07:30:14.0523251Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:14.0523489Z   BLAZE_TESTS: all
+2026-11-14T07:30:14.0523722Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:14.0524047Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:14.0524339Z ##[endgroup]
+2026-11-14T07:30:14.0590830Z 7.0.0-1016-aws
+2026-11-14T07:30:14.0620493Z ##[group]Run curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+2026-11-14T07:30:14.0621386Z [36;1mcurl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"[0m
+2026-11-14T07:30:14.0635714Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:14.0635993Z env:
+2026-11-14T07:30:14.0636225Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:14.0636518Z   BLAZE_TESTS: all
+2026-11-14T07:30:14.0636746Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:14.0637030Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:14.0637358Z ##[endgroup]
+2026-11-14T07:30:17.8517830Z ##[group]Run sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+2026-11-14T07:30:17.8518383Z [36;1msha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"[0m
+2026-11-14T07:30:17.8538577Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:17.8538856Z env:
+2026-11-14T07:30:17.8539154Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:17.8539403Z   BLAZE_TESTS: all
+2026-11-14T07:30:17.8539654Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:17.8539945Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:17.8540240Z ##[endgroup]
+2026-11-14T07:30:17.9793546Z blaze-v0.20261105.4-x86_64-unknown-linux-gnu.tar.gz: OK
+2026-11-14T07:30:17.9820436Z ##[group]Run tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+2026-11-14T07:30:17.9820848Z [36;1mtar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"[0m
+2026-11-14T07:30:17.9836792Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:17.9837093Z env:
+2026-11-14T07:30:17.9837314Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:17.9837570Z   BLAZE_TESTS: all
+2026-11-14T07:30:17.9837818Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:17.9838095Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:17.9838418Z ##[endgroup]
+2026-11-14T07:30:17.9886522Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:17.9887255Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:17.9887866Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:18.9052772Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:18.9058300Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:18.9059139Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:19.8128156Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T07:30:19.8160984Z ##[group]Run echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+2026-11-14T07:30:19.8161397Z [36;1mecho "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"[0m
+2026-11-14T07:30:19.8178918Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8179186Z env:
+2026-11-14T07:30:19.8179422Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8179675Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8179920Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8180242Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8180537Z ##[endgroup]
+2026-11-14T07:30:19.8238160Z ##[group]Run sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+2026-11-14T07:30:19.8238597Z [36;1msudo prlimit --pid "$PPID" --memlock=unlimited:unlimited[0m
+2026-11-14T07:30:19.8253869Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8254152Z env:
+2026-11-14T07:30:19.8254426Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8254673Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8254945Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8255464Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8255767Z ##[endgroup]
+2026-11-14T07:30:19.8371441Z ##[group]Run truncate -s 12G "$RUNNER_TEMP/blaze.img"
+2026-11-14T07:30:19.8371787Z [36;1mtruncate -s 12G "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T07:30:19.8384439Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8384800Z env:
+2026-11-14T07:30:19.8385022Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8385465Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8385709Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8386015Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8386358Z ##[endgroup]
+2026-11-14T07:30:19.8459766Z ##[group]Run sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+2026-11-14T07:30:19.8460180Z [36;1msudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T07:30:19.8472953Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8473191Z env:
+2026-11-14T07:30:19.8473464Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8473706Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8473982Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8474285Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8474573Z ##[endgroup]
+2026-11-14T07:30:19.8656382Z ##[group]Run sudo mkdir -p /blaze
+2026-11-14T07:30:19.8656704Z [36;1msudo mkdir -p /blaze[0m
+2026-11-14T07:30:19.8669516Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8669762Z env:
+2026-11-14T07:30:19.8669995Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8670290Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8670531Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8670832Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8671126Z ##[endgroup]
+2026-11-14T07:30:19.8774972Z ##[group]Run sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+2026-11-14T07:30:19.8775763Z [36;1msudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze[0m
+2026-11-14T07:30:19.8788276Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:19.8788561Z env:
+2026-11-14T07:30:19.8788773Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:19.8789036Z   BLAZE_TESTS: all
+2026-11-14T07:30:19.8789281Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:19.8789554Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:19.8789846Z ##[endgroup]
+2026-11-14T07:30:20.1431707Z ##[group]Run sudo install -d -m 700 -o runner -g runner /blaze/home
+2026-11-14T07:30:20.1432115Z [36;1msudo install -d -m 700 -o runner -g runner /blaze/home[0m
+2026-11-14T07:30:20.1447820Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:20.1448163Z env:
+2026-11-14T07:30:20.1448390Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:20.1448780Z   BLAZE_TESTS: all
+2026-11-14T07:30:20.1449035Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:20.1449314Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:20.1449640Z ##[endgroup]
+2026-11-14T07:30:20.1599136Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T07:30:20.1599523Z with:
+2026-11-14T07:30:20.1599762Z   path: /blaze/home
+2026-11-14T07:30:20.1600054Z   key: blaze-state-X64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:20.1600387Z   restore-keys: blaze-state-X64-
+2026-11-14T07:30:20.1600654Z   enableCrossOsArchive: false
+2026-11-14T07:30:20.1600924Z   fail-on-cache-miss: false
+2026-11-14T07:30:20.1601177Z   lookup-only: false
+2026-11-14T07:30:20.1601390Z env:
+2026-11-14T07:30:20.1601589Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:20.1601900Z   BLAZE_TESTS: all
+2026-11-14T07:30:20.1602122Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:20.1602408Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:20.1602698Z ##[endgroup]
+2026-11-14T07:30:20.5819546Z Cache not found for input keys: blaze-state-X64-356030f5ef53e61b12077c2ce043c83367399a88, blaze-state-X64-
+2026-11-14T07:30:20.5871763Z ##[group]Run blaze --version
+2026-11-14T07:30:20.5872066Z [36;1mblaze --version[0m
+2026-11-14T07:30:20.5890778Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:20.5891040Z env:
+2026-11-14T07:30:20.5891265Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:20.5891518Z   BLAZE_TESTS: all
+2026-11-14T07:30:20.5891776Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:20.5892081Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:20.5892376Z ##[endgroup]
+2026-11-14T07:30:20.5980597Z blaze 0.20261105.4 (e930296 2026-11-05)
+2026-11-14T07:30:20.5981681Z /home/runner/work/_temp/blaze-v0.20261105.4-x86_64-unknown-linux-gnu/blaze, as /home/runner/work/velnor-lab/velnor-lab/Cargo.toml pins none (`[workspace.metadata.blaze] version`, which `blaze pin` writes)
+2026-11-14T07:30:20.6016119Z ##[group]Run blaze toolchain
+2026-11-14T07:30:20.6016621Z [36;1mblaze toolchain[0m
+2026-11-14T07:30:20.6038253Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:20.6038643Z env:
+2026-11-14T07:30:20.6038965Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:20.6039267Z   BLAZE_TESTS: all
+2026-11-14T07:30:20.6039605Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:20.6039973Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:20.6040375Z ##[endgroup]
+2026-11-14T07:30:20.6134327Z Downloading Rust nightly-2026-10-27 for blaze (153 MB, once)...
+2026-11-14T07:30:25.1731458Z Downloaded Rust nightly-2026-10-27 for blaze in 4.6s.
+2026-11-14T07:30:25.1732109Z blaze-2026-10-27, blaze's toolchain (Rust nightly-2026-10-27), at /home/runner/.blaze/toolchains/nightly-2026-10-27-x86_64-unknown-linux-gnu
+2026-11-14T07:30:25.1801008Z ##[group]Run blaze test --workspace
+2026-11-14T07:30:25.1801382Z [36;1mblaze test --workspace[0m
+2026-11-14T07:30:25.1819501Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:25.1819776Z env:
+2026-11-14T07:30:25.1820077Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:25.1820347Z   BLAZE_TESTS: all
+2026-11-14T07:30:25.1820615Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:25.1820899Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:30:25.1821186Z ##[endgroup]
+2026-11-14T07:30:25.1913654Z blaze: starting the daemon (no socket activation is installed: `blaze daemon install` has the system start it on demand)
+2026-11-14T07:30:25.4527125Z blaze: the daemon it started (pid 2542) started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T07:30:26.5627279Z   Downloaded anstyle v1.0.14
+2026-11-14T07:30:26.5676850Z   Downloaded utf8parse v0.2.2
+2026-11-14T07:30:26.5677602Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T07:30:26.5678568Z   Downloaded windows-link v0.2.1
+2026-11-14T07:30:26.5679185Z   Downloaded windows-sys v0.61.2
+2026-11-14T07:30:26.5679737Z   Downloaded anstyle-query v1.1.5
+2026-11-14T07:30:26.5680380Z   Downloaded once_cell_polyfill v1.70.2
+2026-11-14T07:30:26.5681354Z   Downloaded anstyle-wincon v3.0.11
+2026-11-14T07:30:26.5681997Z   Downloaded colorchoice v1.0.5
+2026-11-14T07:30:26.5682590Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T07:30:26.5683281Z   Downloaded anstream v1.0.0
+2026-11-14T07:30:26.5683739Z   Downloaded clap_lex v1.1.1
+2026-11-14T07:30:26.5684284Z   Downloaded strsim v0.11.1
+2026-11-14T07:30:26.5684860Z   Downloaded clap_builder v4.6.7
+2026-11-14T07:30:26.5686019Z   Downloaded heck v0.5.0
+2026-11-14T07:30:26.5686637Z   Downloaded unicode-ident v1.0.27
+2026-11-14T07:30:26.5687137Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T07:30:26.5687740Z   Downloaded quote v1.0.47
+2026-11-14T07:30:26.5688334Z   Downloaded syn v3.0.10
+2026-11-14T07:30:26.5688897Z   Downloaded clap_derive v4.6.7
+2026-11-14T07:30:26.5689388Z   Downloaded clap v4.6.7
+2026-11-14T07:30:26.5689957Z   Downloaded serde_derive v1.0.229
+2026-11-14T07:30:26.5690540Z   Downloaded serde_core v1.0.229
+2026-11-14T07:30:26.5691131Z   Downloaded serde v1.0.229
+2026-11-14T07:30:26.5691614Z   Downloaded itoa v1.0.19
+2026-11-14T07:30:26.5692192Z   Downloaded memchr v2.8.3
+2026-11-14T07:30:26.5694799Z   Downloaded zmij v1.0.23
+2026-11-14T07:30:26.5696910Z   Downloaded serde_json v1.0.154
+2026-11-14T07:30:26.5697926Z   Downloaded hex v0.4.3
+2026-11-14T07:30:26.5698679Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T07:30:26.5699509Z   Downloaded tokio-macros v2.7.2
+2026-11-14T07:30:26.5700163Z   Downloaded tokio v1.54.1
+2026-11-14T07:30:26.5700703Z   Downloaded fnv v1.0.5
+2026-11-14T07:30:32.6062012Z    Compiling compiler_builtins v0.1.160 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/compiler-builtins/compiler-builtins)
+2026-11-14T07:30:32.6063032Z    Compiling core v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/core)
+2026-11-14T07:30:34.8277323Z    Compiling libc v0.2.191
+2026-11-14T07:30:35.0912451Z    Compiling alloc v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/alloc)
+2026-11-14T07:30:35.3927363Z    Compiling rustc-std-workspace-core v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-core)
+2026-11-14T07:30:36.3526885Z    Compiling rustc-std-workspace-alloc v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-alloc)
+2026-11-14T07:30:37.1266638Z    Compiling object v0.39.1
+2026-11-14T07:30:37.1724881Z    Compiling adler2 v2.0.1
+2026-11-14T07:30:37.1756611Z    Compiling gimli v0.34.0
+2026-11-14T07:30:37.2739479Z    Compiling memchr v2.8.3
+2026-11-14T07:30:37.3428389Z    Compiling unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/unwind)
+2026-11-14T07:30:38.1727823Z    Compiling std v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std)
+2026-11-14T07:30:38.1737105Z    Compiling cfg-if v1.0.4
+2026-11-14T07:30:38.1766492Z    Compiling addr2line v0.27.1
+2026-11-14T07:30:38.1796545Z    Compiling hashbrown v0.17.1
+2026-11-14T07:30:38.1926396Z    Compiling miniz_oxide v0.9.1
+2026-11-14T07:30:38.2416605Z    Compiling panic_abort v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_abort)
+2026-11-14T07:30:38.2466026Z    Compiling rustc-demangle v0.1.28
+2026-11-14T07:30:38.2847047Z    Compiling std_detect v0.1.5 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std_detect)
+2026-11-14T07:30:38.2987830Z    Compiling panic_unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_unwind)
+2026-11-14T07:30:40.1128091Z    Compiling rustc-std-workspace-std v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-std)
+2026-11-14T07:30:40.2348330Z    Compiling wasip1 v1.0.0
+2026-11-14T07:30:40.2662731Z    Compiling test v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/test)
+2026-11-14T07:30:40.2746114Z    Compiling rustc-literal-escaper v0.0.8
+2026-11-14T07:30:40.2791131Z    Compiling getopts v0.2.24
+2026-11-14T07:30:42.5333808Z    Compiling proc_macro v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/proc_macro)
+2026-11-14T07:30:42.6067365Z    Compiling proc-macro2 v1.0.107
+2026-11-14T07:30:42.6867519Z    Compiling unicode-ident v1.0.27
+2026-11-14T07:30:42.7026407Z    Compiling quote v1.0.47
+2026-11-14T07:31:20.1816949Z    Compiling serde_core v1.0.229
+2026-11-14T07:31:20.2706687Z    Compiling zmij v1.0.23
+2026-11-14T07:31:21.2747374Z    Compiling utf8parse v0.2.2
+2026-11-14T07:31:23.0616633Z    Compiling serde v1.0.229
+2026-11-14T07:31:23.6757215Z    Compiling serde_json v1.0.154
+2026-11-14T07:31:23.9035935Z    Compiling anstyle v1.0.14
+2026-11-14T07:31:23.9175152Z    Compiling anstyle-query v1.1.5
+2026-11-14T07:31:23.9197992Z    Compiling colorchoice v1.0.5
+2026-11-14T07:31:23.9225062Z    Compiling is_terminal_polyfill v1.70.2
+2026-11-14T07:31:23.9236710Z    Compiling itoa v1.0.19
+2026-11-14T07:31:25.3802044Z    Compiling anstyle-parse v1.0.0
+2026-11-14T07:31:26.4607294Z    Compiling syn v3.0.10
+2026-11-14T07:31:26.6608921Z    Compiling serde_derive v1.0.229
+2026-11-14T07:31:51.0193908Z    Compiling clap_lex v1.1.1
+2026-11-14T07:31:51.0194622Z    Compiling strsim v0.11.1
+2026-11-14T07:31:52.6596587Z    Compiling anstream v1.0.0
+2026-11-14T07:31:52.6776903Z    Compiling heck v0.5.0
+2026-11-14T07:31:52.7553364Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T07:31:52.7554058Z    Compiling pin-project-lite v0.2.17
+2026-11-14T07:31:52.7583133Z    Compiling clap_builder v4.6.7
+2026-11-14T07:31:52.7620687Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T07:31:52.7627040Z    Compiling clap_derive v4.6.7
+2026-11-14T07:31:52.8528177Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T07:31:52.8536674Z    Compiling hex v0.4.3
+2026-11-14T07:31:52.8608323Z    Compiling tokio-macros v2.7.2
+2026-11-14T07:32:13.3307948Z    Compiling blaze_inproc_rt v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/blaze_inproc_rt)
+2026-11-14T07:32:14.0437461Z    Compiling clap v4.6.7
+2026-11-14T07:32:14.0448116Z    Compiling tokio v1.54.1
+2026-11-14T07:32:14.1674855Z    Compiling fnv v1.0.5
+2026-11-14T07:32:14.1827243Z    Compiling tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T07:32:14.3807576Z    Compiling app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T07:33:39.5683553Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/quote/4e64a9512590a901/out/build_script_build (first link)
+2026-11-14T07:33:39.5687880Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/proc-macro2/3f89419e38ebe4ab/out/build_script_build (first link)
+2026-11-14T07:33:39.5689695Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_core/0b4b494de027718a/out/build_script_build (first link)
+2026-11-14T07:33:39.5693957Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/zmij/cd03ac39daec2073/out/build_script_build (first link)
+2026-11-14T07:33:39.5695914Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde/6ce11bb541fb9f66/out/build_script_build (first link)
+2026-11-14T07:33:39.5697211Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_json/8635ff57306b8b75/out/build_script_build (first link)
+2026-11-14T07:33:39.5717249Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/serde_derive/e888968247be8ff7/out/serde_derive-e888968247be8ff7.wasm (first link)
+2026-11-14T07:33:39.5719102Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/macros/973aa52815b6ef73/out/lab_macros-973aa52815b6ef73.wasm (first link)
+2026-11-14T07:33:39.5720979Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/clap_derive/17d2629b97c9b430/out/clap_derive-17d2629b97c9b430.wasm (first link)
+2026-11-14T07:33:39.5723721Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/tokio-macros/00952409729ef571/out/tokio_macros-00952409729ef571.wasm (first link)
+2026-11-14T07:33:39.5725662Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/ce6920321ca1ff42/out/app (first link)
+2026-11-14T07:33:39.5729142Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/app (first link)
+2026-11-14T07:33:39.5730379Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/9d427dd7126e8bc3/out/lab_macros-9d427dd7126e8bc3 (first link)
+2026-11-14T07:33:39.5731744Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/core/b0b5ff6212b449e7/out/lab_core-b0b5ff6212b449e7 (first link)
+2026-11-14T07:33:39.5733190Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/lib/e1e40085c34c38f2/out/lab_lib-e1e40085c34c38f2 (first link)
+2026-11-14T07:33:39.5734410Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/core/01183223f5a02e7d/out/lab_core-01183223f5a02e7d (first link)
+2026-11-14T07:33:39.5735931Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/1a9f977e943d1ed9/out/lab_macros-1a9f977e943d1ed9 (first link)
+2026-11-14T07:33:39.5737257Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/lib/41aa9dc459613a3d/out/lab_lib-41aa9dc459613a3d (first link)
+2026-11-14T07:33:39.5738554Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/95f615e6762fd5bb/out/app-95f615e6762fd5bb (first link)
+2026-11-14T07:33:39.5741645Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/62eb3ae0a8bebdfe/out/cli-62eb3ae0a8bebdfe (first link)
+2026-11-14T07:33:39.5742744Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/4cd52842db6f9342/out/slow-4cd52842db6f9342 (first link)
+2026-11-14T07:33:39.5743866Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/tool/dbe6e21bbc2ed739/out/tool-dbe6e21bbc2ed739 (first link)
+2026-11-14T07:33:39.6406771Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 3m 14s
+2026-11-14T07:33:39.6407601Z note: this build took 3m 14s: `blaze slow` says what made it slow and what to fix
+2026-11-14T07:33:39.6408878Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/app-95f615e6762fd5bb)
+2026-11-14T07:33:39.7240077Z 
+2026-11-14T07:33:39.7241522Z running 2 tests
+2026-11-14T07:33:39.7330193Z test greet::tests::line_starts_with_the_shared_greeting ... ok
+2026-11-14T07:33:39.7331053Z      Running tests/cli.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/cli-62eb3ae0a8bebdfe)
+2026-11-14T07:33:39.7331812Z test greet::tests::line_names_the_record ... ok
+2026-11-14T07:33:39.7332105Z 
+2026-11-14T07:33:39.7332685Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:33:39.7333134Z 
+2026-11-14T07:33:39.9298809Z 
+2026-11-14T07:33:39.9303489Z running 2 tests
+2026-11-14T07:33:40.1412586Z test defaults_to_world ... ok
+2026-11-14T07:33:40.1413238Z test prints_the_greeting_for_a_name ... ok
+2026-11-14T07:33:40.1413456Z 
+2026-11-14T07:33:40.1413850Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+2026-11-14T07:33:40.1414207Z 
+2026-11-14T07:33:40.1422628Z      Running tests/slow.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/slow-4cd52842db6f9342)
+2026-11-14T07:33:40.2254822Z 
+2026-11-14T07:33:40.2256174Z running 3 tests
+2026-11-14T07:34:00.2267971Z test slow_one ... ok
+2026-11-14T07:34:00.2268493Z test slow_three ... ok
+2026-11-14T07:34:00.2268796Z test slow_two ... ok
+2026-11-14T07:34:00.2269222Z 
+2026-11-14T07:34:00.2269683Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.00s
+2026-11-14T07:34:00.2280669Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_core-01183223f5a02e7d)
+2026-11-14T07:34:00.2284377Z 
+2026-11-14T07:34:00.2925768Z 
+2026-11-14T07:34:00.2926728Z running 3 tests
+2026-11-14T07:34:00.2927252Z test tests::checksum_depends_on_order ... ok
+2026-11-14T07:34:00.2927826Z test tests::invalid_json_gives_none ... ok
+2026-11-14T07:34:00.2928333Z test tests::json_round_trip_keeps_every_field ... ok
+2026-11-14T07:34:00.2928637Z 
+2026-11-14T07:34:00.2928936Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.2929347Z 
+2026-11-14T07:34:00.2933826Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_lib-41aa9dc459613a3d)
+2026-11-14T07:34:00.3436901Z 
+2026-11-14T07:34:00.3438161Z running 3 tests
+2026-11-14T07:34:00.3445579Z test tests::describe_names_the_build_script_value ... ok
+2026-11-14T07:34:00.3446438Z test tests::macro_doubles_at_compile_time ... ok
+2026-11-14T07:34:00.3446988Z test tests::digest_is_hex_of_the_json ... ok
+2026-11-14T07:34:00.3447347Z 
+2026-11-14T07:34:00.3447726Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.3448227Z 
+2026-11-14T07:34:00.3452933Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_macros-1a9f977e943d1ed9)
+2026-11-14T07:34:00.4019714Z 
+2026-11-14T07:34:00.4020663Z running 2 tests
+2026-11-14T07:34:00.4028432Z test tests::doubles_a_literal ... ok
+2026-11-14T07:34:00.4037322Z test tests::rejects_text_and_overflow ... ok
+2026-11-14T07:34:00.4037678Z 
+2026-11-14T07:34:00.4037912Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.4038259Z 
+2026-11-14T07:34:00.4038703Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/tool-dbe6e21bbc2ed739)
+2026-11-14T07:34:00.4639606Z 
+2026-11-14T07:34:00.4640679Z running 3 tests
+2026-11-14T07:34:00.4649093Z test hash::tests::fingerprint_is_sixteen_hex_digits ... ok
+2026-11-14T07:34:00.4653646Z test hash::tests::fingerprint_differs_for_different_input ... ok
+2026-11-14T07:34:00.4663958Z test hash::tests::parse_round_trips_and_rejects_odd_length ... ok
+2026-11-14T07:34:00.4664561Z 
+2026-11-14T07:34:00.4664977Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.4665717Z 
+2026-11-14T07:34:00.4676658Z    Doc-tests lab_core
+2026-11-14T07:34:00.5384190Z 
+2026-11-14T07:34:00.5385471Z running 0 tests
+2026-11-14T07:34:00.5387780Z 
+2026-11-14T07:34:00.5388256Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.5388823Z 
+2026-11-14T07:34:00.5396802Z    Doc-tests lab_lib
+2026-11-14T07:34:00.5587741Z 
+2026-11-14T07:34:00.5588655Z running 0 tests
+2026-11-14T07:34:00.5588927Z 
+2026-11-14T07:34:00.5589423Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.5589791Z 
+2026-11-14T07:34:00.5591956Z    Doc-tests lab_macros
+2026-11-14T07:34:00.5745602Z 
+2026-11-14T07:34:00.5746272Z running 0 tests
+2026-11-14T07:34:00.5746612Z 
+2026-11-14T07:34:00.5751256Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:00.5751639Z 
+2026-11-14T07:34:00.6829969Z ##[group]Run grep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"
+2026-11-14T07:34:00.6830668Z [36;1mgrep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"[0m
+2026-11-14T07:34:00.6910613Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:00.6911009Z env:
+2026-11-14T07:34:00.6911303Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:00.6911657Z   BLAZE_TESTS: all
+2026-11-14T07:34:00.6911955Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:00.6912356Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:00.6912771Z ##[endgroup]
+2026-11-14T07:34:00.7098246Z VmHWM:	13258476 kB
+2026-11-14T07:34:00.7098853Z VmRSS:	 9915784 kB
+2026-11-14T07:34:00.7147257Z ##[group]Run blaze stop
+2026-11-14T07:34:00.7147845Z [36;1mblaze stop[0m
+2026-11-14T07:34:00.7165065Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:00.7165612Z env:
+2026-11-14T07:34:00.7165920Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:00.7166258Z   BLAZE_TESTS: all
+2026-11-14T07:34:00.7166601Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:00.7166982Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:00.7167424Z ##[endgroup]
+2026-11-14T07:34:02.7397860Z ##[group]Run timeout 300 pidwait -f "blaze serve"
+2026-11-14T07:34:02.7398625Z [36;1mtimeout 300 pidwait -f "blaze serve"[0m
+2026-11-14T07:34:02.7420253Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:02.7420684Z env:
+2026-11-14T07:34:02.7420975Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:02.7421310Z   BLAZE_TESTS: all
+2026-11-14T07:34:02.7421652Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:02.7422035Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:02.7422434Z ##[endgroup]
+2026-11-14T07:34:03.7295537Z ##[group]Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T07:34:03.7295966Z with:
+2026-11-14T07:34:03.7296173Z   path: /blaze/home
+2026-11-14T07:34:03.7296511Z   key: blaze-state-X64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:34:03.7296846Z   enableCrossOsArchive: false
+2026-11-14T07:34:03.7297090Z env:
+2026-11-14T07:34:03.7297312Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:03.7297556Z   BLAZE_TESTS: all
+2026-11-14T07:34:03.7297827Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:03.7298100Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:03.7298386Z ##[endgroup]
+2026-11-14T07:34:03.8514621Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --files-from manifest.txt --use-compress-program zstdmt
+2026-11-14T07:34:08.4636085Z /usr/bin/tar: ../../../../../blaze/home/v2/inproc/inproc-2542.sock: socket ignored
+2026-11-14T07:34:13.3764366Z Sent 0 of 510617461 (0.0%), 0.0 MBs/sec
+2026-11-14T07:34:14.3765501Z Sent 0 of 510617461 (0.0%), 0.0 MBs/sec
+2026-11-14T07:34:15.1382532Z Sent 510617461 of 510617461 (100.0%), 176.4 MBs/sec
+2026-11-14T07:34:15.4307903Z Cache saved with key: blaze-state-X64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:34:15.4401583Z ##[group]Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+2026-11-14T07:34:15.4402248Z [36;1mcat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak[0m
+2026-11-14T07:34:15.4427523Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:15.4427820Z env:
+2026-11-14T07:34:15.4428051Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:15.4428316Z   BLAZE_TESTS: all
+2026-11-14T07:34:15.4428553Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:15.4428862Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:15.4429174Z ##[endgroup]
+2026-11-14T07:34:15.4498613Z 15609929728
+2026-11-14T07:34:15.4527561Z ##[group]Run free -b
+2026-11-14T07:34:15.4527829Z [36;1mfree -b[0m
+2026-11-14T07:34:15.4542981Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:15.4543195Z env:
+2026-11-14T07:34:15.4543369Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:15.4543558Z   BLAZE_TESTS: all
+2026-11-14T07:34:15.4543723Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:15.4543949Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:15.4544193Z ##[endgroup]
+2026-11-14T07:34:15.4593208Z                total        used        free      shared  buff/cache   available
+2026-11-14T07:34:15.4593655Z Mem:     16463400960  1738592256  1070120960    51740672 14040190976 14724808704
+2026-11-14T07:34:15.4594052Z Swap:              0           0           0
+2026-11-14T07:34:15.4619301Z ##[group]Run du -sb /blaze/home
+2026-11-14T07:34:15.4619599Z [36;1mdu -sb /blaze/home[0m
+2026-11-14T07:34:15.4635890Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:34:15.4636101Z env:
+2026-11-14T07:34:15.4636270Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:34:15.4636461Z   BLAZE_TESTS: all
+2026-11-14T07:34:15.4636631Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:34:15.4636852Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T07:34:15.4637240Z ##[endgroup]
+2026-11-14T07:34:15.4883671Z 7987746156	/blaze/home
+2026-11-14T07:34:15.4990726Z Post job cleanup.
+2026-11-14T07:34:15.5636579Z [command]/usr/bin/git version
+2026-11-14T07:34:15.5666943Z git version 2.56.1
+2026-11-14T07:34:15.5689415Z Temporarily overriding HOME='/home/runner/work/_temp/27d7da32-c387-4734-98bd-fbae2d388610' before making global git config changes
+2026-11-14T07:34:15.5690352Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:34:15.5692264Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:34:15.5718305Z Removing SSH command configuration
+2026-11-14T07:34:15.5722484Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:34:15.5746568Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:34:15.5934583Z Removing HTTP extra header
+2026-11-14T07:34:15.5935603Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:34:15.5956342Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:34:15.6137102Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:34:15.6141773Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:34:15.6164140Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:34:15.6447282Z Cleaning up orphan processes
+===== job 132376307649 "blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)"
+﻿2026-11-14T07:30:08.5015450Z Current runner version: '2.338.2'
+2026-11-14T07:30:08.5044965Z ##[group]Runner Image Provisioner
+2026-11-14T07:30:08.5045921Z Hosted Compute Agent
+2026-11-14T07:30:08.5046564Z Version: 20261103.629
+2026-11-14T07:30:08.5047290Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T07:30:08.5048139Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T07:30:08.5048862Z Worker ID: {7e875052-cbb2-4230-b700-85832fd4ef2a}
+2026-11-14T07:30:08.5049644Z Region: northcentralus
+2026-11-14T07:30:08.5050522Z Cloud: Azure
+2026-11-14T07:30:08.5051135Z ##[endgroup]
+2026-11-14T07:30:08.5053581Z ##[group]Operating System
+2026-11-14T07:30:08.5054260Z Ubuntu
+2026-11-14T07:30:08.5054793Z 24.04.5
+2026-11-14T07:30:08.5055419Z LTS
+2026-11-14T07:30:08.5055999Z ##[endgroup]
+2026-11-14T07:30:08.5056744Z ##[group]Runner Image
+2026-11-14T07:30:08.5057433Z Image: ubuntu-24.04-arm
+2026-11-14T07:30:08.5058041Z Version: 20261111.182.1
+2026-11-14T07:30:08.5059499Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24-arm64/20261111.182/images/ubuntu/Ubuntu2404-Arm64-Readme.md
+2026-11-14T07:30:08.5061668Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24-arm64%2F20261111.182
+2026-11-14T07:30:08.5062669Z ##[endgroup]
+2026-11-14T07:30:08.5063818Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T07:30:08.5066706Z Contents: read
+2026-11-14T07:30:08.5067327Z Metadata: read
+2026-11-14T07:30:08.5068045Z ##[endgroup]
+2026-11-14T07:30:08.5071453Z Secret source: Actions
+2026-11-14T07:30:08.5072619Z Cache mode: write
+2026-11-14T07:30:08.5073568Z Prepare workflow directory
+2026-11-14T07:30:08.5644935Z Prepare all required actions
+2026-11-14T07:30:08.5693833Z Getting action download info
+2026-11-14T07:30:08.7715598Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T07:30:08.9118782Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-11-14T07:30:09.2385798Z Complete job name: blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)
+2026-11-14T07:30:09.3339589Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T07:30:09.3341303Z with:
+2026-11-14T07:30:09.3342117Z   persist-credentials: false
+2026-11-14T07:30:09.3342825Z   repository: tailrocks/velnor-lab
+2026-11-14T07:30:09.3346441Z   token: ***
+2026-11-14T07:30:09.3346979Z   ssh-strict: true
+2026-11-14T07:30:09.3347575Z   ssh-user: git
+2026-11-14T07:30:09.3348212Z   clean: true
+2026-11-14T07:30:09.3348816Z   sparse-checkout-cone-mode: true
+2026-11-14T07:30:09.3350175Z   fetch-depth: 1
+2026-11-14T07:30:09.3350771Z   fetch-tags: false
+2026-11-14T07:30:09.3351378Z   show-progress: true
+2026-11-14T07:30:09.3352057Z   lfs: false
+2026-11-14T07:30:09.3352618Z   submodules: false
+2026-11-14T07:30:09.3353258Z   set-safe-directory: true
+2026-11-14T07:30:09.3353951Z   allow-unsafe-pr-checkout: false
+2026-11-14T07:30:09.3355122Z env:
+2026-11-14T07:30:09.3355795Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:09.3356472Z   BLAZE_TESTS: all
+2026-11-14T07:30:09.3357253Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:09.3357992Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:09.3358791Z ##[endgroup]
+2026-11-14T07:30:09.4230559Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T07:30:09.4233109Z ##[group]Getting Git version info
+2026-11-14T07:30:09.4234132Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T07:30:09.4235532Z [command]/usr/bin/git version
+2026-11-14T07:30:09.4322135Z git version 2.56.1
+2026-11-14T07:30:09.4345338Z ##[endgroup]
+2026-11-14T07:30:09.4353471Z Temporarily overriding HOME='/home/runner/work/_temp/b1b67e75-1a38-45a0-baff-5968b067ae7d' before making global git config changes
+2026-11-14T07:30:09.4355134Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:30:09.4357797Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:30:09.4391799Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T07:30:09.4398077Z ##[group]Determining repository object format
+2026-11-14T07:30:09.4399400Z ##[endgroup]
+2026-11-14T07:30:09.4400889Z ##[group]Initializing the repository
+2026-11-14T07:30:09.4404215Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:30:09.4485276Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T07:30:09.4486646Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T07:30:09.4487783Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T07:30:09.4488761Z hint: call:
+2026-11-14T07:30:09.4489304Z hint:
+2026-11-14T07:30:09.4490165Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T07:30:09.4491057Z hint:
+2026-11-14T07:30:09.4491758Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T07:30:09.4492937Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T07:30:09.4493807Z hint:
+2026-11-14T07:30:09.4494417Z hint: 	git branch -m <name>
+2026-11-14T07:30:09.4495147Z hint:
+2026-11-14T07:30:09.4495969Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T07:30:09.4501165Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T07:30:09.4508131Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T07:30:09.4553902Z ##[endgroup]
+2026-11-14T07:30:09.4555517Z ##[group]Disabling automatic garbage collection
+2026-11-14T07:30:09.4556554Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T07:30:09.4606629Z ##[endgroup]
+2026-11-14T07:30:09.4607785Z ##[group]Setting up auth
+2026-11-14T07:30:09.4608480Z Removing SSH command configuration
+2026-11-14T07:30:09.4612733Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:30:09.4643561Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:30:09.4947627Z Removing HTTP extra header
+2026-11-14T07:30:09.4951089Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:30:09.4981264Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:30:09.5187380Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:30:09.5195333Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:30:09.5220836Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:30:09.5421063Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T07:30:09.5457118Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:09.5487301Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:09.5516803Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:09.5547478Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:09.5577874Z ##[endgroup]
+2026-11-14T07:30:09.5579121Z ##[group]Fetching the repository
+2026-11-14T07:30:09.5582302Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +356030f5ef53e61b12077c2ce043c83367399a88:refs/remotes/origin/main
+2026-11-14T07:30:09.9810381Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T07:30:09.9811597Z  * [new ref]         356030f5ef53e61b12077c2ce043c83367399a88 -> origin/main
+2026-11-14T07:30:09.9819258Z [command]/usr/bin/git branch --list --remote origin/main
+2026-11-14T07:30:09.9843652Z   origin/main
+2026-11-14T07:30:09.9849907Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-11-14T07:30:09.9873850Z 356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:09.9877106Z ##[endgroup]
+2026-11-14T07:30:09.9878578Z ##[group]Determining the checkout info
+2026-11-14T07:30:09.9880532Z ##[endgroup]
+2026-11-14T07:30:09.9881336Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T07:30:09.9922540Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T07:30:09.9951742Z ##[group]Checking out the ref
+2026-11-14T07:30:09.9954380Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-14T07:30:10.0340676Z Switched to a new branch 'main'
+2026-11-14T07:30:10.0342678Z branch 'main' set up to track 'origin/main'.
+2026-11-14T07:30:10.0354228Z ##[endgroup]
+2026-11-14T07:30:10.0387313Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T07:30:10.0413920Z 356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:10.0427330Z ##[group]Removing auth
+2026-11-14T07:30:10.0428606Z Removing SSH command configuration
+2026-11-14T07:30:10.0430407Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:30:10.0464850Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:30:10.0663327Z Removing HTTP extra header
+2026-11-14T07:30:10.0665670Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:30:10.0697152Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:30:10.0897004Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:30:10.0899374Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:30:10.0924598Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T07:30:10.0927034Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T07:30:10.0929009Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T07:30:10.0930900Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T07:30:10.0934800Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T07:30:10.0957020Z /home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:10.0967095Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-f2f6fca4\-f9c1\-4ed5\-9164\-8e943262ffae\.config
+2026-11-14T07:30:10.1000365Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T07:30:10.1022756Z /home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:10.1031585Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-f2f6fca4\-f9c1\-4ed5\-9164\-8e943262ffae\.config
+2026-11-14T07:30:10.1067743Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T07:30:10.1092228Z /github/runner_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:10.1100269Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-f2f6fca4\-f9c1\-4ed5\-9164\-8e943262ffae\.config
+2026-11-14T07:30:10.1133408Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T07:30:10.1155664Z /github/runner_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config
+2026-11-14T07:30:10.1163005Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-f2f6fca4\-f9c1\-4ed5\-9164\-8e943262ffae\.config
+2026-11-14T07:30:10.1194192Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:30:10.1387941Z Removing credentials config '/home/runner/work/_temp/git-credentials-f2f6fca4-f9c1-4ed5-9164-8e943262ffae.config'
+2026-11-14T07:30:10.1395651Z ##[endgroup]
+2026-11-14T07:30:10.1621003Z ##[group]Run uname -r
+2026-11-14T07:30:10.1622161Z [36;1muname -r[0m
+2026-11-14T07:30:10.1657989Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:10.1658975Z env:
+2026-11-14T07:30:10.1660285Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:10.1661324Z   BLAZE_TESTS: all
+2026-11-14T07:30:10.1662308Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:10.1664220Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:10.1666817Z ##[endgroup]
+2026-11-14T07:30:10.1756053Z 7.0.0-1017-azure
+2026-11-14T07:30:10.1837451Z ##[group]Run curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+2026-11-14T07:30:10.1841304Z [36;1mcurl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"[0m
+2026-11-14T07:30:10.1869240Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:10.1870463Z env:
+2026-11-14T07:30:10.1871373Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:10.1872286Z   BLAZE_TESTS: all
+2026-11-14T07:30:10.1873113Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:10.1874259Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:10.1875361Z ##[endgroup]
+2026-11-14T07:30:10.7107523Z ##[group]Run sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+2026-11-14T07:30:10.7108260Z [36;1msha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"[0m
+2026-11-14T07:30:10.7140899Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:10.7141348Z env:
+2026-11-14T07:30:10.7141683Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:10.7141954Z   BLAZE_TESTS: all
+2026-11-14T07:30:10.7142307Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:10.7142637Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:10.7143060Z ##[endgroup]
+2026-11-14T07:30:10.8658017Z blaze-v0.20261105.4-aarch64-unknown-linux-gnu.tar.gz: OK
+2026-11-14T07:30:10.8709295Z ##[group]Run tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+2026-11-14T07:30:10.8710640Z [36;1mtar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"[0m
+2026-11-14T07:30:10.8742948Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:10.8743342Z env:
+2026-11-14T07:30:10.8743612Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:10.8743976Z   BLAZE_TESTS: all
+2026-11-14T07:30:10.8744288Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:10.8744631Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:10.8745061Z ##[endgroup]
+2026-11-14T07:30:13.5985031Z ##[group]Run echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+2026-11-14T07:30:13.5985602Z [36;1mecho "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"[0m
+2026-11-14T07:30:13.6005871Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.6006271Z env:
+2026-11-14T07:30:13.6006506Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.6007066Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.6007398Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.6007708Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.6008033Z ##[endgroup]
+2026-11-14T07:30:13.6083893Z ##[group]Run sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+2026-11-14T07:30:13.6084551Z [36;1msudo prlimit --pid "$PPID" --memlock=unlimited:unlimited[0m
+2026-11-14T07:30:13.6104046Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.6104441Z env:
+2026-11-14T07:30:13.6104677Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.6104944Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.6105271Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.6105576Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.6105929Z ##[endgroup]
+2026-11-14T07:30:13.6241824Z ##[group]Run truncate -s 12G "$RUNNER_TEMP/blaze.img"
+2026-11-14T07:30:13.6242313Z [36;1mtruncate -s 12G "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T07:30:13.6258710Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.6259032Z env:
+2026-11-14T07:30:13.6259317Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.6259591Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.6259822Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.6260392Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.6260732Z ##[endgroup]
+2026-11-14T07:30:13.6344425Z ##[group]Run sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+2026-11-14T07:30:13.6345088Z [36;1msudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T07:30:13.6362042Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.6362456Z env:
+2026-11-14T07:30:13.6362680Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.6363016Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.6363258Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.6363562Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.6363929Z ##[endgroup]
+2026-11-14T07:30:13.7233957Z ##[group]Run sudo mkdir -p /blaze
+2026-11-14T07:30:13.7234402Z [36;1msudo mkdir -p /blaze[0m
+2026-11-14T07:30:13.7252451Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.7252780Z env:
+2026-11-14T07:30:13.7253119Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.7253390Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.7253691Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.7254013Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.7254347Z ##[endgroup]
+2026-11-14T07:30:13.7384336Z ##[group]Run sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+2026-11-14T07:30:13.7384893Z [36;1msudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze[0m
+2026-11-14T07:30:13.7402133Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.7402437Z env:
+2026-11-14T07:30:13.7402781Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.7403091Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.7403415Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.7403733Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.7404068Z ##[endgroup]
+2026-11-14T07:30:13.9257234Z ##[group]Run sudo install -d -m 700 -o runner -g runner /blaze/home
+2026-11-14T07:30:13.9257829Z [36;1msudo install -d -m 700 -o runner -g runner /blaze/home[0m
+2026-11-14T07:30:13.9277452Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:13.9277711Z env:
+2026-11-14T07:30:13.9278047Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.9278307Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.9278562Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.9278911Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.9279251Z ##[endgroup]
+2026-11-14T07:30:13.9450190Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T07:30:13.9450820Z with:
+2026-11-14T07:30:13.9451167Z   path: /blaze/home
+2026-11-14T07:30:13.9451491Z   key: blaze-state-ARM64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:30:13.9451866Z   restore-keys: blaze-state-ARM64-
+2026-11-14T07:30:13.9452198Z   enableCrossOsArchive: false
+2026-11-14T07:30:13.9452497Z   fail-on-cache-miss: false
+2026-11-14T07:30:13.9452820Z   lookup-only: false
+2026-11-14T07:30:13.9453294Z env:
+2026-11-14T07:30:13.9453496Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:13.9453826Z   BLAZE_TESTS: all
+2026-11-14T07:30:13.9454048Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:13.9454744Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:13.9455104Z ##[endgroup]
+2026-11-14T07:30:14.1374537Z Cache not found for input keys: blaze-state-ARM64-356030f5ef53e61b12077c2ce043c83367399a88, blaze-state-ARM64-
+2026-11-14T07:30:14.1455224Z ##[group]Run blaze --version
+2026-11-14T07:30:14.1455620Z [36;1mblaze --version[0m
+2026-11-14T07:30:14.1475749Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:14.1476136Z env:
+2026-11-14T07:30:14.1476357Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:14.1476606Z   BLAZE_TESTS: all
+2026-11-14T07:30:14.1476925Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:14.1477250Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:14.1477620Z ##[endgroup]
+2026-11-14T07:30:14.1565114Z blaze 0.20261105.4 (e930296 2026-11-05)
+2026-11-14T07:30:14.1566222Z /home/runner/work/_temp/blaze-v0.20261105.4-aarch64-unknown-linux-gnu/blaze, as /home/runner/work/velnor-lab/velnor-lab/Cargo.toml pins none (`[workspace.metadata.blaze] version`, which `blaze pin` writes)
+2026-11-14T07:30:14.1602150Z ##[group]Run blaze toolchain
+2026-11-14T07:30:14.1602574Z [36;1mblaze toolchain[0m
+2026-11-14T07:30:14.1619269Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:14.1619541Z env:
+2026-11-14T07:30:14.1619831Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:14.1620425Z   BLAZE_TESTS: all
+2026-11-14T07:30:14.1620688Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:14.1621054Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:14.1621380Z ##[endgroup]
+2026-11-14T07:30:14.1713133Z Downloading Rust nightly-2026-10-27 for blaze (138 MB, once)...
+2026-11-14T07:30:18.4472979Z Downloaded Rust nightly-2026-10-27 for blaze in 4.3s.
+2026-11-14T07:30:18.4473769Z blaze-2026-10-27, blaze's toolchain (Rust nightly-2026-10-27), at /home/runner/.blaze/toolchains/nightly-2026-10-27-aarch64-unknown-linux-gnu
+2026-11-14T07:30:18.4548123Z ##[group]Run blaze test --workspace
+2026-11-14T07:30:18.4548658Z [36;1mblaze test --workspace[0m
+2026-11-14T07:30:18.4568515Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:30:18.4568915Z env:
+2026-11-14T07:30:18.4569133Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:30:18.4569449Z   BLAZE_TESTS: all
+2026-11-14T07:30:18.4569718Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:30:18.4570484Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:30:18.4570909Z ##[endgroup]
+2026-11-14T07:30:18.4786272Z blaze: starting the daemon (no socket activation is installed: `blaze daemon install` has the system start it on demand)
+2026-11-14T07:30:19.0583464Z blaze: the daemon it started (pid 2426) started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T07:30:20.2065017Z   Downloaded anstyle v1.0.14
+2026-11-14T07:30:20.2065708Z   Downloaded utf8parse v0.2.2
+2026-11-14T07:30:20.2066079Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T07:30:20.2066515Z   Downloaded windows-link v0.2.1
+2026-11-14T07:30:20.2066879Z   Downloaded windows-sys v0.61.2
+2026-11-14T07:30:20.2067226Z   Downloaded anstyle-query v1.1.5
+2026-11-14T07:30:20.2067529Z   Downloaded once_cell_polyfill v1.70.2
+2026-11-14T07:30:20.2067869Z   Downloaded anstyle-wincon v3.0.11
+2026-11-14T07:30:20.2068203Z   Downloaded colorchoice v1.0.5
+2026-11-14T07:30:20.2068810Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T07:30:20.2072132Z   Downloaded anstream v1.0.0
+2026-11-14T07:30:20.2072408Z   Downloaded clap_lex v1.1.1
+2026-11-14T07:30:20.2072628Z   Downloaded strsim v0.11.1
+2026-11-14T07:30:20.2072841Z   Downloaded clap_builder v4.6.7
+2026-11-14T07:30:20.2073060Z   Downloaded heck v0.5.0
+2026-11-14T07:30:20.2073267Z   Downloaded unicode-ident v1.0.27
+2026-11-14T07:30:20.2073502Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T07:30:20.2073725Z   Downloaded quote v1.0.47
+2026-11-14T07:30:20.2073931Z   Downloaded syn v3.0.10
+2026-11-14T07:30:20.2074661Z   Downloaded clap_derive v4.6.7
+2026-11-14T07:30:20.2074900Z   Downloaded clap v4.6.7
+2026-11-14T07:30:20.2075106Z   Downloaded serde_derive v1.0.229
+2026-11-14T07:30:20.2075334Z   Downloaded serde_core v1.0.229
+2026-11-14T07:30:20.2075552Z   Downloaded serde v1.0.229
+2026-11-14T07:30:20.2075755Z   Downloaded itoa v1.0.19
+2026-11-14T07:30:20.2075954Z   Downloaded memchr v2.8.3
+2026-11-14T07:30:20.2076155Z   Downloaded zmij v1.0.23
+2026-11-14T07:30:20.2076359Z   Downloaded serde_json v1.0.154
+2026-11-14T07:30:20.2076574Z   Downloaded hex v0.4.3
+2026-11-14T07:30:20.2076784Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T07:30:20.2077030Z   Downloaded tokio-macros v2.7.2
+2026-11-14T07:30:20.2077250Z   Downloaded tokio v1.54.1
+2026-11-14T07:30:20.2077452Z   Downloaded fnv v1.0.5
+2026-11-14T07:30:28.0181488Z    Compiling compiler_builtins v0.1.160 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/compiler-builtins/compiler-builtins)
+2026-11-14T07:30:28.0182278Z    Compiling core v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/core)
+2026-11-14T07:30:30.8495750Z    Compiling libc v0.2.191
+2026-11-14T07:30:31.2944210Z    Compiling alloc v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/alloc)
+2026-11-14T07:30:31.7051703Z    Compiling rustc-std-workspace-core v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-core)
+2026-11-14T07:30:32.8138805Z    Compiling rustc-std-workspace-alloc v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-alloc)
+2026-11-14T07:30:33.6363914Z    Compiling object v0.39.1
+2026-11-14T07:30:33.6881505Z    Compiling adler2 v2.0.1
+2026-11-14T07:30:33.6933791Z    Compiling gimli v0.34.0
+2026-11-14T07:30:33.8177086Z    Compiling memchr v2.8.3
+2026-11-14T07:30:33.9021014Z    Compiling unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/unwind)
+2026-11-14T07:30:34.8221344Z    Compiling std v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std)
+2026-11-14T07:30:34.8222057Z    Compiling cfg-if v1.0.4
+2026-11-14T07:30:34.8223291Z    Compiling addr2line v0.27.1
+2026-11-14T07:30:34.8243931Z    Compiling hashbrown v0.17.1
+2026-11-14T07:30:34.8431247Z    Compiling miniz_oxide v0.9.1
+2026-11-14T07:30:34.8961683Z    Compiling panic_abort v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_abort)
+2026-11-14T07:30:34.9091151Z    Compiling rustc-demangle v0.1.28
+2026-11-14T07:30:34.9625282Z    Compiling std_detect v0.1.5 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std_detect)
+2026-11-14T07:30:34.9791256Z    Compiling panic_unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_unwind)
+2026-11-14T07:30:37.0352351Z    Compiling rustc-std-workspace-std v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-std)
+2026-11-14T07:30:37.1921548Z    Compiling wasip1 v1.0.0
+2026-11-14T07:30:37.2281539Z    Compiling test v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/test)
+2026-11-14T07:30:37.2350808Z    Compiling rustc-literal-escaper v0.0.8
+2026-11-14T07:30:37.2441037Z    Compiling getopts v0.2.24
+2026-11-14T07:30:39.5841214Z    Compiling proc_macro v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/proc_macro)
+2026-11-14T07:30:39.6982238Z    Compiling proc-macro2 v1.0.107
+2026-11-14T07:30:39.7693354Z    Compiling unicode-ident v1.0.27
+2026-11-14T07:30:39.7830695Z    Compiling quote v1.0.47
+2026-11-14T07:31:28.9333155Z    Compiling serde_core v1.0.229
+2026-11-14T07:31:29.0211789Z    Compiling zmij v1.0.23
+2026-11-14T07:31:29.9909451Z    Compiling utf8parse v0.2.2
+2026-11-14T07:31:32.5901249Z    Compiling serde v1.0.229
+2026-11-14T07:31:33.2660866Z    Compiling serde_json v1.0.154
+2026-11-14T07:31:33.7190526Z    Compiling anstyle v1.0.14
+2026-11-14T07:31:33.7292055Z    Compiling anstyle-query v1.1.5
+2026-11-14T07:31:33.7300493Z    Compiling colorchoice v1.0.5
+2026-11-14T07:31:33.7320476Z    Compiling is_terminal_polyfill v1.70.2
+2026-11-14T07:31:33.7333664Z    Compiling itoa v1.0.19
+2026-11-14T07:31:36.2750987Z    Compiling anstyle-parse v1.0.0
+2026-11-14T07:31:36.3472225Z    Compiling syn v3.0.10
+2026-11-14T07:31:36.6222797Z    Compiling serde_derive v1.0.229
+2026-11-14T07:32:09.8089420Z    Compiling clap_lex v1.1.1
+2026-11-14T07:32:11.6281741Z    Compiling strsim v0.11.1
+2026-11-14T07:32:11.6293815Z    Compiling anstream v1.0.0
+2026-11-14T07:32:11.6480811Z    Compiling heck v0.5.0
+2026-11-14T07:32:11.7341373Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T07:32:11.7471035Z    Compiling pin-project-lite v0.2.17
+2026-11-14T07:32:11.7500630Z    Compiling clap_builder v4.6.7
+2026-11-14T07:32:11.7501425Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T07:32:11.7501819Z    Compiling clap_derive v4.6.7
+2026-11-14T07:32:12.0081364Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T07:32:12.0081777Z    Compiling hex v0.4.3
+2026-11-14T07:32:12.0191044Z    Compiling tokio-macros v2.7.2
+2026-11-14T07:32:39.0571268Z    Compiling blaze_inproc_rt v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/blaze_inproc_rt)
+2026-11-14T07:32:39.0732556Z    Compiling clap v4.6.7
+2026-11-14T07:32:39.0760644Z    Compiling tokio v1.54.1
+2026-11-14T07:32:39.2530873Z    Compiling fnv v1.0.5
+2026-11-14T07:32:39.2746753Z    Compiling tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T07:32:39.5260843Z    Compiling app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T07:34:34.8286828Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/proc-macro2/8b539ca5e06f8f10/out/build_script_build (first link)
+2026-11-14T07:34:34.8330554Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/quote/a538a6846c6d3ea1/out/build_script_build (first link)
+2026-11-14T07:34:34.8334345Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_core/d1b8482918e65031/out/build_script_build (first link)
+2026-11-14T07:34:34.8397034Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/zmij/b7607f2a7fe81b1c/out/build_script_build (first link)
+2026-11-14T07:34:34.8400225Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde/b149911507abf07c/out/build_script_build (first link)
+2026-11-14T07:34:34.8401481Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_json/34d46c9f7d8fd381/out/build_script_build (first link)
+2026-11-14T07:34:34.8409264Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/serde_derive/49b9fe39e206d7ed/out/serde_derive-49b9fe39e206d7ed.wasm (first link)
+2026-11-14T07:34:34.8417446Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/macros/973aa52815b6ef73/out/lab_macros-973aa52815b6ef73.wasm (first link)
+2026-11-14T07:34:34.8420345Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/clap_derive/25ad183d98f9fa60/out/clap_derive-25ad183d98f9fa60.wasm (first link)
+2026-11-14T07:34:34.8426506Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/tokio-macros/f746c503964f451c/out/tokio_macros-f746c503964f451c.wasm (first link)
+2026-11-14T07:34:34.8427539Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/adb032dfb907e1d7/out/app (first link)
+2026-11-14T07:34:34.8428221Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/app (first link)
+2026-11-14T07:34:34.8428996Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/3c9f670e84df174b/out/lab_macros-3c9f670e84df174b (first link)
+2026-11-14T07:34:34.8430027Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/lib/f08d29c8f4b6e774/out/lab_lib-f08d29c8f4b6e774 (first link)
+2026-11-14T07:34:34.8430984Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/core/b06b9505002ad87c/out/lab_core-b06b9505002ad87c (first link)
+2026-11-14T07:34:34.8437952Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/core/131d949bd192ea20/out/lab_core-131d949bd192ea20 (first link)
+2026-11-14T07:34:34.8438906Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/59265c3c706cd25d/out/lab_macros-59265c3c706cd25d (first link)
+2026-11-14T07:34:34.8439851Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/lib/bd232f9131d7c88e/out/lab_lib-bd232f9131d7c88e (first link)
+2026-11-14T07:34:34.8456157Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/b33e85d4659d3253/out/app-b33e85d4659d3253 (first link)
+2026-11-14T07:34:34.8459436Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/ceb95afbef474fee/out/cli-ceb95afbef474fee (first link)
+2026-11-14T07:34:34.8460603Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/app/ae74c922745d36bc/out/slow-ae74c922745d36bc (first link)
+2026-11-14T07:34:34.8466519Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/tool/c8571fbfd99ff868/out/tool-c8571fbfd99ff868 (first link)
+2026-11-14T07:34:34.9655992Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 4m 16s
+2026-11-14T07:34:34.9673964Z note: this build took 4m 16s: `blaze slow` says what made it slow and what to fix
+2026-11-14T07:34:34.9822844Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/app-b33e85d4659d3253)
+2026-11-14T07:34:36.0128861Z      Running tests/cli.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/cli-ceb95afbef474fee)
+2026-11-14T07:34:36.0133198Z 
+2026-11-14T07:34:36.0137367Z running 2 tests
+2026-11-14T07:34:36.0524338Z test greet::tests::line_names_the_record ... ok
+2026-11-14T07:34:36.0528474Z test greet::tests::line_starts_with_the_shared_greeting ... ok
+2026-11-14T07:34:36.0530371Z 
+2026-11-14T07:34:36.0534513Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:36.0534952Z 
+2026-11-14T07:34:36.0534988Z 
+2026-11-14T07:34:36.0536748Z running 2 tests
+2026-11-14T07:34:36.4362855Z test defaults_to_world ... ok
+2026-11-14T07:34:36.4365664Z test prints_the_greeting_for_a_name ... ok
+2026-11-14T07:34:36.4367801Z 
+2026-11-14T07:34:36.4368297Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s
+2026-11-14T07:34:36.4368666Z 
+2026-11-14T07:34:36.4371266Z      Running tests/slow.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/slow-ae74c922745d36bc)
+2026-11-14T07:34:36.4792445Z 
+2026-11-14T07:34:36.4807543Z running 3 tests
+2026-11-14T07:34:56.4827703Z test slow_three ... ok
+2026-11-14T07:34:56.4830580Z test slow_one ... ok
+2026-11-14T07:34:56.4832548Z test slow_two ... ok
+2026-11-14T07:34:56.4832725Z 
+2026-11-14T07:34:56.4834368Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.00s
+2026-11-14T07:34:56.4834754Z 
+2026-11-14T07:34:56.4836814Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_core-131d949bd192ea20)
+2026-11-14T07:34:56.5272367Z 
+2026-11-14T07:34:56.5273043Z running 3 tests
+2026-11-14T07:34:56.5284527Z test tests::checksum_depends_on_order ... ok
+2026-11-14T07:34:56.5290891Z test tests::invalid_json_gives_none ... ok
+2026-11-14T07:34:56.5294106Z test tests::json_round_trip_keeps_every_field ... ok
+2026-11-14T07:34:56.5294332Z 
+2026-11-14T07:34:56.5294584Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.5294908Z 
+2026-11-14T07:34:56.5300692Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_lib-bd232f9131d7c88e)
+2026-11-14T07:34:56.5744283Z 
+2026-11-14T07:34:56.5747273Z running 3 tests
+2026-11-14T07:34:56.5762927Z test tests::describe_names_the_build_script_value ... ok
+2026-11-14T07:34:56.5797434Z      Running unittests src/lib.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/lab_macros-59265c3c706cd25d)
+2026-11-14T07:34:56.5800952Z test tests::macro_doubles_at_compile_time ... ok
+2026-11-14T07:34:56.5802784Z test tests::digest_is_hex_of_the_json ... ok
+2026-11-14T07:34:56.5804547Z 
+2026-11-14T07:34:56.5804827Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.5805199Z 
+2026-11-14T07:34:56.6214742Z 
+2026-11-14T07:34:56.6220770Z running 2 tests
+2026-11-14T07:34:56.6225985Z test tests::rejects_text_and_overflow ... ok
+2026-11-14T07:34:56.6228584Z test tests::doubles_a_literal ... ok
+2026-11-14T07:34:56.6240169Z 
+2026-11-14T07:34:56.6240564Z test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.6240922Z 
+2026-11-14T07:34:56.6256709Z      Running unittests src/main.rs (/blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/deps/tool-c8571fbfd99ff868)
+2026-11-14T07:34:56.6708516Z 
+2026-11-14T07:34:56.6709396Z running 3 tests
+2026-11-14T07:34:56.6730931Z test hash::tests::fingerprint_is_sixteen_hex_digits ... ok
+2026-11-14T07:34:56.6733943Z test hash::tests::parse_round_trips_and_rejects_odd_length ... ok
+2026-11-14T07:34:56.6740790Z test hash::tests::fingerprint_differs_for_different_input ... ok
+2026-11-14T07:34:56.6741114Z 
+2026-11-14T07:34:56.6745321Z test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.6745862Z 
+2026-11-14T07:34:56.6747438Z    Doc-tests lab_core
+2026-11-14T07:34:56.8117678Z 
+2026-11-14T07:34:56.8118753Z running 0 tests
+2026-11-14T07:34:56.8124134Z    Doc-tests lab_lib
+2026-11-14T07:34:56.8143964Z 
+2026-11-14T07:34:56.8144329Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.8146314Z 
+2026-11-14T07:34:56.8831701Z 
+2026-11-14T07:34:56.8836001Z running 0 tests
+2026-11-14T07:34:56.8836284Z 
+2026-11-14T07:34:56.8838612Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.8839027Z 
+2026-11-14T07:34:56.8841498Z    Doc-tests lab_macros
+2026-11-14T07:34:56.9393823Z 
+2026-11-14T07:34:56.9396609Z running 0 tests
+2026-11-14T07:34:56.9396827Z 
+2026-11-14T07:34:56.9398604Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T07:34:56.9399151Z 
+2026-11-14T07:35:00.0542510Z ##[group]Run grep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"
+2026-11-14T07:35:00.0545707Z [36;1mgrep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"[0m
+2026-11-14T07:35:00.0614354Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:00.0616845Z env:
+2026-11-14T07:35:00.0617019Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:00.0617229Z   BLAZE_TESTS: all
+2026-11-14T07:35:00.0617405Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:00.0617680Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:00.0617966Z ##[endgroup]
+2026-11-14T07:35:00.0897719Z VmHWM:	13417592 kB
+2026-11-14T07:35:00.0902725Z VmRSS:	 9489956 kB
+2026-11-14T07:35:00.0959291Z ##[group]Run blaze stop
+2026-11-14T07:35:00.0959600Z [36;1mblaze stop[0m
+2026-11-14T07:35:00.0977045Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:00.0977258Z env:
+2026-11-14T07:35:00.0977422Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:00.0977630Z   BLAZE_TESTS: all
+2026-11-14T07:35:00.0977808Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:00.0978062Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:00.0978343Z ##[endgroup]
+2026-11-14T07:35:01.2313295Z ##[group]Run timeout 300 pidwait -f "blaze serve"
+2026-11-14T07:35:01.2315972Z [36;1mtimeout 300 pidwait -f "blaze serve"[0m
+2026-11-14T07:35:01.2575127Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:01.2752887Z env:
+2026-11-14T07:35:01.2852246Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:01.3020475Z   BLAZE_TESTS: all
+2026-11-14T07:35:01.3050129Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:01.3089838Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:01.3109708Z ##[endgroup]
+2026-11-14T07:35:03.5830734Z ##[group]Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-11-14T07:35:03.5832752Z with:
+2026-11-14T07:35:03.5834429Z   path: /blaze/home
+2026-11-14T07:35:03.5834798Z   key: blaze-state-ARM64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:35:03.5835167Z   enableCrossOsArchive: false
+2026-11-14T07:35:03.5835370Z env:
+2026-11-14T07:35:03.5835526Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:03.5835729Z   BLAZE_TESTS: all
+2026-11-14T07:35:03.5835902Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:03.5836151Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:03.5836423Z ##[endgroup]
+2026-11-14T07:35:03.7919886Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --files-from manifest.txt --use-compress-program zstdmt
+2026-11-14T07:35:11.4871219Z /usr/bin/tar: ../../../../../blaze/home/v2/inproc/inproc-2426.sock: socket ignored
+2026-11-14T07:35:18.0408119Z Sent 0 of 506813047 (0.0%), 0.0 MBs/sec
+2026-11-14T07:35:19.0405176Z Sent 439704183 of 506813047 (86.8%), 209.7 MBs/sec
+2026-11-14T07:35:19.1539609Z Sent 506813047 of 506813047 (100.0%), 228.6 MBs/sec
+2026-11-14T07:35:19.3397175Z Cache saved with key: blaze-state-ARM64-356030f5ef53e61b12077c2ce043c83367399a88
+2026-11-14T07:35:19.4049542Z ##[group]Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+2026-11-14T07:35:19.4054178Z [36;1mcat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak[0m
+2026-11-14T07:35:19.4121147Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:19.4121504Z env:
+2026-11-14T07:35:19.4123000Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:19.4125085Z   BLAZE_TESTS: all
+2026-11-14T07:35:19.4127381Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:19.4129311Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:19.4131050Z ##[endgroup]
+2026-11-14T07:35:19.4276981Z 15858503680
+2026-11-14T07:35:19.4436706Z ##[group]Run free -b
+2026-11-14T07:35:19.4438892Z [36;1mfree -b[0m
+2026-11-14T07:35:19.4468584Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:19.4470310Z env:
+2026-11-14T07:35:19.4471458Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:19.4471760Z   BLAZE_TESTS: all
+2026-11-14T07:35:19.4472988Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:19.4474763Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:19.4476800Z ##[endgroup]
+2026-11-14T07:35:19.4588681Z                total        used        free      shared  buff/cache   available
+2026-11-14T07:35:19.4589296Z Mem:     16715960320   802922496  2203766784    32489472 14010380288 15913037824
+2026-11-14T07:35:19.4593666Z Swap:     3221221376   182521856  3038699520
+2026-11-14T07:35:19.4722335Z ##[group]Run du -sb /blaze/home
+2026-11-14T07:35:19.4724673Z [36;1mdu -sb /blaze/home[0m
+2026-11-14T07:35:19.4751943Z shell: /usr/bin/bash -e {0}
+2026-11-14T07:35:19.4758889Z env:
+2026-11-14T07:35:19.4762424Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T07:35:19.4764339Z   BLAZE_TESTS: all
+2026-11-14T07:35:19.4767444Z   BLAZE_HOME: /blaze/home
+2026-11-14T07:35:19.4770677Z   ARCHIVE: blaze-v0.20261105.4-aarch64-unknown-linux-gnu
+2026-11-14T07:35:19.4774069Z ##[endgroup]
+2026-11-14T07:35:19.5023668Z 8242759920	/blaze/home
+2026-11-14T07:35:19.5640204Z Post job cleanup.
+2026-11-14T07:35:19.6436541Z [command]/usr/bin/git version
+2026-11-14T07:35:19.6540865Z git version 2.56.1
+2026-11-14T07:35:19.6578344Z Temporarily overriding HOME='/home/runner/work/_temp/5efe2fdf-e90d-4144-88eb-facee9f11d50' before making global git config changes
+2026-11-14T07:35:19.6599028Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T07:35:19.6608834Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T07:35:19.6642239Z Removing SSH command configuration
+2026-11-14T07:35:19.6647652Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T07:35:19.6672008Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T07:35:19.6992744Z Removing HTTP extra header
+2026-11-14T07:35:19.6996968Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T07:35:19.7036932Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T07:35:19.7259024Z Removing includeIf entries pointing to credentials config files
+2026-11-14T07:35:19.7261337Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T07:35:19.7307955Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T07:35:19.8166215Z Cleaning up orphan processes

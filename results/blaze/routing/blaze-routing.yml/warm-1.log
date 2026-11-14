@@ -1,0 +1,1530 @@
+===== job 132264521693 "ci"
+﻿2026-11-14T00:41:18.5136157Z Current runner version: '2.338.2'
+2026-11-14T00:41:18.5152354Z ##[group]Runner Image Provisioner
+2026-11-14T00:41:18.5152973Z Hosted Compute Agent
+2026-11-14T00:41:18.5153470Z Version: 20261103.629
+2026-11-14T00:41:18.5153928Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T00:41:18.5154663Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T00:41:18.5155225Z Worker ID: {396694e8-ba1c-45a0-ac5b-1f40fda57628}
+2026-11-14T00:41:18.5155719Z Region: us-west-2
+2026-11-14T00:41:18.5156107Z Cloud: AWS
+2026-11-14T00:41:18.5156494Z ##[endgroup]
+2026-11-14T00:41:18.5157440Z ##[group]Operating System
+2026-11-14T00:41:18.5157891Z Ubuntu
+2026-11-14T00:41:18.5158261Z 26.04.1
+2026-11-14T00:41:18.5158643Z LTS
+2026-11-14T00:41:18.5159028Z ##[endgroup]
+2026-11-14T00:41:18.5159411Z ##[group]Runner Image
+2026-11-14T00:41:18.5159824Z Image: ubuntu-26.04
+2026-11-14T00:41:18.5160227Z Version: 20261111.82.6
+2026-11-14T00:41:18.5161144Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261111.82/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-14T00:41:18.5162210Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261111.82
+2026-11-14T00:41:18.5162879Z ##[endgroup]
+2026-11-14T00:41:18.5163687Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T00:41:18.5165633Z Contents: read
+2026-11-14T00:41:18.5166098Z Metadata: read
+2026-11-14T00:41:18.5166479Z ##[endgroup]
+2026-11-14T00:41:18.5167945Z Secret source: Actions
+2026-11-14T00:41:18.5168613Z Cache mode: write
+2026-11-14T00:41:18.5169212Z Prepare workflow directory
+2026-11-14T00:41:18.5427691Z Prepare all required actions
+2026-11-14T00:41:18.5462959Z Getting action download info
+2026-11-14T00:41:18.9110827Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-11-14T00:41:20.5056771Z Download action repository 'jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785' (SHA:d5574b52816a478f9d4e6529a3f6ff17a8a36785)
+2026-11-14T00:41:20.8856533Z Download action repository 'jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de' (SHA:88acf2bb50552c7c508cbac13e5f8c576b95b1de)
+2026-11-14T00:41:21.2785507Z Complete job name: ci
+2026-11-14T00:41:21.3439611Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-11-14T00:41:21.3440313Z with:
+2026-11-14T00:41:21.3440647Z   persist-credentials: false
+2026-11-14T00:41:21.3440972Z   repository: tailrocks/velnor-lab
+2026-11-14T00:41:21.3443412Z   token: ***
+2026-11-14T00:41:21.3443704Z   ssh-strict: true
+2026-11-14T00:41:21.3443973Z   ssh-user: git
+2026-11-14T00:41:21.3444214Z   clean: true
+2026-11-14T00:41:21.3444739Z   sparse-checkout-cone-mode: true
+2026-11-14T00:41:21.3445056Z   fetch-depth: 1
+2026-11-14T00:41:21.3445329Z   fetch-tags: false
+2026-11-14T00:41:21.3445613Z   show-progress: true
+2026-11-14T00:41:21.3445888Z   lfs: false
+2026-11-14T00:41:21.3446198Z   submodules: false
+2026-11-14T00:41:21.3446519Z   set-safe-directory: true
+2026-11-14T00:41:21.3446831Z   allow-unsafe-pr-checkout: false
+2026-11-14T00:41:21.3447634Z env:
+2026-11-14T00:41:21.3447942Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:21.3448348Z   MBX_BLAZE: 1
+2026-11-14T00:41:21.3448792Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:21.3449211Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:21.3449590Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:21.3449987Z ##[endgroup]
+2026-11-14T00:41:23.7614627Z Syncing repository: tailrocks/velnor-lab
+2026-11-14T00:41:23.7616363Z ##[group]Getting Git version info
+2026-11-14T00:41:23.7616828Z Working directory is '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T00:41:23.7617524Z [command]/usr/bin/git version
+2026-11-14T00:41:23.7617889Z git version 2.56.1
+2026-11-14T00:41:23.7618966Z ##[endgroup]
+2026-11-14T00:41:23.7622661Z Temporarily overriding HOME='/home/runner/work/_temp/bb3874a1-031f-40d1-a7a3-6a7b56f7c960' before making global git config changes
+2026-11-14T00:41:23.7623387Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T00:41:23.7624119Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:23.8012203Z Deleting the contents of '/home/runner/work/velnor-lab/velnor-lab'
+2026-11-14T00:41:23.8023632Z ##[group]Determining repository object format
+2026-11-14T00:41:23.8025396Z ##[endgroup]
+2026-11-14T00:41:23.8026188Z ##[group]Initializing the repository
+2026-11-14T00:41:23.8026883Z [command]/usr/bin/git init /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:23.8764826Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-14T00:41:23.8765537Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-14T00:41:23.8766100Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-14T00:41:23.8766505Z hint: call:
+2026-11-14T00:41:23.8766768Z hint:
+2026-11-14T00:41:23.8767154Z hint: 	git config --global init.defaultBranch <name>
+2026-11-14T00:41:23.8767496Z hint:
+2026-11-14T00:41:23.8767817Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-14T00:41:23.8768305Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-14T00:41:23.8768671Z hint:
+2026-11-14T00:41:23.8768929Z hint: 	git branch -m <name>
+2026-11-14T00:41:23.8769207Z hint:
+2026-11-14T00:41:23.8769567Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-14T00:41:23.8787566Z Initialized empty Git repository in /home/runner/work/velnor-lab/velnor-lab/.git/
+2026-11-14T00:41:23.8794966Z [command]/usr/bin/git remote add origin https://github.com/tailrocks/velnor-lab
+2026-11-14T00:41:23.8847958Z ##[endgroup]
+2026-11-14T00:41:23.8848434Z ##[group]Disabling automatic garbage collection
+2026-11-14T00:41:23.8849745Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-14T00:41:23.8871110Z ##[endgroup]
+2026-11-14T00:41:23.8871587Z ##[group]Setting up auth
+2026-11-14T00:41:23.8874515Z Removing SSH command configuration
+2026-11-14T00:41:23.8875344Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T00:41:23.8896453Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T00:41:24.0058102Z Removing HTTP extra header
+2026-11-14T00:41:24.0061663Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T00:41:24.0088369Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T00:41:24.0256618Z Removing includeIf entries pointing to credentials config files
+2026-11-14T00:41:24.0258032Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T00:41:24.0278880Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T00:41:24.0446045Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-14T00:41:24.0472374Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path /home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.0493478Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.0519659Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.0541060Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.0559552Z ##[endgroup]
+2026-11-14T00:41:24.0560095Z ##[group]Fetching the repository
+2026-11-14T00:41:24.0564263Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3ad9e06d2504e4ade947427f0a419d7d6a8650f2:refs/remotes/pull/226/merge
+2026-11-14T00:41:24.6701847Z From https://github.com/tailrocks/velnor-lab
+2026-11-14T00:41:24.6702677Z  * [new ref]         3ad9e06d2504e4ade947427f0a419d7d6a8650f2 -> pull/226/merge
+2026-11-14T00:41:24.6707069Z ##[endgroup]
+2026-11-14T00:41:24.6707894Z ##[group]Determining the checkout info
+2026-11-14T00:41:24.6708684Z ##[endgroup]
+2026-11-14T00:41:24.6711555Z [command]/usr/bin/git sparse-checkout disable
+2026-11-14T00:41:24.6764126Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-14T00:41:24.6784655Z ##[group]Checking out the ref
+2026-11-14T00:41:24.6801629Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/226/merge
+2026-11-14T00:41:24.7138336Z Note: switching to 'refs/remotes/pull/226/merge'.
+2026-11-14T00:41:24.7138577Z 
+2026-11-14T00:41:24.7139102Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-14T00:41:24.7139681Z changes and commit them, and you can discard any commits you make in this
+2026-11-14T00:41:24.7140069Z state without impacting any branches by switching back to a branch.
+2026-11-14T00:41:24.7140305Z 
+2026-11-14T00:41:24.7140444Z If you want to create a new branch to retain commits you create, you may
+2026-11-14T00:41:24.7140840Z do so (now or later) by using -c with the switch command. Example:
+2026-11-14T00:41:24.7141061Z 
+2026-11-14T00:41:24.7141229Z   git switch -c <new-branch-name>
+2026-11-14T00:41:24.7141379Z 
+2026-11-14T00:41:24.7141524Z Or undo this operation with:
+2026-11-14T00:41:24.7141711Z 
+2026-11-14T00:41:24.7141828Z   git switch -
+2026-11-14T00:41:24.7141973Z 
+2026-11-14T00:41:24.7142163Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-14T00:41:24.7142491Z 
+2026-11-14T00:41:24.7142922Z HEAD is now at 3ad9e06 Merge 48e5d223ccc77eea1d540c9cdfe3e52709fde836 into 221c50ed186e9d97652570a35a076bb309fc2012
+2026-11-14T00:41:24.7165836Z ##[endgroup]
+2026-11-14T00:41:24.7199646Z [command]/usr/bin/git log -1 --format=%H
+2026-11-14T00:41:24.7216134Z 3ad9e06d2504e4ade947427f0a419d7d6a8650f2
+2026-11-14T00:41:24.7221321Z ##[group]Removing auth
+2026-11-14T00:41:24.7221649Z Removing SSH command configuration
+2026-11-14T00:41:24.7224435Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T00:41:24.7245149Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T00:41:24.7430829Z Removing HTTP extra header
+2026-11-14T00:41:24.7431466Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T00:41:24.7451688Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T00:41:24.7621870Z Removing includeIf entries pointing to credentials config files
+2026-11-14T00:41:24.7624530Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T00:41:24.7640506Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T00:41:24.7641294Z includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T00:41:24.7641769Z includeif.gitdir:/github/workspace/.git.path
+2026-11-14T00:41:24.7642162Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T00:41:24.7646929Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path
+2026-11-14T00:41:24.7661843Z /home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.7668903Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-863b9489\-bc78\-463e\-8e46\-93006e225786\.config
+2026-11-14T00:41:24.7695586Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path
+2026-11-14T00:41:24.7711017Z /home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.7716548Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/velnor-lab/velnor-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-863b9489\-bc78\-463e\-8e46\-93006e225786\.config
+2026-11-14T00:41:24.7737143Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-11-14T00:41:24.7752386Z /github/runner_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.7757789Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-863b9489\-bc78\-463e\-8e46\-93006e225786\.config
+2026-11-14T00:41:24.7780617Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-11-14T00:41:24.7795556Z /github/runner_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config
+2026-11-14T00:41:24.7800697Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-863b9489\-bc78\-463e\-8e46\-93006e225786\.config
+2026-11-14T00:41:24.7821832Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T00:41:24.7988334Z Removing credentials config '/home/runner/work/_temp/git-credentials-863b9489-bc78-463e-8e46-93006e225786.config'
+2026-11-14T00:41:24.7995042Z ##[endgroup]
+2026-11-14T00:41:24.8213073Z ##[group]Run jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785
+2026-11-14T00:41:24.8213421Z with:
+2026-11-14T00:41:24.8213709Z   install_args: rust mr-boxington aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T00:41:24.8214077Z   auto_update: false
+2026-11-14T00:41:24.8214502Z   minimum_release_age: 24h
+2026-11-14T00:41:24.8214776Z   install: true
+2026-11-14T00:41:24.8215000Z   monorepo: true
+2026-11-14T00:41:24.8215207Z   bootstrap: false
+2026-11-14T00:41:24.8215455Z   cache: true
+2026-11-14T00:41:24.8215682Z   cache_save: true
+2026-11-14T00:41:24.8215890Z   cache_save_post: false
+2026-11-14T00:41:24.8216138Z   cache_restore_retry_budget: 0s
+2026-11-14T00:41:24.8216382Z   cache_save_retry_budget: 0s
+2026-11-14T00:41:24.8216792Z   cache_key_prefix: mise-v1
+2026-11-14T00:41:24.8217099Z   cache_max_age_days: 30
+2026-11-14T00:41:24.8217359Z   experimental: false
+2026-11-14T00:41:24.8217585Z   log_level: info
+2026-11-14T00:41:24.8217806Z   reshim: false
+2026-11-14T00:41:24.8218125Z   add_shims_to_path: true
+2026-11-14T00:41:24.8219930Z   github_token: ***
+2026-11-14T00:41:24.8220141Z   persist_github_token: false
+2026-11-14T00:41:24.8220401Z   fetch_from_github: true
+2026-11-14T00:41:24.8220618Z   env: true
+2026-11-14T00:41:24.8220870Z   export_path: true
+2026-11-14T00:41:24.8221079Z   wings_enabled: false
+2026-11-14T00:41:24.8221288Z env:
+2026-11-14T00:41:24.8221535Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:24.8221808Z   MBX_BLAZE: 1
+2026-11-14T00:41:24.8222030Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:24.8222271Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:24.8222530Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:24.8222821Z ##[endgroup]
+2026-11-14T00:41:24.9535665Z ##[group]Restoring mise cache
+2026-11-14T00:41:24.9575496Z [command]/usr/bin/ldd --version
+2026-11-14T00:41:24.9607688Z ldd (Ubuntu GLIBC 2.43-2ubuntu2.4) 2.43
+2026-11-14T00:41:24.9608615Z Copyright (C) 2024 Free Software Foundation, Inc.
+2026-11-14T00:41:24.9609586Z This is free software; see the source for copying conditions.  There is NO
+2026-11-14T00:41:24.9610564Z warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+2026-11-14T00:41:24.9611439Z Written by Roland McGrath and Ulrich Drepper.
+2026-11-14T00:41:25.0833947Z Hashed mise config files in 0.1s
+2026-11-14T00:41:25.4631212Z mise cache not found for mise-v1-linux-x64-ubuntu26-40192df1d27395730151f281df4b4f75b0b3137a422705a2f4a6b89381417ebd-p692-eb0d687da5702c936004e5957d350957410b699adb3c43af95d0ae6de56367d6
+2026-11-14T00:41:25.4657081Z [command]/usr/bin/ldd --version
+2026-11-14T00:41:25.4685600Z ldd (Ubuntu GLIBC 2.43-2ubuntu2.4) 2.43
+2026-11-14T00:41:25.4686156Z Copyright (C) 2024 Free Software Foundation, Inc.
+2026-11-14T00:41:25.4686745Z This is free software; see the source for copying conditions.  There is NO
+2026-11-14T00:41:25.4687410Z warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+2026-11-14T00:41:25.4688127Z Written by Roland McGrath and Ulrich Drepper.
+2026-11-14T00:41:25.4702513Z Using curl to download mise
+2026-11-14T00:41:25.7167754Z Selected mise 2026.11.7, released 2026-11-12T00:46:36.000Z, with minimum_release_age=24h
+2026-11-14T00:41:25.7168874Z ##[group]Setup mise
+2026-11-14T00:41:25.7177199Z [command]/usr/local/bin/zstd --version
+2026-11-14T00:41:25.7198328Z *** Zstandard CLI (64-bit) v1.5.7, by Yann Collet ***
+2026-11-14T00:41:25.7207347Z [command]/usr/bin/tar --zstd --version
+2026-11-14T00:41:25.7228030Z tar (GNU tar) 1.35
+2026-11-14T00:41:25.7228564Z Copyright (C) 2023 Free Software Foundation, Inc.
+2026-11-14T00:41:25.7229182Z License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+2026-11-14T00:41:25.7229737Z This is free software: you are free to change and redistribute it.
+2026-11-14T00:41:25.7230249Z There is NO WARRANTY, to the extent permitted by law.
+2026-11-14T00:41:25.7230610Z 
+2026-11-14T00:41:25.7230774Z Written by John Gilmore and Jay Fenlason.
+2026-11-14T00:41:26.7642800Z Verified mise-v2026.11.7-linux-x64.tar.zst against the signed packslip
+2026-11-14T00:41:26.7650727Z [command]/usr/bin/tar --zstd -xf /home/runner/work/_temp/mise-action-Wpvuas/mise-v2026.11.7-linux-x64.tar.zst -C /home/runner/work/_temp/mise-action-Wpvuas
+2026-11-14T00:41:26.9860323Z [command]/usr/bin/mv /home/runner/work/_temp/mise-action-Wpvuas/mise/bin/mise /home/runner/.local/share/mise/bin/mise
+2026-11-14T00:41:27.2733182Z ##[group]Setting env vars
+2026-11-14T00:41:27.2733583Z Setting MISE_LOG_LEVEL=info
+2026-11-14T00:41:27.2735539Z Setting MISE_TRUSTED_CONFIG_PATHS=/home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:27.2736119Z Setting MISE_YES=1
+2026-11-14T00:41:27.2736462Z Adding /home/runner/.local/share/mise/shims to PATH
+2026-11-14T00:41:27.2737057Z ##[group]Running mise --version
+2026-11-14T00:41:27.2748416Z [command]/home/runner/.local/share/mise/bin/mise --version
+2026-11-14T00:41:27.2797101Z 2026.11.7 linux-x64 (2026-11-12)
+2026-11-14T00:41:27.2811465Z ##[endgroup]
+2026-11-14T00:41:27.2946969Z Detected a mise lock file, running `mise install --locked`
+2026-11-14T00:41:27.2948100Z ##[group]Running mise install --locked rust mr-boxington aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T00:41:27.2958522Z [command]/home/runner/.local/share/mise/bin/mise install --locked rust mr-boxington aqua:nextest-rs/nextest/cargo-nextest
+2026-11-14T00:41:27.3045674Z [2mmise[0m [2mby @jdx[0m – installing 3 tools
+2026-11-14T00:41:27.8187547Z [2mmise[0m [38;5;10m✓[0m [34maqua:nextest-rs/nextest/cargo-nextest[0m@0.9.151  513ms  [2mcargo-nextest-0.9.151-x86_64-unknown-linux-gnu.tar.gz[0m
+2026-11-14T00:41:28.1111270Z [2mmise[0m [34mrust[0m@1.99.1 info: syncing channel updates for 1.99.1-x86_64-unknown-linux-gnu
+2026-11-14T00:41:28.3795680Z [2mmise[0m [34mrust[0m@1.99.1 info: latest update on 2026-10-15 for version 1.99.1 (58cf8f9c3 2026-10-13)
+2026-11-14T00:41:28.3796205Z [2mmise[0m [34mrust[0m@1.99.1 info: downloading 6 components
+2026-11-14T00:41:29.3731688Z [2mmise[0m [38;5;10m✓[0m [34mmr-boxington[0m@1.30.0                            2.1s  [2mskills/mbx/SKILL.md[0m
+2026-11-14T00:41:30.3045633Z [2mmise[0m [36m██████████[0m[31m[0m[2m░░░░░░[0m 2/3 · 3.0s
+2026-11-14T00:41:30.3046362Z   [34mrust[0m@1.99.1                                    installing  3.0s
+2026-11-14T00:41:33.3045825Z [2mmise[0m [36m██████████[0m[31m[0m[2m░░░░░░[0m 2/3 · 6.0s
+2026-11-14T00:41:33.3046363Z   [34mrust[0m@1.99.1                                    installing  6.0s
+2026-11-14T00:41:36.3047191Z [2mmise[0m [36m██████████[0m[31m[0m[2m░░░░░░[0m 2/3 · 9.0s
+2026-11-14T00:41:36.3047822Z   [34mrust[0m@1.99.1                                    installing  9.0s
+2026-11-14T00:41:37.4915348Z [2mmise[0m [34mrust[0m@1.99.1   1.99.1-x86_64-unknown-linux-gnu installed - rustc 1.99.1 (58cf8f9c3 2026-10-13)
+2026-11-14T00:41:37.5091004Z [2mmise[0m [34mrust[0m@1.99.1 rustc 1.99.1 (58cf8f9c3 2026-10-13)
+2026-11-14T00:41:37.5106379Z [2mmise[0m [38;5;10m✓[0m [34mrust[0m@1.99.1                                    10.2s
+2026-11-14T00:41:37.5107412Z [2mmise[0m [36m████████████████[0m[31m[0m[2m[0m 3/3 · installed 3 tools in 10.2s
+2026-11-14T00:41:37.5239330Z ##[endgroup]
+2026-11-14T00:41:37.5240504Z ##[group]Saving mise cache
+2026-11-14T00:41:37.5319661Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/velnor-lab/velnor-lab --files-from manifest.txt --use-compress-program zstdmt
+2026-11-14T00:41:39.2480377Z Sent 11468800 of 76261758 (15.0%), 10.9 MBs/sec
+2026-11-14T00:41:40.2477060Z Sent 54919168 of 76261758 (72.0%), 26.2 MBs/sec
+2026-11-14T00:41:40.8806058Z Sent 76261758 of 76261758 (100.0%), 27.6 MBs/sec
+2026-11-14T00:41:41.1898775Z Cache saved from /home/runner/.local/share/mise with key: mise-v1-linux-x64-ubuntu26-40192df1d27395730151f281df4b4f75b0b3137a422705a2f4a6b89381417ebd-p692-eb0d687da5702c936004e5957d350957410b699adb3c43af95d0ae6de56367d6
+2026-11-14T00:41:41.1899879Z ##[endgroup]
+2026-11-14T00:41:41.1900413Z ##[group]Running mise ls
+2026-11-14T00:41:41.1911472Z [command]/home/runner/.local/share/mise/bin/mise ls
+2026-11-14T00:41:41.2009740Z aqua:nextest-rs/nextest/cargo-nextest  0.9.151           ~/work/velnor-lab/velnor-lab/mise.toml  0.9.151
+2026-11-14T00:41:41.2010501Z hk                                     2.12.0 (missing)  ~/work/velnor-lab/velnor-lab/mise.toml  2.12.0
+2026-11-14T00:41:41.2011252Z mr-boxington                           1.30.0            ~/work/velnor-lab/velnor-lab/mise.toml  1.30.0
+2026-11-14T00:41:41.2011980Z rust                                   1.99.1 (symlink)  ~/work/velnor-lab/velnor-lab/mise.toml  1.99.1
+2026-11-14T00:41:41.2020728Z ##[endgroup]
+2026-11-14T00:41:41.2127520Z ##[group]Exporting mise environment variables
+2026-11-14T00:41:41.2240335Z [command]/home/runner/.local/share/mise/bin/mise env --json
+2026-11-14T00:41:41.2329197Z {
+2026-11-14T00:41:41.2330241Z   "CARGO_HOME": "/home/runner/.cargo",
+2026-11-14T00:41:41.2332123Z   "PATH": "/home/runner/.cargo/bin:/home/runner/.local/share/mise/installs/aqua-nextest-rs-nextest-cargo-nextest/0.9.151/.mise-bins:/home/runner/.local/share/mise/installs/mr-boxington/1.30.0/.mise-bins:/home/runner/.local/share/mise/shims:/home/runner/.local/share/mise/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games",
+2026-11-14T00:41:41.2333535Z   "RUSTUP_HOME": "/home/runner/.rustup",
+2026-11-14T00:41:41.2333879Z   "RUSTUP_TOOLCHAIN": "1.99.1"
+2026-11-14T00:41:41.2334202Z }
+2026-11-14T00:41:41.2446233Z Adding /home/runner/.local/share/mise/installs/mr-boxington/1.30.0/.mise-bins to PATH
+2026-11-14T00:41:41.2447058Z Adding /home/runner/.local/share/mise/installs/aqua-nextest-rs-nextest-cargo-nextest/0.9.151/.mise-bins to PATH
+2026-11-14T00:41:41.2447779Z Adding /home/runner/.cargo/bin to PATH
+2026-11-14T00:41:41.2448390Z ##[endgroup]
+2026-11-14T00:41:41.2587268Z ##[group]Run jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de
+2026-11-14T00:41:41.2587650Z with:
+2026-11-14T00:41:41.2587887Z   backend: github
+2026-11-14T00:41:41.2589677Z   github-token: ***
+2026-11-14T00:41:41.2589963Z   cache-generation: v1
+2026-11-14T00:41:41.2590187Z   github-cache-mode: target
+2026-11-14T00:41:41.2590574Z   isolate-objects-cache: false
+2026-11-14T00:41:41.2590844Z   clean-target-before-export: false
+2026-11-14T00:41:41.2591195Z   save-on-workflow-dispatch: false
+2026-11-14T00:41:41.2591457Z   save-on-pull-request: false
+2026-11-14T00:41:41.2591704Z   save-on-protected-branch: false
+2026-11-14T00:41:41.2591978Z   working-directory: .
+2026-11-14T00:41:41.2592226Z   cache-links: auto
+2026-11-14T00:41:41.2592461Z env:
+2026-11-14T00:41:41.2592689Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:41.2592945Z   MBX_BLAZE: 1
+2026-11-14T00:41:41.2593215Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:41.2593554Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:41.2593836Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:41.2594130Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:41.2594585Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:41.2594928Z   MISE_YES: 1
+2026-11-14T00:41:41.2595209Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:41.2595480Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:41.2595731Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:41.2596001Z ##[endgroup]
+2026-11-14T00:41:41.6385269Z Using mbx 1.30.0 from PATH
+2026-11-14T00:41:41.6468278Z Set up mbx 1.30.0
+2026-11-14T00:41:41.6469339Z No mbx cache found
+2026-11-14T00:41:41.6471811Z Restore only (pull request; save-on-pull-request is off)
+2026-11-14T00:41:41.6578213Z ##[group]Run curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+2026-11-14T00:41:41.6579093Z [36;1mcurl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"[0m
+2026-11-14T00:41:41.6603510Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:41.6603761Z env:
+2026-11-14T00:41:41.6604086Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:41.6604559Z   MBX_BLAZE: 1
+2026-11-14T00:41:41.6605006Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:41.6605257Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:41.6605571Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:41.6605880Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:41.6606201Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:41.6606530Z   MISE_YES: 1
+2026-11-14T00:41:41.6606844Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:41.6607139Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:41.6607420Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:41.6607653Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:41.6607880Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:41.6608116Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:41.6608361Z ##[endgroup]
+2026-11-14T00:41:43.7371671Z ##[group]Run sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+2026-11-14T00:41:43.7372162Z [36;1msha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"[0m
+2026-11-14T00:41:43.7391890Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:43.7392251Z env:
+2026-11-14T00:41:43.7392496Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:43.7392845Z   MBX_BLAZE: 1
+2026-11-14T00:41:43.7393067Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:43.7393306Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:43.7393613Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:43.7393944Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:43.7394255Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:43.7394906Z   MISE_YES: 1
+2026-11-14T00:41:43.7395123Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:43.7395443Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:43.7395865Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:43.7396263Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:43.7396485Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:43.7396715Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:43.7396981Z ##[endgroup]
+2026-11-14T00:41:43.8656360Z blaze-v0.20261105.4-x86_64-unknown-linux-gnu.tar.gz: OK
+2026-11-14T00:41:43.8685367Z ##[group]Run tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+2026-11-14T00:41:43.8685785Z [36;1mtar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"[0m
+2026-11-14T00:41:43.8700858Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:43.8701133Z env:
+2026-11-14T00:41:43.8701431Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:43.8701746Z   MBX_BLAZE: 1
+2026-11-14T00:41:43.8701986Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:43.8702233Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:43.8702508Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:43.8702853Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:43.8703136Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:43.8703480Z   MISE_YES: 1
+2026-11-14T00:41:43.8703703Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:43.8703993Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:43.8704265Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:43.8704766Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:43.8704991Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:43.8705193Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:43.8705473Z ##[endgroup]
+2026-11-14T00:41:43.8757454Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:43.8758196Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:43.8758745Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:44.7890161Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:44.7899950Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:44.7901080Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:45.7062463Z tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+2026-11-14T00:41:45.7104111Z ##[group]Run echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+2026-11-14T00:41:45.7104690Z [36;1mecho "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"[0m
+2026-11-14T00:41:45.7124259Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.7124724Z env:
+2026-11-14T00:41:45.7125033Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.7125397Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.7125635Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.7125885Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.7126200Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.7126501Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.7126810Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.7127134Z   MISE_YES: 1
+2026-11-14T00:41:45.7127393Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.7127652Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.7127917Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.7128188Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.7128496Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.7128712Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.7128963Z ##[endgroup]
+2026-11-14T00:41:45.7192034Z ##[group]Run sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+2026-11-14T00:41:45.7192457Z [36;1msudo prlimit --pid "$PPID" --memlock=unlimited:unlimited[0m
+2026-11-14T00:41:45.7208506Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.7208841Z env:
+2026-11-14T00:41:45.7209095Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.7209368Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.7209571Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.7209881Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.7210157Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.7210449Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.7210843Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.7211180Z   MISE_YES: 1
+2026-11-14T00:41:45.7211438Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.7211701Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.7211970Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.7212327Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.7212588Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.7212802Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.7213021Z ##[endgroup]
+2026-11-14T00:41:45.7333614Z ##[group]Run truncate -s 12G "$RUNNER_TEMP/blaze.img"
+2026-11-14T00:41:45.7333956Z [36;1mtruncate -s 12G "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T00:41:45.7347977Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.7348288Z env:
+2026-11-14T00:41:45.7348533Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.7348868Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.7349094Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.7349345Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.7349663Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.7349941Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.7350276Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.7350686Z   MISE_YES: 1
+2026-11-14T00:41:45.7350958Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.7351219Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.7351466Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.7351741Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.7352039Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.7352305Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.7352526Z ##[endgroup]
+2026-11-14T00:41:45.7430815Z ##[group]Run sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+2026-11-14T00:41:45.7431218Z [36;1msudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"[0m
+2026-11-14T00:41:45.7445352Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.7445675Z env:
+2026-11-14T00:41:45.7445915Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.7446282Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.7446711Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.7447190Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.7447553Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.7447846Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.7448154Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.7448501Z   MISE_YES: 1
+2026-11-14T00:41:45.7448709Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.7448988Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.7449242Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.7449608Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.7449827Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.7450063Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.7450281Z ##[endgroup]
+2026-11-14T00:41:45.7942218Z ##[group]Run sudo mkdir -p /blaze
+2026-11-14T00:41:45.7942504Z [36;1msudo mkdir -p /blaze[0m
+2026-11-14T00:41:45.7955987Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.7956296Z env:
+2026-11-14T00:41:45.7956554Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.7956847Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.7957108Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.7957350Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.7957661Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.7957948Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.7958249Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.7958590Z   MISE_YES: 1
+2026-11-14T00:41:45.7958837Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.7959109Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.7959363Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.7959599Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.7959863Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.7960145Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.7960374Z ##[endgroup]
+2026-11-14T00:41:45.8068008Z ##[group]Run sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+2026-11-14T00:41:45.8068393Z [36;1msudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze[0m
+2026-11-14T00:41:45.8082105Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:45.8082410Z env:
+2026-11-14T00:41:45.8082725Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:45.8083026Z   MBX_BLAZE: 1
+2026-11-14T00:41:45.8083240Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:45.8083479Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:45.8083759Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:45.8084070Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:45.8084591Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:45.8084908Z   MISE_YES: 1
+2026-11-14T00:41:45.8085121Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:45.8085398Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:45.8085668Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:45.8085890Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:45.8086183Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:45.8086412Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:45.8086657Z ##[endgroup]
+2026-11-14T00:41:46.0435365Z ##[group]Run sudo install -d -m 700 -o runner -g runner /blaze/home
+2026-11-14T00:41:46.0435776Z [36;1msudo install -d -m 700 -o runner -g runner /blaze/home[0m
+2026-11-14T00:41:46.0452751Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:46.0453005Z env:
+2026-11-14T00:41:46.0453303Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:46.0453629Z   MBX_BLAZE: 1
+2026-11-14T00:41:46.0453860Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:46.0454107Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:46.0454515Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:46.0454888Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:46.0455240Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:46.0455565Z   MISE_YES: 1
+2026-11-14T00:41:46.0455787Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:46.0456076Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:46.0456348Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:46.0456698Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:46.0456932Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:46.0457148Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:46.0457413Z ##[endgroup]
+2026-11-14T00:41:46.0602919Z ##[group]Run blaze toolchain
+2026-11-14T00:41:46.0603316Z [36;1mblaze toolchain[0m
+2026-11-14T00:41:46.0622473Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:46.0622868Z env:
+2026-11-14T00:41:46.0623225Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:46.0623649Z   MBX_BLAZE: 1
+2026-11-14T00:41:46.0623950Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:46.0624760Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:46.0625129Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:46.0625542Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:46.0625979Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:46.0626700Z   MISE_YES: 1
+2026-11-14T00:41:46.0626989Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:46.0627419Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:46.0627799Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:46.0724993Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:46.0725394Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:46.0725640Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:46.0725882Z ##[endgroup]
+2026-11-14T00:41:46.0813284Z Downloading Rust nightly-2026-10-27 for blaze (153 MB, once)...
+2026-11-14T00:41:50.7690845Z Downloaded Rust nightly-2026-10-27 for blaze in 4.7s.
+2026-11-14T00:41:50.7691357Z blaze-2026-10-27, blaze's toolchain (Rust nightly-2026-10-27), at /home/runner/.blaze/toolchains/nightly-2026-10-27-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.7733888Z ##[group]Run mbx setup --yes
+2026-11-14T00:41:50.7734127Z [36;1mmbx setup --yes[0m
+2026-11-14T00:41:50.7773333Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:50.7773645Z env:
+2026-11-14T00:41:50.7773889Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:50.7774195Z   MBX_BLAZE: 1
+2026-11-14T00:41:50.7775047Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:50.7775798Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:50.7776130Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.7776732Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:50.7777051Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:50.7777389Z   MISE_YES: 1
+2026-11-14T00:41:50.7777603Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:50.7777867Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:50.7778139Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:50.7778371Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:50.7778590Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:50.7778850Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:50.7779083Z ##[endgroup]
+2026-11-14T00:41:50.7850280Z installed the Cargo shim at /home/runner/.local/share/mbx/bin/cargo
+2026-11-14T00:41:50.7850861Z prepend the Cargo shim to PATH in your shell:
+2026-11-14T00:41:50.7851308Z   export PATH="/home/runner/.local/share/mbx/bin:$PATH"
+2026-11-14T00:41:50.7851753Z mbx does not edit shell startup files
+2026-11-14T00:41:50.7853692Z rust-analyzer background checks now run through mbx: /home/runner/.config/rust-analyzer/rust-analyzer.toml
+2026-11-14T00:41:50.7854742Z rust-analyzer reports `check/overrideCommand: unexpected field` for this file; the check still runs through mbx
+2026-11-14T00:41:50.7876269Z ##[group]Run echo "$HOME/.local/share/mbx/bin" >> "$GITHUB_PATH"
+2026-11-14T00:41:50.7876592Z [36;1mecho "$HOME/.local/share/mbx/bin" >> "$GITHUB_PATH"[0m
+2026-11-14T00:41:50.7890556Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:50.7890758Z env:
+2026-11-14T00:41:50.7890935Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:50.7891148Z   MBX_BLAZE: 1
+2026-11-14T00:41:50.7891307Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:50.7891496Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:50.7891706Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.7891933Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:50.7892163Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:50.7892418Z   MISE_YES: 1
+2026-11-14T00:41:50.7892580Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:50.7892786Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:50.7892980Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:50.7893159Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:50.7893341Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:50.7893504Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:50.7893669Z ##[endgroup]
+2026-11-14T00:41:50.7950161Z ##[group]Run command -v cargo blaze
+2026-11-14T00:41:50.7950621Z [36;1mcommand -v cargo blaze[0m
+2026-11-14T00:41:50.7969132Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:50.7969409Z env:
+2026-11-14T00:41:50.7969654Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:50.7969970Z   MBX_BLAZE: 1
+2026-11-14T00:41:50.7970195Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:50.7970456Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:50.7970750Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.7971068Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:50.7971393Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:50.7971792Z   MISE_YES: 1
+2026-11-14T00:41:50.7972028Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:50.7972314Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:50.7972600Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:50.7972847Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:50.7973077Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:50.7973347Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:50.7973577Z ##[endgroup]
+2026-11-14T00:41:50.8010535Z /home/runner/.local/share/mbx/bin/cargo
+2026-11-14T00:41:50.8011050Z /home/runner/work/_temp/blaze-v0.20261105.4-x86_64-unknown-linux-gnu/blaze
+2026-11-14T00:41:50.8037294Z ##[group]Run cargo fmt --all --check
+2026-11-14T00:41:50.8037640Z [36;1mcargo fmt --all --check[0m
+2026-11-14T00:41:50.8055809Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:50.8056108Z env:
+2026-11-14T00:41:50.8056362Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:50.8056670Z   MBX_BLAZE: 1
+2026-11-14T00:41:50.8056894Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:50.8057441Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:50.8057760Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.8058101Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:50.8058453Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:50.8058850Z   MISE_YES: 1
+2026-11-14T00:41:50.8059091Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:50.8059397Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:50.8059703Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:50.8059977Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:50.8060219Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:50.8060482Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:50.8060718Z ##[endgroup]
+2026-11-14T00:41:50.8429696Z ##[group]Run cargo clippy --workspace --all-targets --locked -- -D warnings
+2026-11-14T00:41:50.8430081Z [36;1mcargo clippy --workspace --all-targets --locked -- -D warnings[0m
+2026-11-14T00:41:50.8443381Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:50.8443569Z env:
+2026-11-14T00:41:50.8443745Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:50.8443970Z   MBX_BLAZE: 1
+2026-11-14T00:41:50.8444130Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:50.8444461Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:50.8444684Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:50.8444913Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:50.8445149Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:50.8445410Z   MISE_YES: 1
+2026-11-14T00:41:50.8445569Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:50.8445766Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:50.8445957Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:50.8446166Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:50.8446326Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:50.8446482Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:50.8446642Z ##[endgroup]
+2026-11-14T00:41:50.8995598Z     Updating crates.io index
+2026-11-14T00:41:51.1051315Z  Downloading crates ...
+2026-11-14T00:41:51.1572079Z   Downloaded strsim v0.11.1
+2026-11-14T00:41:51.1711230Z   Downloaded tokio-macros v2.7.2
+2026-11-14T00:41:51.1726334Z   Downloaded anstyle-query v1.1.5
+2026-11-14T00:41:51.1779996Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T00:41:51.1838291Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T00:41:51.1858242Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T00:41:51.1920938Z   Downloaded utf8parse v0.2.2
+2026-11-14T00:41:51.1954097Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T00:41:51.1968269Z   Downloaded colorchoice v1.0.5
+2026-11-14T00:41:51.1973101Z   Downloaded itoa v1.0.19
+2026-11-14T00:41:51.2000602Z   Downloaded clap v4.6.7
+2026-11-14T00:41:51.2037647Z   Downloaded clap_lex v1.1.1
+2026-11-14T00:41:51.2044061Z   Downloaded unicode-ident v1.0.27
+2026-11-14T00:41:51.2056111Z   Downloaded clap_builder v4.6.7
+2026-11-14T00:41:51.2088226Z   Downloaded fnv v1.0.5
+2026-11-14T00:41:51.2091127Z   Downloaded quote v1.0.47
+2026-11-14T00:41:51.2101956Z   Downloaded hex v0.4.3
+2026-11-14T00:41:51.2108398Z   Downloaded anstyle v1.0.14
+2026-11-14T00:41:51.2116121Z   Downloaded zmij v1.0.23
+2026-11-14T00:41:51.2124689Z   Downloaded anstream v1.0.0
+2026-11-14T00:41:51.2134637Z   Downloaded heck v0.5.0
+2026-11-14T00:41:51.2139652Z   Downloaded serde_json v1.0.154
+2026-11-14T00:41:51.2171539Z   Downloaded serde_derive v1.0.229
+2026-11-14T00:41:51.2185203Z   Downloaded syn v3.0.10
+2026-11-14T00:41:51.2238989Z   Downloaded serde v1.0.229
+2026-11-14T00:41:51.2491782Z   Downloaded clap_derive v4.6.7
+2026-11-14T00:41:51.2502847Z   Downloaded memchr v2.8.3
+2026-11-14T00:41:51.2562892Z   Downloaded serde_core v1.0.229
+2026-11-14T00:41:51.2753657Z   Downloaded tokio v1.54.1
+2026-11-14T00:41:51.3072208Z    0.426170642s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: false }/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T00:41:51.3074051Z    0.426192304s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-eeb0c7dbb5f85395/bin-app`
+2026-11-14T00:41:51.3075008Z 
+2026-11-14T00:41:51.3075100Z Caused by:
+2026-11-14T00:41:51.3075298Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3076505Z    0.426325890s  INFO prepare_target{force=false package_id=clap v4.6.7 target="clap"}: cargo::compiler::fingerprint: fingerprint error for clap v4.6.7/Check { test: false }/TargetInner { benched: false, ..: lib_target("clap", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap-4.6.7/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3077996Z    0.426332936s  INFO prepare_target{force=false package_id=clap v4.6.7 target="clap"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap-c15104ff245c45d0/lib-clap`
+2026-11-14T00:41:51.3078631Z 
+2026-11-14T00:41:51.3078693Z Caused by:
+2026-11-14T00:41:51.3078861Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3080025Z    0.426398285s  INFO prepare_target{force=false package_id=clap_builder v4.6.7 target="clap_builder"}: cargo::compiler::fingerprint: fingerprint error for clap_builder v4.6.7/Check { test: false }/TargetInner { benched: false, ..: lib_target("clap_builder", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_builder-4.6.7/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3081701Z    0.426402883s  INFO prepare_target{force=false package_id=clap_builder v4.6.7 target="clap_builder"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap_builder-ef7fb4d3e98cb90f/lib-clap_builder`
+2026-11-14T00:41:51.3082487Z 
+2026-11-14T00:41:51.3082565Z Caused by:
+2026-11-14T00:41:51.3082745Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3083761Z    0.426470861s  INFO prepare_target{force=false package_id=anstream v1.0.0 target="anstream"}: cargo::compiler::fingerprint: fingerprint error for anstream v1.0.0/Check { test: false }/TargetInner { ..: lib_target("anstream", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstream-1.0.0/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3085557Z    0.426475642s  INFO prepare_target{force=false package_id=anstream v1.0.0 target="anstream"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstream-05e62185321fbab2/lib-anstream`
+2026-11-14T00:41:51.3086240Z 
+2026-11-14T00:41:51.3086309Z Caused by:
+2026-11-14T00:41:51.3086499Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3087487Z    0.426525927s  INFO prepare_target{force=false package_id=anstyle v1.0.14 target="anstyle"}: cargo::compiler::fingerprint: fingerprint error for anstyle v1.0.14/Check { test: false }/TargetInner { ..: lib_target("anstyle", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-1.0.14/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3089098Z    0.426530608s  INFO prepare_target{force=false package_id=anstyle v1.0.14 target="anstyle"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-73092a97ca7e531b/lib-anstyle`
+2026-11-14T00:41:51.3089692Z 
+2026-11-14T00:41:51.3089768Z Caused by:
+2026-11-14T00:41:51.3089952Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3091109Z    0.426567938s  INFO prepare_target{force=false package_id=anstyle-parse v1.0.0 target="anstyle_parse"}: cargo::compiler::fingerprint: fingerprint error for anstyle-parse v1.0.0/Check { test: false }/TargetInner { ..: lib_target("anstyle_parse", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-parse-1.0.0/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3092908Z    0.426572814s  INFO prepare_target{force=false package_id=anstyle-parse v1.0.0 target="anstyle_parse"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-parse-3d27090a781e5ee6/lib-anstyle_parse`
+2026-11-14T00:41:51.3093660Z 
+2026-11-14T00:41:51.3093726Z Caused by:
+2026-11-14T00:41:51.3093878Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3095049Z    0.426611668s  INFO prepare_target{force=false package_id=utf8parse v0.2.2 target="utf8parse"}: cargo::compiler::fingerprint: fingerprint error for utf8parse v0.2.2/Check { test: false }/TargetInner { ..: lib_target("utf8parse", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/utf8parse-0.2.2/src/lib.rs", Edition2018) }
+2026-11-14T00:41:51.3096751Z    0.426616040s  INFO prepare_target{force=false package_id=utf8parse v0.2.2 target="utf8parse"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/utf8parse-ddf5081d9c9fac1e/lib-utf8parse`
+2026-11-14T00:41:51.3097506Z 
+2026-11-14T00:41:51.3097595Z Caused by:
+2026-11-14T00:41:51.3097802Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3098907Z    0.426652927s  INFO prepare_target{force=false package_id=anstyle-query v1.1.5 target="anstyle_query"}: cargo::compiler::fingerprint: fingerprint error for anstyle-query v1.1.5/Check { test: false }/TargetInner { ..: lib_target("anstyle_query", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-query-1.1.5/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3100599Z    0.426657250s  INFO prepare_target{force=false package_id=anstyle-query v1.1.5 target="anstyle_query"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-query-53ec1b235ce1276f/lib-anstyle_query`
+2026-11-14T00:41:51.3101453Z 
+2026-11-14T00:41:51.3101548Z Caused by:
+2026-11-14T00:41:51.3101771Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3102647Z    0.426693863s  INFO prepare_target{force=false package_id=colorchoice v1.0.5 target="colorchoice"}: cargo::compiler::fingerprint: fingerprint error for colorchoice v1.0.5/Check { test: false }/TargetInner { ..: lib_target("colorchoice", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3103984Z    0.426698349s  INFO prepare_target{force=false package_id=colorchoice v1.0.5 target="colorchoice"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/colorchoice-d2fe17ca1b88260b/lib-colorchoice`
+2026-11-14T00:41:51.3104827Z 
+2026-11-14T00:41:51.3104894Z Caused by:
+2026-11-14T00:41:51.3105068Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3106134Z    0.426733412s  INFO prepare_target{force=false package_id=is_terminal_polyfill v1.70.2 target="is_terminal_polyfill"}: cargo::compiler::fingerprint: fingerprint error for is_terminal_polyfill v1.70.2/Check { test: false }/TargetInner { ..: lib_target("is_terminal_polyfill", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/is_terminal_polyfill-1.70.2/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3108136Z    0.426738025s  INFO prepare_target{force=false package_id=is_terminal_polyfill v1.70.2 target="is_terminal_polyfill"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/is_terminal_polyfill-7761058b594da90b/lib-is_terminal_polyfill`
+2026-11-14T00:41:51.3109054Z 
+2026-11-14T00:41:51.3109129Z Caused by:
+2026-11-14T00:41:51.3109325Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3110513Z    0.426776924s  INFO prepare_target{force=false package_id=clap_lex v1.1.1 target="clap_lex"}: cargo::compiler::fingerprint: fingerprint error for clap_lex v1.1.1/Check { test: false }/TargetInner { benched: false, ..: lib_target("clap_lex", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_lex-1.1.1/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3112291Z    0.426781119s  INFO prepare_target{force=false package_id=clap_lex v1.1.1 target="clap_lex"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap_lex-aa552f193211390b/lib-clap_lex`
+2026-11-14T00:41:51.3113048Z 
+2026-11-14T00:41:51.3113127Z Caused by:
+2026-11-14T00:41:51.3113326Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3114747Z    0.426814764s  INFO prepare_target{force=false package_id=strsim v0.11.1 target="strsim"}: cargo::compiler::fingerprint: fingerprint error for strsim v0.11.1/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("strsim", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/strsim-0.11.1/src/lib.rs", Edition2015) }
+2026-11-14T00:41:51.3116430Z    0.426835748s  INFO prepare_target{force=false package_id=strsim v0.11.1 target="strsim"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/strsim-040ca1b75394e7a6/lib-strsim`
+2026-11-14T00:41:51.3117232Z 
+2026-11-14T00:41:51.3117309Z Caused by:
+2026-11-14T00:41:51.3117482Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3118742Z    0.426876475s  INFO prepare_target{force=false package_id=clap_derive v4.6.7 target="clap_derive"}: cargo::compiler::fingerprint: fingerprint error for clap_derive v4.6.7/Build/TargetInner { benched: false, for_host: true, proc_macro: true, ..: lib_target("clap_derive", ["proc-macro"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_derive-4.6.7/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3120894Z    0.426881419s  INFO prepare_target{force=false package_id=clap_derive v4.6.7 target="clap_derive"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap_derive-2cb82e15c5a2784f/lib-clap_derive`
+2026-11-14T00:41:51.3121775Z 
+2026-11-14T00:41:51.3121849Z Caused by:
+2026-11-14T00:41:51.3122043Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3123125Z    0.426924220s  INFO prepare_target{force=false package_id=heck v0.5.0 target="heck"}: cargo::compiler::fingerprint: fingerprint error for heck v0.5.0/Build/TargetInner { name_inferred: true, ..: lib_target("heck", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/heck-0.5.0/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3146736Z    0.426928094s  INFO prepare_target{force=false package_id=heck v0.5.0 target="heck"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/heck-c4dbf551d3f1e684/lib-heck`
+2026-11-14T00:41:51.3147673Z 
+2026-11-14T00:41:51.3147784Z Caused by:
+2026-11-14T00:41:51.3148020Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3149350Z    0.426959308s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="proc_macro2"}: cargo::compiler::fingerprint: fingerprint error for proc-macro2 v1.0.107/Build/TargetInner { ..: lib_target("proc_macro2", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proc-macro2-1.0.107/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3151468Z    0.426962649s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="proc_macro2"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/proc-macro2-48009055b595a344/lib-proc_macro2`
+2026-11-14T00:41:51.3152352Z 
+2026-11-14T00:41:51.3152426Z Caused by:
+2026-11-14T00:41:51.3152635Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3153927Z    0.427062498s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for proc-macro2 v1.0.107/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proc-macro2-1.0.107/build.rs", Edition2021) }
+2026-11-14T00:41:51.3156440Z    0.427066717s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/proc-macro2-ef41e94ab0f532d9/run-build-script-build-script-build`
+2026-11-14T00:41:51.3157511Z 
+2026-11-14T00:41:51.3157604Z Caused by:
+2026-11-14T00:41:51.3157829Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3159333Z    0.427088580s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for proc-macro2 v1.0.107/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/proc-macro2-1.0.107/build.rs", Edition2021) }
+2026-11-14T00:41:51.3161382Z    0.427091487s  INFO prepare_target{force=false package_id=proc-macro2 v1.0.107 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/proc-macro2-ab005e1b49b4395b/build-script-build-script-build`
+2026-11-14T00:41:51.3162418Z 
+2026-11-14T00:41:51.3162494Z Caused by:
+2026-11-14T00:41:51.3162721Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3164007Z    0.427127335s  INFO prepare_target{force=false package_id=unicode-ident v1.0.27 target="unicode_ident"}: cargo::compiler::fingerprint: fingerprint error for unicode-ident v1.0.27/Build/TargetInner { ..: lib_target("unicode_ident", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.27/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3166130Z    0.427131165s  INFO prepare_target{force=false package_id=unicode-ident v1.0.27 target="unicode_ident"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/unicode-ident-81bfb0f85f6a8742/lib-unicode_ident`
+2026-11-14T00:41:51.3167129Z 
+2026-11-14T00:41:51.3167225Z Caused by:
+2026-11-14T00:41:51.3167436Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3168541Z    0.427168363s  INFO prepare_target{force=false package_id=quote v1.0.47 target="quote"}: cargo::compiler::fingerprint: fingerprint error for quote v1.0.47/Build/TargetInner { ..: lib_target("quote", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quote-1.0.47/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3170245Z    0.427171528s  INFO prepare_target{force=false package_id=quote v1.0.47 target="quote"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/quote-8a050a42cff7de9b/lib-quote`
+2026-11-14T00:41:51.3171020Z 
+2026-11-14T00:41:51.3171097Z Caused by:
+2026-11-14T00:41:51.3171324Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3172334Z    0.427266545s  INFO prepare_target{force=false package_id=quote v1.0.47 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for quote v1.0.47/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quote-1.0.47/build.rs", Edition2021) }
+2026-11-14T00:41:51.3173739Z    0.427270020s  INFO prepare_target{force=false package_id=quote v1.0.47 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/quote-16720ff8b16631c2/run-build-script-build-script-build`
+2026-11-14T00:41:51.3194972Z 
+2026-11-14T00:41:51.3195106Z Caused by:
+2026-11-14T00:41:51.3195334Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3196645Z    0.427289884s  INFO prepare_target{force=false package_id=quote v1.0.47 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for quote v1.0.47/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quote-1.0.47/build.rs", Edition2021) }
+2026-11-14T00:41:51.3198952Z    0.427292769s  INFO prepare_target{force=false package_id=quote v1.0.47 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/quote-cb66644ea05edbd9/build-script-build-script-build`
+2026-11-14T00:41:51.3199966Z 
+2026-11-14T00:41:51.3200067Z Caused by:
+2026-11-14T00:41:51.3200286Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3201513Z    0.427331056s  INFO prepare_target{force=false package_id=syn v3.0.10 target="syn"}: cargo::compiler::fingerprint: fingerprint error for syn v3.0.10/Build/TargetInner { ..: lib_target("syn", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/syn-3.0.10/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3203208Z    0.427334337s  INFO prepare_target{force=false package_id=syn v3.0.10 target="syn"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/syn-892c246368ecd727/lib-syn`
+2026-11-14T00:41:51.3203980Z 
+2026-11-14T00:41:51.3204078Z Caused by:
+2026-11-14T00:41:51.3204292Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3205775Z    0.427385190s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Check { test: false }/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3207808Z    0.427389155s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-81d6547918df469b/lib-lab_core`
+2026-11-14T00:41:51.3208756Z 
+2026-11-14T00:41:51.3208852Z Caused by:
+2026-11-14T00:41:51.3209068Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3210225Z    0.427438898s  INFO prepare_target{force=false package_id=serde v1.0.229 target="serde"}: cargo::compiler::fingerprint: fingerprint error for serde v1.0.229/Check { test: false }/TargetInner { ..: lib_target("serde", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3212004Z    0.427442098s  INFO prepare_target{force=false package_id=serde v1.0.229 target="serde"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde-c3aa4a507f552a86/lib-serde`
+2026-11-14T00:41:51.3212793Z 
+2026-11-14T00:41:51.3212892Z Caused by:
+2026-11-14T00:41:51.3213112Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3215719Z    0.427532984s  INFO prepare_target{force=false package_id=serde v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde v1.0.229/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/build.rs", Edition2021) }
+2026-11-14T00:41:51.3217799Z    0.427536495s  INFO prepare_target{force=false package_id=serde v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde-ba8426c877a92a17/run-build-script-build-script-build`
+2026-11-14T00:41:51.3218765Z 
+2026-11-14T00:41:51.3218865Z Caused by:
+2026-11-14T00:41:51.3219111Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3220334Z    0.427554756s  INFO prepare_target{force=false package_id=serde v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde v1.0.229/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/build.rs", Edition2021) }
+2026-11-14T00:41:51.3222621Z    0.427557634s  INFO prepare_target{force=false package_id=serde v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde-94cd7afb59b66330/build-script-build-script-build`
+2026-11-14T00:41:51.3223668Z 
+2026-11-14T00:41:51.3223758Z Caused by:
+2026-11-14T00:41:51.3223985Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3225669Z    0.427593562s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="serde_core"}: cargo::compiler::fingerprint: fingerprint error for serde_core v1.0.229/Check { test: false }/TargetInner { ..: lib_target("serde_core", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3227529Z    0.427596862s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="serde_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_core-db8d5c6e804bd9bc/lib-serde_core`
+2026-11-14T00:41:51.3228352Z 
+2026-11-14T00:41:51.3228434Z Caused by:
+2026-11-14T00:41:51.3228687Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3230043Z    0.427677219s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde_core v1.0.229/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/build.rs", Edition2021) }
+2026-11-14T00:41:51.3232299Z    0.427680392s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_core-affc157fe1b322b9/run-build-script-build-script-build`
+2026-11-14T00:41:51.3233232Z 
+2026-11-14T00:41:51.3233332Z Caused by:
+2026-11-14T00:41:51.3233544Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3235023Z    0.427699501s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde_core v1.0.229/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/build.rs", Edition2021) }
+2026-11-14T00:41:51.3237115Z    0.427702364s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_core-ba68d45a71ab3b05/build-script-build-script-build`
+2026-11-14T00:41:51.3238074Z 
+2026-11-14T00:41:51.3238155Z Caused by:
+2026-11-14T00:41:51.3238367Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3239823Z    0.427746988s  INFO prepare_target{force=false package_id=serde_derive v1.0.229 target="serde_derive"}: cargo::compiler::fingerprint: fingerprint error for serde_derive v1.0.229/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("serde_derive", ["proc-macro"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_derive-1.0.229/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3241893Z    0.427750889s  INFO prepare_target{force=false package_id=serde_derive v1.0.229 target="serde_derive"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_derive-8b29046cf813cd2b/lib-serde_derive`
+2026-11-14T00:41:51.3242510Z 
+2026-11-14T00:41:51.3242577Z Caused by:
+2026-11-14T00:41:51.3242728Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3243768Z    0.427795381s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="serde_json"}: cargo::compiler::fingerprint: fingerprint error for serde_json v1.0.154/Check { test: false }/TargetInner { ..: lib_target("serde_json", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.154/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3245838Z    0.427798797s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="serde_json"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_json-7348a9e19e758f0a/lib-serde_json`
+2026-11-14T00:41:51.3246930Z 
+2026-11-14T00:41:51.3247026Z Caused by:
+2026-11-14T00:41:51.3247263Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3248352Z    0.427865454s  INFO prepare_target{force=false package_id=itoa v1.0.19 target="itoa"}: cargo::compiler::fingerprint: fingerprint error for itoa v1.0.19/Check { test: false }/TargetInner { ..: lib_target("itoa", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itoa-1.0.19/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3250102Z    0.427869619s  INFO prepare_target{force=false package_id=itoa v1.0.19 target="itoa"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/itoa-2cf614ba250e2f64/lib-itoa`
+2026-11-14T00:41:51.3250901Z 
+2026-11-14T00:41:51.3250988Z Caused by:
+2026-11-14T00:41:51.3251192Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3252417Z    0.427903902s  INFO prepare_target{force=false package_id=memchr v2.8.3 target="memchr"}: cargo::compiler::fingerprint: fingerprint error for memchr v2.8.3/Check { test: false }/TargetInner { benched: false, ..: lib_target("memchr", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.8.3/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3254510Z    0.427907302s  INFO prepare_target{force=false package_id=memchr v2.8.3 target="memchr"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/memchr-98fdb696fc4340ef/lib-memchr`
+2026-11-14T00:41:51.3255389Z 
+2026-11-14T00:41:51.3255476Z Caused by:
+2026-11-14T00:41:51.3255707Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3257107Z    0.427983847s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde_json v1.0.154/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.154/build.rs", Edition2021) }
+2026-11-14T00:41:51.3259299Z    0.427987384s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_json-7839a7dd090f34de/run-build-script-build-script-build`
+2026-11-14T00:41:51.3260378Z 
+2026-11-14T00:41:51.3260473Z Caused by:
+2026-11-14T00:41:51.3260694Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3261971Z    0.428006955s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for serde_json v1.0.154/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.154/build.rs", Edition2021) }
+2026-11-14T00:41:51.3263999Z    0.428009879s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_json-a4a9ff45eaa6f756/build-script-build-script-build`
+2026-11-14T00:41:51.3265089Z 
+2026-11-14T00:41:51.3265185Z Caused by:
+2026-11-14T00:41:51.3265400Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3266965Z    0.428046911s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="zmij"}: cargo::compiler::fingerprint: fingerprint error for zmij v1.0.23/Check { test: false }/TargetInner { ..: lib_target("zmij", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3268797Z    0.428050237s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="zmij"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/zmij-071bd32896956c8f/lib-zmij`
+2026-11-14T00:41:51.3269527Z 
+2026-11-14T00:41:51.3269741Z Caused by:
+2026-11-14T00:41:51.3269958Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3271310Z    0.428126330s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for zmij v1.0.23/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23/build.rs", Edition2021) }
+2026-11-14T00:41:51.3273389Z    0.428129648s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/zmij-1a4b1e45daff5eb9/run-build-script-build-script-build`
+2026-11-14T00:41:51.3274699Z 
+2026-11-14T00:41:51.3274794Z Caused by:
+2026-11-14T00:41:51.3275014Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3276286Z    0.428148294s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for zmij v1.0.23/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23/build.rs", Edition2021) }
+2026-11-14T00:41:51.3278342Z    0.428152181s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/zmij-946061105b7cdaa0/build-script-build-script-build`
+2026-11-14T00:41:51.3279315Z 
+2026-11-14T00:41:51.3279390Z Caused by:
+2026-11-14T00:41:51.3279611Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3280924Z    0.428188997s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Check { test: false }/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3283036Z    0.428192767s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-2c7e8409fe6cc481/lib-lab_lib`
+2026-11-14T00:41:51.3284017Z 
+2026-11-14T00:41:51.3284112Z Caused by:
+2026-11-14T00:41:51.3284513Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3285726Z    0.428250048s  INFO prepare_target{force=false package_id=hex v0.4.3 target="hex"}: cargo::compiler::fingerprint: fingerprint error for hex v0.4.3/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("hex", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hex-0.4.3/src/lib.rs", Edition2018) }
+2026-11-14T00:41:51.3287610Z    0.428253429s  INFO prepare_target{force=false package_id=hex v0.4.3 target="hex"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/hex-940baab90f90bea4/lib-hex`
+2026-11-14T00:41:51.3288449Z 
+2026-11-14T00:41:51.3288533Z Caused by:
+2026-11-14T00:41:51.3288763Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3294626Z    0.428347150s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/work/velnor-lab/velnor-lab/lib/build.rs", Edition2024) }
+2026-11-14T00:41:51.3297780Z    0.428351955s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-6fb72a84575616bf/run-build-script-build-script-build`
+2026-11-14T00:41:51.3298936Z 
+2026-11-14T00:41:51.3299028Z Caused by:
+2026-11-14T00:41:51.3299244Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3300646Z    0.428370743s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/work/velnor-lab/velnor-lab/lib/build.rs", Edition2024) }
+2026-11-14T00:41:51.3302837Z    0.428373647s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-66829b8968228687/build-script-build-script-build`
+2026-11-14T00:41:51.3303917Z 
+2026-11-14T00:41:51.3303994Z Caused by:
+2026-11-14T00:41:51.3304220Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3305928Z    0.428412092s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3308287Z    0.428415887s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-f86992a8951d790c/lib-lab_macros`
+2026-11-14T00:41:51.3309240Z 
+2026-11-14T00:41:51.3309329Z Caused by:
+2026-11-14T00:41:51.3309532Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3310761Z    0.428450644s  INFO prepare_target{force=false package_id=tokio v1.54.1 target="tokio"}: cargo::compiler::fingerprint: fingerprint error for tokio v1.54.1/Check { test: false }/TargetInner { ..: lib_target("tokio", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.54.1/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3312463Z    0.428454247s  INFO prepare_target{force=false package_id=tokio v1.54.1 target="tokio"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tokio-b3f2f02591e78a53/lib-tokio`
+2026-11-14T00:41:51.3313222Z 
+2026-11-14T00:41:51.3313313Z Caused by:
+2026-11-14T00:41:51.3313517Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3315155Z    0.428504312s  INFO prepare_target{force=false package_id=pin-project-lite v0.2.17 target="pin_project_lite"}: cargo::compiler::fingerprint: fingerprint error for pin-project-lite v0.2.17/Check { test: false }/TargetInner { doc_scrape_examples: Disabled, ..: lib_target("pin_project_lite", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pin-project-lite-0.2.17/src/lib.rs", Edition2018) }
+2026-11-14T00:41:51.3317360Z    0.428508215s  INFO prepare_target{force=false package_id=pin-project-lite v0.2.17 target="pin_project_lite"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/pin-project-lite-d1d61c5c1c73c1b7/lib-pin_project_lite`
+2026-11-14T00:41:51.3318694Z 
+2026-11-14T00:41:51.3318775Z Caused by:
+2026-11-14T00:41:51.3318984Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3320526Z    0.428548246s  INFO prepare_target{force=false package_id=tokio-macros v2.7.2 target="tokio_macros"}: cargo::compiler::fingerprint: fingerprint error for tokio-macros v2.7.2/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("tokio_macros", ["proc-macro"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-macros-2.7.2/src/lib.rs", Edition2021) }
+2026-11-14T00:41:51.3322738Z    0.428551677s  INFO prepare_target{force=false package_id=tokio-macros v2.7.2 target="tokio_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tokio-macros-7818bdc101ab677f/lib-tokio_macros`
+2026-11-14T00:41:51.3323688Z 
+2026-11-14T00:41:51.3323766Z Caused by:
+2026-11-14T00:41:51.3323989Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3325644Z    0.428604175s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: true }/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T00:41:51.3327792Z    0.428608278s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-21a8b4578b1bb623/test-bin-app`
+2026-11-14T00:41:51.3328747Z 
+2026-11-14T00:41:51.3328822Z Caused by:
+2026-11-14T00:41:51.3329059Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3330548Z    0.428685532s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="cli"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: true }/TargetInner { kind: "test", name: "cli", benched: false, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/tests/cli.rs", Edition2024) }
+2026-11-14T00:41:51.3332970Z    0.428689553s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="cli"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-e8bd96dc8730ad4b/test-integration-test-cli`
+2026-11-14T00:41:51.3334054Z 
+2026-11-14T00:41:51.3334190Z Caused by:
+2026-11-14T00:41:51.3334618Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3336107Z    0.428774175s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="slow"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Check { test: true }/TargetInner { kind: "test", name: "slow", benched: false, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/tests/slow.rs", Edition2024) }
+2026-11-14T00:41:51.3338336Z    0.428777765s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="slow"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-614f2f77a0ab8736/test-integration-test-slow`
+2026-11-14T00:41:51.3339425Z 
+2026-11-14T00:41:51.3339516Z Caused by:
+2026-11-14T00:41:51.3339734Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3341162Z    0.428872443s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Check { test: true }/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3343698Z    0.428877205s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-56e88c354c99c3d4/test-lib-lab_core`
+2026-11-14T00:41:51.3344987Z 
+2026-11-14T00:41:51.3345082Z Caused by:
+2026-11-14T00:41:51.3345447Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3346851Z    0.428937505s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Check { test: true }/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3348994Z    0.428941036s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-59827dc545f60b5e/test-lib-lab_lib`
+2026-11-14T00:41:51.3350027Z 
+2026-11-14T00:41:51.3350120Z Caused by:
+2026-11-14T00:41:51.3350352Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3352048Z    0.428998851s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Check { test: false }/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3354694Z    0.429003026s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-a7211f8440616fab/lib-lab_macros`
+2026-11-14T00:41:51.3355645Z 
+2026-11-14T00:41:51.3355723Z Caused by:
+2026-11-14T00:41:51.3355944Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3357525Z    0.429044173s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Check { test: true }/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:41:51.3359958Z    0.429047670s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-d2a5fc0e7a61f188/test-lib-lab_macros`
+2026-11-14T00:41:51.3361042Z 
+2026-11-14T00:41:51.3361139Z Caused by:
+2026-11-14T00:41:51.3361369Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3362857Z    0.429092184s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint: fingerprint error for tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)/Check { test: false }/TargetInner { name: "tool", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/tool/src/main.rs", Edition2024) }
+2026-11-14T00:41:51.3365245Z    0.429095621s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tool-0c60a13a6a4d71e9/bin-tool`
+2026-11-14T00:41:51.3366358Z 
+2026-11-14T00:41:51.3366452Z Caused by:
+2026-11-14T00:41:51.3366663Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3367788Z    0.429145017s  INFO prepare_target{force=false package_id=fnv v1.0.5 target="fnv"}: cargo::compiler::fingerprint: fingerprint error for fnv v1.0.5/Check { test: false }/TargetInner { ..: lib_target("fnv", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fnv-1.0.5/lib.rs", Edition2015) }
+2026-11-14T00:41:51.3369618Z    0.429148430s  INFO prepare_target{force=false package_id=fnv v1.0.5 target="fnv"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/fnv-975108456b443546/lib-fnv`
+2026-11-14T00:41:51.3370415Z 
+2026-11-14T00:41:51.3370498Z Caused by:
+2026-11-14T00:41:51.3370730Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3372127Z    0.429192119s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint: fingerprint error for tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)/Check { test: true }/TargetInner { name: "tool", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/tool/src/main.rs", Edition2024) }
+2026-11-14T00:41:51.3374182Z    0.429195371s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tool-8d1b73827be3aad9/test-bin-tool`
+2026-11-14T00:41:51.3375401Z 
+2026-11-14T00:41:51.3375498Z Caused by:
+2026-11-14T00:41:51.3375724Z     No such file or directory (os error 2)
+2026-11-14T00:41:51.3376021Z    Compiling proc-macro2 v1.0.107
+2026-11-14T00:41:51.3376310Z    Compiling unicode-ident v1.0.27
+2026-11-14T00:41:51.3376614Z    Compiling quote v1.0.47
+2026-11-14T00:41:51.3376895Z    Compiling serde_core v1.0.229
+2026-11-14T00:41:51.8636256Z    Compiling serde v1.0.229
+2026-11-14T00:41:52.3103777Z    Compiling zmij v1.0.23
+2026-11-14T00:41:52.3129119Z    Compiling serde_json v1.0.154
+2026-11-14T00:41:52.3940693Z     Checking memchr v2.8.3
+2026-11-14T00:41:52.5655438Z     Checking itoa v1.0.19
+2026-11-14T00:41:52.6550331Z     Checking utf8parse v0.2.2
+2026-11-14T00:41:52.6856610Z     Checking anstyle-parse v1.0.0
+2026-11-14T00:41:52.7426221Z    Compiling syn v3.0.10
+2026-11-14T00:41:52.7435281Z     Checking colorchoice v1.0.5
+2026-11-14T00:41:52.7649511Z     Checking anstyle-query v1.1.5
+2026-11-14T00:41:52.7705186Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T00:41:52.7957431Z     Checking is_terminal_polyfill v1.70.2
+2026-11-14T00:41:52.8215118Z     Checking anstyle v1.0.14
+2026-11-14T00:41:52.8577338Z     Checking strsim v0.11.1
+2026-11-14T00:41:52.9045133Z     Checking anstream v1.0.0
+2026-11-14T00:41:52.9215642Z    Compiling heck v0.5.0
+2026-11-14T00:41:52.9975049Z     Checking clap_lex v1.1.1
+2026-11-14T00:41:53.0175523Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T00:41:53.0518275Z     Checking clap_builder v4.6.7
+2026-11-14T00:41:53.1175174Z     Checking pin-project-lite v0.2.17
+2026-11-14T00:41:53.1444966Z     Checking fnv v1.0.5
+2026-11-14T00:41:54.3701859Z    Compiling serde_derive v1.0.229
+2026-11-14T00:41:54.3702224Z    Compiling clap_derive v4.6.7
+2026-11-14T00:41:54.3702509Z    Compiling tokio-macros v2.7.2
+2026-11-14T00:41:54.5840675Z     Checking tokio v1.54.1
+2026-11-14T00:41:55.1752757Z     Checking clap v4.6.7
+2026-11-14T00:41:55.8272918Z     Checking hex v0.4.3
+2026-11-14T00:41:55.8273420Z     Checking core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T00:41:55.9050560Z     Checking tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T00:41:55.9365650Z     Checking app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T00:41:55.9858419Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.10s
+2026-11-14T00:41:56.0039801Z mbx[cache]: object cache: 0 hits, 0 misses, 45 not looked up, 7 bypassed; 0 B downloaded, 0 B uploaded, 24.4 MiB stored locally
+2026-11-14T00:41:56.0040515Z mbx[cache]: 5.14s session; 0s estimated compiler time avoided (summed across compilations)
+2026-11-14T00:41:56.0041114Z mbx[cache]: 45 compilations had no usable prior inputs or matching prediction for a lookup
+2026-11-14T00:41:56.0041937Z mbx[cache]: bypass reasons: 4 unsupported-crate-type, 3 build-script-declarations-pending
+2026-11-14T00:41:56.0042554Z mbx[cache]: Cargo artifact reuse and CI cache archive transfers are not included above
+2026-11-14T00:41:56.0089222Z ##[group]Run cargo nextest run --workspace --locked
+2026-11-14T00:41:56.0089532Z [36;1mcargo nextest run --workspace --locked[0m
+2026-11-14T00:41:56.0108775Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:41:56.0109007Z env:
+2026-11-14T00:41:56.0109191Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:41:56.0109408Z   MBX_BLAZE: 1
+2026-11-14T00:41:56.0109568Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:41:56.0109759Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:41:56.0109968Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:41:56.0110200Z   MISE_LOG_LEVEL: info
+2026-11-14T00:41:56.0110505Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:41:56.0110775Z   MISE_YES: 1
+2026-11-14T00:41:56.0110940Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:41:56.0111141Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:41:56.0111337Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:41:56.0111522Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:41:56.0111715Z   MBX_REMOTE_URL: 
+2026-11-14T00:41:56.0111870Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:41:56.0112029Z ##[endgroup]
+2026-11-14T00:41:56.1059929Z    0.017179266s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Test/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T00:41:56.1062348Z    0.017196747s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-03ca1085f0a16b39/test-bin-app`
+2026-11-14T00:41:56.1063403Z 
+2026-11-14T00:41:56.1063498Z Caused by:
+2026-11-14T00:41:56.1063741Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1065179Z    0.017333988s  INFO prepare_target{force=false package_id=clap v4.6.7 target="clap"}: cargo::compiler::fingerprint: fingerprint error for clap v4.6.7/Build/TargetInner { benched: false, ..: lib_target("clap", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap-4.6.7/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1067050Z    0.017342590s  INFO prepare_target{force=false package_id=clap v4.6.7 target="clap"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap-751201c838d95c3d/lib-clap`
+2026-11-14T00:41:56.1067889Z 
+2026-11-14T00:41:56.1067993Z Caused by:
+2026-11-14T00:41:56.1068223Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1086663Z    0.017410502s  INFO prepare_target{force=false package_id=clap_builder v4.6.7 target="clap_builder"}: cargo::compiler::fingerprint: fingerprint error for clap_builder v4.6.7/Build/TargetInner { benched: false, ..: lib_target("clap_builder", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_builder-4.6.7/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1088684Z    0.017418733s  INFO prepare_target{force=false package_id=clap_builder v4.6.7 target="clap_builder"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap_builder-0fd0dff0deb03f13/lib-clap_builder`
+2026-11-14T00:41:56.1089727Z 
+2026-11-14T00:41:56.1089818Z Caused by:
+2026-11-14T00:41:56.1090039Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1091119Z    0.017477385s  INFO prepare_target{force=false package_id=anstream v1.0.0 target="anstream"}: cargo::compiler::fingerprint: fingerprint error for anstream v1.0.0/Build/TargetInner { ..: lib_target("anstream", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstream-1.0.0/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1092658Z    0.017482630s  INFO prepare_target{force=false package_id=anstream v1.0.0 target="anstream"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstream-3b28b0425aaeb02d/lib-anstream`
+2026-11-14T00:41:56.1093486Z 
+2026-11-14T00:41:56.1093582Z Caused by:
+2026-11-14T00:41:56.1093784Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1095194Z    0.017537783s  INFO prepare_target{force=false package_id=anstyle v1.0.14 target="anstyle"}: cargo::compiler::fingerprint: fingerprint error for anstyle v1.0.14/Build/TargetInner { ..: lib_target("anstyle", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-1.0.14/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1097033Z    0.017542038s  INFO prepare_target{force=false package_id=anstyle v1.0.14 target="anstyle"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-b598f5c74c5312cb/lib-anstyle`
+2026-11-14T00:41:56.1098085Z 
+2026-11-14T00:41:56.1098305Z Caused by:
+2026-11-14T00:41:56.1098944Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1100347Z    0.017583185s  INFO prepare_target{force=false package_id=anstyle-parse v1.0.0 target="anstyle_parse"}: cargo::compiler::fingerprint: fingerprint error for anstyle-parse v1.0.0/Build/TargetInner { ..: lib_target("anstyle_parse", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-parse-1.0.0/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1102324Z    0.017587645s  INFO prepare_target{force=false package_id=anstyle-parse v1.0.0 target="anstyle_parse"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-parse-ad033b5c068d2023/lib-anstyle_parse`
+2026-11-14T00:41:56.1103184Z 
+2026-11-14T00:41:56.1103313Z Caused by:
+2026-11-14T00:41:56.1103512Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1104752Z    0.017629732s  INFO prepare_target{force=false package_id=utf8parse v0.2.2 target="utf8parse"}: cargo::compiler::fingerprint: fingerprint error for utf8parse v0.2.2/Build/TargetInner { ..: lib_target("utf8parse", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/utf8parse-0.2.2/src/lib.rs", Edition2018) }
+2026-11-14T00:41:56.1106376Z    0.017634068s  INFO prepare_target{force=false package_id=utf8parse v0.2.2 target="utf8parse"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/utf8parse-1bc830e89181ae12/lib-utf8parse`
+2026-11-14T00:41:56.1107162Z 
+2026-11-14T00:41:56.1107249Z Caused by:
+2026-11-14T00:41:56.1107453Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1108711Z    0.017678208s  INFO prepare_target{force=false package_id=anstyle-query v1.1.5 target="anstyle_query"}: cargo::compiler::fingerprint: fingerprint error for anstyle-query v1.1.5/Build/TargetInner { ..: lib_target("anstyle_query", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/anstyle-query-1.1.5/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1110781Z    0.017682411s  INFO prepare_target{force=false package_id=anstyle-query v1.1.5 target="anstyle_query"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/anstyle-query-84d96ec08ba40538/lib-anstyle_query`
+2026-11-14T00:41:56.1111976Z 
+2026-11-14T00:41:56.1112064Z Caused by:
+2026-11-14T00:41:56.1112293Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1113517Z    0.017721849s  INFO prepare_target{force=false package_id=colorchoice v1.0.5 target="colorchoice"}: cargo::compiler::fingerprint: fingerprint error for colorchoice v1.0.5/Build/TargetInner { ..: lib_target("colorchoice", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/colorchoice-1.0.5/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1115902Z    0.017726636s  INFO prepare_target{force=false package_id=colorchoice v1.0.5 target="colorchoice"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/colorchoice-e8cb1af8c83a3a0b/lib-colorchoice`
+2026-11-14T00:41:56.1116753Z 
+2026-11-14T00:41:56.1116838Z Caused by:
+2026-11-14T00:41:56.1117041Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1118344Z    0.017767874s  INFO prepare_target{force=false package_id=is_terminal_polyfill v1.70.2 target="is_terminal_polyfill"}: cargo::compiler::fingerprint: fingerprint error for is_terminal_polyfill v1.70.2/Build/TargetInner { ..: lib_target("is_terminal_polyfill", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/is_terminal_polyfill-1.70.2/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1120341Z    0.017772447s  INFO prepare_target{force=false package_id=is_terminal_polyfill v1.70.2 target="is_terminal_polyfill"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/is_terminal_polyfill-0f0687097ee62b2c/lib-is_terminal_polyfill`
+2026-11-14T00:41:56.1121344Z 
+2026-11-14T00:41:56.1121436Z Caused by:
+2026-11-14T00:41:56.1121653Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1122907Z    0.017816769s  INFO prepare_target{force=false package_id=clap_lex v1.1.1 target="clap_lex"}: cargo::compiler::fingerprint: fingerprint error for clap_lex v1.1.1/Build/TargetInner { benched: false, ..: lib_target("clap_lex", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/clap_lex-1.1.1/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1125360Z    0.017821148s  INFO prepare_target{force=false package_id=clap_lex v1.1.1 target="clap_lex"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/clap_lex-76c1abdc41df8f56/lib-clap_lex`
+2026-11-14T00:41:56.1126264Z 
+2026-11-14T00:41:56.1126357Z Caused by:
+2026-11-14T00:41:56.1126589Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1127879Z    0.017858699s  INFO prepare_target{force=false package_id=strsim v0.11.1 target="strsim"}: cargo::compiler::fingerprint: fingerprint error for strsim v0.11.1/Build/TargetInner { name_inferred: true, ..: lib_target("strsim", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/strsim-0.11.1/src/lib.rs", Edition2015) }
+2026-11-14T00:41:56.1129722Z    0.017862850s  INFO prepare_target{force=false package_id=strsim v0.11.1 target="strsim"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/strsim-b53e9e31827e3645/lib-strsim`
+2026-11-14T00:41:56.1130491Z 
+2026-11-14T00:41:56.1130581Z Caused by:
+2026-11-14T00:41:56.1130800Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1132156Z    0.018188840s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Build/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1134186Z    0.018195560s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-da1e8aac1707c294/lib-lab_core`
+2026-11-14T00:41:56.1135467Z 
+2026-11-14T00:41:56.1135554Z Caused by:
+2026-11-14T00:41:56.1135788Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1136973Z    0.018266389s  INFO prepare_target{force=false package_id=serde v1.0.229 target="serde"}: cargo::compiler::fingerprint: fingerprint error for serde v1.0.229/Build/TargetInner { ..: lib_target("serde", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1138826Z    0.018271196s  INFO prepare_target{force=false package_id=serde v1.0.229 target="serde"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde-33e4a032eeaf489c/lib-serde`
+2026-11-14T00:41:56.1139657Z 
+2026-11-14T00:41:56.1139757Z Caused by:
+2026-11-14T00:41:56.1139986Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1141258Z    0.018395231s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="serde_core"}: cargo::compiler::fingerprint: fingerprint error for serde_core v1.0.229/Build/TargetInner { ..: lib_target("serde_core", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_core-1.0.229/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1143396Z    0.018399878s  INFO prepare_target{force=false package_id=serde_core v1.0.229 target="serde_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_core-1e9d9efd87f47fd3/lib-serde_core`
+2026-11-14T00:41:56.1144509Z 
+2026-11-14T00:41:56.1144610Z Caused by:
+2026-11-14T00:41:56.1144854Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1146115Z    0.018525585s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="serde_json"}: cargo::compiler::fingerprint: fingerprint error for serde_json v1.0.154/Build/TargetInner { ..: lib_target("serde_json", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde_json-1.0.154/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1148264Z    0.018529877s  INFO prepare_target{force=false package_id=serde_json v1.0.154 target="serde_json"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/serde_json-437e85d965e0a8f5/lib-serde_json`
+2026-11-14T00:41:56.1149277Z 
+2026-11-14T00:41:56.1149461Z Caused by:
+2026-11-14T00:41:56.1149698Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1151434Z    0.018584165s  INFO prepare_target{force=false package_id=itoa v1.0.19 target="itoa"}: cargo::compiler::fingerprint: fingerprint error for itoa v1.0.19/Build/TargetInner { ..: lib_target("itoa", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/itoa-1.0.19/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1153228Z    0.018587318s  INFO prepare_target{force=false package_id=itoa v1.0.19 target="itoa"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/itoa-d579c4da0110ada3/lib-itoa`
+2026-11-14T00:41:56.1154024Z 
+2026-11-14T00:41:56.1154107Z Caused by:
+2026-11-14T00:41:56.1154492Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1155757Z    0.018623570s  INFO prepare_target{force=false package_id=memchr v2.8.3 target="memchr"}: cargo::compiler::fingerprint: fingerprint error for memchr v2.8.3/Build/TargetInner { benched: false, ..: lib_target("memchr", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/memchr-2.8.3/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1157598Z    0.018626755s  INFO prepare_target{force=false package_id=memchr v2.8.3 target="memchr"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/memchr-2974315c36bbf455/lib-memchr`
+2026-11-14T00:41:56.1158676Z 
+2026-11-14T00:41:56.1158765Z Caused by:
+2026-11-14T00:41:56.1158987Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1160175Z    0.018712132s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="zmij"}: cargo::compiler::fingerprint: fingerprint error for zmij v1.0.23/Build/TargetInner { ..: lib_target("zmij", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zmij-1.0.23/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1161803Z    0.018715268s  INFO prepare_target{force=false package_id=zmij v1.0.23 target="zmij"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/zmij-017fa04e9bfbd0ce/lib-zmij`
+2026-11-14T00:41:56.1162709Z 
+2026-11-14T00:41:56.1162791Z Caused by:
+2026-11-14T00:41:56.1162999Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1164471Z    0.018799998s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Build/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1166660Z    0.018803342s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-bfc0d7475ee80083/lib-lab_lib`
+2026-11-14T00:41:56.1167640Z 
+2026-11-14T00:41:56.1167734Z Caused by:
+2026-11-14T00:41:56.1167947Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1169090Z    0.018857579s  INFO prepare_target{force=false package_id=hex v0.4.3 target="hex"}: cargo::compiler::fingerprint: fingerprint error for hex v0.4.3/Build/TargetInner { name_inferred: true, ..: lib_target("hex", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/hex-0.4.3/src/lib.rs", Edition2018) }
+2026-11-14T00:41:56.1170938Z    0.018861276s  INFO prepare_target{force=false package_id=hex v0.4.3 target="hex"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/hex-5c881b69292d45fe/lib-hex`
+2026-11-14T00:41:56.1171712Z 
+2026-11-14T00:41:56.1171803Z Caused by:
+2026-11-14T00:41:56.1172074Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1173488Z    0.018969680s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/RunCustomBuild/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/work/velnor-lab/velnor-lab/lib/build.rs", Edition2024) }
+2026-11-14T00:41:56.1175922Z    0.018974529s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-b20cb79bc4a3a54c/run-build-script-build-script-build`
+2026-11-14T00:41:56.1177035Z 
+2026-11-14T00:41:56.1177132Z Caused by:
+2026-11-14T00:41:56.1177342Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1178743Z    0.018993042s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Build/TargetInner { ..: custom_build_target("build-script-build", "/home/runner/work/velnor-lab/velnor-lab/lib/build.rs", Edition2024) }
+2026-11-14T00:41:56.1181048Z    0.018995714s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="build-script-build"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-bc9d90c92c04c488/build-script-build-script-build`
+2026-11-14T00:41:56.1182337Z 
+2026-11-14T00:41:56.1182424Z Caused by:
+2026-11-14T00:41:56.1182641Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1184067Z    0.019034878s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Build/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1207514Z    0.019038842s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-ead37a82eae85812/lib-lab_macros`
+2026-11-14T00:41:56.1208568Z 
+2026-11-14T00:41:56.1208667Z Caused by:
+2026-11-14T00:41:56.1208913Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1210065Z    0.019071754s  INFO prepare_target{force=false package_id=tokio v1.54.1 target="tokio"}: cargo::compiler::fingerprint: fingerprint error for tokio v1.54.1/Build/TargetInner { ..: lib_target("tokio", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.54.1/src/lib.rs", Edition2021) }
+2026-11-14T00:41:56.1211818Z    0.019074808s  INFO prepare_target{force=false package_id=tokio v1.54.1 target="tokio"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tokio-34675f88784bb461/lib-tokio`
+2026-11-14T00:41:56.1212599Z 
+2026-11-14T00:41:56.1212693Z Caused by:
+2026-11-14T00:41:56.1212908Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1214663Z    0.019123342s  INFO prepare_target{force=false package_id=pin-project-lite v0.2.17 target="pin_project_lite"}: cargo::compiler::fingerprint: fingerprint error for pin-project-lite v0.2.17/Build/TargetInner { doc_scrape_examples: Disabled, ..: lib_target("pin_project_lite", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pin-project-lite-0.2.17/src/lib.rs", Edition2018) }
+2026-11-14T00:41:56.1216951Z    0.019127263s  INFO prepare_target{force=false package_id=pin-project-lite v0.2.17 target="pin_project_lite"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/pin-project-lite-d48789d525c49729/lib-pin_project_lite`
+2026-11-14T00:41:56.1217869Z 
+2026-11-14T00:41:56.1217962Z Caused by:
+2026-11-14T00:41:56.1218212Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1219564Z    0.019186237s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="cli"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Test/TargetInner { kind: "test", name: "cli", benched: false, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/tests/cli.rs", Edition2024) }
+2026-11-14T00:41:56.1221628Z    0.019190370s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="cli"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-ab24c738cdcb9b11/test-integration-test-cli`
+2026-11-14T00:41:56.1222615Z 
+2026-11-14T00:41:56.1222707Z Caused by:
+2026-11-14T00:41:56.1222924Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1224241Z    0.019271925s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Build/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T00:41:56.1267364Z    0.019275284s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-f1fd6b87dff46118/bin-app`
+2026-11-14T00:41:56.1268359Z 
+2026-11-14T00:41:56.1268458Z Caused by:
+2026-11-14T00:41:56.1268698Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1270290Z    0.019347331s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="slow"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Test/TargetInner { kind: "test", name: "slow", benched: false, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/tests/slow.rs", Edition2024) }
+2026-11-14T00:41:56.1272740Z    0.019350660s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="slow"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-025d64a176de9b91/test-integration-test-slow`
+2026-11-14T00:41:56.1273847Z 
+2026-11-14T00:41:56.1273935Z Caused by:
+2026-11-14T00:41:56.1274161Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1275746Z    0.019422233s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Test/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1277999Z    0.019425526s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-4f439483825348fa/test-lib-lab_core`
+2026-11-14T00:41:56.1279033Z 
+2026-11-14T00:41:56.1279131Z Caused by:
+2026-11-14T00:41:56.1279362Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1280710Z    0.019488011s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Test/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1282973Z    0.019491049s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-c59259ddc7090317/test-lib-lab_lib`
+2026-11-14T00:41:56.1283996Z 
+2026-11-14T00:41:56.1284086Z Caused by:
+2026-11-14T00:41:56.1284575Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1286195Z    0.019556701s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Test/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:41:56.1288652Z    0.019560814s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-ceb6b16499f2a656/test-lib-lab_macros`
+2026-11-14T00:41:56.1289732Z 
+2026-11-14T00:41:56.1289827Z Caused by:
+2026-11-14T00:41:56.1290206Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1291632Z    0.019608731s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint: fingerprint error for tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)/Test/TargetInner { name: "tool", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/tool/src/main.rs", Edition2024) }
+2026-11-14T00:41:56.1293807Z    0.019611740s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tool-dd88d56f89320131/test-bin-tool`
+2026-11-14T00:41:56.1315597Z 
+2026-11-14T00:41:56.1315725Z Caused by:
+2026-11-14T00:41:56.1315965Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1317166Z    0.019659652s  INFO prepare_target{force=false package_id=fnv v1.0.5 target="fnv"}: cargo::compiler::fingerprint: fingerprint error for fnv v1.0.5/Build/TargetInner { ..: lib_target("fnv", ["lib"], "/home/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fnv-1.0.5/lib.rs", Edition2015) }
+2026-11-14T00:41:56.1318964Z    0.019663696s  INFO prepare_target{force=false package_id=fnv v1.0.5 target="fnv"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/fnv-7cb088a4e5047a8c/lib-fnv`
+2026-11-14T00:41:56.1319783Z 
+2026-11-14T00:41:56.1319875Z Caused by:
+2026-11-14T00:41:56.1320105Z     No such file or directory (os error 2)
+2026-11-14T00:41:56.1320429Z    Compiling serde_core v1.0.229
+2026-11-14T00:41:56.1320726Z    Compiling zmij v1.0.23
+2026-11-14T00:41:56.1320985Z    Compiling itoa v1.0.19
+2026-11-14T00:41:56.1321235Z    Compiling memchr v2.8.3
+2026-11-14T00:41:56.2135473Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T00:41:56.3105584Z    Compiling utf8parse v0.2.2
+2026-11-14T00:41:56.3175466Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T00:41:56.3480511Z    Compiling anstyle-parse v1.0.0
+2026-11-14T00:41:56.3836786Z    Compiling colorchoice v1.0.5
+2026-11-14T00:41:56.4193251Z    Compiling anstyle-query v1.1.5
+2026-11-14T00:41:56.4313329Z    Compiling anstyle v1.0.14
+2026-11-14T00:41:56.4467252Z    Compiling is_terminal_polyfill v1.70.2
+2026-11-14T00:41:56.4793489Z    Compiling strsim v0.11.1
+2026-11-14T00:41:56.5445166Z    Compiling anstream v1.0.0
+2026-11-14T00:41:56.5783959Z    Compiling clap_lex v1.1.1
+2026-11-14T00:41:56.7015250Z    Compiling clap_builder v4.6.7
+2026-11-14T00:41:56.7234953Z    Compiling pin-project-lite v0.2.17
+2026-11-14T00:41:56.7255035Z    Compiling fnv v1.0.5
+2026-11-14T00:41:56.7545056Z    Compiling tokio v1.54.1
+2026-11-14T00:41:57.3201675Z    Compiling serde v1.0.229
+2026-11-14T00:41:57.4095112Z    Compiling serde_json v1.0.154
+2026-11-14T00:41:57.7064842Z    Compiling hex v0.4.3
+2026-11-14T00:41:57.8539497Z    Compiling tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T00:41:57.9785504Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T00:41:58.1127343Z    Compiling clap v4.6.7
+2026-11-14T00:41:58.7001713Z    Compiling app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T00:41:58.9117119Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 2.82s
+2026-11-14T00:41:58.9302898Z ────────────
+2026-11-14T00:41:58.9305140Z  Nextest run ID 59ffd29f-b77a-49c2-96ea-313ba46534b4 with nextest profile: default
+2026-11-14T00:41:58.9313357Z     Starting 18 tests across 7 binaries
+2026-11-14T00:41:58.9347022Z         PASS [   0.004s] ( 1/18) app::cli prints_the_greeting_for_a_name
+2026-11-14T00:41:58.9349849Z         PASS [   0.005s] ( 2/18) app::cli defaults_to_world
+2026-11-14T00:41:58.9378455Z         PASS [   0.003s] ( 3/18) app::bin/app greet::tests::line_names_the_record
+2026-11-14T00:41:58.9405061Z         PASS [   0.003s] ( 4/18) app::bin/app greet::tests::line_starts_with_the_shared_greeting
+2026-11-14T00:41:58.9432055Z         PASS [   0.003s] ( 5/18) core tests::checksum_depends_on_order
+2026-11-14T00:41:58.9459391Z         PASS [   0.003s] ( 6/18) core tests::invalid_json_gives_none
+2026-11-14T00:41:58.9486181Z         PASS [   0.003s] ( 7/18) core tests::json_round_trip_keeps_every_field
+2026-11-14T00:41:58.9511876Z         PASS [   0.003s] ( 8/18) lib tests::describe_names_the_build_script_value
+2026-11-14T00:41:58.9537951Z         PASS [   0.003s] ( 9/18) lib tests::digest_is_hex_of_the_json
+2026-11-14T00:41:58.9564108Z         PASS [   0.003s] (10/18) lib tests::macro_doubles_at_compile_time
+2026-11-14T00:41:58.9593057Z         PASS [   0.003s] (11/18) macros tests::doubles_a_literal
+2026-11-14T00:41:58.9621473Z         PASS [   0.003s] (12/18) macros tests::rejects_text_and_overflow
+2026-11-14T00:41:58.9647643Z         PASS [   0.003s] (13/18) tool::bin/tool hash::tests::fingerprint_differs_for_different_input
+2026-11-14T00:41:58.9673741Z         PASS [   0.003s] (14/18) tool::bin/tool hash::tests::fingerprint_is_sixteen_hex_digits
+2026-11-14T00:41:58.9699643Z         PASS [   0.003s] (15/18) tool::bin/tool hash::tests::parse_round_trips_and_rejects_odd_length
+2026-11-14T00:42:18.9342688Z         PASS [  20.004s] (16/18) app::slow slow_three
+2026-11-14T00:42:18.9343081Z         PASS [  20.004s] (17/18) app::slow slow_one
+2026-11-14T00:42:18.9373533Z         PASS [  20.003s] (18/18) app::slow slow_two
+2026-11-14T00:42:18.9374057Z ────────────
+2026-11-14T00:42:18.9374464Z      Summary [  20.007s] 18 tests run: 18 passed, 0 skipped
+2026-11-14T00:42:18.9412443Z mbx[cache]: object cache: 0 hits, 0 misses, 24 not looked up, 9 bypassed; 0 B downloaded, 0 B uploaded, 59.7 MiB stored locally
+2026-11-14T00:42:18.9413159Z mbx[cache]: 22.92s session; 0s estimated compiler time avoided (summed across compilations)
+2026-11-14T00:42:18.9413696Z mbx[cache]: 24 compilations had no usable prior inputs or matching prediction for a lookup
+2026-11-14T00:42:18.9414532Z mbx[cache]: a manifest predicting 45 compilations was loaded, but none matched this build; the compiler or its flags changed since they were recorded (a toolchain update does this)
+2026-11-14T00:42:18.9415237Z mbx[cache]: bypass reasons: 9 unsupported-crate-type
+2026-11-14T00:42:18.9415642Z mbx[cache]: Cargo artifact reuse and CI cache archive transfers are not included above
+2026-11-14T00:42:18.9452059Z ##[group]Run cargo test --doc --workspace --locked
+2026-11-14T00:42:18.9452479Z [36;1mcargo test --doc --workspace --locked[0m
+2026-11-14T00:42:18.9478132Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:42:18.9478409Z env:
+2026-11-14T00:42:18.9478660Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:42:18.9478976Z   MBX_BLAZE: 1
+2026-11-14T00:42:18.9479199Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:42:18.9479462Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:42:18.9479760Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:42:18.9480097Z   MISE_LOG_LEVEL: info
+2026-11-14T00:42:18.9480429Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:42:18.9480783Z   MISE_YES: 1
+2026-11-14T00:42:18.9481006Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:42:18.9481273Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:42:18.9481565Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:42:18.9481818Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:42:18.9482085Z   MBX_REMOTE_URL: 
+2026-11-14T00:42:18.9482309Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:42:18.9482541Z ##[endgroup]
+2026-11-14T00:42:18.9623703Z blaze: starting the daemon (no socket activation is installed: `blaze daemon install` has the system start it on demand)
+2026-11-14T00:42:19.1817920Z blaze: the daemon it started (pid 3964) started: the database starts empty: there is no daemon image; no daemon ran on this state before it
+2026-11-14T00:42:20.3442955Z   Downloaded anstyle v1.0.14
+2026-11-14T00:42:20.3445844Z   Downloaded utf8parse v0.2.2
+2026-11-14T00:42:20.3446409Z   Downloaded anstyle-parse v1.0.0
+2026-11-14T00:42:20.3454911Z   Downloaded windows-link v0.2.1
+2026-11-14T00:42:20.3455476Z   Downloaded windows-sys v0.61.2
+2026-11-14T00:42:20.3463428Z   Downloaded anstyle-query v1.1.5
+2026-11-14T00:42:20.3464038Z   Downloaded once_cell_polyfill v1.70.2
+2026-11-14T00:42:20.3465642Z   Downloaded anstyle-wincon v3.0.11
+2026-11-14T00:42:20.3466368Z   Downloaded colorchoice v1.0.5
+2026-11-14T00:42:20.3471792Z   Downloaded is_terminal_polyfill v1.70.2
+2026-11-14T00:42:20.3472348Z   Downloaded anstream v1.0.0
+2026-11-14T00:42:20.3472729Z   Downloaded clap_lex v1.1.1
+2026-11-14T00:42:20.3477301Z   Downloaded strsim v0.11.1
+2026-11-14T00:42:20.3478026Z   Downloaded clap_builder v4.6.7
+2026-11-14T00:42:20.3478485Z   Downloaded heck v0.5.0
+2026-11-14T00:42:20.3478777Z   Downloaded unicode-ident v1.0.27
+2026-11-14T00:42:20.3479199Z   Downloaded proc-macro2 v1.0.107
+2026-11-14T00:42:20.3479468Z   Downloaded quote v1.0.47
+2026-11-14T00:42:20.3479713Z   Downloaded syn v3.0.10
+2026-11-14T00:42:20.3479956Z   Downloaded clap_derive v4.6.7
+2026-11-14T00:42:20.3480234Z   Downloaded clap v4.6.7
+2026-11-14T00:42:20.3480480Z   Downloaded serde_derive v1.0.229
+2026-11-14T00:42:20.3480741Z   Downloaded serde_core v1.0.229
+2026-11-14T00:42:20.3480995Z   Downloaded serde v1.0.229
+2026-11-14T00:42:20.3481240Z   Downloaded itoa v1.0.19
+2026-11-14T00:42:20.3481489Z   Downloaded memchr v2.8.3
+2026-11-14T00:42:20.3481736Z   Downloaded zmij v1.0.23
+2026-11-14T00:42:20.3482007Z   Downloaded serde_json v1.0.154
+2026-11-14T00:42:20.3482264Z   Downloaded hex v0.4.3
+2026-11-14T00:42:20.3482630Z   Downloaded pin-project-lite v0.2.17
+2026-11-14T00:42:20.3482943Z   Downloaded tokio-macros v2.7.2
+2026-11-14T00:42:20.3483197Z   Downloaded tokio v1.54.1
+2026-11-14T00:42:20.3483481Z   Downloaded fnv v1.0.5
+2026-11-14T00:42:25.8236798Z    Compiling compiler_builtins v0.1.160 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/compiler-builtins/compiler-builtins)
+2026-11-14T00:42:25.8237900Z    Compiling core v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/core)
+2026-11-14T00:42:28.1726933Z    Compiling libc v0.2.191
+2026-11-14T00:42:28.4638931Z    Compiling alloc v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/alloc)
+2026-11-14T00:42:28.8596439Z    Compiling rustc-std-workspace-core v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-core)
+2026-11-14T00:42:29.8439792Z    Compiling rustc-std-workspace-alloc v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-alloc)
+2026-11-14T00:42:30.7479518Z    Compiling object v0.39.1
+2026-11-14T00:42:30.7997225Z    Compiling adler2 v2.0.1
+2026-11-14T00:42:30.8039508Z    Compiling gimli v0.34.0
+2026-11-14T00:42:30.9316262Z    Compiling memchr v2.8.3
+2026-11-14T00:42:31.0037976Z    Compiling unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/unwind)
+2026-11-14T00:42:31.8105803Z    Compiling std v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std)
+2026-11-14T00:42:31.8129975Z    Compiling cfg-if v1.0.4
+2026-11-14T00:42:31.8130338Z    Compiling addr2line v0.27.1
+2026-11-14T00:42:31.8152565Z    Compiling hashbrown v0.17.1
+2026-11-14T00:42:31.8295100Z    Compiling miniz_oxide v0.9.1
+2026-11-14T00:42:31.8699008Z    Compiling panic_abort v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_abort)
+2026-11-14T00:42:31.8827482Z    Compiling rustc-demangle v0.1.28
+2026-11-14T00:42:31.9282883Z    Compiling std_detect v0.1.5 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/std_detect)
+2026-11-14T00:42:31.9370515Z    Compiling panic_unwind v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/panic_unwind)
+2026-11-14T00:42:33.7486314Z    Compiling rustc-std-workspace-std v1.99.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/rustc-std-workspace-std)
+2026-11-14T00:42:33.8697743Z    Compiling wasip1 v1.0.0
+2026-11-14T00:42:33.9025910Z    Compiling test v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/test)
+2026-11-14T00:42:33.9175644Z    Compiling rustc-literal-escaper v0.0.8
+2026-11-14T00:42:33.9245434Z    Compiling getopts v0.2.24
+2026-11-14T00:42:35.7936471Z    Compiling proc_macro v0.0.0 (/rustc/16d1ffac17ad8b739e32483ac2e65fe7e1804977/library/proc_macro)
+2026-11-14T00:42:35.8795874Z    Compiling proc-macro2 v1.0.107
+2026-11-14T00:42:35.9336042Z    Compiling unicode-ident v1.0.27
+2026-11-14T00:42:35.9435834Z    Compiling quote v1.0.47
+2026-11-14T00:43:13.6486760Z    Compiling serde_core v1.0.229
+2026-11-14T00:43:13.7825112Z    Compiling zmij v1.0.23
+2026-11-14T00:43:16.5378938Z    Compiling serde v1.0.229
+2026-11-14T00:43:17.0076315Z    Compiling serde_json v1.0.154
+2026-11-14T00:43:17.2725730Z    Compiling itoa v1.0.19
+2026-11-14T00:43:19.7278268Z    Compiling syn v3.0.10
+2026-11-14T00:43:19.9416381Z    Compiling serde_derive v1.0.229
+2026-11-14T00:43:45.4958403Z    Compiling lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T00:43:45.5117144Z    Compiling macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T00:43:45.5500451Z    Compiling core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T00:43:45.5525153Z    Compiling hex v0.4.3
+2026-11-14T00:44:46.4432743Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/proc-macro2/3f89419e38ebe4ab/out/build_script_build (first link)
+2026-11-14T00:44:46.4434089Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/quote/4e64a9512590a901/out/build_script_build (first link)
+2026-11-14T00:44:46.4435355Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_core/0b4b494de027718a/out/build_script_build (first link)
+2026-11-14T00:44:46.4436448Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/zmij/cd03ac39daec2073/out/build_script_build (first link)
+2026-11-14T00:44:46.4437528Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde/6ce11bb541fb9f66/out/build_script_build (first link)
+2026-11-14T00:44:46.4438609Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/serde_json/8635ff57306b8b75/out/build_script_build (first link)
+2026-11-14T00:44:46.4439882Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/serde_derive/e888968247be8ff7/out/serde_derive-e888968247be8ff7.wasm (first link)
+2026-11-14T00:44:46.4441643Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/wasm32-wasip1+macros/debug/build/macros/973aa52815b6ef73/out/lab_macros-973aa52815b6ef73.wasm (first link)
+2026-11-14T00:44:46.4442903Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/macros/9d427dd7126e8bc3/out/lab_macros-9d427dd7126e8bc3 (first link)
+2026-11-14T00:44:46.4444029Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/core/b0b5ff6212b449e7/out/lab_core-b0b5ff6212b449e7 (first link)
+2026-11-14T00:44:46.4445252Z link: /blaze/home/build/velnor-lab-cebdf8118c58118947992d19aec999b9/debug/build/lib/e1e40085c34c38f2/out/lab_lib-e1e40085c34c38f2 (first link)
+2026-11-14T00:44:46.4741688Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 27s
+2026-11-14T00:44:46.4742271Z note: this build took 2m 27s: `blaze slow` says what made it slow and what to fix
+2026-11-14T00:44:46.4742651Z    Doc-tests lab_core
+2026-11-14T00:44:46.4779322Z 
+2026-11-14T00:44:46.4779788Z running 0 tests
+2026-11-14T00:44:46.4780068Z 
+2026-11-14T00:44:46.4780352Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T00:44:46.4780746Z 
+2026-11-14T00:44:46.4785213Z    Doc-tests lab_lib
+2026-11-14T00:44:46.4811330Z 
+2026-11-14T00:44:46.4811717Z running 0 tests
+2026-11-14T00:44:46.4812021Z 
+2026-11-14T00:44:46.4812352Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T00:44:46.4812731Z 
+2026-11-14T00:44:46.4814747Z    Doc-tests lab_macros
+2026-11-14T00:44:46.4864714Z 
+2026-11-14T00:44:46.4865400Z running 0 tests
+2026-11-14T00:44:46.4885204Z 
+2026-11-14T00:44:46.4905474Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+2026-11-14T00:44:46.4934696Z 
+2026-11-14T00:44:47.6327436Z ##[group]Run cargo doc --workspace --no-deps --locked
+2026-11-14T00:44:47.6327829Z [36;1mcargo doc --workspace --no-deps --locked[0m
+2026-11-14T00:44:47.6379069Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:44:47.6379326Z env:
+2026-11-14T00:44:47.6379516Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:44:47.6379734Z   MBX_BLAZE: 1
+2026-11-14T00:44:47.6379892Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:44:47.6380130Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:44:47.6380420Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:44:47.6380730Z   MISE_LOG_LEVEL: info
+2026-11-14T00:44:47.6381045Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:44:47.6381416Z   MISE_YES: 1
+2026-11-14T00:44:47.6381639Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:44:47.6381936Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:44:47.6382217Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:44:47.6382452Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:44:47.6382716Z   MBX_REMOTE_URL: 
+2026-11-14T00:44:47.6382921Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:44:47.6383130Z ##[endgroup]
+2026-11-14T00:44:47.6801935Z    0.018732797s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint: fingerprint error for app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)/Doc/TargetInner { name: "app", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/app/src/main.rs", Edition2024) }
+2026-11-14T00:44:47.6804743Z    0.018750584s  INFO prepare_target{force=false package_id=app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app) target="app"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/app-86d113d05ddec82b/doc-bin-app`
+2026-11-14T00:44:47.6806089Z 
+2026-11-14T00:44:47.6806293Z Caused by:
+2026-11-14T00:44:47.6806654Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6808276Z    0.019370514s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Check { test: false }/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:44:47.6810625Z    0.019384248s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-e433178e76abb6c4/lib-lab_core`
+2026-11-14T00:44:47.6811779Z 
+2026-11-14T00:44:47.6811969Z Caused by:
+2026-11-14T00:44:47.6812291Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6813799Z    0.019841822s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Check { test: false }/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:44:47.6816271Z    0.019848181s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-09a8a016c3e3ba51/lib-lab_lib`
+2026-11-14T00:44:47.6817467Z 
+2026-11-14T00:44:47.6817666Z Caused by:
+2026-11-14T00:44:47.6818002Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6825690Z    0.021085326s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint: fingerprint error for core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)/Doc/TargetInner { ..: lib_target("lab_core", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/core/src/lib.rs", Edition2024) }
+2026-11-14T00:44:47.6828345Z    0.021097752s  INFO prepare_target{force=false package_id=core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core) target="lab_core"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/core-2965637426736e34/doc-lib-lab_core`
+2026-11-14T00:44:47.6829623Z 
+2026-11-14T00:44:47.6829859Z Caused by:
+2026-11-14T00:44:47.6830191Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6836206Z    0.022205410s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint: fingerprint error for lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)/Doc/TargetInner { ..: lib_target("lab_lib", ["lib"], "/home/runner/work/velnor-lab/velnor-lab/lib/src/lib.rs", Edition2024) }
+2026-11-14T00:44:47.6838508Z    0.022217872s  INFO prepare_target{force=false package_id=lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib) target="lab_lib"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/lib-e4d14559ba765fef/doc-lib-lab_lib`
+2026-11-14T00:44:47.6839748Z 
+2026-11-14T00:44:47.6839956Z Caused by:
+2026-11-14T00:44:47.6840298Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6846858Z    0.023234941s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint: fingerprint error for macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)/Doc/TargetInner { for_host: true, proc_macro: true, ..: lib_target("lab_macros", ["proc-macro"], "/home/runner/work/velnor-lab/velnor-lab/macros/src/lib.rs", Edition2024) }
+2026-11-14T00:44:47.6849571Z    0.023247408s  INFO prepare_target{force=false package_id=macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros) target="lab_macros"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/macros-477c46c0c3863e7d/doc-lib-lab_macros`
+2026-11-14T00:44:47.6850869Z 
+2026-11-14T00:44:47.6851098Z Caused by:
+2026-11-14T00:44:47.6851447Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6857245Z    0.024290793s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint: fingerprint error for tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)/Doc/TargetInner { name: "tool", doc: true, ..: with_path("/home/runner/work/velnor-lab/velnor-lab/tool/src/main.rs", Edition2024) }
+2026-11-14T00:44:47.6859544Z    0.024301897s  INFO prepare_target{force=false package_id=tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool) target="tool"}: cargo::compiler::fingerprint:     err: failed to read `/home/runner/work/velnor-lab/velnor-lab/target/debug/.fingerprint/tool-8acd2049a077775f/doc-bin-tool`
+2026-11-14T00:44:47.6860673Z 
+2026-11-14T00:44:47.6860895Z Caused by:
+2026-11-14T00:44:47.6861378Z     No such file or directory (os error 2)
+2026-11-14T00:44:47.6861875Z     Checking core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T00:44:47.6867048Z  Documenting tool v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/tool)
+2026-11-14T00:44:47.6867563Z  Documenting core v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/core)
+2026-11-14T00:44:47.6868049Z  Documenting macros v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/macros)
+2026-11-14T00:44:47.7401209Z     Checking lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T00:44:47.7608487Z  Documenting app v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/app)
+2026-11-14T00:44:47.9072411Z  Documenting lib v0.0.0 (/home/runner/work/velnor-lab/velnor-lab/lib)
+2026-11-14T00:44:48.0198351Z     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s
+2026-11-14T00:44:48.0222399Z    Generated /home/runner/work/velnor-lab/velnor-lab/target/doc/app/index.html and 4 other files
+2026-11-14T00:44:48.0267781Z mbx[cache]: object cache: 0 hits, 4 misses, 2 not looked up, 1 bypassed; 0 B downloaded, 0 B uploaded, 795.9 KiB stored locally
+2026-11-14T00:44:48.0268576Z mbx[cache]: 372.3ms session; 0s estimated compiler time avoided (summed across compilations)
+2026-11-14T00:44:48.0269225Z mbx[cache]: 2 compilations had no usable prior inputs or matching prediction for a lookup
+2026-11-14T00:44:48.0269721Z mbx[cache]: bypass reasons: 1 rustdoc
+2026-11-14T00:44:48.0270172Z mbx[cache]: Cargo artifact reuse and CI cache archive transfers are not included above
+2026-11-14T00:44:48.0297760Z ##[group]Run blaze status --json
+2026-11-14T00:44:48.0297993Z [36;1mblaze status --json[0m
+2026-11-14T00:44:48.0317333Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:44:48.0317561Z env:
+2026-11-14T00:44:48.0317742Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:44:48.0317955Z   MBX_BLAZE: 1
+2026-11-14T00:44:48.0318114Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:44:48.0318303Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:44:48.0318515Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:44:48.0318746Z   MISE_LOG_LEVEL: info
+2026-11-14T00:44:48.0318973Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:44:48.0319232Z   MISE_YES: 1
+2026-11-14T00:44:48.0319394Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:44:48.0319591Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:44:48.0319783Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:44:48.0319963Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:44:48.0320119Z   MBX_REMOTE_URL: 
+2026-11-14T00:44:48.0320306Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:44:48.0320466Z ##[endgroup]
+2026-11-14T00:44:48.0420477Z {"format":1,"version":"blaze 0.20261105.4 (e930296 2026-11-05)","api_schema":40,"home":"/blaze/home","state":"/blaze/home/v2","socket":"/blaze/home/v2.sock","daemon":{"pid":3964,"build":"1b4c6a82b71ec592eff3893fdd5eef8dd519cf9f45de754efc230f042e84cf2f","exe":"/home/runner/work/_temp/blaze-v0.20261105.4-x86_64-unknown-linux-gnu/blaze","uptime_ms":148915,"memory_bytes":6998212608,"budget_bytes":11938910208,"bugs":0,"requests":[],"views":0,"history":null,"settings":{"BLAZE_ALLOC_TRACE":null,"BLAZE_ASSEMBLER":null,"BLAZE_BACKEND":null,"BLAZE_BORROWCK":null,"BLAZE_BORROWCK_DEBUG":null,"BLAZE_BUILT_IN":null,"BLAZE_CHECK_PLACES":null,"BLAZE_CORES":null,"BLAZE_DAEMON_MEMORY_GB":null,"BLAZE_DUCKDB":null,"BLAZE_DUMP_CLIF":null,"BLAZE_DUMP_LLVM":null,"BLAZE_DUMP_MIR":null,"BLAZE_DUMP_TIER":null,"BLAZE_EMIT":null,"BLAZE_FN_CACHE_TRACE":null,"BLAZE_HUGE_PAGES":null,"BLAZE_INLINE":null,"BLAZE_INLINE_ASM":null,"BLAZE_LAYOUTS":null,"BLAZE_LEAN":null,"BLAZE_LIBRARY":null,"BLAZE_LIBRARY_FROM":null,"BLAZE_LLVM_INLINE_THRESHOLD":null,"BLAZE_MIR_OPT":null,"BLAZE_NO_HOME":null,"BLAZE_OPT":null,"BLAZE_PROC_MACRO_CACHE":null,"BLAZE_PROMOTE":null,"BLAZE_REGALLOC":null,"BLAZE_TRACE_HOLDERS":null,"BLAZE_Z3":null}}}
+2026-11-14T00:44:48.0456530Z ##[group]Run mbx stats --json
+2026-11-14T00:44:48.0456876Z [36;1mmbx stats --json[0m
+2026-11-14T00:44:48.0478132Z shell: /usr/bin/bash -e {0}
+2026-11-14T00:44:48.0478537Z env:
+2026-11-14T00:44:48.0478794Z   CARGO_LOG: cargo::compiler::fingerprint=info
+2026-11-14T00:44:48.0479231Z   MBX_BLAZE: 1
+2026-11-14T00:44:48.0479461Z   BLAZE_VERSION: v0.20261105.4
+2026-11-14T00:44:48.0479850Z   BLAZE_HOME: /blaze/home
+2026-11-14T00:44:48.0480166Z   ARCHIVE: blaze-v0.20261105.4-x86_64-unknown-linux-gnu
+2026-11-14T00:44:48.0480627Z   MISE_LOG_LEVEL: info
+2026-11-14T00:44:48.0480976Z   MISE_TRUSTED_CONFIG_PATHS: /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:44:48.0481487Z   MISE_YES: 1
+2026-11-14T00:44:48.0481717Z   CARGO_HOME: /home/runner/.cargo
+2026-11-14T00:44:48.0482114Z   RUSTUP_HOME: /home/runner/.rustup
+2026-11-14T00:44:48.0482410Z   RUSTUP_TOOLCHAIN: 1.99.1
+2026-11-14T00:44:48.0482667Z   MBX_CACHE_LINKS: 0
+2026-11-14T00:44:48.0483155Z   MBX_REMOTE_URL: 
+2026-11-14T00:44:48.0483492Z   MBX_TARGET_VIEWS: 0
+2026-11-14T00:44:48.0483858Z ##[endgroup]
+2026-11-14T00:44:48.0587540Z {
+2026-11-14T00:44:48.0587858Z   "version": 1,
+2026-11-14T00:44:48.0588078Z   "store": "/home/runner/.cache/mbx/actions",
+2026-11-14T00:44:48.0588301Z   "savings": {
+2026-11-14T00:44:48.0588467Z     "byte_accounting": "logical",
+2026-11-14T00:44:48.0588662Z     "since_unix_secs": 1794616916,
+2026-11-14T00:44:48.0590154Z     "builds": 3,
+2026-11-14T00:44:48.0590531Z     "cached_compilations": 0,
+2026-11-14T00:44:48.0590835Z     "estimated_compiler_ns_avoided": 0,
+2026-11-14T00:44:48.0591175Z     "reflinked_bytes": 0,
+2026-11-14T00:44:48.0591460Z     "pruned_bytes": 0,
+2026-11-14T00:44:48.0591682Z     "pruned_target_bytes": 0,
+2026-11-14T00:44:48.0591915Z     "pruned_store_bytes": 0,
+2026-11-14T00:44:48.0592160Z     "automatically_pruned_bytes": 0,
+2026-11-14T00:44:48.0592396Z     "automatically_pruned_since_unix_secs": 1794616916,
+2026-11-14T00:44:48.0592658Z     "requested_removal_bytes": 0,
+2026-11-14T00:44:48.0592852Z     "compilations": {
+2026-11-14T00:44:48.0593022Z       "since_unix_secs": 1794616916,
+2026-11-14T00:44:48.0593282Z       "hits": 0,
+2026-11-14T00:44:48.0593491Z       "misses": 4,
+2026-11-14T00:44:48.0593685Z       "unconsulted": 71,
+2026-11-14T00:44:48.0593959Z       "bypasses": 24,
+2026-11-14T00:44:48.0594169Z       "verifications": 0,
+2026-11-14T00:44:48.0594720Z       "incremental": 0,
+2026-11-14T00:44:48.0594941Z       "compiler_ns": {
+2026-11-14T00:44:48.0595138Z         "miss": 437933833,
+2026-11-14T00:44:48.0595351Z         "unconsulted": 14562398200,
+2026-11-14T00:44:48.0595577Z         "bypass": 4953993170,
+2026-11-14T00:44:48.0595760Z         "verification": 0
+2026-11-14T00:44:48.0595923Z       }
+2026-11-14T00:44:48.0596056Z     }
+2026-11-14T00:44:48.0596188Z   },
+2026-11-14T00:44:48.0596322Z   "cache": {
+2026-11-14T00:44:48.0596472Z     "objects": 438,
+2026-11-14T00:44:48.0596626Z     "bytes": 89061129,
+2026-11-14T00:44:48.0596795Z     "managed_targets": 0,
+2026-11-14T00:44:48.0596972Z     "managed_target_bytes": 0
+2026-11-14T00:44:48.0597146Z   },
+2026-11-14T00:44:48.0597278Z   "sharing": {
+2026-11-14T00:44:48.0597427Z     "live_workspaces": 1,
+2026-11-14T00:44:48.0597606Z     "independent_cache_bytes": 88270476,
+2026-11-14T00:44:48.0597815Z     "shared_store_bytes": 89061129,
+2026-11-14T00:44:48.0598031Z     "duplicate_cache_bytes_avoided_lower_bound": 0
+2026-11-14T00:44:48.0598240Z   }
+2026-11-14T00:44:48.0598372Z }
+2026-11-14T00:44:48.0690776Z Post job cleanup.
+2026-11-14T00:44:48.1762454Z Post job cleanup.
+2026-11-14T00:44:48.3139684Z Post job cleanup.
+2026-11-14T00:44:48.3790782Z [command]/usr/bin/git version
+2026-11-14T00:44:48.3845156Z git version 2.56.1
+2026-11-14T00:44:48.3871949Z Temporarily overriding HOME='/home/runner/work/_temp/42efa9c0-6576-4c7c-8d8e-17490d415235' before making global git config changes
+2026-11-14T00:44:48.3872773Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-14T00:44:48.3873459Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/velnor-lab/velnor-lab
+2026-11-14T00:44:48.3894783Z Removing SSH command configuration
+2026-11-14T00:44:48.3895297Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-14T00:44:48.3933480Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-14T00:44:48.4185895Z Removing HTTP extra header
+2026-11-14T00:44:48.4193780Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-14T00:44:48.4238800Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-14T00:44:48.4434600Z Removing includeIf entries pointing to credentials config files
+2026-11-14T00:44:48.4440222Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-14T00:44:48.4462137Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-14T00:44:48.4729506Z Cleaning up orphan processes
+2026-11-14T00:44:48.5072388Z Terminate orphan process: pid (3964) (blaze)

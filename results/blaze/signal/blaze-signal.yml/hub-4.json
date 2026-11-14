@@ -1,0 +1,236 @@
+{
+  "repo": "tailrocks/velnor-lab",
+  "run_id": 43552998437,
+  "run_attempt": 1,
+  "workflow": "blaze signal",
+  "event": "pull_request",
+  "head_sha": "d13706f4eba378392863dcd53def9e8e73a9ac7e",
+  "wall_seconds": 372,
+  "runner_seconds": 689,
+  "jobs": [
+    {
+      "name": "blaze (ubuntu-latest, x86_64-unknown-linux-gnu)",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 1,
+      "duration_seconds": 369,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run uname -r",
+          "seconds": 0
+        },
+        {
+          "name": "Run curl --proto =https --tlsv1.2 -fsSLo \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" \"https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run sha256sum -c --ignore-missing \"$GITHUB_WORKSPACE/.github/blaze.sha256\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run tar -xzf \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" -C \"$RUNNER_TEMP\"",
+          "seconds": 2
+        },
+        {
+          "name": "Run echo \"$RUNNER_TEMP/$ARCHIVE\" >> \"$GITHUB_PATH\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo prlimit --pid \"$PPID\" --memlock=unlimited:unlimited",
+          "seconds": 0
+        },
+        {
+          "name": "Run truncate -s 12G \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkfs.xfs -q -m reflink=1 \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkdir -p /blaze",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mount -o loop \"$RUNNER_TEMP/blaze.img\" /blaze",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo install -d -m 700 -o runner -g runner /blaze/home",
+          "seconds": 0
+        },
+        {
+          "name": "Run blaze --version",
+          "seconds": 0
+        },
+        {
+          "name": "Run blaze toolchain",
+          "seconds": 6
+        },
+        {
+          "name": "Run blaze test --workspace",
+          "seconds": 354
+        },
+        {
+          "name": "Run grep -E 'VmHWM|VmRSS' \"/proc/$(pgrep -o -f 'blaze serve')/status\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+          "seconds": 0
+        },
+        {
+          "name": "Run free -b",
+          "seconds": 0
+        },
+        {
+          "name": "Run du -sb /blaze/home",
+          "seconds": 1
+        },
+        {
+          "name": "Run tail -n 100 /blaze/home/v2/serve.log",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 0
+        }
+      ],
+      "log": {
+        "compiling": 60,
+        "checking": 0,
+        "documenting": 0,
+        "downloaded": 33,
+        "finished_seconds": [
+          331.0
+        ],
+        "nextest": [],
+        "caches": []
+      }
+    },
+    {
+      "name": "blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)",
+      "conclusion": "success",
+      "started": true,
+      "queue_seconds": 4,
+      "duration_seconds": 320,
+      "steps": [
+        {
+          "name": "Set up job",
+          "seconds": 0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 1
+        },
+        {
+          "name": "Run uname -r",
+          "seconds": 0
+        },
+        {
+          "name": "Run curl --proto =https --tlsv1.2 -fsSLo \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" \"https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz\"",
+          "seconds": 1
+        },
+        {
+          "name": "Run sha256sum -c --ignore-missing \"$GITHUB_WORKSPACE/.github/blaze.sha256\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run tar -xzf \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" -C \"$RUNNER_TEMP\"",
+          "seconds": 3
+        },
+        {
+          "name": "Run echo \"$RUNNER_TEMP/$ARCHIVE\" >> \"$GITHUB_PATH\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo prlimit --pid \"$PPID\" --memlock=unlimited:unlimited",
+          "seconds": 0
+        },
+        {
+          "name": "Run truncate -s 12G \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkfs.xfs -q -m reflink=1 \"$RUNNER_TEMP/blaze.img\"",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mkdir -p /blaze",
+          "seconds": 0
+        },
+        {
+          "name": "Run sudo mount -o loop \"$RUNNER_TEMP/blaze.img\" /blaze",
+          "seconds": 1
+        },
+        {
+          "name": "Run sudo install -d -m 700 -o runner -g runner /blaze/home",
+          "seconds": 0
+        },
+        {
+          "name": "Run blaze --version",
+          "seconds": 0
+        },
+        {
+          "name": "Run blaze toolchain",
+          "seconds": 3
+        },
+        {
+          "name": "Run blaze test --workspace",
+          "seconds": 306
+        },
+        {
+          "name": "Run grep -E 'VmHWM|VmRSS' \"/proc/$(pgrep -o -f 'blaze serve')/status\"",
+          "seconds": 1
+        },
+        {
+          "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+          "seconds": 0
+        },
+        {
+          "name": "Run free -b",
+          "seconds": 0
+        },
+        {
+          "name": "Run du -sb /blaze/home",
+          "seconds": 0
+        },
+        {
+          "name": "Run tail -n 100 /blaze/home/v2/serve.log",
+          "seconds": 0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "seconds": 0
+        },
+        {
+          "name": "Complete job",
+          "seconds": 1
+        }
+      ],
+      "log": {
+        "compiling": 60,
+        "checking": 0,
+        "documenting": 0,
+        "downloaded": 33,
+        "finished_seconds": [
+          280.0
+        ],
+        "nextest": [],
+        "caches": []
+      }
+    }
+  ]
+}

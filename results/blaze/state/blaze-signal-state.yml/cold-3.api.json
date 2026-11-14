@@ -1,0 +1,726 @@
+{
+  "jobs": {
+    "jobs": [
+      {
+        "check_run_url": "https://api.github.com/repos/tailrocks/velnor-lab/check-runs/132373029611",
+        "completed_at": "2026-11-14T07:23:59Z",
+        "conclusion": "success",
+        "created_at": "2026-11-14T07:16:19Z",
+        "head_branch": "main",
+        "head_sha": "ba987d22b7873489d5b6a163b8adc092aca2f78d",
+        "html_url": "https://github.com/tailrocks/velnor-lab/actions/runs/43570308905/job/132373029611",
+        "id": 132373029611,
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "name": "blaze (ubuntu-latest, x86_64-unknown-linux-gnu)",
+        "node_id": "CR_kwDOVr4dZc8AAAAe0gwi6w",
+        "run_attempt": 1,
+        "run_id": 43570308905,
+        "run_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000243566,
+        "runner_name": "GitHub Actions 1000243566",
+        "started_at": "2026-11-14T07:17:10Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-11-14T07:17:11Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-11-14T07:17:10Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:13Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "started_at": "2026-11-14T07:17:11Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:13Z",
+            "conclusion": "success",
+            "name": "Run uname -r",
+            "number": 3,
+            "started_at": "2026-11-14T07:17:13Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:13Z",
+            "conclusion": "success",
+            "name": "Run curl --proto =https --tlsv1.2 -fsSLo \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" \"https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz\"",
+            "number": 4,
+            "started_at": "2026-11-14T07:17:13Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:13Z",
+            "conclusion": "success",
+            "name": "Run sha256sum -c --ignore-missing \"$GITHUB_WORKSPACE/.github/blaze.sha256\"",
+            "number": 5,
+            "started_at": "2026-11-14T07:17:13Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run tar -xzf \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" -C \"$RUNNER_TEMP\"",
+            "number": 6,
+            "started_at": "2026-11-14T07:17:13Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run echo \"$RUNNER_TEMP/$ARCHIVE\" >> \"$GITHUB_PATH\"",
+            "number": 7,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run sudo prlimit --pid \"$PPID\" --memlock=unlimited:unlimited",
+            "number": 8,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run truncate -s 12G \"$RUNNER_TEMP/blaze.img\"",
+            "number": 9,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run sudo mkfs.xfs -q -m reflink=1 \"$RUNNER_TEMP/blaze.img\"",
+            "number": 10,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run sudo mkdir -p /blaze",
+            "number": 11,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run sudo mount -o loop \"$RUNNER_TEMP/blaze.img\" /blaze",
+            "number": 12,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run sudo install -d -m 700 -o runner -g runner /blaze/home",
+            "number": 13,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:16Z",
+            "conclusion": "success",
+            "name": "Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "number": 14,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:17Z",
+            "conclusion": "success",
+            "name": "Run blaze --version",
+            "number": 15,
+            "started_at": "2026-11-14T07:17:16Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:17:22Z",
+            "conclusion": "success",
+            "name": "Run blaze toolchain",
+            "number": 16,
+            "started_at": "2026-11-14T07:17:17Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:38Z",
+            "conclusion": "success",
+            "name": "Run blaze test --workspace",
+            "number": 17,
+            "started_at": "2026-11-14T07:17:22Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:38Z",
+            "conclusion": "success",
+            "name": "Run grep -E 'VmHWM|VmRSS' \"/proc/$(pgrep -o -f 'blaze serve')/status\"",
+            "number": 18,
+            "started_at": "2026-11-14T07:23:38Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:39Z",
+            "conclusion": "success",
+            "name": "Run blaze stop",
+            "number": 19,
+            "started_at": "2026-11-14T07:23:38Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:41Z",
+            "conclusion": "success",
+            "name": "Run timeout 300 pidwait -f \"blaze serve\"",
+            "number": 20,
+            "started_at": "2026-11-14T07:23:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "number": 21,
+            "started_at": "2026-11-14T07:23:41Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+            "number": 22,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Run free -b",
+            "number": 23,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Run du -sb /blaze/home",
+            "number": 24,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "skipped",
+            "name": "Run tail -n 100 /blaze/home/v2/serve.log",
+            "number": 25,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 50,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:23:57Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 51,
+            "started_at": "2026-11-14T07:23:57Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/jobs/132373029611",
+        "workflow_name": "blaze signal state"
+      },
+      {
+        "check_run_url": "https://api.github.com/repos/tailrocks/velnor-lab/check-runs/132373029812",
+        "completed_at": "2026-11-14T07:22:02Z",
+        "conclusion": "success",
+        "created_at": "2026-11-14T07:16:19Z",
+        "head_branch": "main",
+        "head_sha": "ba987d22b7873489d5b6a163b8adc092aca2f78d",
+        "html_url": "https://github.com/tailrocks/velnor-lab/actions/runs/43570308905/job/132373029812",
+        "id": 132373029812,
+        "labels": [
+          "ubuntu-24.04-arm"
+        ],
+        "name": "blaze (ubuntu-24.04-arm, aarch64-unknown-linux-gnu)",
+        "node_id": "CR_kwDOVr4dZc8AAAAe0gwjtA",
+        "run_attempt": 1,
+        "run_id": 43570308905,
+        "run_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905",
+        "runner_group_id": 0,
+        "runner_group_name": "GitHub Actions",
+        "runner_id": 1000243563,
+        "runner_name": "GitHub Actions 1000243563",
+        "started_at": "2026-11-14T07:16:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completed_at": "2026-11-14T07:16:35Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "started_at": "2026-11-14T07:16:34Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:36Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "started_at": "2026-11-14T07:16:35Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:36Z",
+            "conclusion": "success",
+            "name": "Run uname -r",
+            "number": 3,
+            "started_at": "2026-11-14T07:16:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:36Z",
+            "conclusion": "success",
+            "name": "Run curl --proto =https --tlsv1.2 -fsSLo \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" \"https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz\"",
+            "number": 4,
+            "started_at": "2026-11-14T07:16:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:36Z",
+            "conclusion": "success",
+            "name": "Run sha256sum -c --ignore-missing \"$GITHUB_WORKSPACE/.github/blaze.sha256\"",
+            "number": 5,
+            "started_at": "2026-11-14T07:16:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run tar -xzf \"$RUNNER_TEMP/$ARCHIVE.tar.gz\" -C \"$RUNNER_TEMP\"",
+            "number": 6,
+            "started_at": "2026-11-14T07:16:36Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run echo \"$RUNNER_TEMP/$ARCHIVE\" >> \"$GITHUB_PATH\"",
+            "number": 7,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run sudo prlimit --pid \"$PPID\" --memlock=unlimited:unlimited",
+            "number": 8,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run truncate -s 12G \"$RUNNER_TEMP/blaze.img\"",
+            "number": 9,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run sudo mkfs.xfs -q -m reflink=1 \"$RUNNER_TEMP/blaze.img\"",
+            "number": 10,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run sudo mkdir -p /blaze",
+            "number": 11,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run sudo mount -o loop \"$RUNNER_TEMP/blaze.img\" /blaze",
+            "number": 12,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run sudo install -d -m 700 -o runner -g runner /blaze/home",
+            "number": 13,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "number": 14,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:39Z",
+            "conclusion": "success",
+            "name": "Run blaze --version",
+            "number": 15,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:16:43Z",
+            "conclusion": "success",
+            "name": "Run blaze toolchain",
+            "number": 16,
+            "started_at": "2026-11-14T07:16:39Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:40Z",
+            "conclusion": "success",
+            "name": "Run blaze test --workspace",
+            "number": 17,
+            "started_at": "2026-11-14T07:16:43Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:40Z",
+            "conclusion": "success",
+            "name": "Run grep -E 'VmHWM|VmRSS' \"/proc/$(pgrep -o -f 'blaze serve')/status\"",
+            "number": 18,
+            "started_at": "2026-11-14T07:21:40Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:41Z",
+            "conclusion": "success",
+            "name": "Run blaze stop",
+            "number": 19,
+            "started_at": "2026-11-14T07:21:40Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:43Z",
+            "conclusion": "success",
+            "name": "Run timeout 300 pidwait -f \"blaze serve\"",
+            "number": 20,
+            "started_at": "2026-11-14T07:21:41Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+            "number": 21,
+            "started_at": "2026-11-14T07:21:43Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Run cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak",
+            "number": 22,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Run free -b",
+            "number": 23,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Run du -sb /blaze/home",
+            "number": 24,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "skipped",
+            "name": "Run tail -n 100 /blaze/home/v2/serve.log",
+            "number": 25,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 50,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          },
+          {
+            "completed_at": "2026-11-14T07:21:59Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 51,
+            "started_at": "2026-11-14T07:21:59Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/jobs/132373029812",
+        "workflow_name": "blaze signal state"
+      }
+    ],
+    "total_count": 2
+  },
+  "run": {
+    "actor": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/139017?v=4",
+      "events_url": "https://api.github.com/users/donbeave/events{/privacy}",
+      "followers_url": "https://api.github.com/users/donbeave/followers",
+      "following_url": "https://api.github.com/users/donbeave/following{/other_user}",
+      "gists_url": "https://api.github.com/users/donbeave/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/donbeave",
+      "id": 139017,
+      "login": "donbeave",
+      "node_id": "MDQ6VXNlcjEzOTAxNw==",
+      "organizations_url": "https://api.github.com/users/donbeave/orgs",
+      "received_events_url": "https://api.github.com/users/donbeave/received_events",
+      "repos_url": "https://api.github.com/users/donbeave/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/donbeave/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/donbeave/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/donbeave",
+      "user_view_type": "public"
+    },
+    "artifacts_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905/artifacts",
+    "cancel_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905/cancel",
+    "check_suite_id": 117975757779,
+    "check_suite_node_id": "CS_kwDOVr4dZc8AAAAbd-cz0w",
+    "check_suite_url": "https://api.github.com/repos/tailrocks/velnor-lab/check-suites/117975757779",
+    "conclusion": "success",
+    "created_at": "2026-11-14T07:16:19Z",
+    "display_title": "Lab warm 1794640168-2 (#280)",
+    "event": "push",
+    "head_branch": "main",
+    "head_commit": {
+      "author": {
+        "email": "alexey@zhokhov.com",
+        "name": "Alexey Zhokhov"
+      },
+      "committer": {
+        "email": "noreply@github.com",
+        "name": "GitHub"
+      },
+      "id": "ba987d22b7873489d5b6a163b8adc092aca2f78d",
+      "message": "Lab warm 1794640168-2 (#280)\n\nOpened by `lab`.\n\nSigned-off-by: Alexey Zhokhov <alexey@zhokhov.com>",
+      "timestamp": "2026-11-14T07:16:16Z",
+      "tree_id": "50fbadf1c8e0666079142db4c518e8942a9337c7"
+    },
+    "head_repository": {
+      "archive_url": "https://api.github.com/repos/tailrocks/velnor-lab/{archive_format}{/ref}",
+      "assignees_url": "https://api.github.com/repos/tailrocks/velnor-lab/assignees{/user}",
+      "blobs_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/blobs{/sha}",
+      "branches_url": "https://api.github.com/repos/tailrocks/velnor-lab/branches{/branch}",
+      "collaborators_url": "https://api.github.com/repos/tailrocks/velnor-lab/collaborators{/collaborator}",
+      "comments_url": "https://api.github.com/repos/tailrocks/velnor-lab/comments{/number}",
+      "commits_url": "https://api.github.com/repos/tailrocks/velnor-lab/commits{/sha}",
+      "compare_url": "https://api.github.com/repos/tailrocks/velnor-lab/compare/{base}...{head}",
+      "contents_url": "https://api.github.com/repos/tailrocks/velnor-lab/contents/{+path}",
+      "contributors_url": "https://api.github.com/repos/tailrocks/velnor-lab/contributors",
+      "deployments_url": "https://api.github.com/repos/tailrocks/velnor-lab/deployments",
+      "description": "Small Rust project for trying CI ideas and running the Velnor Rust CI generator for real",
+      "downloads_url": "https://api.github.com/repos/tailrocks/velnor-lab/downloads",
+      "events_url": "https://api.github.com/repos/tailrocks/velnor-lab/events",
+      "fork": false,
+      "forks_url": "https://api.github.com/repos/tailrocks/velnor-lab/forks",
+      "full_name": "tailrocks/velnor-lab",
+      "git_commits_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/commits{/sha}",
+      "git_refs_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/refs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/tags{/sha}",
+      "hooks_url": "https://api.github.com/repos/tailrocks/velnor-lab/hooks",
+      "html_url": "https://github.com/tailrocks/velnor-lab",
+      "id": 1455299941,
+      "issue_comment_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues/comments{/number}",
+      "issue_events_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues/events{/number}",
+      "issues_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues{/number}",
+      "keys_url": "https://api.github.com/repos/tailrocks/velnor-lab/keys{/key_id}",
+      "labels_url": "https://api.github.com/repos/tailrocks/velnor-lab/labels{/name}",
+      "languages_url": "https://api.github.com/repos/tailrocks/velnor-lab/languages",
+      "merges_url": "https://api.github.com/repos/tailrocks/velnor-lab/merges",
+      "milestones_url": "https://api.github.com/repos/tailrocks/velnor-lab/milestones{/number}",
+      "name": "velnor-lab",
+      "node_id": "R_kgDOVr4dZQ",
+      "notifications_url": "https://api.github.com/repos/tailrocks/velnor-lab/notifications{?since,all,participating}",
+      "owner": {
+        "avatar_url": "https://avatars.githubusercontent.com/u/78806509?v=4",
+        "events_url": "https://api.github.com/users/tailrocks/events{/privacy}",
+        "followers_url": "https://api.github.com/users/tailrocks/followers",
+        "following_url": "https://api.github.com/users/tailrocks/following{/other_user}",
+        "gists_url": "https://api.github.com/users/tailrocks/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/tailrocks",
+        "id": 78806509,
+        "login": "tailrocks",
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjc4ODA2NTA5",
+        "organizations_url": "https://api.github.com/users/tailrocks/orgs",
+        "received_events_url": "https://api.github.com/users/tailrocks/received_events",
+        "repos_url": "https://api.github.com/users/tailrocks/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/tailrocks/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/tailrocks/subscriptions",
+        "type": "Organization",
+        "url": "https://api.github.com/users/tailrocks",
+        "user_view_type": "public"
+      },
+      "private": false,
+      "pulls_url": "https://api.github.com/repos/tailrocks/velnor-lab/pulls{/number}",
+      "releases_url": "https://api.github.com/repos/tailrocks/velnor-lab/releases{/id}",
+      "stargazers_url": "https://api.github.com/repos/tailrocks/velnor-lab/stargazers",
+      "statuses_url": "https://api.github.com/repos/tailrocks/velnor-lab/statuses/{sha}",
+      "subscribers_url": "https://api.github.com/repos/tailrocks/velnor-lab/subscribers",
+      "subscription_url": "https://api.github.com/repos/tailrocks/velnor-lab/subscription",
+      "tags_url": "https://api.github.com/repos/tailrocks/velnor-lab/tags",
+      "teams_url": "https://api.github.com/repos/tailrocks/velnor-lab/teams",
+      "trees_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/trees{/sha}",
+      "url": "https://api.github.com/repos/tailrocks/velnor-lab"
+    },
+    "head_sha": "ba987d22b7873489d5b6a163b8adc092aca2f78d",
+    "html_url": "https://github.com/tailrocks/velnor-lab/actions/runs/43570308905",
+    "id": 43570308905,
+    "jobs_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905/jobs",
+    "logs_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905/logs",
+    "name": "blaze signal state",
+    "node_id": "WFR_kwLOVr4dZc8AAAAKJP4nKQ",
+    "path": ".github/workflows/blaze-signal-state.yml",
+    "previous_attempt_url": null,
+    "pull_requests": [],
+    "referenced_workflows": [],
+    "repository": {
+      "archive_url": "https://api.github.com/repos/tailrocks/velnor-lab/{archive_format}{/ref}",
+      "assignees_url": "https://api.github.com/repos/tailrocks/velnor-lab/assignees{/user}",
+      "blobs_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/blobs{/sha}",
+      "branches_url": "https://api.github.com/repos/tailrocks/velnor-lab/branches{/branch}",
+      "collaborators_url": "https://api.github.com/repos/tailrocks/velnor-lab/collaborators{/collaborator}",
+      "comments_url": "https://api.github.com/repos/tailrocks/velnor-lab/comments{/number}",
+      "commits_url": "https://api.github.com/repos/tailrocks/velnor-lab/commits{/sha}",
+      "compare_url": "https://api.github.com/repos/tailrocks/velnor-lab/compare/{base}...{head}",
+      "contents_url": "https://api.github.com/repos/tailrocks/velnor-lab/contents/{+path}",
+      "contributors_url": "https://api.github.com/repos/tailrocks/velnor-lab/contributors",
+      "deployments_url": "https://api.github.com/repos/tailrocks/velnor-lab/deployments",
+      "description": "Small Rust project for trying CI ideas and running the Velnor Rust CI generator for real",
+      "downloads_url": "https://api.github.com/repos/tailrocks/velnor-lab/downloads",
+      "events_url": "https://api.github.com/repos/tailrocks/velnor-lab/events",
+      "fork": false,
+      "forks_url": "https://api.github.com/repos/tailrocks/velnor-lab/forks",
+      "full_name": "tailrocks/velnor-lab",
+      "git_commits_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/commits{/sha}",
+      "git_refs_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/refs{/sha}",
+      "git_tags_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/tags{/sha}",
+      "hooks_url": "https://api.github.com/repos/tailrocks/velnor-lab/hooks",
+      "html_url": "https://github.com/tailrocks/velnor-lab",
+      "id": 1455299941,
+      "issue_comment_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues/comments{/number}",
+      "issue_events_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues/events{/number}",
+      "issues_url": "https://api.github.com/repos/tailrocks/velnor-lab/issues{/number}",
+      "keys_url": "https://api.github.com/repos/tailrocks/velnor-lab/keys{/key_id}",
+      "labels_url": "https://api.github.com/repos/tailrocks/velnor-lab/labels{/name}",
+      "languages_url": "https://api.github.com/repos/tailrocks/velnor-lab/languages",
+      "merges_url": "https://api.github.com/repos/tailrocks/velnor-lab/merges",
+      "milestones_url": "https://api.github.com/repos/tailrocks/velnor-lab/milestones{/number}",
+      "name": "velnor-lab",
+      "node_id": "R_kgDOVr4dZQ",
+      "notifications_url": "https://api.github.com/repos/tailrocks/velnor-lab/notifications{?since,all,participating}",
+      "owner": {
+        "avatar_url": "https://avatars.githubusercontent.com/u/78806509?v=4",
+        "events_url": "https://api.github.com/users/tailrocks/events{/privacy}",
+        "followers_url": "https://api.github.com/users/tailrocks/followers",
+        "following_url": "https://api.github.com/users/tailrocks/following{/other_user}",
+        "gists_url": "https://api.github.com/users/tailrocks/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/tailrocks",
+        "id": 78806509,
+        "login": "tailrocks",
+        "node_id": "MDEyOk9yZ2FuaXphdGlvbjc4ODA2NTA5",
+        "organizations_url": "https://api.github.com/users/tailrocks/orgs",
+        "received_events_url": "https://api.github.com/users/tailrocks/received_events",
+        "repos_url": "https://api.github.com/users/tailrocks/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/tailrocks/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/tailrocks/subscriptions",
+        "type": "Organization",
+        "url": "https://api.github.com/users/tailrocks",
+        "user_view_type": "public"
+      },
+      "private": false,
+      "pulls_url": "https://api.github.com/repos/tailrocks/velnor-lab/pulls{/number}",
+      "releases_url": "https://api.github.com/repos/tailrocks/velnor-lab/releases{/id}",
+      "stargazers_url": "https://api.github.com/repos/tailrocks/velnor-lab/stargazers",
+      "statuses_url": "https://api.github.com/repos/tailrocks/velnor-lab/statuses/{sha}",
+      "subscribers_url": "https://api.github.com/repos/tailrocks/velnor-lab/subscribers",
+      "subscription_url": "https://api.github.com/repos/tailrocks/velnor-lab/subscription",
+      "tags_url": "https://api.github.com/repos/tailrocks/velnor-lab/tags",
+      "teams_url": "https://api.github.com/repos/tailrocks/velnor-lab/teams",
+      "trees_url": "https://api.github.com/repos/tailrocks/velnor-lab/git/trees{/sha}",
+      "url": "https://api.github.com/repos/tailrocks/velnor-lab"
+    },
+    "rerun_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905/rerun",
+    "run_attempt": 1,
+    "run_number": 14,
+    "run_started_at": "2026-11-14T07:16:19Z",
+    "status": "completed",
+    "triggering_actor": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/139017?v=4",
+      "events_url": "https://api.github.com/users/donbeave/events{/privacy}",
+      "followers_url": "https://api.github.com/users/donbeave/followers",
+      "following_url": "https://api.github.com/users/donbeave/following{/other_user}",
+      "gists_url": "https://api.github.com/users/donbeave/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/donbeave",
+      "id": 139017,
+      "login": "donbeave",
+      "node_id": "MDQ6VXNlcjEzOTAxNw==",
+      "organizations_url": "https://api.github.com/users/donbeave/orgs",
+      "received_events_url": "https://api.github.com/users/donbeave/received_events",
+      "repos_url": "https://api.github.com/users/donbeave/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/donbeave/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/donbeave/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/donbeave",
+      "user_view_type": "public"
+    },
+    "updated_at": "2026-11-14T07:24:00Z",
+    "url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/runs/43570308905",
+    "workflow_id": 417884427,
+    "workflow_url": "https://api.github.com/repos/tailrocks/velnor-lab/actions/workflows/417884427"
+  },
+  "runs_on_sha": [
+    {
+      "event": "push",
+      "id": 43570308905,
+      "name": "blaze signal state"
+    }
+  ]
+}
