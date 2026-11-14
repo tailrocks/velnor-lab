@@ -16,11 +16,11 @@ The plan this repository serves is the issue tree under [tailrocks/velnor-new#57
 | Path | Purpose |
 |---|---|
 | `core` | The hub. Everything depends on it. Uses `serde` with `derive` |
-| `lib` | Depends on `core` and `macros`. Has a `build.rs` with `cargo:rerun-if-changed` |
+| `lib` | Depends on `core` and `macros`. Has a `build.rs` that reads `shared-data/build-name.txt` and names it with `cargo:rerun-if-changed` |
 | `app` | The leaf binary. Nothing depends on it. Reads `shared-data/` with `include_str!`, runs through `CARGO_BIN_EXE_app` in a test, and has three 20 s tests in `tests/slow.rs` |
 | `tool` | Standalone binary. Shares `hex` with `lib` under another feature set, and is the only user of `fnv` |
 | `macros` | A proc-macro crate used by `lib` |
-| `shared-data/` | Not a crate. One text file that `app` includes |
+| `shared-data/` | Not a crate. `greeting.txt`, which `app` includes, and `build-name.txt`, which the build script of `lib` reads |
 | `lab/` | The scenario driver. Its own workspace, not part of the one under test |
 
 The branch `specimen/fails-alone` is never merged. On it `cargo check -p lib` fails and `cargo check --workspace` passes.
