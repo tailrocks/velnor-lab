@@ -57,3 +57,7 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+// lab fault-type 1794631500-4
+pub fn lab_fault_type() -> u32 {
+    "text"
+}
