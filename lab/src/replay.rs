@@ -47,13 +47,19 @@ fn metadata(work: &Path, lock: &str) -> Result<reach::Reach> {
         &[
             "metadata",
             "--locked",
+            "--all-features",
             "--format-version",
             "1",
             "--manifest-path",
             &manifest.to_string_lossy(),
         ],
     )
-    .map_err(|e| format!("cargo metadata --locked of {}: {e}", manifest_of(lock)))?;
+    .map_err(|e| {
+        format!(
+            "cargo metadata --locked --all-features of {}: {e}",
+            manifest_of(lock)
+        )
+    })?;
     reach(&serde_json::from_str(&json)?)
 }
 
