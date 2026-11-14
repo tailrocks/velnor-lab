@@ -37,9 +37,15 @@ jobs:
       - run: echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
       - run: blaze --version
       - run: blaze --help
-      - run: ulimit -l
+      - run: ls /usr/sbin/
       - run: sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
-      - run: ulimit -l
+      - run: truncate -s 12G "$RUNNER_TEMP/blaze.img"
+      - run: sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+      - run: sudo mkdir -p /blaze
+      - run: sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+      - run: sudo install -d -m 700 -o runner -g runner /blaze/home
+      - run: echo "BLAZE_HOME=/blaze/home" >> "$GITHUB_ENV"
+      - run: df -T /blaze
       - run: blaze toolchain
         continue-on-error: true
       - run: blaze test --workspace
@@ -50,6 +56,6 @@ jobs:
         continue-on-error: true
       - run: cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
       - if: always()
-        run: tail -n 200 "$HOME/.cache/blaze/v2/serve.log"
+        run: tail -n 200 "$BLAZE_HOME/v2/serve.log"
       - if: always()
-        run: du -sb "$HOME/.cache/blaze" "$HOME/.blaze"
+        run: du -sb "$BLAZE_HOME" "$HOME/.blaze"
