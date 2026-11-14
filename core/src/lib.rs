@@ -57,3 +57,11 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+// lab fault-test 1794629235-2
+#[cfg(test)]
+mod lab_fault_test {
+    #[test]
+    fn checksum_of_one_byte_is_the_byte_plus_one() {
+        assert_eq!(super::checksum(b"a"), 98);
+    }
+}
