@@ -21,7 +21,7 @@ jobs:
         with:
           install_args: rust mr-boxington aqua:nextest-rs/nextest/cargo-nextest
       - uses: jdx/mr-boxington-action@88acf2bb50552c7c508cbac13e5f8c576b95b1de # v1.7.3
-      - run: curl -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+      - run: curl --proto =https --tlsv1.2 -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
       - run: sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
         working-directory: ${{ runner.temp }}
       - run: tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
