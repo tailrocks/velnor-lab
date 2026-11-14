@@ -43,13 +43,18 @@ cargo run --manifest-path lab/Cargo.toml -- <scenario>
 | `hub` | Appends a comment to `core/src/lib.rs` |
 | `lock` | Bumps `fnv` in `Cargo.lock` to its next patch version |
 | `matrix <workflow>` | Runs `cold`, 3 `warm`, 3 `leaf`, `hub`, `lock`, `docs`, and writes `velnor-ci bench collect` output to `results/<workflow>/` |
+| `fault-test` | Adds to `core/src/lib.rs` a test whose assertion fails |
+| `fault-type` | Adds to `core/src/lib.rs` a function with a type error |
+| `fault-borrow` | Adds to `core/src/lib.rs` a function that uses a value after moving it |
+| `fault-lint` | Adds to `core/src/lib.rs` a function that takes `&Vec<u32>`, which clippy's `ptr_arg` rejects |
+| `runs <dir> <workflow> <scenario> <n>` | Runs one scenario `n` times against one workflow and writes, per run, the `velnor-ci bench collect` output (successful runs only), the API's run and jobs JSON, and the job logs to `<dir>/<workflow>/`. The scenario is any of the above, `cold`, or `leaf2`: a `leaf` pull request followed by a second `leaf` push to the same branch |
 | `grow <n>` | On a local branch, adds `n` crates under `grow/` in a chain and star pattern |
 
 | `probes [--check] [probe...]` | Runs the conformance probes below, downloads their artifacts and writes `conformance/<probe>.json`. With `--check` it writes nothing and fails naming each probe whose observation differs from the stored file |
 
 `LAB_REPO` (default `tailrocks/velnor-lab`) and `LAB_BASE` (default `main`) select the repository and base branch. `VELNOR_CI` names the helper binary for `matrix`.
 
-`.github/workflows/` holds the hand-written workflows of the experiment [tailrocks/velnor-new#585](https://github.com/tailrocks/velnor-new/issues/585), one per question. Only the workflow under test is enabled while its `matrix` runs; the branch `control` holds the engine's generated workflow.
+`.github/workflows/` holds the hand-written workflows of the experiment [tailrocks/velnor-new#585](https://github.com/tailrocks/velnor-new/issues/585), one per question. `blaze-signal.yml`, `blaze-signal-state.yml` and `blaze-routing.yml` belong to the experiment [tailrocks/velnor-new#652](https://github.com/tailrocks/velnor-new/issues/652); `.github/blaze.sha256` pins the blaze archives they download. Only the workflow under test is enabled while its `matrix` runs; the branch `control` holds the engine's generated workflow.
 
 ## Conformance probes
 

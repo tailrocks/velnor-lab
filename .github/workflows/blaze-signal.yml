@@ -1,0 +1,54 @@
+name: blaze signal
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+env:
+  BLAZE_VERSION: v0.20261105.4
+  BLAZE_TESTS: all
+  BLAZE_HOME: /blaze/home
+jobs:
+  blaze:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            triple: x86_64-unknown-linux-gnu
+          - os: ubuntu-24.04-arm
+            triple: aarch64-unknown-linux-gnu
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      ARCHIVE: blaze-v0.20261105.4-${{ matrix.triple }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: uname -r
+      - run: curl -fsSLo "$RUNNER_TEMP/$ARCHIVE.tar.gz" "https://github.com/indexable-inc/blaze/releases/download/$BLAZE_VERSION/$ARCHIVE.tar.gz"
+      - run: sha256sum -c --ignore-missing "$GITHUB_WORKSPACE/.github/blaze.sha256"
+        working-directory: ${{ runner.temp }}
+      - run: tar -xzf "$RUNNER_TEMP/$ARCHIVE.tar.gz" -C "$RUNNER_TEMP"
+      - run: echo "$RUNNER_TEMP/$ARCHIVE" >> "$GITHUB_PATH"
+      - run: sudo prlimit --pid "$PPID" --memlock=unlimited:unlimited
+      - run: truncate -s 12G "$RUNNER_TEMP/blaze.img"
+      - run: sudo mkfs.xfs -q -m reflink=1 "$RUNNER_TEMP/blaze.img"
+      - run: sudo mkdir -p /blaze
+      - run: sudo mount -o loop "$RUNNER_TEMP/blaze.img" /blaze
+      - run: sudo install -d -m 700 -o runner -g runner /blaze/home
+      - run: blaze --version
+      - run: blaze toolchain
+      - run: blaze test --workspace
+      - if: always()
+        run: grep -E 'VmHWM|VmRSS' "/proc/$(pgrep -o -f 'blaze serve')/status"
+      - if: always()
+        run: cat /sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.peak
+      - if: always()
+        run: free -b
+      - if: always()
+        run: du -sb /blaze/home
+      - if: failure()
+        run: tail -n 100 /blaze/home/v2/serve.log

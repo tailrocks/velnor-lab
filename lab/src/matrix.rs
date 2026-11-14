@@ -34,7 +34,7 @@ pub fn cold(api: &Api) -> Result<String> {
     Ok(sha)
 }
 
-fn collect(api: &Api, workflow: &str, run_id: u64, file: &str) -> Result<()> {
+pub fn collect(api: &Api, workflow: &str, run_id: u64, file: &str) -> Result<()> {
     let program = std::env::var("VELNOR_CI").unwrap_or_else(|_| "velnor-ci".into());
     let status = Command::new(program)
         .args([
