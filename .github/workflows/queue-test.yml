@@ -1,0 +1,33 @@
+name: Queue test
+on:
+  pull_request:
+  merge_group:
+permissions:
+  contents: read
+concurrency:
+  group: qt-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "event=${{ github.event_name }}"; test -n "${{ github.sha }}"
+      - name: Fail on merge_group when the marker is present
+        if: github.event_name == 'merge_group'
+        run: if [ -e FAIL_IN_QUEUE ]; then echo "marker present"; exit 1; fi
+  required:
+    name: Required verdict
+    runs-on: ubuntu-latest
+    needs: [plan]
+    if: ${{ !cancelled() }}
+    steps:
+      - run: echo "plan=${{ needs.plan.result }} event=${{ github.event_name }}"; test "${{ needs.plan.result }}" = success
+  required-gate:
+    name: Required
+    runs-on: ubuntu-latest
+    needs: [required]
+    if: ${{ always() }}
+    steps:
+      - run: test "${{ needs.required.result }}" = success
