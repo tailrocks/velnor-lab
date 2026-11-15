@@ -1,0 +1,26 @@
+name: probe 603 events
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  push:
+    branches:
+      - main
+  merge_group: {}
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  pull-requests: read
+concurrency:
+  group: 'ci-${{ github.workflow }}-${{ github.event_name == ''pull_request'' && github.event.pull_request.number || github.run_id }}'
+  cancel-in-progress: '${{ github.event_name == ''pull_request'' }}'
+jobs:
+  wait:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wait
+        run: sleep 90
