@@ -1,0 +1,42 @@
+name: probe 603 draft gate
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+      - edited
+      - converted_to_draft
+permissions:
+  contents: read
+concurrency:
+  group: 'ci-${{ github.workflow_ref }}-${{ github.event_name == ''pull_request'' && github.event.pull_request.number || github.run_id }}'
+  cancel-in-progress: '${{ github.event_name == ''pull_request'' }}'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: sleep 120
+  test:
+    if: '${{ github.event.pull_request.draft != true }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: sleep 100
+  required:
+    name: Required
+    needs:
+      - lint
+      - test
+    if: '${{ !cancelled() }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fail on a draft pull request, whose jobs were skipped
+        if: '${{ github.event.pull_request.draft == true }}'
+        run: exit 1
+      - name: Fail when a job failed or was cancelled
+        if: '${{ contains(needs.*.result, ''failure'') || contains(needs.*.result, ''cancelled'') }}'
+        run: exit 1
