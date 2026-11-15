@@ -379,3 +379,29 @@ jobs:
       - name: Fail when a Rust job failed or was cancelled
         if: '${{ contains(needs.*.result, ''failure'') || contains(needs.*.result, ''cancelled'') }}'
         run: exit 1
+  sum:
+    if: ${{ !cancelled() }}
+    needs:
+      - rust-test-default-root
+      - rust-test-default-lab
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "tests_run root=$ROOT lab=$LAB"
+        env:
+          ROOT: ${{ needs.rust-test-default-root.outputs.tests_run }}
+          LAB: ${{ needs.rust-test-default-lab.outputs.tests_run }}
+  single:
+    needs:
+      - helper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
+        with:
+          version: '2026.11.1'
+          cache: false
+      - run: cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E 'all()' --no-tests=pass 2>&1 | grep Summary
+      - run: cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E 'all()' --no-tests=pass 2>&1 | grep Summary
+        working-directory: lab
