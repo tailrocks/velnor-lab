@@ -1,84 +1,52 @@
-name: probe cache pr reads
+name: PR delta verification 609
 on:
   workflow_dispatch:
     inputs:
       tag:
-        description: unique tag of this probe run
-        required: false
+        description: completed Rust CI run ID, or exact PR delta key
+        required: true
+        type: string
       role:
-        description: default, base or head, the entry to save on the ref the run is dispatched on
-        required: false
-  pull_request:
-    paths: ['probes/cache-pr-reads/**']
+        description: trim or probe
+        required: true
+        type: string
 permissions:
   contents: read
-env:
-  PREFIX: lab-probe-reads
 jobs:
-  reads:
-    runs-on: ubuntu-24.04
+  rust-trim:
+    if: '${{ inputs.role == ''trim'' }}'
+    permissions:
+      actions: write
+      contents: read
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Download the trusted 609 helper
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          persist-credentials: false
-      - uses: ./.github/actions/probe
+          name: velnor-ci-609
+          path: ${{ runner.temp }}/vbin
+          run-id: 43961288628
+          github-token: ${{ github.token }}
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
+      - name: Keep one PR delta per lane
+        env:
+          GITHUB_TOKEN: '${{ github.token }}'
+          RUN_ID: '${{ inputs.tag }}'
+        run: velnor-ci cache trim-deltas --run-id "$RUN_ID"
+  restore-isolation:
+    if: '${{ inputs.role == ''probe'' }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - id: probe
+        name: Attempt to read the PR delta
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
-          mode: context
-      - if: github.event_name == 'workflow_dispatch'
-        run: mkdir probe-data && echo "$PROBE_ROLE" > probe-data/file
-      - if: github.event_name == 'workflow_dispatch'
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-${{ env.PROBE_ROLE }}
-      - if: github.event_name == 'workflow_dispatch' && env.PROBE_ROLE != 'head'
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-collide
-      - id: default_branch
-        if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-default
-      - id: base_branch
-        if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-base
-      - id: head_branch
-        if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-head
-      - if: github.event_name == 'pull_request'
-        run: rm -rf probe-data
-      - id: collision
-        if: github.event_name == 'pull_request'
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: probe-data
-          key: ${{ env.PREFIX }}-${{ env.PROBE_TAG }}-collide
-      - id: content
-        if: github.event_name == 'pull_request' && steps.collision.outputs.cache-hit != ''
-        run: echo "value=$(cat probe-data/file)" >> "$GITHUB_OUTPUT"
-      - if: github.event_name == 'pull_request'
-        uses: ./.github/actions/probe
-        with:
-          mode: record
-          probe: cache-pr-reads
-          leg: pull_request
-          data: >-
-            {"default_branch": {"hit": "${{ steps.default_branch.outputs.cache-hit }}", "matched": "${{ steps.default_branch.outputs.cache-matched-key }}"},
-            "base_branch": {"hit": "${{ steps.base_branch.outputs.cache-hit }}", "matched": "${{ steps.base_branch.outputs.cache-matched-key }}"},
-            "head_branch": {"hit": "${{ steps.head_branch.outputs.cache-hit }}", "matched": "${{ steps.head_branch.outputs.cache-matched-key }}"},
-            "same_key_in_base_and_default": {"hit": "${{ steps.collision.outputs.cache-hit }}", "matched": "${{ steps.collision.outputs.cache-matched-key }}", "content": "${{ steps.content.outputs.value }}"}}
-      - if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: observation
-          path: observation/
+          path: target.velnor-delta
+          key: '${{ inputs.tag }}'
+      - name: Require the PR delta to be inaccessible
+        env:
+          MATCHED_KEY: '${{ steps.probe.outputs.cache-matched-key }}'
+        run: test -z "$MATCHED_KEY"
