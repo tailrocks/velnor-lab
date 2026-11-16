@@ -24,3 +24,4 @@ mod tests {
 // t1 a
 // t1 b
 // t1 c
+// t1 d
