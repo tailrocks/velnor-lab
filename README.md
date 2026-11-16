@@ -81,3 +81,5 @@ Probe pull requests use branches `probe-<tag>-<role>`. `lab probes` closes them,
 - Changes reach `main` through pull requests, squash-merged, with every review conversation resolved.
 - Commits are signed off (`git commit -s`).
 - Licence: Apache-2.0. See `LICENSE`, `NOTICE` and `REUSE.toml`.
+
+Docs probe for the affected run.
