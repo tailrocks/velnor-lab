@@ -1,0 +1,72 @@
+{
+  "roots": {
+    "Cargo.toml": {
+      "members": [
+        {
+          "name": "alpha",
+          "manifest": "alpha/Cargo.toml",
+          "dependencies": [],
+          "targets": [
+            {
+              "name": "alpha",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "alpha/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "beta",
+          "manifest": "beta/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "alpha",
+              "kind": "normal",
+              "manifest": "alpha/Cargo.toml"
+            }
+          ],
+          "targets": [
+            {
+              "name": "beta",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "beta/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "gamma",
+          "manifest": "gamma/Cargo.toml",
+          "dependencies": [],
+          "targets": [
+            {
+              "name": "gamma",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "gamma/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "manifests": {
+    "Cargo.toml": "6767eac31896b4b7d17ccf45173ddf26db9231898a1f0b661aa1505b17cbd5c6",
+    "alpha/Cargo.toml": "6a04e7ca495ce5a0824b22b8444ee0057dbd104addc7d9bb87b4eceec6832c77",
+    "beta/Cargo.toml": "2d1895671686b01782ce2dd292eeea3897d245cf2b9e88d8584a9fcb9b5c0291",
+    "gamma/Cargo.toml": "1f1ba813eff81f15d3d92dc8865a0cebc04c33f27a60de6ae4a2d9bfe69de666"
+  },
+  "layout": "d78b629bc58790fedece80625a3c4e8894ae6ab234ec797e97f399c3799cedfd"
+}
