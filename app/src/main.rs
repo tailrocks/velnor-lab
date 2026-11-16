@@ -5,7 +5,7 @@ use lab_core::Record;
 
 #[derive(Parser)]
 struct Args {
-    #[arg(long, default_value = "world")]
+    #[arg(long, default_value = "fork609")]
     name: String,
     #[arg(long, default_value_t = 1)]
     id: u32,
