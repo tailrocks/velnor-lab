@@ -10,7 +10,7 @@ on:
       - edited
   push:
     branches:
-      - lab/607-base
+      - lab/609-base
   merge_group: {}
   schedule:
     - cron: '26 14 * * *'
@@ -23,6 +23,7 @@ concurrency:
 jobs:
   rust-plan:
     permissions:
+      actions: read
       contents: read
     outputs:
       rust_lab_mode: '${{ steps.plan.outputs.rust_lab_mode }}'
@@ -43,17 +44,15 @@ jobs:
         with:
           fetch-depth: 2
           persist-credentials: false
-      - name: Download velnor-ci
+      - name: Download the trusted 609 helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-607
+          name: velnor-ci-609
           path: ${{ runner.temp }}/vbin
-          run-id: 43937180037
+          run-id: 43961288628
           github-token: ${{ github.token }}
-      - name: Make velnor-ci executable
-        run: |
-          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
-          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: plan
         name: velnor-ci plan
         run: velnor-ci plan --explain
@@ -63,11 +62,14 @@ jobs:
       - rust-plan
     if: '${{ needs.rust-plan.outputs.rust_root_mode != ''none'' }}'
     permissions:
-      actions: write
+      actions: read
       contents: read
     outputs:
       # jactionlint ignore=unused-job-output
       tests_run: '${{ steps.test.outputs.tests_run }}'
+      base_prefix: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
+      base_save: '${{ steps.base.outputs.save }}'
+      sources_prefix: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -76,17 +78,15 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download velnor-ci
+      - name: Download the trusted 609 helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-607
+          name: velnor-ci-609
           path: ${{ runner.temp }}/vbin
-          run-id: 43937180037
+          run-id: 43961288628
           github-token: ${{ github.token }}
-      - name: Make velnor-ci executable
-        run: |
-          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
-          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
@@ -105,7 +105,7 @@ jobs:
       - name: Add Rust targets
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == ''refs/heads/lab/607-base'' && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -127,20 +127,39 @@ jobs:
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-${{ hashFiles(''Cargo.lock'') }}'
           restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-'
-      - name: Restore the target cache
+      - id: target_root
+        name: Restore the target cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
-          key: 'velnor-tgt-rust-root-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-rust-root-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
-            velnor-tgt-rust-root-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
+            velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - id: delta_base_root
+        name: velnor-ci delta prepare
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
+        run: velnor-ci delta prepare
+      - name: Restore the delta cache
+        if: '${{ github.event_name == ''pull_request'' }}'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_root.outputs.base8 }}-${{ github.run_id }}'
+          restore-keys: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_root.outputs.base8 }}-'
+      - name: velnor-ci delta apply
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
+        run: velnor-ci delta apply --target-dir target --staging-dir target.velnor-delta
       - name: velnor-ci inputs restore
         run: velnor-ci inputs restore
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == ''refs/heads/lab/607-base'' && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -152,19 +171,6 @@ jobs:
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo-clippy clippy --workspace --all-targets --locked -- -D warnings
-      - id: test
-        name: Test
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
-        env:
-          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_root_test_filter }}'
-        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
-      - name: Doctests
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_root_mode != ''none'' && needs.rust-plan.outputs.rust_root_doctests == ''run'' && needs.rust-plan.outputs.rust_root_package_args != '''' }}'
-        env:
-          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          DOCTESTS_KNOWN: '${{ needs.rust-plan.outputs.rust_root_doctests_known }}'
-        run: 'velnor-ci run --require-doctests=$DOCTESTS_KNOWN -- cargo test --doc --workspace --locked'
       - name: Documentation
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_root_mode != ''none'' && needs.rust-plan.outputs.rust_root_docs == ''run'' && needs.rust-plan.outputs.rust_root_package_args != '''' }}'
         env:
@@ -195,27 +201,26 @@ jobs:
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo check -p tool --locked
+      - name: Build the tests
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        env:
+          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
+        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-run
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir target
       - name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
-          key: 'velnor-tgt-rust-root-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
-      - name: Delete the older target entries
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
-        env:
-          CACHE_PREFIX: 'velnor-tgt-rust-root-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
-          GITHUB_TOKEN: '${{ github.token }}'
-        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
+          key: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
       - name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -223,6 +228,34 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-${{ hashFiles(''Cargo.lock'') }}'
+      - id: test
+        name: Test
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
+        env:
+          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
+          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_root_test_filter }}'
+        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
+      - name: Doctests
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_root_mode != ''none'' && needs.rust-plan.outputs.rust_root_doctests == ''run'' && needs.rust-plan.outputs.rust_root_package_args != '''' }}'
+        env:
+          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
+          DOCTESTS_KNOWN: '${{ needs.rust-plan.outputs.rust_root_doctests_known }}'
+        run: 'velnor-ci run --require-doctests=$DOCTESTS_KNOWN -- cargo test --doc --workspace --locked'
+      - name: velnor-ci inputs save
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        run: velnor-ci inputs save
+      - id: delta
+        name: velnor-ci delta stage
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
+        run: velnor-ci delta stage --target-dir target --staging-dir target.velnor-delta --package app --package core --package lib --package macros --package tool
+      - name: Save the delta cache
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_root.outputs.base8 }}-${{ github.run_id }}'
       - name: Upload the cargo fingerprint log
         if: '${{ !cancelled() && vars.VELNOR_CACHE_DEBUG == ''1'' && steps.restored.outcome == ''success'' }}'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -238,11 +271,14 @@ jobs:
       - rust-plan
     if: '${{ needs.rust-plan.outputs.rust_lab_mode != ''none'' }}'
     permissions:
-      actions: write
+      actions: read
       contents: read
     outputs:
       # jactionlint ignore=unused-job-output
       tests_run: '${{ steps.test.outputs.tests_run }}'
+      base_prefix: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
+      base_save: '${{ steps.base.outputs.save }}'
+      sources_prefix: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -251,17 +287,15 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download velnor-ci
+      - name: Download the trusted 609 helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-607
+          name: velnor-ci-609
           path: ${{ runner.temp }}/vbin
-          run-id: 43937180037
+          run-id: 43961288628
           github-token: ${{ github.token }}
-      - name: Make velnor-ci executable
-        run: |
-          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
-          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
@@ -282,7 +316,7 @@ jobs:
         working-directory: lab
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == ''refs/heads/lab/607-base'' && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -305,21 +339,40 @@ jobs:
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-${{ hashFiles(''lab/Cargo.lock'') }}'
           restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-'
-      - name: Restore the target cache
+      - id: target_lab
+        name: Restore the target cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
-          key: 'velnor-tgt-rust-lab-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-rust-lab-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
-            velnor-tgt-rust-lab-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
+            velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - id: delta_base_lab
+        name: velnor-ci delta prepare
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
+        run: velnor-ci delta prepare
+      - name: Restore the delta cache
+        if: '${{ github.event_name == ''pull_request'' }}'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: lab/target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_lab.outputs.base8 }}-${{ github.run_id }}'
+          restore-keys: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_lab.outputs.base8 }}-'
+      - name: velnor-ci delta apply
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
+        run: velnor-ci delta apply --target-dir lab/target --staging-dir lab/target.velnor-delta
       - name: velnor-ci inputs restore
         working-directory: lab
         run: velnor-ci inputs restore
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == ''refs/heads/lab/607-base'' && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -333,14 +386,6 @@ jobs:
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo-clippy clippy --workspace --all-targets --locked -- -D warnings
-      - id: test
-        name: Test
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
-        working-directory: lab
-        env:
-          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_lab_test_filter }}'
-        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
       - name: Documentation
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_lab_mode != ''none'' && needs.rust-plan.outputs.rust_lab_docs == ''run'' && needs.rust-plan.outputs.rust_lab_package_args != '''' }}'
         working-directory: lab
@@ -353,28 +398,28 @@ jobs:
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo check -p lab --locked
+      - name: Build the tests
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        working-directory: lab
+        env:
+          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
+        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-run
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         working-directory: lab
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir lab/target
       - name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
-          key: 'velnor-tgt-rust-lab-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
-      - name: Delete the older target entries
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
-        env:
-          CACHE_PREFIX: 'velnor-tgt-rust-lab-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
-          GITHUB_TOKEN: '${{ github.token }}'
-        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
+          key: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
       - name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == ''refs/heads/lab/607-base'' && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -382,6 +427,30 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-${{ hashFiles(''lab/Cargo.lock'') }}'
+      - id: test
+        name: Test
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
+        working-directory: lab
+        env:
+          CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
+          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_lab_test_filter }}'
+        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
+      - name: velnor-ci inputs save
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        working-directory: lab
+        run: velnor-ci inputs save
+      - id: delta
+        name: velnor-ci delta stage
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
+        run: velnor-ci delta stage --target-dir lab/target --staging-dir lab/target.velnor-delta --package lab
+      - name: Save the delta cache
+        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: lab/target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_lab.outputs.base8 }}-${{ github.run_id }}'
       - name: Upload the cargo fingerprint log
         if: '${{ !cancelled() && vars.VELNOR_CACHE_DEBUG == ''1'' && steps.restored.outcome == ''success'' }}'
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -396,6 +465,7 @@ jobs:
       - rust-plan
     if: '${{ github.event_name == ''schedule'' }}'
     permissions:
+      actions: read
       contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -405,17 +475,15 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download velnor-ci
+      - name: Download the trusted 609 helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-607
+          name: velnor-ci-609
           path: ${{ runner.temp }}/vbin
-          run-id: 43937180037
+          run-id: 43961288628
           github-token: ${{ github.token }}
-      - name: Make velnor-ci executable
-        run: |
-          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
-          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
@@ -434,7 +502,7 @@ jobs:
       - name: Add Rust targets
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == ''refs/heads/lab/607-base'' && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -456,14 +524,33 @@ jobs:
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-${{ hashFiles(''Cargo.lock'') }}'
           restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-'
-      - name: Restore the target cache
+      - id: target_root
+        name: Restore the target cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
-          key: 'velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-inputs-audit.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
-            velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-inputs-audit.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
+            velnor-tgt-rust-inputs-audit.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - id: delta_base_root
+        name: velnor-ci delta prepare
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
+        run: velnor-ci delta prepare
+      - name: Restore the delta cache
+        if: '${{ github.event_name == ''pull_request'' }}'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-inputs-audit.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_root.outputs.base8 }}-${{ github.run_id }}'
+          restore-keys: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-inputs-audit.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_root.outputs.base8 }}-'
+      - name: velnor-ci delta apply
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
+        run: velnor-ci delta apply --target-dir target --staging-dir target.velnor-delta
       - name: velnor-ci check-metadata
         working-directory: lab
         run: velnor-ci check-metadata
@@ -477,14 +564,33 @@ jobs:
             ~/.cargo/git/db
           key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-${{ hashFiles(''lab/Cargo.lock'') }}'
           restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-'
-      - name: Restore the target cache
+      - id: target_lab
+        name: Restore the target cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
-          key: 'velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-inputs-audit.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
-            velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-inputs-audit.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
+            velnor-tgt-rust-inputs-audit.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - id: delta_base_lab
+        name: velnor-ci delta prepare
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
+        run: velnor-ci delta prepare
+      - name: Restore the delta cache
+        if: '${{ github.event_name == ''pull_request'' }}'
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: lab/target.velnor-delta
+          key: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-inputs-audit.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_lab.outputs.base8 }}-${{ github.run_id }}'
+          restore-keys: 'velnor-dlt-pr${{ github.event.pull_request.number }}-rust-inputs-audit.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ steps.delta_base_lab.outputs.base8 }}-'
+      - name: velnor-ci delta apply
+        if: '${{ github.event_name == ''pull_request'' }}'
+        env:
+          BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
+        run: velnor-ci delta apply --target-dir lab/target --staging-dir lab/target.velnor-delta
       - name: velnor-ci inputs restore
         run: velnor-ci inputs restore
       - name: velnor-ci inputs restore
@@ -493,7 +599,7 @@ jobs:
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == ''refs/heads/lab/607-base'' && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Build every target
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -517,6 +623,49 @@ jobs:
           if-no-files-found: ignore
           retention-days: 3
           overwrite: true
+  rust-trim:
+    needs:
+      - rust-root
+      - rust-lab
+    if: '${{ !cancelled() && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+    permissions:
+      actions: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download the trusted 609 helper
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: velnor-ci-609
+          path: ${{ runner.temp }}/vbin
+          run-id: 43961288628
+          github-token: ${{ github.token }}
+      - name: Install the trusted 609 helper
+        run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
+      - name: Delete the older rust-root entries
+        if: '${{ needs.rust-root.outputs.base_save == ''true'' }}'
+        env:
+          CACHE_PREFIX: '${{ needs.rust-root.outputs.base_prefix }}'
+          GITHUB_TOKEN: '${{ github.token }}'
+        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
+      - name: Delete the older rust-root sources entries
+        if: '${{ needs.rust-root.outputs.sources_prefix != '''' }}'
+        env:
+          CACHE_PREFIX: '${{ needs.rust-root.outputs.sources_prefix }}'
+          GITHUB_TOKEN: '${{ github.token }}'
+        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
+      - name: Delete the older rust-lab entries
+        if: '${{ needs.rust-lab.outputs.base_save == ''true'' }}'
+        env:
+          CACHE_PREFIX: '${{ needs.rust-lab.outputs.base_prefix }}'
+          GITHUB_TOKEN: '${{ github.token }}'
+        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
+      - name: Delete the older rust-lab sources entries
+        if: '${{ needs.rust-lab.outputs.sources_prefix != '''' }}'
+        env:
+          CACHE_PREFIX: '${{ needs.rust-lab.outputs.sources_prefix }}'
+          GITHUB_TOKEN: '${{ github.token }}'
+        run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
   required:
     name: Required
     needs:
