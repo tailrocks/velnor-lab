@@ -36,6 +36,8 @@ pub fn checksum(bytes: &[u8]) -> u32 {
         .fold(0u32, |acc, byte| acc.rotate_left(5) ^ u32::from(*byte))
 }
 
+pub const DELTA_HUB_609: u32 = 609;
+
 #[cfg(test)]
 mod tests {
     use super::*;
