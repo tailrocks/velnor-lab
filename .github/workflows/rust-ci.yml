@@ -242,16 +242,16 @@ jobs:
           DOCTESTS_KNOWN: '${{ needs.rust-plan.outputs.rust_root_doctests_known }}'
         run: 'velnor-ci run --require-doctests=$DOCTESTS_KNOWN -- cargo test --doc --workspace --locked'
       - name: velnor-ci inputs save
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         run: velnor-ci inputs save
       - id: delta
         name: velnor-ci delta stage
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         env:
           BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
         run: velnor-ci delta stage --target-dir target --staging-dir target.velnor-delta --package app --package core --package lib --package macros --package tool
       - name: Save the delta cache
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target.velnor-delta
@@ -436,17 +436,17 @@ jobs:
           TEST_FILTER: '${{ needs.rust-plan.outputs.rust_lab_test_filter }}'
         run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
       - name: velnor-ci inputs save
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         working-directory: lab
         run: velnor-ci inputs save
       - id: delta
         name: velnor-ci delta stage
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         env:
           BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
         run: velnor-ci delta stage --target-dir lab/target --staging-dir lab/target.velnor-delta --package lab
       - name: Save the delta cache
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target.velnor-delta
@@ -682,3 +682,20 @@ jobs:
       - name: Fail when a Rust job failed or was cancelled
         if: '${{ contains(needs.*.result, ''failure'') || contains(needs.*.result, ''cancelled'') }}'
         run: exit 1
+  foreign-delta-probe:
+    if: '${{ github.event_name == ''pull_request'' }}'
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - id: foreign_delta
+        name: Attempt to read PR 349 delta
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: target.velnor-delta
+          key: velnor-dlt-pr349-rust-root.root.Linux-X64-c2abed53b189f6d1-1cb6cafc-43969609010
+      - name: Require the foreign PR delta to be inaccessible
+        env:
+          MATCHED_KEY: '${{ steps.foreign_delta.outputs.cache-matched-key }}'
+        run: test -z "$MATCHED_KEY"
