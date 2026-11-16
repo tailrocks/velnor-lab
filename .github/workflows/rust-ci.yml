@@ -243,6 +243,90 @@ jobs:
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_lab_package_args), '' -p lab '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_lab_package_args), '' --workspace '')) }}'
         working-directory: lab
         run: velnor-ci run -- cargo check -p lab --locked
+  rust-inputs-audit:
+    needs:
+      - rust-plan
+    if: '${{ (github.event_name == ''schedule'' || github.event_name == ''push'') }}'
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Install velnor-ci 0.1.80
+        uses: tailrocks/velnor-new/actions/setup-velnor@46f7a043952f82ef1a78d8ebb63143faca8f268c  # rust-ci-v0.1.80
+        with:
+          version: '0.1.80'
+          sha256-linux-x64: '659a551f2dbc7cd34c745dce2a787717aa8b8214841e4b9f9fa3a6334ebe8e3c'
+          sha256-linux-arm64: de279a7db363cf6943489b379e2c9360786156245ba7a3ae0fc85467ea860c2c
+          sha256-macos-arm64: '21015c7f0244d7fda84e36f26945ad11a811122b183224467ba4b8ed9bf68d51'
+      - name: Install tools
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
+        with:
+          version: '2026.11.1'
+          cache: false
+      - name: Add Rust components
+        run: rustup component add clippy rustfmt
+      - name: Add Rust targets
+        run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
+      - id: prepare
+        name: velnor-ci prepare
+        run: velnor-ci prepare
+      - name: velnor-ci check-metadata
+        run: velnor-ci check-metadata
+      - name: Restore the sources cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+          key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-${{ hashFiles(''Cargo.lock'') }}'
+          restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-'
+      - name: Restore the target cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: target
+          key: 'velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          restore-keys: |
+            velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
+            velnor-tgt-rust-inputs-audit-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - name: velnor-ci check-metadata
+        working-directory: lab
+        run: velnor-ci check-metadata
+      - name: Restore the sources cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+          key: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-${{ hashFiles(''lab/Cargo.lock'') }}'
+          restore-keys: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-'
+      - name: Restore the target cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: lab/target
+          key: 'velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          restore-keys: |
+            velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
+            velnor-tgt-rust-inputs-audit-lab-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - id: restored
+        name: velnor-ci restored
+        run: velnor-ci restored
+      - name: Build every target
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
+        run: velnor-ci run -- cargo build --workspace --all-targets --locked
+      - name: Build every target
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
+        working-directory: lab
+        run: velnor-ci run -- cargo build --workspace --all-targets --locked
+      - name: velnor-ci inputs audit
+        run: velnor-ci inputs audit
   policy:
     needs:
       - rust-plan
@@ -281,6 +365,7 @@ jobs:
       - rust-plan
       - rust-root
       - rust-lab
+      - rust-inputs-audit
       - policy
     if: '${{ !cancelled() }}'
     permissions:
