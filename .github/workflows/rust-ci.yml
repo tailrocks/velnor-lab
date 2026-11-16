@@ -46,10 +46,10 @@ jobs:
           echo "$RUNNER_TEMP/vsrc/ci-helper/target/debug" >> "$GITHUB_PATH"
       - id: plan
         name: velnor-ci plan
-        run: velnor-ci plan --explain
-      - name: Show the plan summary (lab only)
-        if: '${{ always() }}'
-        run: cat "$GITHUB_STEP_SUMMARY"
+        run: |
+          velnor-ci plan --explain
+          echo "--- step summary ---"
+          cat "$GITHUB_STEP_SUMMARY"
       - name: Install tools
         if: '${{ steps.plan.outcome == ''success'' && steps.plan.outputs.rust_root_mode != ''none'' }}'
         uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
