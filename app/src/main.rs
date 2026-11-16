@@ -5,7 +5,7 @@ use lab_core::Record;
 
 #[derive(Parser)]
 struct Args {
-    #[arg(long, default_value = "fork609")]
+    #[arg(long, default_value = "world")]
     name: String,
     #[arg(long, default_value_t = 1)]
     id: u32,
@@ -14,6 +14,6 @@ struct Args {
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let args = Args::parse();
-    let record = Record::new(args.id, &args.name);
+    let record = Record::new(args.id, args.name.as_str());
     println!("{}", greet::line(&record));
 }
