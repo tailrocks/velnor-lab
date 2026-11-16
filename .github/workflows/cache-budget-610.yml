@@ -1,0 +1,59 @@
+name: Cache budget 610
+on:
+  push:
+    branches: [lab/610-budget]
+  pull_request:
+    branches: [lab/610-budget]
+permissions:
+  contents: read
+  actions: write
+  pull-requests: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: tailrocks/velnor-new
+          ref: peer/610-cache-budget
+          persist-credentials: false
+      - run: cargo build --release --locked --manifest-path ci-helper/Cargo.toml -p velnor-ci
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: velnor-ci-610
+          path: ci-helper/target/release/velnor-ci
+          retention-days: 2
+          if-no-files-found: error
+  budget:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: velnor-ci-610
+          path: helper
+      - run: chmod +x helper/velnor-ci
+      - run: mkdir payload && echo budget-610 > payload/value
+      - name: Save a base
+        if: github.event_name == 'push'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: payload
+          key: velnor-tgt-rust-root-root-Linux-X64-0123456789abcdef-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-${{ github.sha }}-${{ github.run_id }}
+      - name: Save a PR delta
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+        with:
+          path: payload
+          key: velnor-dlt-rust-root-root-Linux-X64-0123456789abcdef-aaaaaaaa-${{ github.run_id }}
+      - name: Preview the budget
+        run: helper/velnor-ci cache budget --dry-run --repo tailrocks/velnor-lab
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Enforce the budget
+        if: github.event_name == 'push'
+        run: helper/velnor-ci cache budget --repo tailrocks/velnor-lab
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
