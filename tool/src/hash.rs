@@ -1,6 +1,7 @@
 use fnv::FnvHasher;
 use std::hash::Hasher;
 
+/// Sixteen lowercase hex digits of the FNV-1a hash of the bytes.
 pub fn fingerprint(bytes: &[u8]) -> String {
     let mut hasher = FnvHasher::default();
     hasher.write(bytes);
