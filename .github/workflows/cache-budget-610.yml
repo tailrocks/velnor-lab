@@ -6,8 +6,6 @@ on:
     branches: [lab/610-budget-canonical]
 permissions:
   contents: read
-  actions: write
-  pull-requests: read
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +14,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: tailrocks/velnor-new
-          ref: peer/610-cache-budget
+          ref: f6d7216b2e7d1ab6ebc55024cc7ad8bb1a94ccb8
           persist-credentials: false
       - run: cargo build --release --locked --manifest-path ci-helper/Cargo.toml -p velnor-ci
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -29,6 +27,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: write
+      pull-requests: read
     steps:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
