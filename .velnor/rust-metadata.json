@@ -1,0 +1,385 @@
+{
+  "roots": {
+    "Cargo.toml": {
+      "members": [
+        {
+          "name": "core",
+          "manifest": "core/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "serde",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive"
+              ]
+            },
+            {
+              "name": "serde_json",
+              "kind": "normal",
+              "manifest": null
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab_core",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "core/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "lib",
+          "manifest": "lib/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "core",
+              "kind": "normal",
+              "manifest": "core/Cargo.toml"
+            },
+            {
+              "name": "hex",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "alloc"
+              ]
+            },
+            {
+              "name": "macros",
+              "kind": "normal",
+              "manifest": "macros/Cargo.toml"
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab_lib",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "lib/src/lib.rs",
+              "requires_features": false
+            },
+            {
+              "name": "build-script-build",
+              "kinds": [
+                "build-script"
+              ],
+              "tests": false,
+              "doctest": false,
+              "source": "lib/build.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "macros",
+          "manifest": "macros/Cargo.toml",
+          "dependencies": [],
+          "targets": [
+            {
+              "name": "lab_macros",
+              "kinds": [
+                "proc-macro"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "macros/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "app",
+          "manifest": "app/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "clap",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive"
+              ]
+            },
+            {
+              "name": "core",
+              "kind": "normal",
+              "manifest": "core/Cargo.toml"
+            },
+            {
+              "name": "lib",
+              "kind": "normal",
+              "manifest": "lib/Cargo.toml"
+            },
+            {
+              "name": "tokio",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "macros",
+                "rt"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "app",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "app/src/main.rs",
+              "requires_features": false
+            },
+            {
+              "name": "cli",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "app/tests/cli.rs",
+              "requires_features": false
+            },
+            {
+              "name": "slow",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "app/tests/slow.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "tool",
+          "manifest": "tool/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "fnv",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "hex",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "std",
+                "serde"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "tool",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "tool/src/main.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
+    },
+    "ci-helper/Cargo.toml": {
+      "members": [
+        {
+          "name": "velnor-ci",
+          "manifest": "ci-helper/crates/velnor-ci/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "clap",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive",
+                "string"
+              ]
+            },
+            {
+              "name": "libc",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "nix",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "signal"
+              ]
+            },
+            {
+              "name": "serde",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive"
+              ]
+            },
+            {
+              "name": "serde_json",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "signal-hook",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "iterator"
+              ]
+            },
+            {
+              "name": "ureq",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "rustls"
+              ]
+            },
+            {
+              "name": "velnor-gen",
+              "kind": "normal",
+              "manifest": "generator/crates/velnor-gen/Cargo.toml"
+            },
+            {
+              "name": "velnor-model",
+              "kind": "normal",
+              "manifest": "generator/crates/velnor-model/Cargo.toml"
+            },
+            {
+              "name": "velnor-release",
+              "kind": "normal",
+              "manifest": "generator/crates/velnor-release/Cargo.toml"
+            },
+            {
+              "name": "velnor-rust",
+              "kind": "normal",
+              "manifest": "generator/crates/velnor-rust/Cargo.toml"
+            },
+            {
+              "name": "nix",
+              "kind": "dev",
+              "manifest": null,
+              "features": [
+                "signal"
+              ]
+            },
+            {
+              "name": "ring",
+              "kind": "dev",
+              "manifest": null
+            }
+          ],
+          "targets": [
+            {
+              "name": "velnor_ci",
+              "kinds": [
+                "lib"
+              ],
+              "tests": false,
+              "doctest": false,
+              "source": "ci-helper/crates/velnor-ci/src/lib.rs",
+              "requires_features": false
+            },
+            {
+              "name": "velnor-ci",
+              "kinds": [
+                "bin"
+              ],
+              "tests": false,
+              "doctest": false,
+              "source": "ci-helper/crates/velnor-ci/src/main.rs",
+              "requires_features": false
+            },
+            {
+              "name": "it",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "ci-helper/crates/velnor-ci/tests/it/main.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
+    },
+    "lab/Cargo.toml": {
+      "members": [
+        {
+          "name": "lab",
+          "manifest": "lab/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "base64",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "serde_json",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "ureq",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "json"
+              ]
+            },
+            {
+              "name": "zip",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "deflate"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "lab/src/main.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "manifests": {
+    "Cargo.toml": "61a930a033f3815d284a4c6028a9a1221366149171e1003edbffd68a40e261ce",
+    "app/Cargo.toml": "75f0d4f63f47c40e3bbae85de07ea89d968223eb92030bfd3600883eb98bd22b",
+    "ci-helper/Cargo.toml": "fb3550bb8e3743f3be2ecbced69fa2328b3054f2046213a49f006064abf316ec",
+    "ci-helper/crates/velnor-ci/Cargo.toml": "9312c1dab98c2e9db114f9e9a3b13ae911e204083760a45375277141d68fa898",
+    "core/Cargo.toml": "edc6e9efd051bf8751557e8eff750a3c3cda8cc7e2b984833ea71515a137c072",
+    "lab/Cargo.toml": "e996a05386cc7722c5464ecf858e942a0392e87477c6a564d6db8925add22175",
+    "lib/Cargo.toml": "bebd2153ea68cc237e43561107646ae96247c6578aca307a7107a2249e5ff276",
+    "macros/Cargo.toml": "b0f64b01d21e07f76b4de89fd3f3e16464dd9e0996e82e424bac8795b3f65e04",
+    "tool/Cargo.toml": "98d4bc3d3ba49eced773b0c4f9d2d076adb4e33b043c44900edebe600ac5ed69"
+  },
+  "layout": "b17758dcaa420230a566249fdde5eda0ee3f71cb055844fa493439cecefe114c"
+}
