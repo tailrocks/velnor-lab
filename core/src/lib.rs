@@ -8,6 +8,10 @@ pub struct Record {
 }
 
 impl Record {
+    /// ```
+    /// let record = lab_core::Record::new(1, "a");
+    /// assert_eq!(record.id, 1);
+    /// ```
     pub fn new(id: u32, name: &str) -> Self {
         Self {
             id,
