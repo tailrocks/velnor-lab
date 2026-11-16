@@ -106,7 +106,7 @@ fn run(cli: Cli) -> Result<String, CiError> {
         Command::Timings(args) => timings::run_timings(&args),
         Command::Prepare => setup::prepare(),
         Command::CheckMetadata => setup::check_metadata(),
-        Command::Restored => Ok(String::new()),
+        Command::Restored => Err(CiError::new("restored is broken")),
         Command::Run(_) => Err(CiError::new("run is handled before commands")),
     }
 }
