@@ -37,13 +37,12 @@ jobs:
         with:
           fetch-depth: 2
           persist-credentials: false
-      - name: Install velnor-ci 0.1.80
-        uses: tailrocks/velnor-new/actions/setup-velnor@46f7a043952f82ef1a78d8ebb63143faca8f268c  # rust-ci-v0.1.80
-        with:
-          version: '0.1.80'
-          sha256-linux-x64: '659a551f2dbc7cd34c745dce2a787717aa8b8214841e4b9f9fa3a6334ebe8e3c'
-          sha256-linux-arm64: de279a7db363cf6943489b379e2c9360786156245ba7a3ae0fc85467ea860c2c
-          sha256-macos-arm64: '21015c7f0244d7fda84e36f26945ad11a811122b183224467ba4b8ed9bf68d51'
+      - name: Install the 606 helper
+        run: |
+          mkdir -p "$RUNNER_TEMP/vbin"
+          curl -fsSL -o "$RUNNER_TEMP/vbin/velnor-ci" https://github.com/tailrocks/velnor-lab/releases/download/606-helper-3c3315a4fa/velnor-ci
+          chmod +x "$RUNNER_TEMP/vbin/velnor-ci"
+          echo "$RUNNER_TEMP/vbin" >> "$GITHUB_PATH"
       - id: plan
         name: velnor-ci plan
         run: velnor-ci plan --explain
@@ -85,13 +84,13 @@ jobs:
           restore-keys: |
             velnor-tgt-rust-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
             velnor-tgt-rust-root-${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+      - name: velnor-ci inputs restore
+        if: '${{ steps.plan.outcome == ''success'' && steps.plan.outputs.rust_root_mode != ''none'' }}'
+        run: velnor-ci inputs restore
       - id: restored
         name: velnor-ci restored
         if: '${{ steps.plan.outcome == ''success'' && steps.plan.outputs.rust_root_mode != ''none'' }}'
         run: velnor-ci restored
-      - name: velnor-ci inputs restore
-        if: '${{ steps.plan.outcome == ''success'' && steps.plan.outputs.rust_root_mode != ''none'' }}'
-        run: velnor-ci inputs restore
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.plan.outcome == ''success'' && steps.plan.outputs.rust_root_mode != ''none'' }}'
         env:
