@@ -17,4 +17,3 @@ async fn main() {
     let record = Record::new(args.id, &args.name);
     println!("{}", greet::line(&record));
 }
-// m1
