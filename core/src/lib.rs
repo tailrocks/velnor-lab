@@ -57,3 +57,5 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+
+pub const DELTA_HUB_609: u32 = 609;
