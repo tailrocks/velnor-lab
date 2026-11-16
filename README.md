@@ -83,3 +83,4 @@ Probe pull requests use branches `probe-<tag>-<role>`. `lab probes` closes them,
 - Licence: Apache-2.0. See `LICENSE`, `NOTICE` and `REUSE.toml`.
 
 Docs probe for the affected run.
+Second docs probe.
