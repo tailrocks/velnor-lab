@@ -10,7 +10,7 @@ on:
       - edited
   push:
     branches:
-      - lab/609-base
+      - lab/609-snapshot-base
   merge_group: {}
   schedule:
     - cron: '26 14 * * *'
@@ -18,10 +18,11 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: 'ci-${{ github.workflow_ref }}-${{ github.event_name == ''pull_request'' && github.event.pull_request.number || github.run_id }}'
-  cancel-in-progress: '${{ github.event_name == ''pull_request'' }}'
+  group: 'ci-${{ github.workflow_ref }}-${{ github.event_name == ''pull_request'' && startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'' && github.event.pull_request.number || github.run_id }}'
+  cancel-in-progress: '${{ github.event_name == ''pull_request'' && startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'' }}'
 jobs:
   rust-plan:
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) }}'
     permissions:
       actions: read
       contents: read
@@ -44,14 +45,14 @@ jobs:
         with:
           fetch-depth: 2
           persist-credentials: false
-      - name: Download the trusted 609 helper
+      - name: Download the trusted snapshot helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-609
+          name: velnor-ci-609-snapshot
           path: ${{ runner.temp }}/vbin
-          run-id: 43961288628
+          run-id: 43987327544
           github-token: ${{ github.token }}
-      - name: Install the trusted 609 helper
+      - name: Install the trusted snapshot helper
         run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: plan
         name: velnor-ci plan
@@ -60,7 +61,7 @@ jobs:
   rust-root:
     needs:
       - rust-plan
-    if: '${{ needs.rust-plan.outputs.rust_root_mode != ''none'' }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (needs.rust-plan.outputs.rust_root_mode != ''none'') }}'
     permissions:
       actions: read
       contents: read
@@ -78,14 +79,14 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download the trusted 609 helper
+      - name: Download the trusted snapshot helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-609
+          name: velnor-ci-609-snapshot
           path: ${{ runner.temp }}/vbin
-          run-id: 43961288628
+          run-id: 43987327544
           github-token: ${{ github.token }}
-      - name: Install the trusted 609 helper
+      - name: Install the trusted snapshot helper
         run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
@@ -105,7 +106,7 @@ jobs:
       - name: Add Rust targets
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -143,7 +144,7 @@ jobs:
           BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
         run: velnor-ci delta prepare
       - name: Restore the delta cache
-        if: '${{ github.event_name == ''pull_request'' }}'
+        if: '${{ github.event_name == ''pull_request'' && steps.target_root.outputs.cache-matched-key != '''' }}'
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target.velnor-delta
@@ -159,7 +160,7 @@ jobs:
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -202,25 +203,25 @@ jobs:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo check -p tool --locked
       - name: Build the tests
-        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-run
+        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --ignore-default-filter --no-run
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir target
       - name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
           key: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
       - name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -242,16 +243,16 @@ jobs:
           DOCTESTS_KNOWN: '${{ needs.rust-plan.outputs.rust_root_doctests_known }}'
         run: 'velnor-ci run --require-doctests=$DOCTESTS_KNOWN -- cargo test --doc --workspace --locked'
       - name: velnor-ci inputs save
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         run: velnor-ci inputs save
       - id: delta
         name: velnor-ci delta stage
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         env:
           BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
         run: velnor-ci delta stage --target-dir target --staging-dir target.velnor-delta --package app --package core --package lib --package macros --package tool
       - name: Save the delta cache
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target.velnor-delta
@@ -269,7 +270,7 @@ jobs:
   rust-lab:
     needs:
       - rust-plan
-    if: '${{ needs.rust-plan.outputs.rust_lab_mode != ''none'' }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (needs.rust-plan.outputs.rust_lab_mode != ''none'') }}'
     permissions:
       actions: read
       contents: read
@@ -287,14 +288,14 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download the trusted 609 helper
+      - name: Download the trusted snapshot helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-609
+          name: velnor-ci-609-snapshot
           path: ${{ runner.temp }}/vbin
-          run-id: 43961288628
+          run-id: 43987327544
           github-token: ${{ github.token }}
-      - name: Install the trusted 609 helper
+      - name: Install the trusted snapshot helper
         run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
@@ -316,7 +317,7 @@ jobs:
         working-directory: lab
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -355,7 +356,7 @@ jobs:
           BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
         run: velnor-ci delta prepare
       - name: Restore the delta cache
-        if: '${{ github.event_name == ''pull_request'' }}'
+        if: '${{ github.event_name == ''pull_request'' && steps.target_lab.outputs.cache-matched-key != '''' }}'
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target.velnor-delta
@@ -372,7 +373,7 @@ jobs:
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -399,27 +400,27 @@ jobs:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: velnor-ci run -- cargo check -p lab --locked
       - name: Build the tests
-        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         working-directory: lab
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-run
+        run: velnor-ci run -- cargo-nextest nextest run --workspace --locked --ignore-default-filter --no-run
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         working-directory: lab
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir lab/target
       - name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
           key: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
       - name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -436,17 +437,17 @@ jobs:
           TEST_FILTER: '${{ needs.rust-plan.outputs.rust_lab_test_filter }}'
         run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
       - name: velnor-ci inputs save
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         working-directory: lab
         run: velnor-ci inputs save
       - id: delta
         name: velnor-ci delta stage
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' }}'
         env:
           BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
         run: velnor-ci delta stage --target-dir lab/target --staging-dir lab/target.velnor-delta --package lab
       - name: Save the delta cache
-        if: '${{ github.event_name == ''pull_request'' && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
+        if: '${{ github.event_name == ''pull_request'' && !cancelled() && github.event.pull_request.head.repo.full_name == github.repository && steps.restored.outcome == ''success'' && steps.delta.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target.velnor-delta
@@ -463,7 +464,7 @@ jobs:
   rust-inputs-audit:
     needs:
       - rust-plan
-    if: '${{ github.event_name == ''schedule'' }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (github.event_name == ''schedule'') }}'
     permissions:
       actions: read
       contents: read
@@ -475,14 +476,14 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: false
-      - name: Download the trusted 609 helper
+      - name: Download the trusted snapshot helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-609
+          name: velnor-ci-609-snapshot
           path: ${{ runner.temp }}/vbin
-          run-id: 43961288628
+          run-id: 43987327544
           github-token: ${{ github.token }}
-      - name: Install the trusted 609 helper
+      - name: Install the trusted snapshot helper
         run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - id: tools
         name: Restore the tools cache
@@ -502,7 +503,7 @@ jobs:
       - name: Add Rust targets
         run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Save the tools cache
-        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
+        if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && steps.tools.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -540,7 +541,7 @@ jobs:
           BASE_CACHE_KEY: '${{ steps.target_root.outputs.cache-matched-key }}'
         run: velnor-ci delta prepare
       - name: Restore the delta cache
-        if: '${{ github.event_name == ''pull_request'' }}'
+        if: '${{ github.event_name == ''pull_request'' && steps.target_root.outputs.cache-matched-key != '''' }}'
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target.velnor-delta
@@ -580,7 +581,7 @@ jobs:
           BASE_CACHE_KEY: '${{ steps.target_lab.outputs.cache-matched-key }}'
         run: velnor-ci delta prepare
       - name: Restore the delta cache
-        if: '${{ github.event_name == ''pull_request'' }}'
+        if: '${{ github.event_name == ''pull_request'' && steps.target_lab.outputs.cache-matched-key != '''' }}'
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target.velnor-delta
@@ -599,7 +600,7 @@ jobs:
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && github.event_name != ''push'' && ''7'' || ''0'' }}'
         run: velnor-ci restored
       - name: Build every target
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
@@ -627,20 +628,20 @@ jobs:
     needs:
       - rust-root
       - rust-lab
-    if: '${{ !cancelled() && github.ref == format(''refs/heads/{0}'', ''lab/609-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled() && github.ref == format(''refs/heads/{0}'', ''lab/609-snapshot-base'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'')) && (needs.rust-root.outputs.base_save == ''true'' || needs.rust-lab.outputs.base_save == ''true'') }}'
     permissions:
       actions: write
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Download the trusted 609 helper
+      - name: Download the trusted snapshot helper
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          name: velnor-ci-609
+          name: velnor-ci-609-snapshot
           path: ${{ runner.temp }}/vbin
-          run-id: 43961288628
+          run-id: 43987327544
           github-token: ${{ github.token }}
-      - name: Install the trusted 609 helper
+      - name: Install the trusted snapshot helper
         run: sudo install -m 0755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
       - name: Delete the older rust-root entries
         if: '${{ needs.rust-root.outputs.base_save == ''true'' }}'
@@ -673,7 +674,7 @@ jobs:
       - rust-root
       - rust-lab
       - rust-inputs-audit
-    if: '${{ !cancelled() }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled()) }}'
     permissions:
       contents: read
     runs-on: ubuntu-latest
