@@ -28,7 +28,7 @@ jobs:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
           name: velnor-612-binaries
-          run-id: '43968719906'
+          run-id: '44015972812'
           github-token: '${{ github.token }}'
           path: '${{ runner.temp }}/report-tools'
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
@@ -46,12 +46,14 @@ jobs:
       rust_lab_docs: '${{ steps.plan.outputs.rust_lab_docs }}'
       rust_lab_test_filter: '${{ steps.plan.outputs.rust_lab_test_filter }}'
       rust_lab_package_args: '${{ steps.plan.outputs.rust_lab_package_args }}'
+      rust_lab_tests: '${{ steps.plan.outputs.rust_lab_tests }}'
       rust_root_mode: '${{ steps.plan.outputs.rust_root_mode }}'
       rust_root_doctests: '${{ steps.plan.outputs.rust_root_doctests }}'
       rust_root_doctests_known: '${{ steps.plan.outputs.rust_root_doctests_known }}'
       rust_root_docs: '${{ steps.plan.outputs.rust_root_docs }}'
       rust_root_test_filter: '${{ steps.plan.outputs.rust_root_test_filter }}'
       rust_root_package_args: '${{ steps.plan.outputs.rust_root_package_args }}'
+      rust_root_tests: '${{ steps.plan.outputs.rust_root_tests }}'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -81,9 +83,12 @@ jobs:
     outputs:
       # jactionlint ignore=unused-job-output
       tests_run: '${{ steps.test.outputs.tests_run }}'
-      base_prefix: 'velnor-tgt-s612v2-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
+      # jactionlint ignore=unused-job-output
+      tests_listed: '${{ steps.test.outputs.tests_listed }}'
+      base_prefix: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
       base_save: '${{ steps.base.outputs.save }}'
       sources_prefix: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-root-'
+      sources_saved: '${{ steps.sources_save_root.outcome == ''success'' }}'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -145,17 +150,21 @@ jobs:
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
-          key: 'velnor-tgt-s612v2-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-s612v2-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
-            velnor-tgt-s612v2-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('Cargo.lock') }}-
+            velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
       - name: velnor-ci inputs restore
         run: velnor-ci inputs restore
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && github.event_name == ''workflow_dispatch'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && ''7'' || ''0'' }}'
         run: velnor-ci restored
+      - id: replan
+        name: velnor-ci plan --full
+        if: '${{ steps.restored.outputs.expired == ''true'' }}'
+        run: velnor-ci plan --full
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
         env:
@@ -167,32 +176,32 @@ jobs:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo-clippy clippy --workspace --all-targets --locked --message-format=json-render-diagnostics -- -D warnings'
       - name: Documentation
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_root_mode != ''none'' && needs.rust-plan.outputs.rust_root_docs == ''run'' && needs.rust-plan.outputs.rust_root_package_args != '''' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (steps.replan.outputs.rust_root_mode || needs.rust-plan.outputs.rust_root_mode) != ''none'' && (steps.replan.outputs.rust_root_docs || needs.rust-plan.outputs.rust_root_docs) == ''run'' && (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args) != '''' }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo doc --workspace --no-deps --locked --config ''build.rustdocflags=["-D","warnings"]'' --message-format=json-render-diagnostics'
       - name: Check app alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' -p app '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' -p app '') || contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' --workspace '')) }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo check -p app --locked --message-format=json-render-diagnostics'
       - name: Check core alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' -p core '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' -p core '') || contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' --workspace '')) }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo check -p core --locked --message-format=json-render-diagnostics'
       - name: Check lib alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' -p lib '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' -p lib '') || contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' --workspace '')) }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo check -p lib --locked --message-format=json-render-diagnostics'
       - name: Check macros alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' -p macros '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' -p macros '') || contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' --workspace '')) }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo check -p macros --locked --message-format=json-render-diagnostics'
       - name: Check tool alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' -p tool '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_root_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' -p tool '') || contains(format('' {0} '', (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args)), '' --workspace '')) }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo check -p tool --locked --message-format=json-render-diagnostics'
@@ -200,24 +209,24 @@ jobs:
         if: '${{ github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --no-run'
+        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --ignore-default-filter --no-run'
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir target
       - id: save_target_root
         name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: target
-          key: 'velnor-tgt-s612v2-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
-      - id: save_sources_root
+          key: 'velnor-tgt-rust-root.root.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+      - id: sources_save_root
         name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_root.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -230,13 +239,13 @@ jobs:
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_root_test_filter }}'
+          TEST_FILTER: '${{ steps.replan.outputs.rust_root_test_filter || needs.rust-plan.outputs.rust_root_test_filter }}'
         run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
       - name: Doctests
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_root_mode != ''none'' && needs.rust-plan.outputs.rust_root_doctests == ''run'' && needs.rust-plan.outputs.rust_root_package_args != '''' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (steps.replan.outputs.rust_root_mode || needs.rust-plan.outputs.rust_root_mode) != ''none'' && (steps.replan.outputs.rust_root_doctests || needs.rust-plan.outputs.rust_root_doctests) == ''run'' && (steps.replan.outputs.rust_root_package_args || needs.rust-plan.outputs.rust_root_package_args) != '''' }}'
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          DOCTESTS_KNOWN: '${{ needs.rust-plan.outputs.rust_root_doctests_known }}'
+          DOCTESTS_KNOWN: '${{ steps.replan.outputs.rust_root_doctests_known || needs.rust-plan.outputs.rust_root_doctests_known }}'
         run: 'velnor-ci run --require-doctests=$DOCTESTS_KNOWN -- cargo test --doc --workspace --locked --message-format=json-render-diagnostics'
       - name: Upload the cargo fingerprint log
         if: '${{ !cancelled() && vars.VELNOR_CACHE_DEBUG == ''1'' && steps.restored.outcome == ''success'' }}'
@@ -249,15 +258,17 @@ jobs:
           overwrite: true
       - name: Report cache telemetry
         if: '${{ !cancelled() }}'
+        continue-on-error: true
         env:
-          GITHUB_TOKEN: '${{ github.token }}'
-          VELNOR_REPORT_CACHES: '[{"bytes":null,"family":"tools","hit":"miss","matched_key":null,"requested_key":"","restore_step":"tools","root":null,"save_failed":false,"save_step":"save_tools","usable":false,"usable_same_lock":false},{"bytes":null,"family":"sources","hit":"miss","matched_key":null,"requested_key":"","restore_step":"sources_root","root":".","save_failed":false,"save_step":"save_sources_root","usable":false,"usable_same_lock":false},{"bytes":null,"family":"target","hit":"miss","matched_key":null,"requested_key":"","restore_step":"target_root","root":".","save_failed":false,"save_step":"save_target_root","usable":false,"usable_same_lock":false}]'
+          GITHUB_TOKEN: '${{ (github.event_name != ''pull_request'' || github.event.pull_request.head.repo.full_name == github.repository) && github.token || '''' }}'
+          VELNOR_REPORT_CACHES: '[{"family":"tools","restore_step":"tools","root":null,"save_step":"save_tools"},{"family":"sources","restore_step":"sources_root","root":".","save_step":"sources_save_root"},{"family":"target","restore_step":"target_root","root":".","save_step":"save_target_root"}]'
           VELNOR_REPORT_STEPS: '${{ toJSON(steps) }}'
           VELNOR_REPORT_DEFAULT_BRANCH: '${{ ''lab/612-report'' }}'
           VELNOR_TESTS_RUN: '${{ steps.test.outputs.tests_run }}'
         run: velnor-ci report
       - name: Upload cache metrics
         if: '${{ !cancelled() }}'
+        continue-on-error: true
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: 'ci-metrics-${{ github.job }}'
@@ -276,9 +287,12 @@ jobs:
     outputs:
       # jactionlint ignore=unused-job-output
       tests_run: '${{ steps.test.outputs.tests_run }}'
-      base_prefix: 'velnor-tgt-s612v2-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
+      # jactionlint ignore=unused-job-output
+      tests_listed: '${{ steps.test.outputs.tests_listed }}'
+      base_prefix: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-'
       base_save: '${{ steps.base.outputs.save }}'
       sources_prefix: 'velnor-src-${{ runner.os }}-${{ runner.arch }}-lab-'
+      sources_saved: '${{ steps.sources_save_lab.outcome == ''success'' }}'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -343,18 +357,22 @@ jobs:
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
-          key: 'velnor-tgt-s612v2-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+          key: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
           restore-keys: |
-            velnor-tgt-s612v2-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
-            velnor-tgt-s612v2-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
+            velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles('lab/Cargo.lock') }}-
+            velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-
       - name: velnor-ci inputs restore
         working-directory: lab
         run: velnor-ci inputs restore
       - id: restored
         name: velnor-ci restored
         env:
-          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && github.event_name == ''workflow_dispatch'' && ''7'' || ''0'' }}'
+          VELNOR_BASE_MAX_AGE_DAYS: '${{ github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && ''7'' || ''0'' }}'
         run: velnor-ci restored
+      - id: replan
+        name: velnor-ci plan --full
+        if: '${{ steps.restored.outputs.expired == ''true'' }}'
+        run: velnor-ci plan --full
       - name: Format
         if: '${{ !cancelled() && steps.restored.outcome == ''success'' }}'
         working-directory: lab
@@ -368,13 +386,13 @@ jobs:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo-clippy clippy --workspace --all-targets --locked --message-format=json-render-diagnostics -- -D warnings'
       - name: Documentation
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && needs.rust-plan.outputs.rust_lab_mode != ''none'' && needs.rust-plan.outputs.rust_lab_docs == ''run'' && needs.rust-plan.outputs.rust_lab_package_args != '''' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (steps.replan.outputs.rust_lab_mode || needs.rust-plan.outputs.rust_lab_mode) != ''none'' && (steps.replan.outputs.rust_lab_docs || needs.rust-plan.outputs.rust_lab_docs) == ''run'' && (steps.replan.outputs.rust_lab_package_args || needs.rust-plan.outputs.rust_lab_package_args) != '''' }}'
         working-directory: lab
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
         run: 'velnor-ci run -- cargo doc --workspace --no-deps --locked --config ''build.rustdocflags=["-D","warnings"]'' --message-format=json-render-diagnostics'
       - name: Check lab alone
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', needs.rust-plan.outputs.rust_lab_package_args), '' -p lab '') || contains(format('' {0} '', needs.rust-plan.outputs.rust_lab_package_args), '' --workspace '')) }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && (contains(format('' {0} '', (steps.replan.outputs.rust_lab_package_args || needs.rust-plan.outputs.rust_lab_package_args)), '' -p lab '') || contains(format('' {0} '', (steps.replan.outputs.rust_lab_package_args || needs.rust-plan.outputs.rust_lab_package_args)), '' --workspace '')) }}'
         working-directory: lab
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
@@ -384,25 +402,25 @@ jobs:
         working-directory: lab
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --no-run'
+        run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --ignore-default-filter --no-run'
       - name: velnor-ci inputs save
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         working-directory: lab
         run: velnor-ci inputs save
       - id: base
         name: Decide whether to save the build directory
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') }}'
         run: velnor-ci cache decide --target-dir lab/target
       - id: save_target_lab
         name: Save the target cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.base.outputs.save == ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: lab/target
-          key: 'velnor-tgt-s612v2-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
-      - id: save_sources_lab
+          key: 'velnor-tgt-rust-lab.lab.${{ runner.os }}-${{ runner.arch }}-${{ steps.prepare.outputs.compat }}-${{ hashFiles(''lab/Cargo.lock'') }}-${{ github.sha }}-${{ github.run_id }}'
+      - id: sources_save_lab
         name: Save the sources cache
-        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
+        if: '${{ !cancelled() && steps.restored.outcome == ''success'' && steps.replan.outcome != ''failure'' && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'') && steps.sources_lab.outputs.cache-hit != ''true'' }}'
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
         with:
           path: |
@@ -416,7 +434,7 @@ jobs:
         working-directory: lab
         env:
           CARGO_LOG: '${{ vars.VELNOR_CACHE_DEBUG == ''1'' && ''cargo::compiler::fingerprint=info,cargo::core::compiler::fingerprint=info'' || '''' }}'
-          TEST_FILTER: '${{ needs.rust-plan.outputs.rust_lab_test_filter }}'
+          TEST_FILTER: '${{ steps.replan.outputs.rust_lab_test_filter || needs.rust-plan.outputs.rust_lab_test_filter }}'
         run: 'velnor-ci run -- cargo-nextest nextest run --workspace --locked --cargo-message-format=json-render-diagnostics --no-fail-fast --ignore-default-filter -E "$TEST_FILTER" --no-tests=pass'
       - name: Upload the cargo fingerprint log
         if: '${{ !cancelled() && vars.VELNOR_CACHE_DEBUG == ''1'' && steps.restored.outcome == ''success'' }}'
@@ -429,15 +447,17 @@ jobs:
           overwrite: true
       - name: Report cache telemetry
         if: '${{ !cancelled() }}'
+        continue-on-error: true
         env:
-          GITHUB_TOKEN: '${{ github.token }}'
-          VELNOR_REPORT_CACHES: '[{"bytes":null,"family":"tools","hit":"miss","matched_key":null,"requested_key":"","restore_step":"tools","root":null,"save_failed":false,"save_step":"save_tools","usable":false,"usable_same_lock":false},{"bytes":null,"family":"sources","hit":"miss","matched_key":null,"requested_key":"","restore_step":"sources_lab","root":"lab","save_failed":false,"save_step":"save_sources_lab","usable":false,"usable_same_lock":false},{"bytes":null,"family":"target","hit":"miss","matched_key":null,"requested_key":"","restore_step":"target_lab","root":"lab","save_failed":false,"save_step":"save_target_lab","usable":false,"usable_same_lock":false}]'
+          GITHUB_TOKEN: '${{ (github.event_name != ''pull_request'' || github.event.pull_request.head.repo.full_name == github.repository) && github.token || '''' }}'
+          VELNOR_REPORT_CACHES: '[{"family":"tools","restore_step":"tools","root":null,"save_step":"save_tools"},{"family":"sources","restore_step":"sources_lab","root":"lab","save_step":"sources_save_lab"},{"family":"target","restore_step":"target_lab","root":"lab","save_step":"save_target_lab"}]'
           VELNOR_REPORT_STEPS: '${{ toJSON(steps) }}'
           VELNOR_REPORT_DEFAULT_BRANCH: '${{ ''lab/612-report'' }}'
           VELNOR_TESTS_RUN: '${{ steps.test.outputs.tests_run }}'
         run: velnor-ci report
       - name: Upload cache metrics
         if: '${{ !cancelled() }}'
+        continue-on-error: true
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: 'ci-metrics-${{ github.job }}'
@@ -445,11 +465,43 @@ jobs:
           if-no-files-found: error
           retention-days: 3
           overwrite: true
+  cache:
+    name: Cache
+    needs:
+      - rust-root
+      - rust-lab
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled()) }}'
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Download the development helper
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: velnor-ci
+          path: '${{ runner.temp }}/vbin'
+      - name: Install the development helper
+        run: sudo install -m 755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
+      - name: Download cache metrics
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          pattern: 'ci-metrics-*'
+          path: '${{ runner.temp }}/ci-metrics'
+      - name: Check cache waste
+        env:
+          VELNOR_REPORT_NEEDS: '${{ toJSON(needs) }}'
+        run: 'velnor-ci report --check "$RUNNER_TEMP/ci-metrics"'
   rust-trim:
     needs:
       - rust-root
       - rust-lab
-    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled() && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'')) }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled() && github.ref == format(''refs/heads/{0}'', ''lab/612-report'') && (github.event_name == ''push'' || github.event_name == ''schedule'' || github.event_name == ''workflow_dispatch'')) && (needs.rust-root.outputs.base_save == ''true'' || needs.rust-root.outputs.sources_saved == ''true'' || needs.rust-lab.outputs.base_save == ''true'' || needs.rust-lab.outputs.sources_saved == ''true'') }}'
     permissions:
       actions: write
     runs-on: ubuntu-latest
@@ -486,38 +538,6 @@ jobs:
           CACHE_PREFIX: '${{ needs.rust-lab.outputs.sources_prefix }}'
           GITHUB_TOKEN: '${{ github.token }}'
         run: 'velnor-ci cache trim --prefix "$CACHE_PREFIX"'
-  cache:
-    name: Cache
-    needs:
-      - rust-root
-      - rust-lab
-    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled()) }}'
-    permissions:
-      contents: read
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Check out
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-        with:
-          fetch-depth: 1
-          persist-credentials: false
-      - name: Download the development helper
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
-          name: velnor-ci
-          path: '${{ runner.temp }}/vbin'
-      - name: Install the development helper
-        run: sudo install -m 755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
-      - name: Download cache metrics
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
-        with:
-          pattern: 'ci-metrics-*'
-          path: '${{ runner.temp }}/ci-metrics'
-      - name: Check cache waste
-        env:
-          VELNOR_REPORT_NEEDS: '${{ toJSON(needs) }}'
-        run: 'velnor-ci report --check "$RUNNER_TEMP/ci-metrics"'
   required:
     name: Required
     needs:
@@ -525,12 +545,21 @@ jobs:
       - rust-root
       - rust-lab
       - cache
-    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (!cancelled()) }}'
+    if: '${{ (github.event_name != ''pull_request'' || (startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'')) && (always()) }}'
     permissions:
       contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Fail when a Rust job failed or was cancelled
-        if: '${{ contains(needs.*.result, ''failure'') || contains(needs.*.result, ''cancelled'') }}'
-        run: exit 1
+      - name: Download the development helper
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: velnor-ci
+          path: '${{ runner.temp }}/vbin'
+      - name: Install the development helper
+        run: sudo install -m 755 "$RUNNER_TEMP/vbin/velnor-ci" /usr/local/bin/velnor-ci
+      - name: velnor-ci gate
+        env:
+          NEEDS_JSON: '${{ toJSON(needs) }}'
+          GATE_SPEC: '--plan rust-plan --job rust-plan=always --job rust-root=lane:root --job rust-lab=lane:lab --job cache=always --tests rust-root=root --tests rust-lab=lab'
+        run: velnor-ci gate --spec-env GATE_SPEC
