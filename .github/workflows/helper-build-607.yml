@@ -23,7 +23,7 @@ jobs:
       - name: Verify helper tests with normal deadlines
         env:
           TMPDIR: ${{ runner.temp }}/velnor-612-tests
-        run: mise exec rust aqua:nextest-rs/nextest/cargo-nextest -- cargo nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
+        run: mise --no-config --no-env --no-hooks exec rust@1.99.1 aqua:nextest-rs/nextest/cargo-nextest@0.9.151 -- cargo nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
       - run: cargo build --manifest-path ci-helper/Cargo.toml --release --locked
       - run: cargo build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
