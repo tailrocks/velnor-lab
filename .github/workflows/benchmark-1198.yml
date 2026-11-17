@@ -63,10 +63,10 @@ jobs:
             sample="$2"
             mkdir -p "$sample"
             cp -R "$source/fixtures/parity/multi-crate/input/." "$sample/"
-            mkdir -p "$sample/.velnor"
             for file in rust-toolchain.toml mise.toml mise.lock; do
-              cp "$source/.velnor/$file" "$sample/.velnor/$file"
+              cp "$source/$file" "$sample/$file"
             done
+            mkdir -p "$sample/.velnor"
             cp "$source/generator/samples/release-bin/view/.velnor/rust-ci.lock" "$sample/.velnor/rust-ci.lock"
             git -C "$sample" init --quiet -b main
             git -C "$sample" remote add origin https://github.com/tailrocks/velnor-lab.git
