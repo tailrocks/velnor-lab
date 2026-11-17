@@ -80,7 +80,7 @@ jobs:
           printf 'After rustc: '
           (cd "$after/generator" && rustc --version)
 
-          hyperfine --style basic --show-output --warmup 5 --runs 30 \
+          hyperfine --show-output --warmup 5 --runs 30 \
             --command-name before-workspace "$RUNNER_TEMP/velnor-gen-before --root $before generate" \
             --command-name after-workspace "$RUNNER_TEMP/velnor-gen-after --root $after generate" \
             --command-name before-largest-sample "$RUNNER_TEMP/velnor-gen-before --root $RUNNER_TEMP/sample-before generate" \
