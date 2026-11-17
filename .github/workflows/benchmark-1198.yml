@@ -1,0 +1,72 @@
+name: Generator benchmark for PR 1198
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v2
+        with:
+          toolchain: stable
+          cache: false
+
+      - name: Build and benchmark both revisions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo 'Runner image:'
+          cat /etc/os-release
+          echo 'CPU:'
+          lscpu
+          echo 'Load at start:'
+          uptime
+          echo "Logical CPUs: $(nproc)"
+
+          sudo apt-get update
+          sudo apt-get install --yes hyperfine
+          hyperfine --version
+
+          repo="$RUNNER_TEMP/velnor-new"
+          before="$RUNNER_TEMP/velnor-before"
+          after="$RUNNER_TEMP/velnor-after"
+          target="$RUNNER_TEMP/cargo-target"
+          git clone https://github.com/tailrocks/velnor-new.git "$repo"
+          git -C "$repo" fetch origin \
+            refs/heads/main:refs/remotes/origin/main \
+            refs/pull/1198/head:refs/remotes/origin/pr-1198
+          base="$(git -C "$repo" merge-base origin/main origin/pr-1198)"
+          head="$(git -C "$repo" rev-parse origin/pr-1198)"
+          printf 'PR merge base: %s\nPR head: %s\n' "$base" "$head"
+          git -C "$repo" worktree add "$before" "$base"
+          git -C "$repo" worktree add "$after" "$head"
+
+          (cd "$before/generator" && CARGO_TARGET_DIR="$target" cargo build --locked --release -p velnor-gen)
+          cp "$target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-before"
+          (cd "$after/generator" && CARGO_TARGET_DIR="$target" cargo build --locked --release -p velnor-gen)
+          cp "$target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-after"
+
+          printf 'Before rustc: '
+          (cd "$before/generator" && rustc --version)
+          printf 'After rustc: '
+          (cd "$after/generator" && rustc --version)
+
+          hyperfine --style basic --warmup 5 --runs 30 \
+            --command-name before-workspace "$RUNNER_TEMP/velnor-gen-before --root $before/generator generate" \
+            --command-name after-workspace "$RUNNER_TEMP/velnor-gen-after --root $after/generator generate" \
+            --command-name before-largest-sample "$RUNNER_TEMP/velnor-gen-before --root $before/generator/fixtures/parity/multi-crate/input generate" \
+            --command-name after-largest-sample "$RUNNER_TEMP/velnor-gen-after --root $after/generator/fixtures/parity/multi-crate/input generate" \
+            --export-json "$RUNNER_TEMP/benchmark.json"
+
+          echo 'Raw hyperfine JSON:'
+          cat "$RUNNER_TEMP/benchmark.json"
+          echo 'Summary (p95 is nearest-rank, 29th of 30 samples):'
+          jq '[.results[] | {command, runs:(.times | length), median_seconds:.median, p95_seconds:(.times | sort | .[28]), min_seconds:.min, max_seconds:.max, spread_seconds:(.max - .min)}]' "$RUNNER_TEMP/benchmark.json"
+          echo 'Load at end:'
+          uptime
