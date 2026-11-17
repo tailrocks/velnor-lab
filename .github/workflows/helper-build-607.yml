@@ -1,4 +1,5 @@
 name: helper build 612
+run-name: Linux proof of source 8b4cc05 and report capture overhead
 on:
   push:
     branches: [lab/612-helper]
@@ -11,12 +12,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: tailrocks/velnor-new
-          ref: ea3f44aa003334497690f8bdf50bdc89f20ecd61
+          ref: 8b4cc053315e6edb46f0380267e5d101bedbd59c
           persist-credentials: false
       - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
         with:
           version: '2026.11.1'
-          install_args: rust aqua:nextest-rs/nextest/cargo-nextest
+          install_args: rust aqua:nextest-rs/nextest/cargo-nextest bun
           cache: false
       - name: Create isolated test temporary directory
         run: mkdir -m 700 "$RUNNER_TEMP/velnor-612-tests"
@@ -24,12 +25,53 @@ jobs:
         env:
           TMPDIR: ${{ runner.temp }}/velnor-612-tests
         run: mise --no-config --no-env --no-hooks exec rust@1.99.1 aqua:nextest-rs/nextest/cargo-nextest@0.9.151 -- cargo nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
-      - run: cargo build --manifest-path ci-helper/Cargo.toml --release --locked
-      - run: cargo build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
+      - name: Build candidate release helper
+        run: cargo build --manifest-path ci-helper/Cargo.toml --release --locked
+      - name: Build candidate release generator
+        run: cargo build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
+      - name: Build canonical baseline outside candidate workspace
+        env:
+          BASELINE_REVISION: 5203be095e184b8c47a3fa647a724bbc0ac163ec
+        run: |
+          git clone --no-checkout https://github.com/tailrocks/velnor-new.git "$RUNNER_TEMP/velnor-baseline"
+          git -C "$RUNNER_TEMP/velnor-baseline" checkout --detach "$BASELINE_REVISION"
+          test "$(git -C "$RUNNER_TEMP/velnor-baseline" rev-parse HEAD)" = "$BASELINE_REVISION"
+          cargo build --manifest-path "$RUNNER_TEMP/velnor-baseline/ci-helper/Cargo.toml" --release --locked --target-dir "$RUNNER_TEMP/velnor-base-target"
+      - name: Check out reviewed evidence harness after builds
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: tailrocks/velnor-lab
+          ref: ${{ github.sha }}
+          path: lab-evidence
+          persist-credentials: false
+      - name: Reject baseline as candidate negative control
+        env:
+          SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
+          SOURCE_CANDIDATE_SHA: 8b4cc053315e6edb46f0380267e5d101bedbd59c
+        run: |
+          mkdir -p "$RUNNER_TEMP/velnor-report-evidence"
+          if mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/negative-control.json" > "$RUNNER_TEMP/velnor-report-evidence/negative-control.stdout" 2> "$RUNNER_TEMP/velnor-report-evidence/negative-control.stderr"; then
+            echo 'Baseline-as-candidate unexpectedly passed' >&2
+            exit 1
+          fi
+          grep -F 'candidate missing capture sidecar (feature absent)' "$RUNNER_TEMP/velnor-report-evidence/negative-control.stderr"
+          test ! -e "$RUNNER_TEMP/velnor-report-evidence/negative-control.json"
+      - name: Measure bounded capture overhead on actual registry inventory
+        env:
+          SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
+          SOURCE_CANDIDATE_SHA: 8b4cc053315e6edb46f0380267e5d101bedbd59c
+        run: mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$GITHUB_WORKSPACE/ci-helper/target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/report-overhead.json"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: velnor-612-binaries
           path: |
             ci-helper/target/release/velnor-ci
             generator/target/release/velnor-gen
+          retention-days: 1
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: velnor-612-report-overhead
+          path: ${{ runner.temp }}/velnor-report-evidence
+          if-no-files-found: ignore
           retention-days: 1
