@@ -14,6 +14,6 @@ struct Args {
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let args = Args::parse();
-    let record = Record::new(args.id, &args.name);
+    let record = Record::new(args.id, args.name.as_str());
     println!("{}", greet::line(&record));
 }
