@@ -36,7 +36,8 @@ jobs:
           repo="$RUNNER_TEMP/velnor-new"
           before="$RUNNER_TEMP/velnor-before"
           after="$RUNNER_TEMP/velnor-after"
-          target="$RUNNER_TEMP/cargo-target"
+          before_target="$RUNNER_TEMP/cargo-target-before"
+          after_target="$RUNNER_TEMP/cargo-target-after"
           git clone https://github.com/tailrocks/velnor-new.git "$repo"
           git -C "$repo" fetch origin \
             refs/heads/main:refs/remotes/origin/main \
@@ -47,21 +48,43 @@ jobs:
           git -C "$repo" worktree add "$before" "$base"
           git -C "$repo" worktree add "$after" "$head"
 
-          (cd "$before/generator" && CARGO_TARGET_DIR="$target" cargo build --locked --release -p velnor-gen)
-          cp "$target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-before"
-          (cd "$after/generator" && CARGO_TARGET_DIR="$target" cargo build --locked --release -p velnor-gen)
-          cp "$target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-after"
+          (cd "$before/generator" && CARGO_TARGET_DIR="$before_target" cargo build --locked --release -p velnor-gen)
+          cp "$before_target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-before"
+          (cd "$after/generator" && CARGO_TARGET_DIR="$after_target" cargo build --locked --release -p velnor-gen)
+          cp "$after_target/release/velnor-gen" "$RUNNER_TEMP/velnor-gen-after"
+
+          cp "$before/generator/samples/release-bin/view/.velnor/rust-ci.lock" "$before/.velnor/rust-ci.lock"
+          cp "$after/generator/samples/release-bin/view/.velnor/rust-ci.lock" "$after/.velnor/rust-ci.lock"
+          git -C "$before" add -- .velnor/rust-ci.lock
+          git -C "$after" add -- .velnor/rust-ci.lock
+
+          prepare_sample() {
+            source="$1"
+            sample="$2"
+            mkdir -p "$sample"
+            cp -R "$source/fixtures/parity/multi-crate/input/." "$sample/"
+            mkdir -p "$sample/.velnor"
+            for file in rust-ci.toml rust-toolchain.toml mise.toml mise.lock; do
+              cp "$source/.velnor/$file" "$sample/.velnor/$file"
+            done
+            cp "$source/generator/samples/release-bin/view/.velnor/rust-ci.lock" "$sample/.velnor/rust-ci.lock"
+            git -C "$sample" init --quiet -b main
+            git -C "$sample" remote add origin https://github.com/tailrocks/velnor-lab.git
+            git -C "$sample" add --all
+          }
+          prepare_sample "$before" "$RUNNER_TEMP/sample-before"
+          prepare_sample "$after" "$RUNNER_TEMP/sample-after"
 
           printf 'Before rustc: '
           (cd "$before/generator" && rustc --version)
           printf 'After rustc: '
           (cd "$after/generator" && rustc --version)
 
-          hyperfine --style basic --warmup 5 --runs 30 \
-            --command-name before-workspace "$RUNNER_TEMP/velnor-gen-before --root $before/generator generate" \
-            --command-name after-workspace "$RUNNER_TEMP/velnor-gen-after --root $after/generator generate" \
-            --command-name before-largest-sample "$RUNNER_TEMP/velnor-gen-before --root $before/generator/fixtures/parity/multi-crate/input generate" \
-            --command-name after-largest-sample "$RUNNER_TEMP/velnor-gen-after --root $after/generator/fixtures/parity/multi-crate/input generate" \
+          hyperfine --style basic --show-output --warmup 5 --runs 30 \
+            --command-name before-workspace "$RUNNER_TEMP/velnor-gen-before --root $before generate" \
+            --command-name after-workspace "$RUNNER_TEMP/velnor-gen-after --root $after generate" \
+            --command-name before-largest-sample "$RUNNER_TEMP/velnor-gen-before --root $RUNNER_TEMP/sample-before generate" \
+            --command-name after-largest-sample "$RUNNER_TEMP/velnor-gen-after --root $RUNNER_TEMP/sample-after generate" \
             --export-json "$RUNNER_TEMP/benchmark.json"
 
           echo 'Raw hyperfine JSON:'
