@@ -1,5 +1,5 @@
 name: helper build 612
-run-name: Linux proof of source 8b4cc05 and report capture overhead
+run-name: Native Rust 1.99.1 Linux proof of source 0e910e2 and capture overhead
 on:
   push:
     branches: [lab/612-helper]
@@ -12,23 +12,75 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: tailrocks/velnor-new
-          ref: 8b4cc053315e6edb46f0380267e5d101bedbd59c
+          ref: 0e910e2ea0e1d0ce0004d649ac19d8d2391b6de4
           persist-credentials: false
       - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
         with:
           version: '2026.11.1'
           install_args: rust aqua:nextest-rs/nextest/cargo-nextest bun
           cache: false
+      - name: Record ambient compiler resolution and select native Rust 1.99.1
+        run: |
+          command -v cargo
+          command -v rustc
+          if timeout 10s env -u RUSTUP_TOOLCHAIN RUSTUP_AUTO_INSTALL=0 bash --noprofile --norc <<'PROBE'
+          cd "$RUNNER_TEMP"
+          command -v cargo
+          command -v rustc
+          rustup which cargo
+          rustup which rustc
+          rustc --version
+          PROBE
+          then
+            echo 'Temporary-directory ambient compiler probe completed'
+          else
+            probe_status=$?
+            echo "Temporary-directory ambient compiler probe exited $probe_status"
+          fi
+          native_cargo="$(rustup which --toolchain 1.99.1 cargo)"
+          native_bin="$(dirname "$native_cargo")"
+          native_rustc="$native_bin/rustc"
+          test "${native_cargo#/}" != "$native_cargo"
+          test "$native_rustc" = "$(rustup which --toolchain 1.99.1 rustc)"
+          test -x "$native_cargo"
+          test -x "$native_rustc"
+          file "$native_cargo" "$native_rustc"
+          file -b "$native_cargo" | grep -F ELF
+          file -b "$native_rustc" | grep -F ELF
+          "$native_cargo" --version
+          "$native_rustc" --version
+          {
+            echo "NATIVE_CARGO=$native_cargo"
+            echo "NATIVE_TOOLCHAIN_BIN=$native_bin"
+            echo 'RUSTC_WRAPPER='
+            echo 'CARGO_BUILD_RUSTC_WRAPPER='
+            echo 'RUSTC_WORKSPACE_WRAPPER='
+            echo 'CARGO_BUILD_RUSTC_WORKSPACE_WRAPPER='
+          } >> "$GITHUB_ENV"
+          echo "$native_bin" >> "$GITHUB_PATH"
       - name: Create isolated test temporary directory
         run: mkdir -m 700 "$RUNNER_TEMP/velnor-612-tests"
       - name: Verify helper tests with normal deadlines
         env:
           TMPDIR: ${{ runner.temp }}/velnor-612-tests
-        run: mise --no-config --no-env --no-hooks exec rust@1.99.1 aqua:nextest-rs/nextest/cargo-nextest@0.9.151 -- cargo nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
+        run: |
+          mise --no-config --no-env --no-hooks exec rust@1.99.1 aqua:nextest-rs/nextest/cargo-nextest@0.9.151 -- bash --noprofile --norc <<'NATIVE'
+          export PATH="$NATIVE_TOOLCHAIN_BIN:$PATH"
+          unset RUSTC
+          exec "$NATIVE_CARGO" nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
+          NATIVE
       - name: Build candidate release helper
-        run: cargo build --manifest-path ci-helper/Cargo.toml --release --locked
+        run: |
+          mise --no-config --no-env --no-hooks exec rust@1.99.1 -- bash --noprofile --norc <<'NATIVE'
+          export PATH="$NATIVE_TOOLCHAIN_BIN:$PATH"
+          exec "$NATIVE_CARGO" build --manifest-path ci-helper/Cargo.toml --release --locked
+          NATIVE
       - name: Build candidate release generator
-        run: cargo build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
+        run: |
+          mise --no-config --no-env --no-hooks exec rust@1.99.1 -- bash --noprofile --norc <<'NATIVE'
+          export PATH="$NATIVE_TOOLCHAIN_BIN:$PATH"
+          exec "$NATIVE_CARGO" build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
+          NATIVE
       - name: Build canonical baseline outside candidate workspace
         env:
           BASELINE_REVISION: 5203be095e184b8c47a3fa647a724bbc0ac163ec
@@ -36,7 +88,10 @@ jobs:
           git clone --no-checkout https://github.com/tailrocks/velnor-new.git "$RUNNER_TEMP/velnor-baseline"
           git -C "$RUNNER_TEMP/velnor-baseline" checkout --detach "$BASELINE_REVISION"
           test "$(git -C "$RUNNER_TEMP/velnor-baseline" rev-parse HEAD)" = "$BASELINE_REVISION"
-          cargo build --manifest-path "$RUNNER_TEMP/velnor-baseline/ci-helper/Cargo.toml" --release --locked --target-dir "$RUNNER_TEMP/velnor-base-target"
+          mise --no-config --no-env --no-hooks exec rust@1.99.1 -- bash --noprofile --norc <<'NATIVE'
+          export PATH="$NATIVE_TOOLCHAIN_BIN:$PATH"
+          exec "$NATIVE_CARGO" build --manifest-path "$RUNNER_TEMP/velnor-baseline/ci-helper/Cargo.toml" --release --locked --target-dir "$RUNNER_TEMP/velnor-base-target"
+          NATIVE
       - name: Check out reviewed evidence harness after builds
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -47,7 +102,7 @@ jobs:
       - name: Reject baseline as candidate negative control
         env:
           SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
-          SOURCE_CANDIDATE_SHA: 8b4cc053315e6edb46f0380267e5d101bedbd59c
+          SOURCE_CANDIDATE_SHA: 0e910e2ea0e1d0ce0004d649ac19d8d2391b6de4
         run: |
           mkdir -p "$RUNNER_TEMP/velnor-report-evidence"
           if mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/negative-control.json" > "$RUNNER_TEMP/velnor-report-evidence/negative-control.stdout" 2> "$RUNNER_TEMP/velnor-report-evidence/negative-control.stderr"; then
@@ -59,7 +114,7 @@ jobs:
       - name: Measure bounded capture overhead on actual registry inventory
         env:
           SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
-          SOURCE_CANDIDATE_SHA: 8b4cc053315e6edb46f0380267e5d101bedbd59c
+          SOURCE_CANDIDATE_SHA: 0e910e2ea0e1d0ce0004d649ac19d8d2391b6de4
         run: mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$GITHUB_WORKSPACE/ci-helper/target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/report-overhead.json"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
