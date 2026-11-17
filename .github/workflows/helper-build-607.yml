@@ -1,5 +1,5 @@
 name: helper build 612
-run-name: Native Rust 1.99.1 Linux proof of source 903640e and capture overhead
+run-name: Native Rust 1.99.1 Linux proof of source 33dc88e and capture overhead
 on:
   push:
     branches: [lab/612-helper]
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: tailrocks/velnor-new
-          ref: 903640e766f1394c274d0a73ae16646839fd643c
+          ref: 33dc88ed2eb4fc42c7f0d1f5efaa3ab32f8cbf7b
           persist-credentials: false
       - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
         with:
@@ -111,7 +111,7 @@ jobs:
       - name: Reject baseline as candidate negative control
         env:
           SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
-          SOURCE_CANDIDATE_SHA: 903640e766f1394c274d0a73ae16646839fd643c
+          SOURCE_CANDIDATE_SHA: 33dc88ed2eb4fc42c7f0d1f5efaa3ab32f8cbf7b
         run: |
           mkdir -p "$RUNNER_TEMP/velnor-report-evidence"
           if mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/negative-control.json" > "$RUNNER_TEMP/velnor-report-evidence/negative-control.stdout" 2> "$RUNNER_TEMP/velnor-report-evidence/negative-control.stderr"; then
@@ -123,7 +123,7 @@ jobs:
       - name: Measure bounded capture overhead on actual registry inventory
         env:
           SOURCE_BASELINE_SHA: 5203be095e184b8c47a3fa647a724bbc0ac163ec
-          SOURCE_CANDIDATE_SHA: 903640e766f1394c274d0a73ae16646839fd643c
+          SOURCE_CANDIDATE_SHA: 33dc88ed2eb4fc42c7f0d1f5efaa3ab32f8cbf7b
         run: mise --no-config --no-env --no-hooks exec bun@1.4.4 -- bun lab-evidence/.github/scripts/report-overhead.ts "$RUNNER_TEMP/velnor-base-target/release/velnor-ci" "$GITHUB_WORKSPACE/ci-helper/target/release/velnor-ci" "$RUNNER_TEMP/velnor-report-evidence/report-overhead.json"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
