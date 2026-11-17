@@ -11,13 +11,19 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: tailrocks/velnor-new
-          ref: 30cb7d068686d53d85585adb1b0752a77677c450
+          ref: b4adb09ad009c15e9d8a2a44b9ad67b0d74d418c
           persist-credentials: false
       - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c
         with:
           version: '2026.11.1'
-          install_args: rust
+          install_args: rust cargo-nextest
           cache: false
+      - name: Create isolated test temporary directory
+        run: mkdir -m 700 "$RUNNER_TEMP/velnor-612-tests"
+      - name: Verify helper tests with normal deadlines
+        env:
+          TMPDIR: ${{ runner.temp }}/velnor-612-tests
+        run: cargo nextest run --manifest-path ci-helper/Cargo.toml --workspace --locked --test-threads 1 --no-fail-fast
       - run: cargo build --manifest-path ci-helper/Cargo.toml --release --locked
       - run: cargo build --manifest-path generator/Cargo.toml --release --locked -p velnor-gen
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
