@@ -64,7 +64,7 @@ jobs:
             mkdir -p "$sample"
             cp -R "$source/fixtures/parity/multi-crate/input/." "$sample/"
             mkdir -p "$sample/.velnor"
-            for file in rust-ci.toml rust-toolchain.toml mise.toml mise.lock; do
+            for file in rust-toolchain.toml mise.toml mise.lock; do
               cp "$source/.velnor/$file" "$sample/.velnor/$file"
             done
             cp "$source/generator/samples/release-bin/view/.velnor/rust-ci.lock" "$sample/.velnor/rust-ci.lock"
