@@ -200,15 +200,66 @@
           ]
         }
       ]
+    },
+    "lab/Cargo.toml": {
+      "target_dir": "lab/target",
+      "members": [
+        {
+          "name": "lab",
+          "version": "0.0.0",
+          "manifest": "lab/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "base64",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "serde_json",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "ureq",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "json"
+              ]
+            },
+            {
+              "name": "zip",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "deflate"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "lab/src/main.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
     }
   },
   "manifests": {
     "Cargo.toml": "61a930a033f3815d284a4c6028a9a1221366149171e1003edbffd68a40e261ce",
     "app/Cargo.toml": "75f0d4f63f47c40e3bbae85de07ea89d968223eb92030bfd3600883eb98bd22b",
     "core/Cargo.toml": "edc6e9efd051bf8751557e8eff750a3c3cda8cc7e2b984833ea71515a137c072",
+    "lab/Cargo.toml": "e996a05386cc7722c5464ecf858e942a0392e87477c6a564d6db8925add22175",
     "lib/Cargo.toml": "bebd2153ea68cc237e43561107646ae96247c6578aca307a7107a2249e5ff276",
     "macros/Cargo.toml": "b0f64b01d21e07f76b4de89fd3f3e16464dd9e0996e82e424bac8795b3f65e04",
     "tool/Cargo.toml": "98d4bc3d3ba49eced773b0c4f9d2d076adb4e33b043c44900edebe600ac5ed69"
   },
-  "layout": "29f44205e013ffebe7c78c8aa9f2917cf760fcdfb687fb1df0b2256045be7677"
+  "layout": "701235763e19587f56656114f9003b235955413b6d07caf6a0d198d7ab2b07e6"
 }
