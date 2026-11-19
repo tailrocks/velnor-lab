@@ -2,29 +2,13 @@
 # velnor-gen-sha256: 8fa9372795774ed9c5796ddf18ee12cb83ac74c5a7089b67b22555af4308655d
 name: Rust CI
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
-      - edited
-  push:
-    branches:
-      - main
-  merge_group: {}
+  pull_request: {}
   workflow_dispatch: {}
 permissions:
   contents: read
 concurrency:
-  group: 'ci-${{ github.workflow_ref }}-${{ github.event_name == ''pull_request'' && startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'' && !(github.event.action == ''edited'' && github.event.changes.base == null) && github.event.pull_request.number || github.run_id }}'
-  cancel-in-progress: '${{ github.event_name == ''pull_request'' && startsWith(github.ref, ''refs/pull/'') && github.event.pull_request.state != ''closed'' && !(github.event.action == ''edited'' && github.event.changes.base == null) }}'
-env:
-  MISE_AUTO_INSTALL: 'false'
-  RUSTUP_AUTO_INSTALL: '0'
-defaults:
-  run:
-    shell: 'bash -p {0}'
+  group: '${{ github.workflow_ref }}'
+  cancel-in-progress: true
 jobs:
   # one job: .velnor/rust-ci-timings.json has no build times for this workspace
   rust:
@@ -514,12 +498,43 @@ jobs:
       - name: Download cache metrics
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
-          pattern: 'ci-metrics-*'
-          path: '${{ runner.temp }}/ci-metrics'
-      # jactionlint ignore=shellcheck
-      - name: Check cache waste
-        env:
-          VELNOR_REPORT_NEEDS: '${{ toJSON(needs) }}'
-          GITHUB_TOKEN: '${{ (github.event_name != ''pull_request'' || github.event.pull_request.head.repo.full_name == github.repository) && github.token || '''' }}'
-          VELNOR_REPORT_DEFAULT_BRANCH: '${{ github.event.repository.default_branch }}'
-        run: '. "$VELNOR_EXEC" report --check "$RUNNER_TEMP/ci-metrics"'
+          version: '2026.11.1'
+          cache: false
+      - name: Add Rust components
+        working-directory: lab
+        run: rustup component add clippy rustfmt
+      - name: Add Rust targets
+        working-directory: lab
+        run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
+      - name: Format
+        if: '${{ !cancelled() }}'
+        working-directory: lab
+        run: cargo-fmt --all --check
+      - name: Lint
+        if: '${{ !cancelled() }}'
+        working-directory: lab
+        run: cargo-clippy clippy --workspace --all-targets --locked -- -D warnings
+      - name: Test
+        if: '${{ !cancelled() }}'
+        working-directory: lab
+        run: 'cargo-nextest nextest run --workspace --locked --no-fail-fast --ignore-default-filter -E ''all()'''
+      - name: Documentation
+        if: '${{ !cancelled() }}'
+        working-directory: lab
+        run: 'cargo doc --workspace --no-deps --locked --config ''build.rustdocflags=["-D","warnings"]'''
+      - name: Check lab alone
+        if: '${{ !cancelled() }}'
+        working-directory: lab
+        run: cargo check -p lab --locked
+  required:
+    name: Required
+    needs:
+      - rust-root
+      - rust-lab
+    if: '${{ !cancelled() }}'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Fail when a Rust job failed or was cancelled
+        if: '${{ contains(needs.*.result, ''failure'') || contains(needs.*.result, ''cancelled'') }}'
+        run: exit 1
