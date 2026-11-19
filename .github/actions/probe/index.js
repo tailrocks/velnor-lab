@@ -63,8 +63,16 @@ function context() {
   exportEnv({ PROBE_TAG: tag, PROBE_ROLE: role, PROBE_ORDINAL: ordinal, PROBE_EVENT: name });
 }
 
-function token() {
-  const raw = env('ACTIONS_RUNTIME_TOKEN');
+// Claims whose values are not secrets (repository name, refs). Every other
+// claim is recorded by its type only. The token itself is never recorded.
+const VALUE_CLAIMS = ['repository', 'ref', 'defaultRef'];
+
+function claimEntry(claim) {
+  if (claim === undefined) return 'absent';
+  return typeof claim === 'string' ? claim : typeof claim;
+}
+
+function tokenData(raw) {
   let claims;
   try {
     claims = JSON.parse(Buffer.from(raw.split('.')[1], 'base64url').toString('utf8'));
@@ -74,12 +82,17 @@ function token() {
   const names = Object.keys(claims).sort();
   let scopes = claims.ac;
   if (typeof scopes === 'string') scopes = JSON.parse(scopes);
-  const data = {
-    claims: Object.fromEntries(names.map((key) => [key, Array.isArray(claims[key]) ? 'array' : typeof claims[key]])),
+  const entries = Object.fromEntries(names.map((key) => [key, Array.isArray(claims[key]) ? 'array' : typeof claims[key]]));
+  for (const key of VALUE_CLAIMS) entries[key] = claimEntry(claims[key]);
+  return {
+    claims: canon(entries),
     cache_scopes: (scopes || []).map((item) => ({ permission: item.Permission, scope: item.Scope })),
     scp: [...new Set(String(claims.scp || '').split(' ').filter(Boolean).map((item) => item.split(':')[0]))].sort(),
   };
-  emit('token', env('GITHUB_EVENT_NAME'), data);
+}
+
+function token() {
+  emit('token', env('GITHUB_EVENT_NAME'), tokenData(env('ACTIONS_RUNTIME_TOKEN')));
 }
 
 const FIELDS = {
@@ -186,7 +199,11 @@ async function main() {
   else throw new Error(`unknown mode ${mode}`);
 }
 
-main().catch((error) => {
-  process.stdout.write(`::error::${error.message}\n`);
-  process.exit(1);
-});
+module.exports = { tokenData };
+
+if (require.main === module) {
+  main().catch((error) => {
+    process.stdout.write(`::error::${error.message}\n`);
+    process.exit(1);
+  });
+}
