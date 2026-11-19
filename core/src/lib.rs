@@ -59,3 +59,5 @@ mod tests {
 }
 
 // proof #1535 touch 2
+
+// proof #1535 touch 3
