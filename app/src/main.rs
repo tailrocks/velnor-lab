@@ -21,3 +21,4 @@ async fn main() {
 // proof 622: budget history sample 3
 // proof 622: budget history sample 4
 // proof 622: budget history sample 5
+// proof 622: after the revert
