@@ -23,9 +23,5 @@ mod tests {
     #[test]
     fn digest_is_stable() {
         assert_eq!(digest("").hex, "cbf29ce484222325");
-        assert_eq!(digest("").hex.len(), super::DIGEST_LEN);
     }
 }
-
-/// Number of hex characters in a digest.
-pub const DIGEST_LEN: usize = 16;
