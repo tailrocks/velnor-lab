@@ -2,7 +2,7 @@ use fnv::FnvHasher;
 use serde::Serialize;
 use std::hash::Hasher;
 
-/// Number of hex characters in a digest.
+/// Number of hex characters in a digest (a 64-bit FNV-1a value).
 pub const DIGEST_LEN: usize = 16;
 
 #[derive(Serialize)]
