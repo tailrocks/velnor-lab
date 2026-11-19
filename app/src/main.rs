@@ -17,3 +17,4 @@ async fn main() {
     let record = Record::new(args.id, &args.name);
     println!("{}", greet::line(&record));
 }
+// proof 622: budget history sample 2
