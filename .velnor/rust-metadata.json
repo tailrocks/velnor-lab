@@ -1,0 +1,224 @@
+{
+  "roots": {
+    "rust/Cargo.toml": {
+      "target_dir": "rust/target",
+      "members": [
+        {
+          "name": "core",
+          "version": "0.0.0",
+          "manifest": "rust/core/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "serde",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive"
+              ]
+            },
+            {
+              "name": "serde_json",
+              "kind": "normal",
+              "manifest": null
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab_core",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "rust/core/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "lib",
+          "version": "0.0.0",
+          "manifest": "rust/lib/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "core",
+              "kind": "normal",
+              "manifest": "rust/core/Cargo.toml"
+            },
+            {
+              "name": "hex",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "alloc"
+              ]
+            },
+            {
+              "name": "macros",
+              "kind": "normal",
+              "manifest": "rust/macros/Cargo.toml"
+            }
+          ],
+          "targets": [
+            {
+              "name": "lab_lib",
+              "kinds": [
+                "lib"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "rust/lib/src/lib.rs",
+              "requires_features": false
+            },
+            {
+              "name": "build-script-build",
+              "kinds": [
+                "build-script"
+              ],
+              "tests": false,
+              "doctest": false,
+              "source": "rust/lib/build.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "macros",
+          "version": "0.0.0",
+          "manifest": "rust/macros/Cargo.toml",
+          "dependencies": [],
+          "targets": [
+            {
+              "name": "lab_macros",
+              "kinds": [
+                "proc-macro"
+              ],
+              "tests": true,
+              "doctest": true,
+              "source": "rust/macros/src/lib.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "app",
+          "version": "0.0.0",
+          "manifest": "rust/app/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "clap",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "derive"
+              ]
+            },
+            {
+              "name": "core",
+              "kind": "normal",
+              "manifest": "rust/core/Cargo.toml"
+            },
+            {
+              "name": "lib",
+              "kind": "normal",
+              "manifest": "rust/lib/Cargo.toml"
+            },
+            {
+              "name": "tokio",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "macros",
+                "rt"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "app",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "rust/app/src/main.rs",
+              "requires_features": false
+            },
+            {
+              "name": "cli",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "rust/app/tests/cli.rs",
+              "requires_features": false
+            },
+            {
+              "name": "reads_unlisted_file",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "rust/app/tests/reads_unlisted_file.rs",
+              "requires_features": false
+            },
+            {
+              "name": "slow",
+              "kinds": [
+                "test"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "rust/app/tests/slow.rs",
+              "requires_features": false
+            }
+          ]
+        },
+        {
+          "name": "tool",
+          "version": "0.0.0",
+          "manifest": "rust/tool/Cargo.toml",
+          "dependencies": [
+            {
+              "name": "fnv",
+              "kind": "normal",
+              "manifest": null
+            },
+            {
+              "name": "hex",
+              "kind": "normal",
+              "manifest": null,
+              "features": [
+                "std",
+                "serde"
+              ]
+            }
+          ],
+          "targets": [
+            {
+              "name": "tool",
+              "kinds": [
+                "bin"
+              ],
+              "tests": true,
+              "doctest": false,
+              "source": "rust/tool/src/main.rs",
+              "requires_features": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "manifests": {
+    "rust/Cargo.toml": "4c5e47c9003d8a60cbc07c22fc1d37fb914bbb075014aa771b2cda28447ad9ad",
+    "rust/app/Cargo.toml": "75f0d4f63f47c40e3bbae85de07ea89d968223eb92030bfd3600883eb98bd22b",
+    "rust/core/Cargo.toml": "edc6e9efd051bf8751557e8eff750a3c3cda8cc7e2b984833ea71515a137c072",
+    "rust/lib/Cargo.toml": "bebd2153ea68cc237e43561107646ae96247c6578aca307a7107a2249e5ff276",
+    "rust/macros/Cargo.toml": "b0f64b01d21e07f76b4de89fd3f3e16464dd9e0996e82e424bac8795b3f65e04",
+    "rust/tool/Cargo.toml": "98d4bc3d3ba49eced773b0c4f9d2d076adb4e33b043c44900edebe600ac5ed69"
+  },
+  "layout": "5dd0b46a0956676847ac395b47b692f585e48dff4c5c54519a0508de36eb9929"
+}
