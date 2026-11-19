@@ -57,3 +57,5 @@ mod tests {
         assert_eq!(checksum(b""), 0);
     }
 }
+
+// proof #1572 touch 2
