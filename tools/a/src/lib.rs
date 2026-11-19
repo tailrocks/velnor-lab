@@ -2,6 +2,9 @@ use fnv::FnvHasher;
 use serde::Serialize;
 use std::hash::Hasher;
 
+/// Number of hex characters in a digest.
+pub const DIGEST_LEN: usize = 16;
+
 #[derive(Serialize)]
 pub struct Digest {
     pub hex: String,
@@ -23,5 +26,6 @@ mod tests {
     #[test]
     fn digest_is_stable() {
         assert_eq!(digest("").hex, "cbf29ce484222325");
+        assert_eq!(digest("").hex.len(), super::DIGEST_LEN);
     }
 }
