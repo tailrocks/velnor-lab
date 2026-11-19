@@ -124,7 +124,7 @@ function eventPayload() {
 
 async function jobLog(job) {
   const headers = { Authorization: `Bearer ${input('github-token')}`, 'User-Agent': 'velnor-lab', Accept: 'application/vnd.github+json' };
-  const base = `https://api.github.com/repos/${env('GITHUB_REPOSITORY')}/actions`;
+  const base = `${env('GITHUB_API_URL') || 'https://api.github.com'}/repos/${env('GITHUB_REPOSITORY')}/actions`;
   const jobs = await (await fetch(`${base}/runs/${env('GITHUB_RUN_ID')}/jobs?per_page=100`, { headers })).json();
   const found = jobs.jobs.find((item) => item.name === job);
   if (!found) throw new Error(`job ${job} not found`);
