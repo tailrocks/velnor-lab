@@ -18,3 +18,4 @@ async fn main() {
     println!("{}", greet::line(&record));
 }
 // proof 622: budget history sample 2
+// proof 622: budget history sample 3
