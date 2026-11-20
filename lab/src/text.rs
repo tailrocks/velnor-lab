@@ -26,3 +26,4 @@ mod tests {
 // 1702 delta timing sample 1
 // 1702 delta timing sample A
 // 1702 delta timing sample B
+// 1702 delta timing sample C
