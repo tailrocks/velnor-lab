@@ -26,7 +26,7 @@ jobs:
       - run: rustup component add clippy rustfmt
       - run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Components
-        run: for f in ~/.rustup/toolchains/*/lib/rustlib/components; do echo "== $f"; cat "$f"; done
+        run: for f in ~/.rustup/toolchains/*/lib/rustlib/components; do echo "== $f"; cat "$f" | od -c | head -30; done
       - name: Manifest
         run: |
           python3 - <<'PY' > "$RUNNER_TEMP/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt"
@@ -69,5 +69,7 @@ jobs:
           ls -l m/*
           for mode in cleared; do
             sha256sum m/manifest-$mode-*/*.txt
-            if diff m/manifest-$mode-a/manifest-$mode-a.txt m/manifest-$mode-b/manifest-$mode-b.txt > d.txt; then echo "$mode IDENTICAL"; else echo "$mode DIFFERENT"; wc -l d.txt; head -40 d.txt; fi
+            for x in b c d e f; do
+              if diff m/manifest-$mode-a/manifest-$mode-a.txt m/manifest-$mode-$x/manifest-$mode-$x.txt > d.txt; then echo "a vs $x IDENTICAL"; else echo "a vs $x DIFFERENT"; cat d.txt; fi
+            done
           done
