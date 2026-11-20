@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        lane: [a, b, c, d, e, f]
+        lane: [a, b, c, d, e, f, g, h]
         mode: [cleared]
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +26,7 @@ jobs:
       - run: rustup component add clippy rustfmt
       - run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Components
-        run: for f in ~/.rustup/toolchains/*/lib/rustlib/components; do echo "== $f"; cat "$f" | od -c | head -30; done
+        run: for f in ~/.rustup/toolchains/*/lib/rustlib/components; do echo "== $f"; cat "$f"; done
       - name: Manifest
         run: |
           python3 - <<'PY' > "$RUNNER_TEMP/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt"
@@ -39,7 +39,11 @@ jobs:
               if stat.S_ISLNK(st.st_mode):
                   print(f"l\t{rel}\t{os.readlink(path)}")
               elif stat.S_ISREG(st.st_mode):
-                  h = hashlib.sha256(open(path, "rb").read()).hexdigest()
+                  data = open(path, "rb").read()
+                  parts = rel.split("/")
+                  if len(parts) == 6 and parts[0] == ".rustup" and parts[1] == "toolchains" and parts[3:] == ["lib", "rustlib", "components"]:
+                      data = b"".join(sorted(data.splitlines(keepends=True)))
+                  h = hashlib.sha256(data).hexdigest()
                   print(f"f\t{rel}\t{mode:o}\t{h}")
               elif stat.S_ISDIR(st.st_mode):
                   print(f"d\t{rel}\t{mode:o}")
@@ -69,7 +73,7 @@ jobs:
           ls -l m/*
           for mode in cleared; do
             sha256sum m/manifest-$mode-*/*.txt
-            for x in b c d e f; do
+            for x in b c d e f g h; do
               if diff m/manifest-$mode-a/manifest-$mode-a.txt m/manifest-$mode-$x/manifest-$mode-$x.txt > d.txt; then echo "a vs $x IDENTICAL"; else echo "a vs $x DIFFERENT"; cat d.txt; fi
             done
           done
