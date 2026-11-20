@@ -108,3 +108,4 @@ fn finish(mut response: ureq::http::Response<ureq::Body>, path: &str) -> Result<
         _ => Err(format!("{path}: HTTP {status}: {text}").into()),
     }
 }
+// 1702 delta timing sample 2
