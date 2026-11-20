@@ -1,0 +1,64 @@
+name: tools determinism 2178
+on:
+  push:
+    branches: [lab/2178-tools-determinism]
+permissions:
+  contents: read
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [a, b]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+        with:
+          cache: false
+          install_args: rust mr-boxington aqua:nextest-rs/nextest/cargo-nextest
+      - run: rustup component add clippy rustfmt
+      - run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
+      - name: Manifest
+        run: |
+          python3 - <<'PY' > "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
+          import hashlib, os, stat
+          home = os.path.expanduser("~")
+          def emit(path):
+              rel = os.path.relpath(path, home)
+              st = os.lstat(path)
+              mode = stat.S_IMODE(st.st_mode)
+              if stat.S_ISLNK(st.st_mode):
+                  print(f"l\t{rel}\t{os.readlink(path)}")
+              elif stat.S_ISREG(st.st_mode):
+                  h = hashlib.sha256(open(path, "rb").read()).hexdigest()
+                  print(f"f\t{rel}\t{mode:o}\t{h}")
+              elif stat.S_ISDIR(st.st_mode):
+                  print(f"d\t{rel}\t{mode:o}")
+                  for name in sorted(os.listdir(path), key=lambda n: n.encode()):
+                      emit(os.path.join(path, name))
+              else:
+                  print(f"?\t{rel}")
+          for root in (".local/share/mise", ".rustup"):
+              p = os.path.join(home, root)
+              if os.path.lexists(p):
+                  emit(p)
+          PY
+          wc -l "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
+          sha256sum "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: manifest-${{ matrix.lane }}
+          path: ${{ runner.temp }}/manifest-${{ matrix.lane }}.txt
+  compare:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          path: m
+      - run: |
+          ls -l m/*
+          if diff m/manifest-a/manifest-a.txt m/manifest-b/manifest-b.txt > d.txt; then echo IDENTICAL; else echo DIFFERENT; wc -l d.txt; head -80 d.txt; fi
