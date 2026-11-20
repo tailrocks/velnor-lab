@@ -10,11 +10,15 @@ jobs:
       fail-fast: false
       matrix:
         lane: [a, b]
+        mode: [kept, cleared]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Clear the tool homes
+        if: matrix.mode == 'cleared'
+        run: rm -rf -- "$HOME/.local/share/mise" "$HOME/.rustup"
       - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
         with:
           cache: false
@@ -23,7 +27,7 @@ jobs:
       - run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-gnu
       - name: Manifest
         run: |
-          python3 - <<'PY' > "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
+          python3 - <<'PY' > "$RUNNER_TEMP/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt"
           import hashlib, os, stat
           home = os.path.expanduser("~")
           def emit(path):
@@ -46,12 +50,12 @@ jobs:
               if os.path.lexists(p):
                   emit(p)
           PY
-          wc -l "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
-          sha256sum "$RUNNER_TEMP/manifest-${{ matrix.lane }}.txt"
+          wc -l "$RUNNER_TEMP/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt"
+          sha256sum "$RUNNER_TEMP/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: manifest-${{ matrix.lane }}
-          path: ${{ runner.temp }}/manifest-${{ matrix.lane }}.txt
+          name: manifest-${{ matrix.mode }}-${{ matrix.lane }}
+          path: ${{ runner.temp }}/manifest-${{ matrix.mode }}-${{ matrix.lane }}.txt
   compare:
     needs: install
     runs-on: ubuntu-latest
@@ -61,4 +65,6 @@ jobs:
           path: m
       - run: |
           ls -l m/*
-          if diff m/manifest-a/manifest-a.txt m/manifest-b/manifest-b.txt > d.txt; then echo IDENTICAL; else echo DIFFERENT; wc -l d.txt; head -80 d.txt; fi
+          for mode in kept cleared; do
+            if diff m/manifest-$mode-a/manifest-$mode-a.txt m/manifest-$mode-b/manifest-$mode-b.txt > d.txt; then echo "$mode IDENTICAL"; else echo "$mode DIFFERENT"; wc -l d.txt; head -40 d.txt; fi
+          done
