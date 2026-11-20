@@ -23,3 +23,4 @@ mod tests {
         assert_eq!(append_line("", "b"), "b\n");
     }
 }
+// 1702 delta timing sample 1
