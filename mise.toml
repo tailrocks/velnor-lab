@@ -1,3 +1,5 @@
+min_version = "2026.10.18"
+
 [tools]
 rust = { version = "1.99.1", profile = "minimal", components = [
   "clippy",
@@ -5,10 +7,14 @@ rust = { version = "1.99.1", profile = "minimal", components = [
 ], targets = [
   "aarch64-unknown-linux-gnu",
   "x86_64-unknown-linux-gnu",
-] }
+], mr_boxington = true }
 "aqua:nextest-rs/nextest/cargo-nextest" = "0.9.151"
 mr-boxington = { version = "1.30.0", workflow = "release.yml@refs/heads/main" }
 hk = "2.12.0"
 
 [settings]
 lockfile = true
+
+[wrappers.cargo]
+command = "mbx"
+env = { MBX_CARGO_SHIM_MODE = "1" }
