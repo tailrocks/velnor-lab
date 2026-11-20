@@ -1,0 +1,24 @@
+[workspace]
+release = false
+git_tag_name = "{{ package }}-v{{ version }}"
+git_release_draft = true
+release_always = false
+semver_check = false
+git_only = true
+pr_branch_prefix = "release-plz-app-"
+
+[[package]]
+name = "app"
+release = true
+
+[[package]]
+name = "core"
+release = false
+
+[[package]]
+name = "lib"
+release = false
+
+[[package]]
+name = "macros"
+release = false
